@@ -9,9 +9,34 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <meta name="viewport" content="width=300, initial-scale=1, maximum-scale=1">
+        <title>Cult Cinema</title>
+        
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="./js/base.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="css/base.css" />
+        
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%@include file="WEB-INF/jspf/common/asgClaim.jspf" %>
+        
+        
+        
+        <div id="mainContainer">
+            <div id="menu">
+                <%@include file="WEB-INF/jspf/common/menu.jspf" %>
+            </div>
+            
+            <div id="header">
+                <%@include file="WEB-INF/jspf/common/header.jspf" %>
+            </div>
+            
+            <div id="content">
+                <%@include file="WEB-INF/jspf/movies/movies.jspf" %>
+            </div>
+        </div>
+        
+        <%@include file="WEB-INF/jspf/common/asgClaim.jspf" %>
     </body>
 </html>

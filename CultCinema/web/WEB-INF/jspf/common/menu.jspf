@@ -1,0 +1,13 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<div class="menuWrapper defaultWidth">
+    <ul class="menuLeft">
+        <li>
+            <a>Movies</a>
+        </li>
+    </ul>
+
+    <ul class="menuRight">
+
+    </ul>
+</div>
