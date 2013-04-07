@@ -25,10 +25,10 @@
 }
 
 #content .movieContainer .movieDescription{
-    width: 710px;
+    max-width: 710px;
     height:auto;
     padding: 5px;
-    float:right;
+    float:left;
 }
 
 #content .movieContainer .movieDescription .movieDescriptionItem{
