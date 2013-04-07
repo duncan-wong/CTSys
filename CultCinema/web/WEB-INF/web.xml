@@ -4,9 +4,25 @@
         <servlet-name>index</servlet-name>
         <servlet-class>servlets.index</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Movies</servlet-name>
+        <servlet-class>servlets.Movies</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Account</servlet-name>
+        <servlet-class>servlets.Account</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Movies</servlet-name>
+        <url-pattern>/Movies</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Account</servlet-name>
+        <url-pattern>/Account</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

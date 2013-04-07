@@ -24,8 +24,17 @@ body{
     background: #F2F2F2;
     color:#5A5A5A;
     position:absolute;
+    font-size:18px;
 }
 
+/*----asgClaim----------*/
+div.asgClaim_stayTop{
+    width: 100%;
+    position:fixed;
+    top:0;
+    background: white;
+    z-index: 999;
+}
 
 div.asgClaim{
     width: 100%;
@@ -34,27 +43,103 @@ div.asgClaim{
     color:red;
     border:solid 1px black;
     position:relative;
+    background: white;
+    z-index: 999;
 }
 
+/*----asgClaim----------*/
 
-div#mainContainer, div#mainContainer .defaultWidth{
+div#mainContainer{
+    width:100%;
+    position:relative;
+    margin:0 auto;
+    overflow: auto;
+}
+
+.defaultWidth{
     width:1024px;
     min-width: 1024px;
     position:relative;
     margin:0 auto;
+    overflow: auto;
 }
 
+
+/*---------common-----------*/
+.btn{
+    margin:0;
+    padding:5px 10px;
+    display:inline-block;
+    background: #fda34b;
+    color: #F2F2F2;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background: #fc8108;
+}
+
+
+
+/*---------header----------*/
+div#header{
+    margin-top:40px;
+    height:300px;
+    overflow: hidden;
+    
+    left:0;
+    right:0;
+    position:absolute;
+    border:solid 1px #ddd;
+}
+
+div#header.bigHeader{
+    height:300px;
+}
+
+div#header.smallHeader{
+    height:150px;
+}
+
+div#header+div{
+    margin-top:340px;
+}
+
+div#header.smallHeader+div{
+    margin-top:190px;
+}
+
+#header .headerMainTitle{
+    font-size: 100px;
+    margin:30px 20px 5px 20px;
+}
+
+#header .headerSubTitle{
+    font-size: 20px;
+    color:#BBB;
+    margin: 0 0 10px 50px;
+}
+
+#header .headerControl{
+    font-size: 25px;
+    margin:5px 20px;
+}
 
 /*---------menu----------*/
 #menu{
     left:0;
     right:0;
-    height: 50px;
-    font-size: 30px;
-    background:black;
+    height: 40px;
+    /*font-size: 18px;*/
+    background: #000;
     position:fixed;
     z-index: 999;
     overflow: hidden;
+    cursor:default;
+    
+        
+    /*--asgClaim--*/
+    top:23px;
 }
 
 #menu .menuWrapper{
@@ -63,4 +148,66 @@ div#mainContainer, div#mainContainer .defaultWidth{
 
 #menu ul{
     list-style: none;
+}
+
+#menu ul li{
+    padding:0 10px;
+    display: inline;
+}
+
+#menu a{
+    color:#5A5A5A;
+    text-decoration: none;
+}
+
+#menu a:hover{
+    color:#EEE;
+    cursor:pointer;
+}
+
+#menu .special{
+    font-weight: bolder;
+    font-size: 19px;
+}
+
+#menu .special:hover{
+    color:#FFF;
+}
+
+#menu .menuLink{
+    float:left;
+}
+
+#menu .menuControl{
+    float: right;
+}
+
+
+#menu .menuControl #searchText{
+    height: 20px;
+    background:#333;
+    border:0;
+    font-size: 17px;
+    color:#5a5a5a;
+    dispaly:block;
+}
+
+#menu .menuControl #searchText:focus{
+    background:#ddd;
+}
+
+
+
+
+
+/*---------Content---------*/
+#content{
+    
+}
+
+#content .contentTitile{
+    margin:20px 0;
+    padding:0;
+    font-size: 40px;
+    font-weight: normal;
 }

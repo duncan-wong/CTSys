@@ -16,11 +16,13 @@
         <script src="./js/base.js"></script>
         
         <link rel="stylesheet" type="text/css" href="css/base.css" />
+        <link rel="stylesheet" type="text/css" href="css/movies.css" />
         
     </head>
     <body>
-        <%@include file="WEB-INF/jspf/common/asgClaim.jspf" %>
-        
+        <div class="asgClaim_stayTop">
+            <%@include file="WEB-INF/jspf/common/asgClaim.jspf" %>
+        </div>
         
         
         <div id="mainContainer">
@@ -32,7 +34,7 @@
                 <%@include file="WEB-INF/jspf/common/header.jspf" %>
             </div>
             
-            <div id="content">
+            <div id="content" class="defaultWidth">
                 <%@include file="WEB-INF/jspf/movies/movies.jspf" %>
             </div>
         </div>
