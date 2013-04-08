@@ -81,13 +81,13 @@ div#mainContainer{
     margin:0;
     padding:5px 10px;
     display:inline-block;
-    background: #fda34b;
+    background: #fc8919;
     color: #F2F2F2;
     cursor:pointer;
 }
 
 .btn:hover{
-    background: #fc8108;
+    background: #f07803;
 }
 
 
@@ -123,18 +123,22 @@ div#header.smallHeader+div{
 
 #header .headerMainTitle{
     font-size: 100px;
-    margin:30px 20px 5px 20px;
+    margin:50px 20px 5px 40px;
 }
 
 #header .headerSubTitle{
     font-size: 20px;
-    color:#BBB;
-    margin: 0 0 10px 50px;
+    color:#888;
+    margin: 0 0 10px 70px;
 }
 
 #header .headerControl{
     font-size: 25px;
-    margin:5px 20px;
+    margin:5px 40px;
+}
+
+#header .headerWrapper{
+    height:100%;
 }
 
 /*---------menu----------*/

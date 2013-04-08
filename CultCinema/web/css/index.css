@@ -1,0 +1,16 @@
+/* 
+    Document   : index
+    Created on : Apr 8, 2013, 10:38:04 PM
+    Author     : DUNCAN
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#header{
+    background:url('../img/indexHeaderBg.png');
+}
+
+#header .headerWrapper{
+    background:url('../img/indexHeader.png');
+}
+
