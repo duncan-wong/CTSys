@@ -28,16 +28,24 @@ body{
 }
 
 /*----asgClaim----------*/
-div.asgClaim_stayTop{
+div.asgClaim_stayTop, div.asgClaim_stayButtom{
     width: 100%;
     min-width: 1024px;
     position:fixed;
-    top:0;
     background: white;
     z-index: 999;
 }
 
+div.asgClaim_stayTop{
+    top:0;
+}
+
+div.asgClaim_stayButtom{
+    bottom:0;
+}
+
 div.asgClaim{
+    width:100%;
     display:block;
     text-align: center;
     color:red;
@@ -51,9 +59,12 @@ div.asgClaim{
 
 div#mainContainer{
     width:100%;
+    min-width:1024px;
     position:relative;
     margin:0 auto;
-    overflow: auto;
+    overflow-x: hidden;
+    
+    top:23px;
 }
 
 .defaultWidth{
@@ -91,7 +102,7 @@ div#header{
     right:0;
     min-width:1024px;
     position:absolute;
-    border:solid 1px #ddd;
+    border-bottom:solid 1px #ddd;
 }
 
 div#header.bigHeader{
@@ -204,7 +215,7 @@ div#header.smallHeader+div{
 
 /*---------Content---------*/
 #content{
-    
+    margin-bottom: 23px;
 }
 
 #content .contentTitile{
