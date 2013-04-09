@@ -48,7 +48,7 @@
                         <input type="password" name="password" id="txtPassword" placeholder="Password" />
                     </div>
                     <div>
-                        <input type="submit" class="btn" />
+                        <input type="submit" class="btn" value="Log In" />
                     </div>
                 </form>
             </div>

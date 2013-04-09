@@ -6,6 +6,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import common.*;
+import beans.*;
 
 /**
  *
@@ -25,7 +29,26 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getSession(true);
+        //if LOGGED IN
+        if (request.getUserPrincipal() != null){
+            //create fill SessionStatus bean
+            HttpSession session = request.getSession(true);
+            if (session.getAttribute("sessionStatus") == null){
+                session.setAttribute("sessionStatus", new SessionStatus());
+                //fill session status here
+                ///
+                ///
+                ///
+                ///
+            }
+            
+            if (request.getParameter("orgURL") != null){
+                response.sendRedirect(request.getParameter("orgURL"));
+            }
+            response.sendRedirect(URLConfig.getFullPath(URLConfig.JURL_index));
+        }
+        
+        //forward to log in page
         this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
     }
 
@@ -57,14 +80,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (request.getServletPath().compareToIgnoreCase("/login") == 0){
-            //handle login here!
-            
-            response.sendRedirect("/CultCinema/index");
-        }
-        else{
-            processRequest(request, response);
-        }
+        processRequest(request, response);
     }
 
     /**
