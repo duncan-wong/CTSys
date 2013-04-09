@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author DUNCAN
  */
-public class index extends HttpServlet {
+public class Index extends HttpServlet {
 
     /**
      * Processes requests for both HTTP

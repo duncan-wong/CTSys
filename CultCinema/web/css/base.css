@@ -84,6 +84,8 @@ div#mainContainer{
     background: #fc8919;
     color: #F2F2F2;
     cursor:pointer;
+    border:0;
+    text-decoration: none;
 }
 
 .btn:hover{
@@ -126,15 +128,37 @@ div#header.smallHeader+div{
     margin:50px 20px 5px 40px;
 }
 
+#header.smallHeader .headerMainTitle{
+    font-size: 70px;
+    font-weight: normal;
+    margin:10px 0;
+    position:relative;
+    bottom:0;
+}
+
 #header .headerSubTitle{
     font-size: 20px;
     color:#888;
     margin: 0 0 10px 70px;
 }
 
+#header.smallHeader .headerSubTitle{
+    font-size: 15px;
+    color:#888;
+    margin: 0 0 10px 40px;
+}
+
 #header .headerControl{
     font-size: 25px;
     margin:5px 40px;
+}
+
+#header.smallHeader .headerControl{
+    font-size: 20px;
+    margin:0;
+    position:relative;
+    bottom: 0;
+    display:inline;
 }
 
 #header .headerWrapper{

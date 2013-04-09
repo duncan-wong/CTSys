@@ -3,7 +3,7 @@
 <div class="menuWrapper defaultWidth">
     <ul class="menuLink">
         <li class="special">
-            <a>Cult Cinema</a>
+            <a href="index">Cult Cinema</a>
         </li>
         
         <li>
@@ -16,7 +16,7 @@
 
     <ul class="menuControl">
         <li>
-            <a href="account">Log In</a>
+            <a href="login">Log In</a>
         </li>
         
         <!--
