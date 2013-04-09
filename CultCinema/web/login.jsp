@@ -38,14 +38,14 @@
             </div>
             
             <div id="content" class="defaultWidth">
-                <form action="login" method="post">
+                <form action="j_security_check" method="post">
                     <div>
                         <label>Username: </label>
-                        <input type="text" name="username" id="txtUserName" placeholder="Username" />
+                        <input type="text" name="j_username" id="txtUserName" placeholder="Username" />
                     </div>
                     <div>
                         <label>Password: </label>
-                        <input type="password" name="password" id="txtPassword" placeholder="Password" />
+                        <input type="password" name="j_password" id="txtPassword" placeholder="Password" />
                     </div>
                     <div>
                         <input type="submit" class="btn" value="Log In" />

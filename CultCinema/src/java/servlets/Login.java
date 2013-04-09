@@ -45,11 +45,14 @@ public class Login extends HttpServlet {
             if (request.getParameter("orgURL") != null){
                 response.sendRedirect(request.getParameter("orgURL"));
             }
-            response.sendRedirect(URLConfig.getFullPath(URLConfig.JURL_index));
+            else {
+                response.sendRedirect(URLConfig.getFullPath(URLConfig.JURL_index));
+            }
         }
-        
+        else {
         //forward to log in page
-        this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

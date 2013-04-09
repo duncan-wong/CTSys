@@ -1,2 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path="/CultCinema"/>
+<Context antiJARLocking="true" path="/CultCinema">
+    <Realm className="org.apache.catalina.realm.JDBCRealm"
+    driverName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+    connectionURL="jdbc:sqlserver://w2ksa.cs.cityu.edu.hk:1433;databaseName=aiad049_db;"
+    connectionName="aiad049" 
+    connectionPassword="pktwins"
+    userTable="Membership"
+    userNameCol="login_id"
+    userCredCol="login_pw"
+    userRoleTable="Membership"
+    roleNameCol="role"/>
+</Context>
