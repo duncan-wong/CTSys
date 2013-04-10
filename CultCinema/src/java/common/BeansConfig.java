@@ -9,5 +9,11 @@ package common;
  * @author DUNCAN
  */
 public abstract class BeansConfig {
-    public static final String sessionStatus = "sessionStatus";
+    //request beans
+    public static final String rLogin = "rLogin";
+    
+    //session beans
+    public static final String sStatus = "sStatus";
+    
+    //application beans
 }

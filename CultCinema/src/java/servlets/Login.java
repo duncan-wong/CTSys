@@ -30,36 +30,33 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        beans.SessionStatus sessionStatus = (beans.SessionStatus)session.getAttribute("sessionStatus");
         
-        if (request.getUserPrincipal() != null){
-            //if it is a new user login by manually triggering /login
-            //create and fill SessionStatus bean
-            if (sessionStatus.getIsLoggedIn() == false){
-                
-                //fill session status here
-                //beans.SessionStatus sessionStatus = new beans.SessionStatus();
-                //sessionStatus.setIsLoggedIn(true);
-                //sessionStatus.setUserId(request.getUserPrincipal().getName());
-                //####to be filled with user name
-                //sessionStatus.setUserName(request.getUserPrincipal().getName());
-                
-                //put the bean in to session
-                //session.setAttribute("sessionStatus", sessionStatus);
+        //add request bean
+        beans.RLogin rLogin = new beans.RLogin();
+        request.setAttribute("rLogin", rLogin);
+        
+        //if the user is not logged in
+        if (request.getUserPrincipal() == null){
+            //if login error
+            //fill RLogin bean to pass back the error message
+            if (request.getServletPath().contains(URLConfig.SURL_loginError)){
+                rLogin.setErrorMessage("Username or password is incorrect");
+                request.setAttribute("rLogin", rLogin);
             }
+            
+            //forward to log in page
+            this.getServletContext().getRequestDispatcher(URLConfig.JURL_login).forward(request, response);
+        }
+        else{
             //if /logout
             //invalidate the session and clean up the session information
-            else if (request.getServletPath().compareToIgnoreCase(URLConfig.SURL_logout) == 0){
+           if (request.getServletPath().contains(URLConfig.SURL_logout)){
                 session.invalidate();
             }
             
             //redirect the user to index page after actively logging in
             response.sendRedirect(URLConfig.getFullPath(URLConfig.JURL_index));
             
-        }
-        else {
-        //forward to log in page
-            this.getServletContext().getRequestDispatcher(URLConfig.JURL_login).forward(request, response);
         }
     }
 

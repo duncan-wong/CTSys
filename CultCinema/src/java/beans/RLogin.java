@@ -11,6 +11,10 @@ package beans;
 public class RLogin {
     private String errorMessage;
     
+    public RLogin(){
+        errorMessage = null;
+    }
+    
     public void setErrorMessage(String errorMessage){
         this.errorMessage = errorMessage;
     }

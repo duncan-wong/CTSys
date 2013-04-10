@@ -21,7 +21,7 @@
         <realm-name>JDBC Realm</realm-name>
         <form-login-config>
             <form-login-page>/login</form-login-page>
-            <form-error-page>/login</form-error-page>
+            <form-error-page>/loginError</form-error-page>
         </form-login-config>
     </login-config>
     <security-role>
@@ -57,6 +57,10 @@
         <servlet-name>Logout</servlet-name>
         <servlet-class>servlets.Login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginError</servlet-name>
+        <servlet-class>servlets.Login</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -76,6 +80,10 @@
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginError</servlet-name>
+        <url-pattern>/loginError</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

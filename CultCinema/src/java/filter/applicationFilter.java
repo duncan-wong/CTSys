@@ -119,9 +119,9 @@ public class applicationFilter implements Filter {
             //if the bean does not exist
             //Step 1. create beans that put in the session
             //Step 2. add session beans into the session object
-            if (session.getAttribute(common.BeansConfig.sessionStatus) == null){
-                beans.SessionStatus sessionStatus = new beans.SessionStatus();
-                session.setAttribute(common.BeansConfig.sessionStatus, sessionStatus);
+            if (session.getAttribute(common.BeansConfig.sStatus) == null){
+                beans.SStatus sessionStatus = new beans.SStatus();
+                session.setAttribute(common.BeansConfig.sStatus, sessionStatus);
             }
             
             
@@ -130,9 +130,9 @@ public class applicationFilter implements Filter {
             //1. login information
             //      -fill it when the FIRST request comes after log in
             if (sRequest.getUserPrincipal() != null 
-                && !((beans.SessionStatus)session.getAttribute(common.BeansConfig.sessionStatus)).getIsLoggedIn()){
+                && !((beans.SStatus)session.getAttribute(common.BeansConfig.sStatus)).getIsLoggedIn()){
                 
-                beans.SessionStatus sessionStatus = (beans.SessionStatus)session.getAttribute(common.BeansConfig.sessionStatus);
+                beans.SStatus sessionStatus = (beans.SStatus)session.getAttribute(common.BeansConfig.sStatus);
                 //fill session status here
                 sessionStatus.setIsLoggedIn(true);
                 sessionStatus.setUserId(sRequest.getUserPrincipal().getName());
