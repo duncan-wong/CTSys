@@ -6,6 +6,10 @@
             <web-resource-name>Secret Web Application</web-resource-name>
             <url-pattern>/login/*</url-pattern>
         </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>Secret Web Application</web-resource-name>
+            <url-pattern>/account</url-pattern>
+        </web-resource-collection>
         <auth-constraint>
             <role-name>Manager</role-name>
             <role-name>Officer</role-name>
@@ -24,6 +28,14 @@
         <role-name>Manager</role-name>
     </security-role>
     <!--=================================================================-->
+    <filter>
+        <filter-name>applicationFilter</filter-name>
+        <filter-class>filter.applicationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>applicationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>Index</servlet-name>
         <servlet-class>servlets.Index</servlet-class>

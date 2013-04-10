@@ -15,15 +15,8 @@
 
     <ul class="menuControl">
         <% 
-            if (session.getAttribute("sessionStatus") == null){ 
+            if (((beans.SessionStatus)session.getAttribute("sessionStatus")).getIsLoggedIn()){ 
         %>
-            <li>
-                <a href="login">Log In</a>
-            </li>
-        <% 
-            } else { 
-        %> 
-            <jsp:useBean id="sessionStatus" type="beans.SessionStatus" scope="session"></jsp:useBean>
             <li>
                 <a href="account">
                     <jsp:getProperty name="sessionStatus" property="userName"></jsp:getProperty>
@@ -35,6 +28,14 @@
                     Log out
                 </a>
             </li>
+            
+        <% 
+            } else { 
+        %> 
+            <li>
+                <a href="login">Log In</a>
+            </li>
+            
         <% } %>
         
         <li>

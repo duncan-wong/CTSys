@@ -30,28 +30,30 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
+        beans.SessionStatus sessionStatus = (beans.SessionStatus)session.getAttribute("sessionStatus");
         
-        //if LOGGED IN
         if (request.getUserPrincipal() != null){
-            //if it is a new user login
+            //if it is a new user login by manually triggering /login
             //create and fill SessionStatus bean
-            if (session.getAttribute("sessionStatus") == null){
+            if (sessionStatus.getIsLoggedIn() == false){
                 
                 //fill session status here
-                beans.SessionStatus sessionStatus = new beans.SessionStatus();
-                sessionStatus.setIsLoggedIn(true);
-                sessionStatus.setUserId(request.getUserPrincipal().getName());
+                //beans.SessionStatus sessionStatus = new beans.SessionStatus();
+                //sessionStatus.setIsLoggedIn(true);
+                //sessionStatus.setUserId(request.getUserPrincipal().getName());
                 //####to be filled with user name
-                sessionStatus.setUserName(request.getUserPrincipal().getName());
+                //sessionStatus.setUserName(request.getUserPrincipal().getName());
                 
                 //put the bean in to session
-                session.setAttribute("sessionStatus", sessionStatus);
+                //session.setAttribute("sessionStatus", sessionStatus);
             }
+            //if /logout
+            //invalidate the session and clean up the session information
             else if (request.getServletPath().compareToIgnoreCase(URLConfig.SURL_logout) == 0){
                 session.invalidate();
             }
             
-            
+            //redirect the user to index page after actively logging in
             response.sendRedirect(URLConfig.getFullPath(URLConfig.JURL_index));
             
         }
