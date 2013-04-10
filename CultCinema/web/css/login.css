@@ -1,0 +1,25 @@
+/* 
+    Document   : login
+    Created on : Apr 10, 2013, 11:35:27 PM
+    Author     : DUNCAN
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+.loginForm {
+    margin:20px;
+    overflow: hidden;
+}
+
+.loginControl{
+    height:30px;
+    margin:10px;
+    position: relative;
+}
+
+.loginControl input{
+    font-size: 18px;
+    position:absolute;
+    left:150px;
+}

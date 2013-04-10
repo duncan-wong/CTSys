@@ -5,9 +5,9 @@ $(document).ready(function(){
     });
     
     //add original url when log in
-    $('a[href="login"]').click(function(event){
+    /*$('a[href="login"]').click(function(event){
         var element = event.srcElement || event.target;
         
         $(element).attr('href', $(element).attr('href') + "?orgURL=" + location.pathname);
-    });
+    });*/
 })

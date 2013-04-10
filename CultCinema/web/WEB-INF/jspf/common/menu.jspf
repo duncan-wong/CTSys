@@ -1,4 +1,3 @@
-<%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
 <div class="menuWrapper defaultWidth">
     <ul class="menuLink">
@@ -15,15 +14,28 @@
     </ul>
 
     <ul class="menuControl">
-        <li>
-            <a href="login">Log In</a>
-        </li>
-        
-        <!--
+        <% 
+            if (session.getAttribute("sessionStatus") == null){ 
+        %>
             <li>
-                <a href="account">XXXXXX</a>
+                <a href="login">Log In</a>
             </li>
-        -->
+        <% 
+            } else { 
+        %> 
+            <jsp:useBean id="sessionStatus" type="beans.SessionStatus" scope="session"></jsp:useBean>
+            <li>
+                <a href="account">
+                    <jsp:getProperty name="sessionStatus" property="userName"></jsp:getProperty>
+                </a>
+            </li>
+            
+            <li>
+                <a href="logout">
+                    Log out
+                </a>
+            </li>
+        <% } %>
         
         <li>
             <input type="text" id="searchText" name="searchText" placeholder="Search" />

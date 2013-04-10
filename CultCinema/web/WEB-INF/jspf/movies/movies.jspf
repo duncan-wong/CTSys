@@ -46,6 +46,3 @@
 </div>
 
 
-<%= request.getSession().getId() %>
-<% request.getSession().invalidate(); %>
-

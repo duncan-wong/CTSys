@@ -5,12 +5,21 @@
     <div class="headerSubTitle">- We got what you want!</div>
     
     <div class="headerControl">
-        <span>Member?</span>
-        <a class="btn" href="login">Log In</a>
-        <a class="btn">Sign UP!</a>
+        <% 
+            if (session.getAttribute("sessionStatus") == null){ 
+        %>
+            <span>Member?</span>
+            <a class="btn" href="login">Log In</a>
+            <a class="btn">Sign UP!</a>
+        <% 
+            } else { 
+        %> 
         
-        <!--
-            <span>Enjoy your time, (first name)<span>
-        -->
+            <span>
+                Enjoy your time, 
+                <jsp:getProperty name="sessionStatus" property="userName"></jsp:getProperty>
+                !
+            <span>
+        <% } %>
     </div>
 </div>

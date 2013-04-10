@@ -20,6 +20,7 @@ public abstract class URLConfig {
     //servlet
     public static final String SURL_index = "/index";
     public static final String SURL_login = "/login";
+    public static final String SURL_logout = "/logout";
     
     //jsp
     public static final String JURL_index = "/index.jsp";

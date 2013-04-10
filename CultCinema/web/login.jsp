@@ -15,6 +15,7 @@
         <script src="./js/base.js"></script>
         
         <link rel="stylesheet" type="text/css" href="css/base.css" />
+        <link rel="stylesheet" type="text/css" href="css/login.css" />
     </head>
     <body>
         <div class="asgClaim_stayTop scrollLeft">
@@ -38,16 +39,16 @@
             </div>
             
             <div id="content" class="defaultWidth">
-                <form action="j_security_check" method="post">
-                    <div>
+                <form action="j_security_check" method="post" class="loginForm">
+                    <div class="loginControl">
                         <label>Username: </label>
                         <input type="text" name="j_username" id="txtUserName" placeholder="Username" />
                     </div>
-                    <div>
+                    <div class="loginControl">
                         <label>Password: </label>
                         <input type="password" name="j_password" id="txtPassword" placeholder="Password" />
                     </div>
-                    <div>
+                    <div class="loginControl">
                         <input type="submit" class="btn" value="Log In" />
                     </div>
                 </form>

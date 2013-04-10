@@ -29,29 +29,35 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession(true);
+        
         //if LOGGED IN
         if (request.getUserPrincipal() != null){
-            //create fill SessionStatus bean
-            HttpSession session = request.getSession(true);
+            //if it is a new user login
+            //create and fill SessionStatus bean
             if (session.getAttribute("sessionStatus") == null){
-                session.setAttribute("sessionStatus", new SessionStatus());
+                
                 //fill session status here
-                ///
-                ///
-                ///
-                ///
+                beans.SessionStatus sessionStatus = new beans.SessionStatus();
+                sessionStatus.setIsLoggedIn(true);
+                sessionStatus.setUserId(request.getUserPrincipal().getName());
+                //####to be filled with user name
+                sessionStatus.setUserName(request.getUserPrincipal().getName());
+                
+                //put the bean in to session
+                session.setAttribute("sessionStatus", sessionStatus);
+            }
+            else if (request.getServletPath().compareToIgnoreCase(URLConfig.SURL_logout) == 0){
+                session.invalidate();
             }
             
-            if (request.getParameter("orgURL") != null){
-                response.sendRedirect(request.getParameter("orgURL"));
-            }
-            else {
-                response.sendRedirect(URLConfig.getFullPath(URLConfig.JURL_index));
-            }
+            
+            response.sendRedirect(URLConfig.getFullPath(URLConfig.JURL_index));
+            
         }
         else {
         //forward to log in page
-            this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher(URLConfig.JURL_login).forward(request, response);
         }
     }
 
