@@ -12,6 +12,7 @@
             <a>Houses</a>
         </li>
         
+        <%-- if the user is a Manager, show Manager option --%>
         <% if (request.isUserInRole(common.RolesConfig.Manager)){ %>
             <li>
                 <a href="manager">Manager</a>
@@ -20,6 +21,8 @@
     </ul>
 
     <ul class="menuControl">
+        <%-- if the user logged in, show username and log out button --%>
+        <%-- if not, show log in button --%>
         <% 
             if (((beans.SStatus)session.getAttribute(common.BeansConfig.sStatus)).getIsLoggedIn()){ 
         %>

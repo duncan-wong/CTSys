@@ -58,6 +58,11 @@
         <error-code>404</error-code>
         <location>/error?errorCode=404</location>
     </error-page>
+    <!--
+    <error-page>
+        <location>/error?errorCode=0</location>
+    </error-page>
+    -->
     <!--=======/Error page==========================================================-->
     <servlet>
         <servlet-name>Index</servlet-name>
