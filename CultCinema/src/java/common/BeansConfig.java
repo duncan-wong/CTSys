@@ -12,6 +12,7 @@ public abstract class BeansConfig {
     //request beans
     public static final String rLogin = "rLogin";
     public static final String rUser = "rUser";
+    public static final String rError = "rError";
     
     //session beans
     public static final String sStatus = "sStatus";
