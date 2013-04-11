@@ -30,7 +30,6 @@ public class Index extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //srequest.getSession(true);
         this.getServletContext().getRequestDispatcher(URLConfig.JURL_index).forward(request, response);
     }
 

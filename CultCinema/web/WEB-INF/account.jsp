@@ -4,21 +4,15 @@
     Author     : 52593578
 --%>
 
-<jsp:useBean id="sStatus" type="beans.SStatus" scope="session"></jsp:useBean>
 <jsp:useBean id="rUser" type="beans.RUser" scope="request"></jsp:useBean>
     
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
-        <title>Cult Cinema</title>
+        <%@include file="/WEB-INF/jspf/common/headSession.jspf" %>
         
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="js/base.js"></script>
-        
-        <link rel="stylesheet" type="text/css" href="css/base.css" />
         <link rel="stylesheet" type="text/css" href="css/account.css" />
         
     </head>
