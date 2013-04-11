@@ -11,6 +11,7 @@ package common;
 public abstract class BeansConfig {
     //request beans
     public static final String rLogin = "rLogin";
+    public static final String rUser = "rUser";
     
     //session beans
     public static final String sStatus = "sStatus";

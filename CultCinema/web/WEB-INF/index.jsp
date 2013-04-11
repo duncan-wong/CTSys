@@ -33,26 +33,26 @@
     </head>
     <body>
         <div class="asgClaim_stayTop scrollLeft">
-            <%@include file="WEB-INF/jspf/common/asgClaim.jspf" %>
+            <%@include file="/WEB-INF/jspf/common/asgClaim.jspf" %>
         </div>
         
         
         <div id="mainContainer">
             <div id="menu" class="scrollLeft">
-                <%@include file="WEB-INF/jspf/common/menu.jspf" %>
+                <%@include file="/WEB-INF/jspf/common/menu.jspf" %>
             </div>
             
             <div id="header">
-                <%@include file="WEB-INF/jspf/common/header.jspf" %>
+                <%@include file="/WEB-INF/jspf/common/header.jspf" %>
             </div>
             
             <div id="content" class="defaultWidth">
-                <%@include file="WEB-INF/jspf/movies/movies.jspf" %>
+                <%@include file="/WEB-INF/jspf/movies/movies.jspf" %>
             </div>
         </div>
         
         <div class="asgClaim_stayButtom scrollLeft">
-            <%@include file="WEB-INF/jspf/common/asgClaim.jspf" %>
+            <%@include file="/WEB-INF/jspf/common/asgClaim.jspf" %>
         </div>
     </body>
 </html>

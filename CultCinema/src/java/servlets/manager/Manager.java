@@ -2,9 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlets;
+package servlets.manager;
 
-import common.BeansConfig;
 import common.URLConfig;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author DUNCAN
+ * @author 52593578
  */
-public class Account extends HttpServlet {
+public class Manager extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -32,11 +31,7 @@ public class Account extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        //put RUser bean into request
-        beans.RUser rUser = new beans.RUser();
-        request.setAttribute(BeansConfig.rUser, rUser);
-        
-        this.getServletContext().getRequestDispatcher(URLConfig.JURL_account).forward(request, response);
+        this.getServletContext().getRequestDispatcher(URLConfig.JURL_mManage).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

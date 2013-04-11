@@ -55,7 +55,7 @@ public class Login extends HttpServlet {
             }
             
             //redirect the user to index page after actively logging in
-            response.sendRedirect(URLConfig.getFullPath(URLConfig.JURL_index));
+            response.sendRedirect(URLConfig.getFullPath(URLConfig.SURL_index));
             
         }
     }

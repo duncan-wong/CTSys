@@ -8,7 +8,7 @@
         </web-resource-collection>
         <web-resource-collection>
             <web-resource-name>Secret Web Application</web-resource-name>
-            <url-pattern>/account</url-pattern>
+            <url-pattern>/account/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>Manager</role-name>
@@ -16,6 +16,18 @@
             <role-name>Member</role-name>
         </auth-constraint>
     </security-constraint>
+    
+    <security-constraint>
+        <display-name>Security Constraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>Manager Pages</web-resource-name>
+            <url-pattern>/manager/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Manager</role-name>
+        </auth-constraint>
+    </security-constraint>
+    
     <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>JDBC Realm</realm-name>
@@ -61,6 +73,10 @@
         <servlet-name>LoginError</servlet-name>
         <servlet-class>servlets.Login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Manager</servlet-name>
+        <servlet-class>servlets.manager.Manager</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -84,6 +100,10 @@
     <servlet-mapping>
         <servlet-name>LoginError</servlet-name>
         <url-pattern>/loginError</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Manager</servlet-name>
+        <url-pattern>/manager</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
