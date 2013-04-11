@@ -14,7 +14,7 @@ public class RError {
     
     public RError(){
         errorCode = "";
-        errorMessage = "Error";
+        errorMessage = "We are sorry that our server has encountered some problem.";
     }
     
     public void setErrorCode(String errorCode){

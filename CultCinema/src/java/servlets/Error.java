@@ -37,7 +37,9 @@ public class Error extends HttpServlet {
         }
         else{
             String errorCode = request.getParameter("errorCode");
-            rError.setErrorCode(errorCode);
+            if (Integer.valueOf(errorCode) > 0){
+                rError.setErrorCode(errorCode);
+            }
             
             //put RError bean into request
             request.setAttribute(common.BeansConfig.rError, rError);
