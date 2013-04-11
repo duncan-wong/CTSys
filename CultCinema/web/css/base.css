@@ -55,7 +55,7 @@ div.asgClaim{
     z-index: 999;
 }
 
-/*----asgClaim----------*/
+/*----mainContainer----------*/
 
 div#mainContainer{
     width:100%;
@@ -92,7 +92,13 @@ div#mainContainer{
     background: #f07803;
 }
 
+.error{
+    color:red;
+}
 
+.warning{
+    color:yellow;
+}
 
 /*---------header----------*/
 div#header{

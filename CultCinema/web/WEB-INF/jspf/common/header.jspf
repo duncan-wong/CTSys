@@ -6,20 +6,20 @@
     
     <div class="headerControl">
         <% 
-            if (session.getAttribute("sessionStatus") == null){ 
+            if (((beans.SStatus)session.getAttribute(common.BeansConfig.sStatus)).getIsLoggedIn()){ 
         %>
-            <span>Member?</span>
-            <a class="btn" href="login">Log In</a>
-            <a class="btn">Sign UP!</a>
+            <span>
+                Enjoy your time, 
+                <jsp:getProperty name="sStatus" property="userName"></jsp:getProperty>
+                !
+            <span>
+                
         <% 
             } else { 
         %> 
-        
-            <span>
-                Enjoy your time, 
-                <jsp:getProperty name="sessionStatus" property="userName"></jsp:getProperty>
-                !
-            <span>
+            <span>Member?</span>
+            <a class="btn" href="login">Log In</a>
+            <a class="btn">Sign UP!</a>
         <% } %>
     </div>
 </div>

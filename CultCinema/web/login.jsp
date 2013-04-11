@@ -4,6 +4,9 @@
     Author     : DUNCAN
 --%>
 
+<jsp:useBean id="sStatus" type="beans.SStatus" scope="session"></jsp:useBean>
+<jsp:useBean id="rLogin" type="beans.RLogin" scope="request"></jsp:useBean>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -40,6 +43,16 @@
             
             <div id="content" class="defaultWidth">
                 <form action="j_security_check" method="post" class="loginForm">
+                    <%
+                        if (((beans.RLogin)request.getAttribute(common.BeansConfig.rLogin)).getErrorMessage() != null){
+                    %>
+                        <div class="loginControl">
+                            <p class="error">
+                                <jsp:getProperty name="rLogin" property="errorMessage"></jsp:getProperty>
+                            </p>
+                        </div>
+                    <% } %>
+                    
                     <div class="loginControl">
                         <label>Username: </label>
                         <input type="text" name="j_username" id="txtUserName" placeholder="Username" />
