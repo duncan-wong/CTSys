@@ -97,6 +97,30 @@
         <servlet-name>Error</servlet-name>
         <servlet-class>servlets.Error</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SQLconfig</servlet-name>
+        <servlet-class>common.SQLconfig</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MemberRight</servlet-name>
+        <servlet-class>common.role.MemberRight</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManagerRight</servlet-name>
+        <servlet-class>common.role.ManagerRight</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GuestRight</servlet-name>
+        <servlet-class>common.role.GuestRight</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OfficerRight</servlet-name>
+        <servlet-class>common.role.OfficerRight</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AbstractRight</servlet-name>
+        <servlet-class>common.role.AbstractRight</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -129,6 +153,30 @@
         <servlet-name>Error</servlet-name>
         <url-pattern>/error</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SQLconfig</servlet-name>
+        <url-pattern>/SQLconfig</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MemberRight</servlet-name>
+        <url-pattern>/MemberRight</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerRight</servlet-name>
+        <url-pattern>/ManagerRight</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GuestRight</servlet-name>
+        <url-pattern>/GuestRight</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OfficerRight</servlet-name>
+        <url-pattern>/OfficerRight</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AbstractRight</servlet-name>
+        <url-pattern>/AbstractRight</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -137,4 +185,12 @@
     <welcome-file-list>
         <welcome-file>index</welcome-file>
     </welcome-file-list>
+    <!--=======Resource=======================================================-->
+    <resource-ref>
+        <res-ref-name>jdbc/cinema</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref>
+    <!--=======/Resource======================================================-->
 </web-app>
