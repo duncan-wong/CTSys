@@ -8,12 +8,12 @@ package beans;
  *
  * @author 52593578
  */
-public class SessionStatus {
+public class SStatus {
     private boolean isLoggedIn;
     private String userId;
     private String userName;
     
-    public SessionStatus(){
+    public SStatus(){
         isLoggedIn = false;
         userId = null;
         userName = null;

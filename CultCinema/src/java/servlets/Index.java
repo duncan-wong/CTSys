@@ -29,7 +29,7 @@ public class Index extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getSession(true);
+        //srequest.getSession(true);
         this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
     }
 
