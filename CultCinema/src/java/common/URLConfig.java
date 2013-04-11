@@ -24,6 +24,9 @@ public abstract class URLConfig {
     public static final String SURL_logout = "/logout";
     
     //jsp
-    public static final String JURL_index = "/index.jsp";
-    public static final String JURL_login = "/login.jsp";
+    public static final String JURL_index = "/WEB-INF/index.jsp";
+    public static final String JURL_login = "/WEB-INF/login.jsp";
+    public static final String JURL_account = "/WEB-INF/account.jsp";
+    //jsp - m
+    public static final String JURL_mManage = "/WEB-INF/mJsp/mManage.jsp";
 }

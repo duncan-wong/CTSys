@@ -1,0 +1,59 @@
+/* 
+    Document   : account
+    Created on : Apr 11, 2013, 5:37:23 PM
+    Author     : 52593578
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+div.infoContainer{
+    margin:20px;
+    position:relative;
+}
+
+/*----general info-----*/
+div.info {
+    height:30px;
+    margin:10px;
+    position: relative;
+}
+
+.info .label{
+    
+}
+
+
+
+/*----movie info-----*/
+div.info.movie {
+    border-bottom: solid 1px #ddd;
+}
+
+.movie:hover{
+    background:#ddd;
+}
+
+.movie .dataField{
+    width:10%;
+    text-align: center;
+}
+
+.movie .date{
+    
+}
+
+.movie .time{
+    
+}
+
+.movie .house{
+    
+}
+
+.movie .movieTitle{
+    
+}
+
+.movie .buttonField{
+    
+}

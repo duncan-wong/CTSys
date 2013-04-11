@@ -15,20 +15,20 @@
         <title>Cult Cinema</title>
         
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="./js/base.js"></script>
+        <script src="js/base.js"></script>
         
         <link rel="stylesheet" type="text/css" href="css/base.css" />
         <link rel="stylesheet" type="text/css" href="css/login.css" />
     </head>
     <body>
         <div class="asgClaim_stayTop scrollLeft">
-            <%@include file="WEB-INF/jspf/common/asgClaim.jspf" %>
+            <%@include file="/WEB-INF/jspf/common/asgClaim.jspf" %>
         </div>
         
         
         <div id="mainContainer">
             <div id="menu" class="scrollLeft">
-                <%@include file="WEB-INF/jspf/common/menu.jspf" %>
+                <%@include file="/WEB-INF/jspf/common/menu.jspf" %>
             </div>
             
             <div id="header" class="smallHeader">
@@ -54,11 +54,11 @@
                     <% } %>
                     
                     <div class="loginControl">
-                        <label>Username: </label>
+                        <label class="label">Username: </label>
                         <input type="text" name="j_username" id="txtUserName" placeholder="Username" />
                     </div>
                     <div class="loginControl">
-                        <label>Password: </label>
+                        <label class="label">Password: </label>
                         <input type="password" name="j_password" id="txtPassword" placeholder="Password" />
                     </div>
                     <div class="loginControl">
@@ -69,7 +69,7 @@
         </div>
         
         <div class="asgClaim_stayButtom scrollLeft">
-            <%@include file="WEB-INF/jspf/common/asgClaim.jspf" %>
+            <%@include file="/WEB-INF/jspf/common/asgClaim.jspf" %>
         </div>
     </body>
 </html>

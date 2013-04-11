@@ -11,6 +11,12 @@
         <li>
             <a>Houses</a>
         </li>
+        
+        <% if (request.isUserInRole(common.RolesConfig.Manager)){ %>
+            <li>
+                <a href="manager">Manager</a>
+            </li>
+        <% } %>
     </ul>
 
     <ul class="menuControl">

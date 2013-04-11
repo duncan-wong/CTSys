@@ -4,6 +4,7 @@
  */
 package servlets;
 
+import common.URLConfig;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -30,7 +31,7 @@ public class Index extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //srequest.getSession(true);
-        this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher(URLConfig.JURL_index).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
