@@ -10,4 +10,11 @@
     userCredCol="login_pw"
     userRoleTable="Membership"
     roleNameCol="role"/>
+<!-- Resource ==================================================================-->
+    <Resource name="jdbc/cinema" auth="Container"
+    type="javax.sql.DataSource"
+    maxActive="20" maxIdle="5" maxWait="3000" removeAbandoned="true"
+    username="aiad049" password="pktwins"
+    driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+    url="jdbc:sqlserver://w2ksa.cs.cityu.edu.hk:1433;databaseName=aiad049_db;" />
 </Context>
