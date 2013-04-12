@@ -1,3 +1,5 @@
+package common.jdbc;
+
 
 import common.jdbc.DBconnect;
 import java.io.IOException;
@@ -85,9 +87,9 @@ public class ATesting extends HttpServlet {
             **/
 //----------------------------------------------------------------------
             DBconnect db = new DBconnect();
-            String procedure = "{ call show_moviedetail(?) }";
+            String procedure = "{ call show_showingMovie(?) }";
             db.prepareCall(procedure);
-            db.setXxx(1, "EN");
+            db.setXxx(1, "2013-04-01 11:00");
             db.executeQuery();
 //-----------------------------------------------------------------------
             out.println("<html>");
@@ -103,19 +105,28 @@ public class ATesting extends HttpServlet {
             out.println("</fieldset>");
             out.println("<fieldset>");
             out.println("<legend>Results</legend>");
-            out.println("<div><table style='width:100%'>");
+            out.println("<div><table style='width:1820'>");
             out.println("<thead>");
-            out.println("<th align='left'>Name</th><th align='left'>Phone Number</th>");
+            out.println("<th align='left'>Author</th><th align='left'>Desc</th><th align='left'>startDate</th><th align='left'>Name</th>");
             out.println("</thead>");
             out.println("<tbody>");
-            while (db.executeHasNext()) {
+            /**
+            while (db.resultSetHasNext()) {
                 out.println("<tr>");
-                out.println("<td>" + db.getXxx(1,"") + "</td>");
-                out.println("<td>" + db.getXxx(2,"") + "</td>");
-                out.println("<td>" + db.getXxx(3,"") + "</td>");
-                out.println("<td>" + db.getXxx(4,"") + "</td>");
+                out.println("<td>" + db.getXxx("movie_author","") + "</td>");
+                out.println("<td>" + db.getXxx("movie_description","") + "</td>");
+                out.println("<td>" + db.getXxx("movie_startDate","") + "</td>");
+                out.println("<td>" + db.getXxx("movie_name","") + "</td>");
                 out.println("</tr>");
             }
+            /**/
+            while (db.resultSetHasNext()) {
+                out.println("<tr>");
+                out.println("<td>" + db.getXxx("movie_start","") + "</td>");
+                out.println("<td>" + db.getXxx("time","") + "</td>");
+                out.println("</tr>");
+            }
+            /**/
             out.println("</tbody>");
             out.println("</table></div>");
             out.println("<br/><a href='" + request.getRequestURI() + "'>Back</a>");
