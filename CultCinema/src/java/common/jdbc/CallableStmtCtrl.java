@@ -5,7 +5,7 @@
 package common.jdbc;
 
 import java.sql.CallableStatement;
-import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
 
 /**
@@ -18,6 +18,12 @@ public class CallableStmtCtrl {
     public CallableStmtCtrl() {
         cstmt = null;
     }
+    public void disconnect()
+            throws SQLException {
+        if (cstmt != null)
+            cstmt.close();
+    }
+//---------------------------------------------------------------------------
     public void setXxx(int id, int in)
             throws SQLException {
         cstmt.setInt(id, in);
@@ -26,18 +32,23 @@ public class CallableStmtCtrl {
             throws SQLException {
         cstmt.setString(id, in);
     }
-    public void disconnect()
-            throws SQLException {
-        if (cstmt != null)
-            cstmt.close();
-    }
+//---------------------------------------------------------------------------
     public void setTo(CallableStatement cstmt)
             throws SQLException {
         this.cstmt = cstmt;
     }
-    public void executeQuery(ResultSetCtrl rs)
+    public boolean executeQuery(ResultSetCtrl rs)
             throws SQLException {
-        cstmt.executeQuery();
-        rs.setTo(cstmt.getResultSet());
+        if (cstmt.execute()) {
+            rs.setTo(cstmt.getResultSet());
+            return true;
+        }
+        else
+            return false;
+    }
+    public int executeUpdate()
+            throws SQLException {
+        // insert update drop
+        return cstmt.executeUpdate();
     }
 }

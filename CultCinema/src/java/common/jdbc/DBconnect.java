@@ -5,6 +5,7 @@
 package common.jdbc;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -44,16 +45,23 @@ public class DBconnect {
             throws SQLException {
         cstmt.setTo(con.prepareCall(cmd));
     }
-    public boolean executeHasNext()
+    public boolean resultSetHasNext()
             throws SQLException {
         return rs.hasNext();
     }
-    public void executeQuery()
-            throws SQLException{
-        cstmt.executeQuery(rs);
+    public boolean executeQuery()
+            throws SQLException {
+        if (cstmt.executeQuery(rs))
+            return true;
+        else
+            return false; // no result
     }
-    public int executeUpdate(String sql){
-        return 0;
+    public boolean executeUpdate()
+            throws SQLException {
+        if (cstmt.executeUpdate() > 0)
+            return true;
+        else
+            return false; // update failed
     }
 //---------------------------------------------------------------------------
     public void setXxx(int id, int in)
@@ -64,11 +72,12 @@ public class DBconnect {
             throws SQLException {
         cstmt.setXxx(id, in);
     }
-    public int getXxx(int id, int out)
+//---------------------------------------------------------------------------
+    public int getXxx(String id, int out)
             throws SQLException {
         return rs.getInt(id);
     }
-    public String getXxx(int id, String out)
+    public String getXxx(String id, String out)
             throws SQLException {
         return rs.getString(id);
     }

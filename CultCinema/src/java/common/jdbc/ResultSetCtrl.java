@@ -22,18 +22,20 @@ public class ResultSetCtrl {
         if (rs != null)
             rs.close();
     }
-    public int getInt(int id)
-            throws SQLException {
-        return rs.getInt(id);
-    }
-    public String getString(int id)
-            throws SQLException {
-        return rs.getString(id);
-    }
     public boolean hasNext()
             throws SQLException {
         return rs.next();
     }
+//----------------------------------------------------------------------------
+    public int getInt(String id)
+            throws SQLException {
+        return rs.getInt(id);
+    }
+    public String getString(String id)
+            throws SQLException {
+        return rs.getString(id);
+    }
+//----------------------------------------------------------------------------
     public void setTo(ResultSet rs) {
         this.rs = rs;
     }
