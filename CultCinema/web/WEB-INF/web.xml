@@ -99,27 +99,31 @@
     </servlet>
     <servlet>
         <servlet-name>SQLconfig</servlet-name>
-        <servlet-class>common.SQLconfig</servlet-class>
+        <servlet-class>common.jdbc.DBconnect</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>MemberRight</servlet-name>
-        <servlet-class>common.role.MemberRight</servlet-class>
+        <servlet-class>common.roleAction.MemberAction</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ManagerRight</servlet-name>
-        <servlet-class>common.role.ManagerRight</servlet-class>
+        <servlet-class>common.roleAction.MemberAct</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>GuestRight</servlet-name>
-        <servlet-class>common.role.GuestRight</servlet-class>
+        <servlet-class>common.roleAction.GuestAction</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>OfficerRight</servlet-name>
-        <servlet-class>common.role.OfficerRight</servlet-class>
+        <servlet-class>common.roleAction.OfficerAction</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AbstractRight</servlet-name>
-        <servlet-class>common.role.AbstractRight</servlet-class>
+        <servlet-class>common.roleAction.AbstractAction</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ATesting</servlet-name>
+        <servlet-class>ATesting</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
@@ -177,13 +181,17 @@
         <servlet-name>AbstractRight</servlet-name>
         <url-pattern>/AbstractRight</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ATesting</servlet-name>
+        <url-pattern>/ATesting</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index</welcome-file>
+        <welcome-file>ATesting</welcome-file>
     </welcome-file-list>
     <!--=======Resource=======================================================-->
     <resource-ref>
