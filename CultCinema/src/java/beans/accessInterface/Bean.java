@@ -8,10 +8,10 @@ package beans.accessInterface;
  *
  * @author DUNCAN
  */
-public interface bean {
+public interface Bean {
     //fetch data of the bean from DB
-    public abstract void fetchDBData();
+    public abstract boolean fetchDBData();
     
     //push data back to DB
-    public abstract void commitChange();
+    public abstract boolean commitChange();
 }
