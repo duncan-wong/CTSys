@@ -10,12 +10,15 @@
 #content .movieContainer{
     display:block;
     width: 100%;
-    overflow: auto;
-    border-bottom:solid 1px #ddd;
-    border-top:solid 1px #ddd;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-bottom:solid 3px #ddd;
+    margin-bottom: 0px;
+    position:relative;
 }
 
-#content .movieContainer .moviePoster{
+/*---- Poster ----*/
+.movieContainer .moviePoster{
     width: 300px;
     height: 420px;
     float:left;
@@ -24,30 +27,48 @@
     border-top:solid 1px black;
 }
 
-#content .movieContainer .movieDescription{
+/*---- Movie Description ----*/
+.movieContainer .movieDescription{
     max-width: 710px;
     height:auto;
     padding: 5px;
     float:left;
 }
 
-#content .movieContainer .movieDescription .movieDescriptionItem{
+.movieContainer .movieDescription .movieDescriptionItem{
     width:100%;
     display: block;
     margin: 10px 0;
     overflow: auto;
 }
 
-#content .movieContainer .movieDescription .movieDescriptionItem .movieTitle{
+.movieContainer .movieDescription .movieDescriptionItem .movieTitle{
     font-size: 30px;
     font-weight: bold;
 }
 
-#content .movieContainer .movieDescription .movieDescriptionItem .label{
+.movieContainer .movieDescription .movieDescriptionItem .label{
     font-weight: bold;
     float:left;
 }
 
-#content .movieContainer .movieDescription .movieDescriptionItem .content{
-    float: right:
+.movieContainer .movieDescription .movieDescriptionItem .content{
+    float: left;
+}
+
+
+/*---- Movie Control ----*/
+.movieContainer .movieControl {
+    width: 724px;
+    
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    position: absolute;
+    bottom:0;
+    right:0;
+}
+
+.movieContainer .movieControl .btn{
+    width:100%;
 }

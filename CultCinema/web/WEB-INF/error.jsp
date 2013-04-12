@@ -4,13 +4,17 @@
     Author     : 52593578
 --%>
 
+<<<<<<< HEAD
 <jsp:useBean id="sStatus" type="beans.SStatus" scope="session"></jsp:useBean>
+=======
+>>>>>>> development-backup
 <jsp:useBean id="rError" type="beans.RError" scope="request"></jsp:useBean>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+<<<<<<< HEAD
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cult Cinema</title>
         
@@ -18,6 +22,10 @@
         <script src="./js/base.js"></script>
         
         <link rel="stylesheet" type="text/css" href="css/base.css" />
+=======
+        
+        <%@include file="/WEB-INF/jspf/common/headSession.jspf" %>
+>>>>>>> development-backup
         
     </head>
     <body>
