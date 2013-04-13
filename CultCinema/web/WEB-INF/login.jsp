@@ -10,13 +10,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
-<<<<<<< HEAD:CultCinema/web/WEB-INF/login.jsp
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="js/base.js"></script>
-=======
+    
         <%@include file="/WEB-INF/jspf/common/headSession.jspf" %>
->>>>>>> development-backup:CultCinema/web/WEB-INF/login.jsp
         
         <link rel="stylesheet" type="text/css" href="css/login.css" />
     </head>
