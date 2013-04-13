@@ -49,6 +49,25 @@ public class Login extends HttpServlet {
             else{
                 beans.SStatus sStatus = new beans.SStatus();
                 session.setAttribute(BeansConfig.sStatus, sStatus);
+                
+                //set language
+                if (request.getParameter("lang") != null
+                    && beans.languageBeans.LanguageBeanPicker.isLanguageCodeExit(request.getParameter("lang"))){
+                    beans.SStatus sessionStatus = (beans.SStatus)session.getAttribute(common.BeansConfig.sStatus);
+
+                    //put the languag option into the bean
+                    //create language bean
+                    if (request.getParameter("lang").equalsIgnoreCase(sessionStatus.getLanguageOption())){
+                        sessionStatus.setLanguageOption(request.getParameter("lang"));
+                        beans.accessInterface.LanguageBean sLanguageBean = beans.languageBeans.LanguageBeanPicker.getLanguageBean(sessionStatus.getLanguageOption());
+                        session.setAttribute(common.BeansConfig.sLanguageBean, sLanguageBean);
+                    }
+                }
+                else if (session.getAttribute(common.BeansConfig.sLanguageBean) == null){
+                    beans.SStatus sessionStatus = (beans.SStatus)session.getAttribute(common.BeansConfig.sStatus);
+                    beans.accessInterface.LanguageBean sLanguageBean = beans.languageBeans.LanguageBeanPicker.getLanguageBean(sessionStatus.getLanguageOption());
+                    session.setAttribute(common.BeansConfig.sLanguageBean, sLanguageBean);
+                }
             }
             //dispatch to log in page
             this.getServletContext().getRequestDispatcher(URLConfig.JURL_login).forward(request, response);
