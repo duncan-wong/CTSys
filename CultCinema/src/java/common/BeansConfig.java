@@ -13,6 +13,9 @@ public abstract class BeansConfig {
     public static final String rLogin = "rLogin";
     public static final String rUser = "rUser";
     public static final String rError = "rError";
+    public static final String rMovieCol_onScreen = "rMC_onScreen";
+    public static final String rMovieCol_tomorrow = "rMC_tomorrow";
+    
     
     //session beans
     public static final String sStatus = "sStatus";

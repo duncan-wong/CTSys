@@ -51,5 +51,11 @@
             <input type="text" id="searchText" name="searchText" placeholder="Search" />
         </li>
         
+        <li>
+            <a href="zh" class="languageOption">中</a>
+            <span>/</span>
+            <a href="en" class="languageOption">Eng</a>
+        </li>
+        
     </ul>
 </div>

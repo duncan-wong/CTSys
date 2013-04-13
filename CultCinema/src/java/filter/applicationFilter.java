@@ -15,7 +15,10 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import sun.swing.UIAction;
+import javax.servlet.http.Cookie;
 
 /**
  *
@@ -113,6 +116,7 @@ public class applicationFilter implements Filter {
         try {
             
             HttpServletRequest sRequest = (HttpServletRequest)request;
+            HttpServletResponse sResponse = (HttpServletResponse)response;
             HttpSession session = sRequest.getSession(true);
             
             //Part A: Beans creation
@@ -138,6 +142,26 @@ public class applicationFilter implements Filter {
                 sessionStatus.setUserId(sRequest.getUserPrincipal().getName());
                 //####to be filled with user name
                 sessionStatus.setUserName(sRequest.getUserPrincipal().getName());
+            }
+            
+            //2. language option
+            if (sRequest.getParameter("lang") != null){
+                beans.SStatus sessionStatus = (beans.SStatus)session.getAttribute(common.BeansConfig.sStatus);
+                
+                //put the languag option into the bean
+                if (sRequest.getParameter("lang") != null 
+                    && beans.languageBeans.LanguageBeanPicker.isLanguageCodeExit(sRequest.getParameter("lang"))){
+                    
+                    sessionStatus.setLanguageOption(sRequest.getParameter("lang"));
+                }
+            }
+            
+            
+            //Part C: Add cookie to response
+            //1. language option
+            if (sRequest.getParameter("lang") != null
+                && beans.languageBeans.LanguageBeanPicker.isLanguageCodeExit(sRequest.getParameter("lang"))){
+                sResponse.addCookie(new Cookie("languageOption", sRequest.getParameter("lang")));
             }
             
             chain.doFilter(request, response);

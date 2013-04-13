@@ -30,6 +30,12 @@ public class Index extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        //create RMovieCol object as request bean
+        beans.RMovieCol rMC_onScreen = new beans.RMovieCol();
+        request.setAttribute(common.BeansConfig.rMovieCol_onScreen, rMC_onScreen);
+        
+        //dispatch
         this.getServletContext().getRequestDispatcher(URLConfig.JURL_index).forward(request, response);
     }
 

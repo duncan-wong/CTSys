@@ -20,14 +20,17 @@ public abstract class URLConfig {
     //servlet
     public static final String SURL_index = "/index";
     public static final String SURL_login = "/login";
+    public static final String SURL_login_user = "/login_user";
     public static final String SURL_loginError = "/loginError";
     public static final String SURL_logout = "/logout";
+    public static final String SURL_movies = "/movies";
     
     //jsp
     public static final String JURL_index = "/WEB-INF/index.jsp";
     public static final String JURL_login = "/WEB-INF/login.jsp";
     public static final String JURL_account = "/WEB-INF/account.jsp";
     public static final String JURL_error = "/WEB-INF/error.jsp";
+    public static final String JURL_movies = "/WEB-INF/movies.jsp";
     //jsp - m
-    public static final String JURL_mManage = "/WEB-INF/mJsp/mManage.jsp";
+    public static final String JURLm_Manage = "/WEB-INF/mJsp/mManage.jsp";
 }

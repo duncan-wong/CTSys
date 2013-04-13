@@ -31,7 +31,7 @@ public class Manager extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        this.getServletContext().getRequestDispatcher(URLConfig.JURL_mManage).forward(request, response);
+        this.getServletContext().getRequestDispatcher(URLConfig.JURLm_Manage).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

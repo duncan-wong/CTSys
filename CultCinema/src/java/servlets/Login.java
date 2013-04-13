@@ -42,10 +42,17 @@ public class Login extends HttpServlet {
             if (request.getServletPath().contains(URLConfig.SURL_loginError)){
                 rLogin.setErrorMessage("Username or password is incorrect");
                 request.setAttribute("rLogin", rLogin);
+                //dispatch to log in page
+                this.getServletContext().getRequestDispatcher(URLConfig.JURL_login).forward(request, response);
             }
-            
-            //forward to log in page
+            // /login is called by java container before any servlet
+            else{
+                beans.SStatus sStatus = new beans.SStatus();
+                session.setAttribute(BeansConfig.sStatus, sStatus);
+            }
+            //dispatch to log in page
             this.getServletContext().getRequestDispatcher(URLConfig.JURL_login).forward(request, response);
+            
         }
         else{
             //if /logout

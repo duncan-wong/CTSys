@@ -269,3 +269,14 @@ div#header.smallHeader+div{
     font-size: 40px;
     font-weight: normal;
 }
+
+
+.activeContent{
+    display:block;
+    visibility: visible;
+}
+
+.inactiveContent{
+    display:none;
+    visibility:hidden;
+}

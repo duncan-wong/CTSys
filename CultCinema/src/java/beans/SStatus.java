@@ -12,11 +12,13 @@ public class SStatus {
     private boolean isLoggedIn;
     private String userId;
     private String userName;
+    private String languageOption;
     
     public SStatus(){
         isLoggedIn = false;
         userId = null;
         userName = null;
+        languageOption = "en";
     }
     
     public void setIsLoggedIn(boolean isLoggedIn){
@@ -41,5 +43,13 @@ public class SStatus {
     
     public String getuserName(){
         return this.userName;
+    }
+    
+    public void setLanguageOption(String languageOption){
+        this.languageOption = languageOption;
+    } 
+    
+    public String getLanguageOption(){
+        return this.languageOption;
     }
 }

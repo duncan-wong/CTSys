@@ -29,21 +29,16 @@ public class Movies extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Movies</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Movies at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {            
-            out.close();
-        }
+        
+        //create RMovieCol objects as request beans
+        beans.RMovieCol rMC_onScreen = new beans.RMovieCol();
+        beans.RMovieCol rMC_tomorrow = new beans.RMovieCol();
+        request.setAttribute(common.BeansConfig.rMovieCol_onScreen, rMC_onScreen);
+        request.setAttribute(common.BeansConfig.rMovieCol_tomorrow, rMC_tomorrow);
+        
+        //dispatch
+        this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_movies).forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
