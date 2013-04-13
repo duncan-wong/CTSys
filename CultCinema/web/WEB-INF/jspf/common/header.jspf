@@ -1,15 +1,20 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
+<%--<jsp:useBean id="sLanguageBean" type="beans.accessInterface.LanguageBean" scope="session"></jsp:useBean>--%>
 <div class="headerWrapper defaultWidth">
-    <h1 class="headerMainTitle">Cult Cinema</h1>
-    <div class="headerSubTitle">- We got what you want!</div>
+    <h1 class="headerMainTitle">
+        <%= sLanguageBean.mCompanyName %>
+    </h1>
+    <div class="headerSubTitle">
+        - <%= sLanguageBean.hIndexSubTitle %>
+    </div>
     
     <div class="headerControl">
         <% 
             if (((beans.SStatus)session.getAttribute(common.BeansConfig.sStatus)).getIsLoggedIn()){ 
         %>
             <span>
-                Enjoy your time, 
+                <%= sLanguageBean.hIndexGreetingMsg %>
                 <jsp:getProperty name="sStatus" property="userName"></jsp:getProperty>
                 !
             <span>
@@ -17,9 +22,15 @@
         <% 
             } else { 
         %> 
-            <span>Member?</span>
-            <a class="btn" href="login">Log In</a>
-            <a class="btn">Sign UP!</a>
+            <span>
+                <%= sLanguageBean.hIndexControlMsg %>
+            </span>
+            <a class="btn" href="login">
+                <%= sLanguageBean.hIndexControlBtnLogIn %>
+            </a>
+            <a class="btn">
+                <%= sLanguageBean.hIndexControlBtnSignUp %>
+            </a>
         <% } %>
     </div>
 </div>

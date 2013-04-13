@@ -145,16 +145,24 @@ public class applicationFilter implements Filter {
             }
             
             //2. language option
-            if (sRequest.getParameter("lang") != null){
+            if (sRequest.getParameter("lang") != null
+                && beans.languageBeans.LanguageBeanPicker.isLanguageCodeExit(sRequest.getParameter("lang"))){
                 beans.SStatus sessionStatus = (beans.SStatus)session.getAttribute(common.BeansConfig.sStatus);
                 
                 //put the languag option into the bean
-                if (sRequest.getParameter("lang") != null 
-                    && beans.languageBeans.LanguageBeanPicker.isLanguageCodeExit(sRequest.getParameter("lang"))){
-                    
+                //create language bean
+                if (sRequest.getParameter("lang").equalsIgnoreCase(sessionStatus.getLanguageOption())){
                     sessionStatus.setLanguageOption(sRequest.getParameter("lang"));
+                    beans.accessInterface.LanguageBean sLanguageBean = beans.languageBeans.LanguageBeanPicker.getLanguageBean(sessionStatus.getLanguageOption());
+                    session.setAttribute(common.BeansConfig.sLanguageBean, sLanguageBean);
                 }
             }
+            else if (session.getAttribute(common.BeansConfig.sLanguageBean) == null){
+                beans.SStatus sessionStatus = (beans.SStatus)session.getAttribute(common.BeansConfig.sStatus);
+                beans.accessInterface.LanguageBean sLanguageBean = beans.languageBeans.LanguageBeanPicker.getLanguageBean(sessionStatus.getLanguageOption());
+                session.setAttribute(common.BeansConfig.sLanguageBean, sLanguageBean);
+            }
+            
             
             
             //Part C: Add cookie to response

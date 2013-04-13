@@ -27,14 +27,16 @@
             
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
-                    <h1 class="headerMainTitle">Movies</h1>
+                    <h1 class="headerMainTitle">
+                        <%= sLanguageBean.hMoviesMainTitle %>
+                    </h1>
                     <div class="headerControl">
                         <span class="btn btnContentControl" contentGroup="movieContentGroup" contentGroup_target="movieOnScreen">
-                            Movie On Screen
+                            <%= sLanguageBean.hMoviesControlBtnOnScreen %>
                         </span>
                         
                         <span class="btn btnContentControl" contentGroup="movieContentGroup" contentGroup_target="movieTomorrow">
-                            Movie Tomorrow
+                            <%= sLanguageBean.hMoviesControlBtnTomorrow %>
                         </span>
                     </div>
                 </div>
@@ -42,11 +44,15 @@
             
             <div id="content" class="defaultWidth">
                 <div class="movieContentGroup movieOnScreen">
-                    <h2 class="contentTitile">Movies On Screen</h2>
+                    <h2 class="contentTitile">
+                        <%= sLanguageBean.hMoviesControlBtnOnScreen %>
+                    </h2>
                     <%@include file="/WEB-INF/jspf/movies/movies.jspf" %>
                 </div>
                 <div class="movieContentGroup movieTomorrow">
-                    <h2 class="contentTitile">Movie tomorrow</h2>
+                    <h2 class="contentTitile">
+                        <%= sLanguageBean.hMoviesControlBtnTomorrow %>
+                    </h2>
                 </div>
             </div>
         </div>

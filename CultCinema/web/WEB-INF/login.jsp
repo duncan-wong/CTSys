@@ -28,10 +28,14 @@
             
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
-                    <h1 class="headerMainTitle">Log In</h1>
+                    <h1 class="headerMainTitle"><%= sLanguageBean.hLoginMainTitle %></h1>
                     <div class="headerControl">
-                        <span>Not a member?</span>
-                        <a class="btn">Sign UP!</a>
+                        <span>
+                            <%= sLanguageBean.hLoginControlMsg %>
+                        </span>
+                        <a class="btn">
+                            <%= sLanguageBean.hLoginControlBtnSignUp %>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -49,15 +53,15 @@
                     <% } %>
                     
                     <div class="loginControl">
-                        <label class="label">Username: </label>
+                        <label class="label"><%= sLanguageBean.cLoginLbUsername %>: </label>
                         <input type="text" name="j_username" id="txtUserName" placeholder="Username" />
                     </div>
                     <div class="loginControl">
-                        <label class="label">Password: </label>
+                        <label class="label"><%= sLanguageBean.cLoginLbPassword %>: </label>
                         <input type="password" name="j_password" id="txtPassword" placeholder="Password" />
                     </div>
                     <div class="loginControl">
-                        <input type="submit" class="btn" value="Log In" />
+                        <input type="submit" class="btn" value="<%= sLanguageBean.cLoginBtnSubmit %>" />
                     </div>
                 </form>
             </div>

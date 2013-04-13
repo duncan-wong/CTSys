@@ -8,7 +8,7 @@ package beans.accessInterface;
  *
  * @author DUNCAN
  */
-public abstract class LanguageBean {
+public class LanguageBean {
     //menu
     public final String mCompanyName = "Cult Cinema";
     public final String mMovies = "Movies";
@@ -44,6 +44,8 @@ public abstract class LanguageBean {
     
     
     //content
+    //content - index
+    public final String cIndexContentTitle = "Movie On Screen";
     //content - login
     public final String cLoginLbUsername = "Username";
     public final String cLoginLbPassword = "Password";
@@ -53,7 +55,12 @@ public abstract class LanguageBean {
     public final String cMoviesLbAuthor = "Author";
     public final String cMoviesLbLength = "Length";
     public final String cMoviesLbDescription = "Description";
+    public final String cMoviesBtnOrderTicket = "Order Ticket";
     //content - account
     public final String cAccountLbUsername = "Username";
+    
+    public String getcIndexContentTitle(){
+        return this.cIndexContentTitle;
+    }
     
 }

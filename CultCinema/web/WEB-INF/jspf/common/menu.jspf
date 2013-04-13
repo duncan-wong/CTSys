@@ -1,21 +1,30 @@
 <%@ page pageEncoding="UTF-8" %>
+<%--<jsp:useBean id="sLanguageBean" type="beans.accessInterface.LanguageBean" scope="session"></jsp:useBean>--%>
 <div class="menuWrapper defaultWidth">
     <ul class="menuLink">
         <li class="special">
-            <a href="index">Cult Cinema</a>
+            <a href="index">
+                <%= sLanguageBean.mCompanyName %>
+            </a>
         </li>
         
         <li>
-            <a>Movies</a>
+            <a href="movies">
+                <%= sLanguageBean.mMovies %>
+            </a>
         </li>
         <li>
-            <a>Houses</a>
+            <a>
+                <%= sLanguageBean.mHouses %>
+            </a>
         </li>
         
         <%-- if the user is a Manager, show Manager option --%>
         <% if (request.isUserInRole(common.RolesConfig.Manager)){ %>
             <li>
-                <a href="manager">Manager</a>
+                <a href="manager">
+                    <%= sLanguageBean.mManager %>
+                </a>
             </li>
         <% } %>
     </ul>
@@ -34,7 +43,7 @@
             
             <li>
                 <a href="logout">
-                    Log out
+                    <%= sLanguageBean.mLogOut %>
                 </a>
             </li>
             
@@ -42,7 +51,9 @@
             } else { 
         %> 
             <li>
-                <a href="login">Log In</a>
+                <a href="login">
+                    <%= sLanguageBean.mLogIn %>
+                </a>
             </li>
             
         <% } %>
@@ -52,9 +63,13 @@
         </li>
         
         <li>
-            <a href="zh" class="languageOption">中</a>
+            <a href="zh" class="languageOption">
+                <%= sLanguageBean.mLOzh %>
+            </a>
             <span>/</span>
-            <a href="en" class="languageOption">Eng</a>
+            <a href="en" class="languageOption">
+                <%= sLanguageBean.mLOen %>
+            </a>
         </li>
         
     </ul>

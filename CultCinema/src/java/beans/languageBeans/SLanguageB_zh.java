@@ -8,6 +8,6 @@ package beans.languageBeans;
  *
  * @author DUNCAN
  */
-public class SLanguageB_en extends beans.accessInterface.LanguageBean{
+public class SLanguageB_zh extends beans.accessInterface.LanguageBean{
     
 }

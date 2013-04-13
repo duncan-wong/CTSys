@@ -4,6 +4,7 @@
  */
 package beans.languageBeans;
 
+import beans.accessInterface.LanguageBean;
 /**
  *
  * @author DUNCAN
@@ -17,5 +18,17 @@ public class LanguageBeanPicker {
                 return true;
         }
         return false;
+    }
+    
+    //return the language bean according to code
+    public static LanguageBean getLanguageBean(String code){
+        if (code.equalsIgnoreCase(languageCode[0])){
+            return new SLanguageB_en();
+        }
+        else if (code.equalsIgnoreCase(languageCode[1])){
+            return new SLanguageB_zh();
+        }
+        
+        return new SLanguageB_en();
     }
 }

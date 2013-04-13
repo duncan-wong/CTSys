@@ -1,6 +1,6 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
-
+<%--<jsp:useBean id="sLanguageBean" type="beans.accessInterface.LanguageBean" scope="session"></jsp:useBean>--%>
 <!--template--->
 <div id="MovieID" class="movieContainer">
     <img src="XXX" class="moviePoster" alt="Image not found">
@@ -9,21 +9,27 @@
             <span class="movieTitle">A Nice Movie</span>
         </div>
         <div class="movieDescriptionItem">
-            <span class="label">Author: </span>
+            <span class="label">
+                <%= sLanguageBean.cMoviesLbAuthor %>: 
+            </span>
             <span class="content">Thomas Leung</span>
         </div>
         <div class="movieDescriptionItem">
-            <span class="label">Length: </span>
+            <span class="label">
+                <%= sLanguageBean.cMoviesLbLength %>: 
+            </span>
             <span class="content">100 min</span>
         </div>
         <div class="movieDescriptionItem">
-            <span class="label">Description: </span>
+            <span class="label">
+                <%= sLanguageBean.cMoviesLbDescription %>: 
+            </span>
             <p class="content">This is a movie which is produced for the second assignment of computer science advanced internet application course.</p>
         </div>
     </div>
     <div class="movieControl">
         <a class="btn">
-            Order ticker
+            <%= sLanguageBean.cMoviesBtnOrderTicket %>
         </a>
     </div>
 </div>

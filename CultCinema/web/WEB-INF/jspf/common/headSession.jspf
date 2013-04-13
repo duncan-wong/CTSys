@@ -3,7 +3,7 @@
 <%-- BEAN --%>
 <%-- [session]store the session status --%>
 <jsp:useBean id="sStatus" type="beans.SStatus" scope="session"></jsp:useBean>
-
+<jsp:useBean id="sLanguageBean" type="beans.accessInterface.LanguageBean" scope="session"></jsp:useBean>
 
 
 

@@ -31,7 +31,9 @@
             </div>
             
             <div id="content" class="defaultWidth">
-                <h2 class="contentTitile">Movies On Screen</h2>
+                <h2 class="contentTitile">
+                   <%= sLanguageBean.cIndexContentTitle %>
+                </h2>
                 <%@include file="/WEB-INF/jspf/movies/movies.jspf" %>
             </div>
         </div>
