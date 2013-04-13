@@ -58,7 +58,6 @@
         <error-code>404</error-code>
         <location>/error?errorCode=404</location>
     </error-page>
-    
     <!--
     <error-page>
         <location>/error?errorCode=0</location>
@@ -124,7 +123,7 @@
     </servlet>
     <servlet>
         <servlet-name>ATesting</servlet-name>
-        <servlet-class>common.jdbc.ATesting</servlet-class>
+        <servlet-class>common.jdbc.Test.ATesting</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>

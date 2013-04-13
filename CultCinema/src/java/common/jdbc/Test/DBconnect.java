@@ -2,11 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package common.jdbc;
+package common.jdbc.Test;
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.ResultSet;
+import java.sql.Date;
 import java.sql.SQLException;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -19,17 +18,12 @@ import javax.sql.DataSource;
  */
 public class DBconnect {
     private Connection con;
-    private CallableStatement cstmt;
-    private ResultSet rs;
+    private CallableStmtCtrl cstmt;
+    private ResultSetCtrl rs;
 //----------------------------------------------------------------------------
     public DBconnect()
             throws NamingException, SQLException {
         connect();
-    }
-    public DBconnect(String cmd)
-            throws NamingException, SQLException {
-        connect();
-        prepareCall(cmd);
     }
     private void connect()
             throws NamingException, SQLException {
@@ -37,50 +31,46 @@ public class DBconnect {
         Context envCtx = (Context)initCtx.lookup("java:comp/env");
         DataSource ds = (DataSource)envCtx.lookup("jdbc/cinema");
         con = ds.getConnection();
-        cstmt = null;
-        rs = null;
+        cstmt = new CallableStmtCtrl();
+        rs = new ResultSetCtrl();
     }
     public void disconnect()
             throws SQLException {
         if (con != null)
             con.close();
-        if (cstmt != null)
-            cstmt.close();
-        if (rs != null)
-            rs.close();
+        cstmt.disconnect();
+        rs.disconnect();
     }
-//---------------------------------------------------------------------------
     public void prepareCall(String cmd)
             throws SQLException {
-        cstmt = con.prepareCall(cmd);
+        cstmt.setTo(con.prepareCall(cmd));
+    }
+    public boolean resultSetHasNext()
+            throws SQLException {
+        return rs.hasNext();
     }
     public boolean executeQuery()
             throws SQLException {
-        if (cstmt.execute()) {
-            rs = cstmt.getResultSet();
+        if (cstmt.executeQuery(rs))
             return true;
-        }
         else
             return false; // no result
     }
-    public int executeUpdate()
+    public boolean executeUpdate()
             throws SQLException {
-        int rowsAffected = cstmt.executeUpdate();
-        return rowsAffected;
-    }
-//---------------------------------------------------------------------------
-    public boolean queryHasNext()
-            throws SQLException {
-        return rs.next();
+        if (cstmt.executeUpdate() > 0)
+            return true;
+        else
+            return false; // update failed
     }
 //---------------------------------------------------------------------------
     public void setXxx(int id, int in)
             throws SQLException {
-        cstmt.setInt(id, in);
+        cstmt.setXxx(id, in);
     }
     public void setXxx(int id, String in)
             throws SQLException {
-        cstmt.setString(id, in);
+        cstmt.setXxx(id, in);
     }
 //---------------------------------------------------------------------------
     public int getXxx(String id, int out)

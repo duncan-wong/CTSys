@@ -1,5 +1,4 @@
-package common.jdbc;
-
+package common.jdbc.Test;
 
 import common.jdbc.DBconnect;
 import java.io.IOException;
@@ -111,7 +110,7 @@ public class ATesting extends HttpServlet {
             out.println("</thead>");
             out.println("<tbody>");
             /**
-            while (db.resultSetHasNext()) {
+            while (db.queryHasNext()) {
                 out.println("<tr>");
                 out.println("<td>" + db.getXxx("movie_author","") + "</td>");
                 out.println("<td>" + db.getXxx("movie_description","") + "</td>");
@@ -119,11 +118,20 @@ public class ATesting extends HttpServlet {
                 out.println("<td>" + db.getXxx("movie_name","") + "</td>");
                 out.println("</tr>");
             }
-            /**/
-            while (db.resultSetHasNext()) {
+            /**
+            while (db.queryHasNext()) {
                 out.println("<tr>");
                 out.println("<td>" + db.getXxx("movie_start","") + "</td>");
                 out.println("<td>" + db.getXxx("time","") + "</td>");
+                out.println("</tr>");
+            }
+            /**/
+            while (db.queryHasNext()) {
+                out.println("<tr>");
+                out.println("<td>" + db.getXxx("house_id","") + "</td>");
+                out.println("<td>" + db.getXxx("house_name","") + "</td>");
+                out.println("<td>" + db.getXxx("movie_end","") + "</td>");
+                out.println("<td>" + db.getXxx("movie_start","") + "</td>");
                 out.println("</tr>");
             }
             /**/
