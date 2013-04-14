@@ -35,7 +35,6 @@ public class RMovieCol implements Bean {
         search_Name = null;
         search_Author = null;
         order = null;
-        fetchDBData();
     }
 //-----------------------------------------------------------------------------
     private void add(RMovie r) {
@@ -53,23 +52,18 @@ public class RMovieCol implements Bean {
     }
     public void changeLang(String in) {
         search_Language = in;
-        fetchDBData();
     }
     public void searchMovieID(String in) {
         search_ID = in;
-        fetchDBData();
     }
     public void searchMovieName(String in) {
         search_Name = in;
-        fetchDBData();
     }
     public void searchMovieAuthor(String in) {
         search_Author = in;
-        fetchDBData();
     }
     public void changeOrder(String in) {
         order = in;
-        fetchDBData();
     }
 //-----------------------------------------------------------------------------
     public boolean fetchDBData() {

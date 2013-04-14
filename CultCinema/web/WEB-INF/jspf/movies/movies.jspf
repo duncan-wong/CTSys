@@ -33,7 +33,7 @@
                     <%= sLanguageBean.cMoviesLbLength %>: 
                 </span>
                 <span class="content">
-                    <jsp:getProperty name="currentMovie" property="movieAuthor"></jsp:getProperty>
+                    <jsp:getProperty name="currentMovie" property="movieDuration"></jsp:getProperty>
                 </span>
             </div>
             <div class="movieDescriptionItem">

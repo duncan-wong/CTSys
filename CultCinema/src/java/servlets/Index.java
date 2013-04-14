@@ -33,6 +33,7 @@ public class Index extends HttpServlet {
         
         //create RMovieCol object as request bean
         beans.RMovieCol rMC_onScreen = new beans.RMovieCol();
+        rMC_onScreen.fetchDBData();
         request.setAttribute(common.BeansConfig.rMovieCol_onScreen, rMC_onScreen);
         
         //dispatch

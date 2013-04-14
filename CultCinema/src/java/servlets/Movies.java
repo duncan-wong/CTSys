@@ -39,6 +39,7 @@ public class Movies extends HttpServlet {
         
         //fetch information
         rMC_onScreen.changeLang(sStatus.getLanguageOption());
+        rMC_onScreen.fetchDBData();
         
         
         //put the beans into request
