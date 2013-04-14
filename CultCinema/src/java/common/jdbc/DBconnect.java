@@ -28,7 +28,7 @@ public class DBconnect {
     }
     public DBconnect(String cmd)
             throws NamingException, SQLException {
-        connect();
+        this();
         prepareCall(cmd);
     }
     private void connect()
@@ -87,7 +87,7 @@ public class DBconnect {
             throws SQLException {
         return rs.getInt(id);
     }
-    public String getXxx(String id, String out)
+    public String getXxx(String id)
             throws SQLException {
         return rs.getString(id);
     }
