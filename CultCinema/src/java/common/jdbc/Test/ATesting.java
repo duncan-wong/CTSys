@@ -1,5 +1,6 @@
 package common.jdbc.Test;
 
+import beans.RMovie;
 import common.jdbc.DBconnect;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,7 +26,6 @@ public class ATesting extends HttpServlet {
     throws ServletException, IOException {
 
         String action = request.getParameter("action");
-        this.doSearchEntry(request, response);
         if (action != null) {
             // call different action depends on the action parameter
             if (action.equalsIgnoreCase("search")) {
@@ -66,6 +66,7 @@ public class ATesting extends HttpServlet {
     private void doSearchEntry(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         try {
             String searchName = request.getParameter("name");
@@ -86,9 +87,10 @@ public class ATesting extends HttpServlet {
             **/
 //----------------------------------------------------------------------
             DBconnect db = new DBconnect();
-            String procedure = "{ call show_showingMovie(?) }";
+            String procedure = "{ call show_movieDetail(?,default,default,?) }";
             db.prepareCall(procedure);
-            db.setXxx(1, "2013-04-01 11:00");
+            db.setXxx(1, "EN");
+            db.setXxx(2, searchName);
             db.executeQuery();
 //-----------------------------------------------------------------------
             out.println("<html>");
@@ -109,13 +111,18 @@ public class ATesting extends HttpServlet {
             out.println("<th align='left'>Author</th><th align='left'>Desc</th><th align='left'>startDate</th><th align='left'>Name</th>");
             out.println("</thead>");
             out.println("<tbody>");
-            /**
+            /**/
             while (db.queryHasNext()) {
+                RMovie rm = new RMovie();
+                rm.set(RMovie.data.MOVIE_AUTHOR, db.getXxx("movie_author"));
+                rm.set(RMovie.data.MOVIE_ID, db.getXxx("movie_id"));
+                rm.set(RMovie.data.MOVIE_NAME, db.getXxx("movie_name"));
+                rm.set(RMovie.data.MOVIE_STARTDATE, db.getXxx("movie_startDate"));
                 out.println("<tr>");
-                out.println("<td>" + db.getXxx("movie_author","") + "</td>");
-                out.println("<td>" + db.getXxx("movie_description","") + "</td>");
-                out.println("<td>" + db.getXxx("movie_startDate","") + "</td>");
-                out.println("<td>" + db.getXxx("movie_name","") + "</td>");
+                out.println("<td>" + rm.get(RMovie.data.MOVIE_AUTHOR) + "</td>");
+                out.println("<td>" + rm.get(RMovie.data.MOVIE_ID) + "</td>");
+                out.println("<td>" + rm.get(RMovie.data.MOVIE_NAME) + "</td>");
+                out.println("<td>" + rm.get(RMovie.data.MOVIE_STARTDATE) + "</td>");
                 out.println("</tr>");
             }
             /**
@@ -125,7 +132,7 @@ public class ATesting extends HttpServlet {
                 out.println("<td>" + db.getXxx("time","") + "</td>");
                 out.println("</tr>");
             }
-            /**/
+            /**
             while (db.queryHasNext()) {
                 out.println("<tr>");
                 out.println("<td>" + db.getXxx("house_id","") + "</td>");

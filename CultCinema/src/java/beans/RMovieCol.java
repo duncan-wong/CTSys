@@ -4,6 +4,8 @@
  */
 package beans;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author DUNCAN
@@ -12,8 +14,19 @@ package beans;
 
 //collection of RMovie objects
 public class RMovieCol {
-    private RMovie movieCol;
-    
-    
-    
+    private ArrayList<RMovie> movieCol;
+//-----------------------------------------------------------------------------
+    public RMovieCol() {
+        movieCol = new ArrayList<RMovie>();
+    }
+//-----------------------------------------------------------------------------
+    public void add(RMovie r) {
+        movieCol.add(r);
+    }
+    public RMovie[] getAll() {
+        return movieCol.toArray(new RMovie[movieCol.size()]);
+    }
+    public RMovie getAt(int i) {
+        return movieCol.get(i);
+    }
 }
