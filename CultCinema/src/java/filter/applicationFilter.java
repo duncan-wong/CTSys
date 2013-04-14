@@ -151,7 +151,7 @@ public class applicationFilter implements Filter {
                 
                 //put the languag option into the bean
                 //create language bean
-                if (sRequest.getParameter("lang").equalsIgnoreCase(sessionStatus.getLanguageOption())){
+                if (!sRequest.getParameter("lang").equalsIgnoreCase(sessionStatus.getLanguageOption())){
                     sessionStatus.setLanguageOption(sRequest.getParameter("lang"));
                     beans.accessInterface.LanguageBean sLanguageBean = beans.languageBeans.LanguageBeanPicker.getLanguageBean(sessionStatus.getLanguageOption());
                     session.setAttribute(common.BeansConfig.sLanguageBean, sLanguageBean);

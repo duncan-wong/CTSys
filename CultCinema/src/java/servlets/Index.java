@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,9 +31,13 @@ public class Index extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
+        
         
         //create RMovieCol object as request bean
         beans.RMovieCol rMC_onScreen = new beans.RMovieCol();
+        rMC_onScreen.changeLang(sStatus.getLanguageOption());
         rMC_onScreen.fetchDBData();
         request.setAttribute(common.BeansConfig.rMovieCol_onScreen, rMC_onScreen);
         
