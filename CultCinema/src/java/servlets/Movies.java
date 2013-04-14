@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,10 +30,18 @@ public class Movies extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
         
         //create RMovieCol objects as request beans
         beans.RMovieCol rMC_onScreen = new beans.RMovieCol();
         beans.RMovieCol rMC_tomorrow = new beans.RMovieCol();
+        
+        //fetch information
+        rMC_onScreen.changeLang(sStatus.getLanguageOption());
+        
+        
+        //put the beans into request
         request.setAttribute(common.BeansConfig.rMovieCol_onScreen, rMC_onScreen);
         request.setAttribute(common.BeansConfig.rMovieCol_tomorrow, rMC_tomorrow);
         
