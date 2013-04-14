@@ -1,4 +1,4 @@
-package common.jdbc.test;
+package common.jdbc.testing;
 
 import beans.RMovie;
 import common.jdbc.DBconnect;
