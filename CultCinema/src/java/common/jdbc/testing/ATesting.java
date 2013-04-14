@@ -26,7 +26,8 @@ public class ATesting extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-
+        
+        request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
         if (action != null) {
             // call different action depends on the action parameter
@@ -45,6 +46,7 @@ public class ATesting extends HttpServlet {
         try {
             out.println("<html>");
             out.println("<head>");
+            out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
             out.println("<title>Phonebook Directory</title>");
             out.println("</head>");
             out.println("<body>");
@@ -52,7 +54,7 @@ public class ATesting extends HttpServlet {
             out.println("<div style='width:600px'>");
             out.println("<fieldset>");
             out.println("<legend>Search</legend>");
-            out.println("<form method='POST' action='" + request.getRequestURI() + "'>");
+            out.println("<form method='POST' action='" + request.getRequestURI() + "' enctype=\"application/x-www-form-urlencode\" accept-charset='UTF-8'>");
             out.println("<input name='action' type='hidden' value='search' />");
             out.println("<p>Name:");
             out.println("<input name='name' type='text' size='25' maxlength='255' value='' />");
@@ -68,10 +70,9 @@ public class ATesting extends HttpServlet {
     private void doSearchEntry(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String searchName = request.getParameter("name");
+            String searchName = new String(request.getParameter("name").getBytes("ISO-8859-1"), "UTF-8");
 //-------------------------------------------------------------------------
             /**
             Context initCtx = new InitialContext();
@@ -99,6 +100,7 @@ public class ATesting extends HttpServlet {
 //-----------------------------------------------------------------------
             out.println("<html>");
             out.println("<head>");
+            out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
             out.println("<title>Phonebook Directory</title>");
             out.println("</head>");
             out.println("<body>");
