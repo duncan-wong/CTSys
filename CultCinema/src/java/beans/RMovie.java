@@ -16,8 +16,10 @@ public class RMovie {
     private String movie_name;
     private String movie_author;
     private String movie_description;
+    private String movie_duration;
     private String movie_startDate;
     private String movie_endDate;
+    private boolean flag;
 //--------------------------------------------------------------------------
     public RMovie() {
         language = "";
@@ -25,8 +27,10 @@ public class RMovie {
         movie_name = "";
         movie_author = "";
         movie_description = "";
+        movie_duration = "";
         movie_startDate = "";
         movie_endDate = "";
+        flag = false;
     }
 //--------------------------------------------------------------------------
     public void setLanguage(String in) {
@@ -43,6 +47,9 @@ public class RMovie {
     }
     public void setMovieDescription(String in) {
         set(MovieColumn.MOVIE_DESCRIPTION, in);
+    }
+    public void setMovieDuration(String in) {
+        set(MovieColumn.MOVIE_DURATION, in);
     }
     public void setMovieStartDate(String in) {
         set(MovieColumn.MOVIE_STARTDATE, in);
@@ -61,10 +68,13 @@ public class RMovie {
             movie_author = in;
         else if (d == MovieColumn.MOVIE_DESCRIPTION)
             movie_description = in;
+        else if (d == MovieColumn.MOVIE_DURATION)
+            movie_duration = in;
         else if (d == MovieColumn.MOVIE_STARTDATE)
             movie_startDate = in;
         else if (d == MovieColumn.MOVIE_ENDDATE)
             movie_endDate = in;
+        flag = true;
     }
 //----------------------------------------------------------------------------
     public String getLanguage() {
@@ -81,6 +91,9 @@ public class RMovie {
     }
     public String getMovieDescription() {
         return get(MovieColumn.MOVIE_DESCRIPTION);
+    }
+    public String getMovieDuration() {
+        return get(MovieColumn.MOVIE_DURATION);
     }
     public String getMovieStartDate() {
         return get(MovieColumn.MOVIE_STARTDATE);
@@ -99,11 +112,25 @@ public class RMovie {
             return movie_author;
         else if (d == MovieColumn.MOVIE_DESCRIPTION)
             return movie_description;
+        else if (d == MovieColumn.MOVIE_DURATION)
+            return movie_duration;
         else if (d == MovieColumn.MOVIE_STARTDATE)
             return movie_startDate;
         else if (d == MovieColumn.MOVIE_ENDDATE)
             return movie_endDate;
         else
             return "";
+    }
+//----------------------------------------------------------------------------
+    public int commitChange() {
+        int rowsAffected = 0;
+        if (flag) {
+        /**
+         * DB code here
+         * not yet finish !!!!!
+         */
+            flag = false;
+        }
+        return rowsAffected;
     }
 }

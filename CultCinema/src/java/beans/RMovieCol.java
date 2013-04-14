@@ -89,6 +89,7 @@ public class RMovieCol implements Bean {
                 r.setMovieName(db.getXxx(MovieColumn.MOVIE_NAME));
                 r.setMovieAuthor(db.getXxx(MovieColumn.MOVIE_AUTHOR));
                 r.setMovieDescription(db.getXxx(MovieColumn.MOVIE_DESCRIPTION));
+                r.setMovieDuration(db.getXxx(MovieColumn.MOVIE_DURATION));
                 r.setMovieStartDate(db.getXxx(MovieColumn.MOVIE_STARTDATE));
                 r.setMovieEndDate(db.getXxx(MovieColumn.MOVIE_ENDDATE));
                 movieCol.add(r);
@@ -104,6 +105,12 @@ public class RMovieCol implements Bean {
     }
 
     public boolean commitChange() {
-        return false;
+        int recordAffected = 0;
+        for (int i=0; i<count(); i++) {
+            recordAffected = movieCol.get(i).commitChange();
+            if (recordAffected == -1)
+                return false;
+        }
+        return true;
     }
 }

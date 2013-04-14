@@ -15,6 +15,7 @@ public class MovieColumn {
             MOVIE_NAME = "movie_name",
             MOVIE_AUTHOR = "movie_author",
             MOVIE_DESCRIPTION = "movie_description",
+            MOVIE_DURATION = "movie_duration",
             MOVIE_STARTDATE = "movie_startDate",
             MOVIE_ENDDATE = "movie_endDate";
 }
