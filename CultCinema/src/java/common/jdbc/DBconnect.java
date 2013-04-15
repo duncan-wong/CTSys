@@ -93,10 +93,6 @@ public class DBconnect {
     }
     public String getXxx(String id)
             throws SQLException {
-        String s = rs.getString(id);
-        if (s == null)
-            return "--";
-        else
-            return rs.getString(id);
+        return rs.getString(id);
     }
 }
