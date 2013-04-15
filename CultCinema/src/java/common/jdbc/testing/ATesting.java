@@ -90,7 +90,7 @@ public class ATesting extends HttpServlet {
             **/
 //----------------------------------------------------------------------
             DBconnect db = new DBconnect();
-            String procedure = MovieSQL.S4;
+            String procedure = MovieSQL.s4;
             db.prepareCall(procedure);
             db.setXxx(1, "en");
             db.setXxx(2, null);

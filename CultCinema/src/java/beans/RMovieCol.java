@@ -23,6 +23,7 @@ import javax.naming.NamingException;
 //collection of RMovie objects
 public class RMovieCol implements Bean {
     private ArrayList<RMovie> movieCol;
+    private ArrayList<RMovie> movieWaitForDelete;
     private String search_Language;
     private String search_ID;
     private String search_Name;
@@ -30,15 +31,22 @@ public class RMovieCol implements Bean {
     private String order;
 //-----------------------------------------------------------------------------
     public RMovieCol() {
-        search_Language = null;
-        search_ID = null;
-        search_Name = null;
-        search_Author = null;
-        order = null;
+        resetSearch();
+        movieCol = new ArrayList<RMovie>();
+        movieWaitForDelete = new ArrayList<RMovie>();
     }
 //-----------------------------------------------------------------------------
     private void add(RMovie r) {
         movieCol.add(r);
+    }
+    public void addMovie(RMovie r) {
+        movieCol.add(r);
+        r.waitInsert();
+    }
+    public void deleteMovie(RMovie r) {
+        movieCol.remove(r);
+        movieWaitForDelete.add(r);
+        r.waitDelete();
     }
 //-----------------------------------------------------------------------------
     public RMovie[] getAll() {
@@ -65,11 +73,18 @@ public class RMovieCol implements Bean {
     public void changeOrder(String in) {
         order = in;
     }
+    public void resetSearch() {
+        search_Language = null;
+        search_ID = null;
+        search_Name = null;
+        search_Author = null;
+        order = null;
+    }
 //-----------------------------------------------------------------------------
     public boolean fetchDBData() {
-        movieCol = new ArrayList<RMovie>();
+        movieCol.clear();
         try {
-            DBconnect db = new DBconnect(MovieSQL.S5);
+            DBconnect db = new DBconnect(MovieSQL.s5);
             db.setXxx(1, search_Language);
             db.setXxx(2, search_ID);
             db.setXxx(3, search_Name);
@@ -86,6 +101,7 @@ public class RMovieCol implements Bean {
                 r.setMovieDuration(db.getXxx(MovieColumn.MOVIE_DURATION));
                 r.setMovieStartDate(db.getXxx(MovieColumn.MOVIE_STARTDATE));
                 r.setMovieEndDate(db.getXxx(MovieColumn.MOVIE_ENDDATE));
+                r.resetStatus();
                 movieCol.add(r);
             }
             db.disconnect();
@@ -100,11 +116,17 @@ public class RMovieCol implements Bean {
 
     public boolean commitChange() {
         int recordAffected = 0;
-        for (int i=0; i<count(); i++) {
-            recordAffected = movieCol.get(i).commitChange();
+        for (int i=0; i<movieCol.size(); i++) {
+            recordAffected = movieCol.get(i).commitUpdate();
             if (recordAffected == -1)
                 return false;
         }
+        for (int i=0; i<movieWaitForDelete.size(); i++) {
+            recordAffected = movieWaitForDelete.get(i).commitUpdate();
+            if (recordAffected < 1)
+                return false;
+        }
+        movieWaitForDelete.clear();
         return true;
     }
 }

@@ -4,6 +4,7 @@
  */
 package beans;
 
+import beans.sql.DBstatus;
 import beans.sqlColumnName.MovieColumn;
 
 /**
@@ -19,7 +20,7 @@ public class RMovie {
     private String movie_duration;
     private String movie_startDate;
     private String movie_endDate;
-    private boolean flag;
+    private DBstatus dbs;
 //--------------------------------------------------------------------------
     public RMovie() {
         language = "";
@@ -30,7 +31,17 @@ public class RMovie {
         movie_duration = "";
         movie_startDate = "";
         movie_endDate = "";
-        flag = false;
+        dbs = new DBstatus();
+    }
+//--------------------------------------------------------------------------
+    public void waitDelete() {
+        dbs.setDelete();
+    }
+    public void waitInsert() {
+        dbs.setInsert();
+    }
+    public void resetStatus() {
+        dbs.reset();
     }
 //--------------------------------------------------------------------------
     public void setLanguage(String in) {
@@ -74,7 +85,7 @@ public class RMovie {
             movie_startDate = in;
         else if (d == MovieColumn.MOVIE_ENDDATE)
             movie_endDate = in;
-        flag = true;
+        dbs.setUpdate();
     }
 //----------------------------------------------------------------------------
     public String getLanguage() {
@@ -122,15 +133,23 @@ public class RMovie {
             return "";
     }
 //----------------------------------------------------------------------------
-    public int commitChange() {
+    public int commitUpdate() {
         int rowsAffected = 0;
-        if (flag) {
-        /**
-         * DB code here
-         * not yet finish !!!!!
-         */
-            flag = false;
+        if (dbs.waitInsert()) {
+            
         }
+        else if (dbs.waitUpdate()) {
+            
+        }
+        dbs.reset();
+        return rowsAffected;
+    }
+    public int commitDelete() {
+        int rowsAffected = 0;
+        if (dbs.waitDelete()) {
+            
+        }
+        dbs.reset();
         return rowsAffected;
     }
 }
