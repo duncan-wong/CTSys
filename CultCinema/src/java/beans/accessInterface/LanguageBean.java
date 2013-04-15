@@ -10,57 +10,53 @@ package beans.accessInterface;
  */
 public class LanguageBean {
     //menu
-    public final String mCompanyName = "Cult Cinema";
-    public final String mMovies = "Movies";
-    public final String mHouses = "Houses";
-    public final String mManager = "Manager";
-    public final String mLogIn = "Log In";
-    public final String mLogOut = "Log Out";
+    public String mCompanyName(){return"Cult Cinema";}
+    public String mMovies(){return"Movies";}
+    public String mHouses(){return"Houses";}
+    public String mManager(){return"Manager";}
+    public String mLogIn(){return"Log In";}
+    public String mLogOut(){return"Log Out";}
     //menu > language option
-    public final String mLOzh = "中";
-    public final String mLOen = "Eng";
+    public String mLOzh(){return"中";}
+    public String mLOen(){return"Eng";}
     
     
     //header
     //header - index
-    public final String hIndexMainTitle = "Cult Cinema";
-    public final String hIndexSubTitle = "We got what you want!";
-    public final String hIndexGreetingMsg = "Enjoy your time, ";
-    public final String hIndexControlMsg = "Member?";
-    public final String hIndexControlBtnLogIn = "Log In";
-    public final String hIndexControlBtnSignUp = "Sign Up!";
+    public String hIndexMainTitle(){return"Cult Cinema";}
+    public String hIndexSubTitle(){return"We got what you want!";}
+    public String hIndexGreetingMsg(){return"Enjoy your time, ";}
+    public String hIndexControlMsg(){return"Member?";}
+    public String hIndexControlBtnLogIn(){return"Log In";}
+    public String hIndexControlBtnSignUp(){return"Sign Up!";}
     //header - login
-    public final String hLoginMainTitle = "Log In";
-    public final String hLoginControlMsg = "Not a member? ";
-    public final String hLoginControlBtnSignUp = "Sign Up!";
+    public String hLoginMainTitle(){return"Log In";}
+    public String hLoginControlMsg(){return"Not a member? ";}
+    public String hLoginControlBtnSignUp(){return"Sign Up!";}
     //header - movies
-    public final String hMoviesMainTitle = "Movies";
-    public final String hMoviesControlBtnOnScreen = "Movie On Screen";
-    public final String hMoviesControlBtnTomorrow = "Movie Tomorrow";
+    public String hMoviesMainTitle(){return"Movies";}
+    public String hMoviesControlBtnOnScreen(){return"Movie On Screen";}
+    public String hMoviesControlBtnTomorrow(){return"Movie Tomorrow";}
     //header - Account
-    public final String hAccountMainTitle = "Account";
-    public final String hAccountControlMsg = "you may do your account-specific works here";
+    public String hAccountMainTitle(){return"Account";}
+    public String hAccountControlMsg(){return"you may do your account-specific works here";}
     
     
     
     //content
     //content - index
-    public final String cIndexContentTitle = "Movie On Screen";
+    public String cIndexContentTitle(){return"Movie On Screen";}
     //content - login
-    public final String cLoginLbUsername = "Username";
-    public final String cLoginLbPassword = "Password";
-    public final String cLoginBtnSubmit = "Log In";
+    public String cLoginLbUsername(){return"Username";}
+    public String cLoginLbPassword(){return"Password";}
+    public String cLoginBtnSubmit(){return"Log In";}
     //content - movies
-    public final String cMoviesLbMovieTitle = "MovieTitle";
-    public final String cMoviesLbAuthor = "Author";
-    public final String cMoviesLbLength = "Length";
-    public final String cMoviesLbDescription = "Description";
-    public final String cMoviesBtnOrderTicket = "Order Ticket";
+    public String cMoviesLbMovieTitle(){return"MovieTitle";}
+    public String cMoviesLbAuthor(){return"Author";}
+    public String cMoviesLbLength(){return"Length";}
+    public String cMoviesLbDescription(){return"Description";}
+    public String cMoviesBtnOrderTicket(){return"Order Ticket";}
     //content - account
-    public final String cAccountLbUsername = "Username";
-    
-    public String getcIndexContentTitle(){
-        return this.cIndexContentTitle;
-    }
+    public String cAccountLbUsername(){return"Username";}
     
 }

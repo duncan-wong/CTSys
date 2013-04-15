@@ -18,11 +18,13 @@
         <img src="XXX" class="moviePoster" alt="Image not found">
         <div class="movieDescription">
             <div class="movieDescriptionItem">
-                <span class="movieTitle">A Nice Movie</span>
+                <span class="movieTitle">
+                    <jsp:getProperty name="currentMovie" property="movieName"></jsp:getProperty>
+                </span>
             </div>
             <div class="movieDescriptionItem">
                 <span class="label">
-                    <%= sLanguageBean.cMoviesLbAuthor %>: 
+                    <%= sLanguageBean.cMoviesLbAuthor()  %>: 
                 </span>
                 <span class="content">
                     <jsp:getProperty name="currentMovie" property="movieAuthor"></jsp:getProperty>
@@ -30,7 +32,7 @@
             </div>
             <div class="movieDescriptionItem">
                 <span class="label">
-                    <%= sLanguageBean.cMoviesLbLength %>: 
+                    <%= sLanguageBean.cMoviesLbLength()  %>: 
                 </span>
                 <span class="content">
                     <jsp:getProperty name="currentMovie" property="movieDuration"></jsp:getProperty>
@@ -38,7 +40,7 @@
             </div>
             <div class="movieDescriptionItem">
                 <span class="label">
-                    <%= sLanguageBean.cMoviesLbDescription %>: 
+                    <%= sLanguageBean.cMoviesLbDescription()  %>: 
                 </span>
                 <p class="content">
                     <jsp:getProperty name="currentMovie" property="movieDescription"></jsp:getProperty>
@@ -47,7 +49,7 @@
         </div>
         <div class="movieControl">
             <a class="btn">
-                <%= sLanguageBean.cMoviesBtnOrderTicket %>
+                <%= sLanguageBean.cMoviesBtnOrderTicket()  %>
             </a>
         </div>
                 

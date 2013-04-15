@@ -3,10 +3,10 @@
 <%--<jsp:useBean id="sLanguageBean" type="beans.accessInterface.LanguageBean" scope="session"></jsp:useBean>--%>
 <div class="headerWrapper defaultWidth">
     <h1 class="headerMainTitle">
-        <%= sLanguageBean.mCompanyName %>
+        <%= sLanguageBean.mCompanyName()  %>
     </h1>
     <div class="headerSubTitle">
-        - <%= sLanguageBean.hIndexSubTitle %>
+        - <%= sLanguageBean.hIndexSubTitle()  %>
     </div>
     
     <div class="headerControl">
@@ -14,7 +14,7 @@
             if (((beans.SStatus)session.getAttribute(common.BeansConfig.sStatus)).getIsLoggedIn()){ 
         %>
             <span>
-                <%= sLanguageBean.hIndexGreetingMsg %>
+                <%= sLanguageBean.hIndexGreetingMsg()  %>
                 <jsp:getProperty name="sStatus" property="userName"></jsp:getProperty>
                 !
             <span>
@@ -23,13 +23,13 @@
             } else { 
         %> 
             <span>
-                <%= sLanguageBean.hIndexControlMsg %>
+                <%= sLanguageBean.hIndexControlMsg()  %>
             </span>
             <a class="btn" href="login">
-                <%= sLanguageBean.hIndexControlBtnLogIn %>
+                <%= sLanguageBean.hIndexControlBtnLogIn()  %>
             </a>
             <a class="btn">
-                <%= sLanguageBean.hIndexControlBtnSignUp %>
+                <%= sLanguageBean.hIndexControlBtnSignUp()  %>
             </a>
         <% } %>
     </div>

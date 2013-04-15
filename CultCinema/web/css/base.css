@@ -146,9 +146,9 @@ div#header.smallHeader+div{
 }
 
 #header.smallHeader .headerMainTitle{
-    font-size: 70px;
+    font-size: 60px;
     font-weight: normal;
-    margin:10px 0;
+    margin:8px 0;
     position:relative;
     bottom:0;
 }

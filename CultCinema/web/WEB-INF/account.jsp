@@ -5,7 +5,7 @@
 --%>
 
 <jsp:useBean id="rUser" type="beans.RUser" scope="request"></jsp:useBean>
--<%--<jsp:useBean id="sLanguageBean" type="beans.accessInterface.LanguageBean" scope="session"></jsp:us
+<%--<jsp:useBean id="sLanguageBean" type="beans.accessInterface.LanguageBean" scope="session"></jsp:usebean>--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -30,11 +30,11 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        <%= sLanguageBean.hAccountMainTitle %>
+                        <%= sLanguageBean.hAccountMainTitle()  %>
                     </h1>
                     <div class="headerControl">
                         <span>
-                            <jsp:getProperty name="sStatus" property="userName"></jsp:getProperty>, <%= sLanguageBean.hAccountControlMsg %>
+                            <jsp:getProperty name="sStatus" property="userName"></jsp:getProperty>, <%= sLanguageBean.hAccountControlMsg()  %>
                         </span>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                 <div class="infoContainer">
                     <div class="info">
                         <label class="label">
-                            <%= sLanguageBean.cAccountLbUsername %>: 
+                            <%= sLanguageBean.cAccountLbUsername()  %>: 
                         </label>
                         <span>
                             <jsp:getProperty name="rUser" property="userId"></jsp:getProperty>

@@ -32,7 +32,7 @@
             
             <div id="content" class="defaultWidth">
                 <h2 class="contentTitile">
-                   <%= sLanguageBean.cIndexContentTitle %>
+                   <%= sLanguageBean.cIndexContentTitle()  %>
                 </h2>
                 <%
                     request.setAttribute("movieCol", request.getAttribute(common.BeansConfig.rMovieCol_onScreen));
