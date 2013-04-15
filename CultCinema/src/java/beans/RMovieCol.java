@@ -41,12 +41,12 @@ public class RMovieCol implements Bean {
     }
     public void addMovie(RMovie r) {
         movieCol.add(r);
-        r.waitInsert();
+        r.inserted();
     }
     public void deleteMovie(RMovie r) {
         movieCol.remove(r);
         movieWaitForDelete.add(r);
-        r.waitDelete();
+        r.deleted();
     }
 //-----------------------------------------------------------------------------
     public RMovie[] getAll() {
@@ -122,7 +122,7 @@ public class RMovieCol implements Bean {
                 return false;
         }
         for (int i=0; i<movieWaitForDelete.size(); i++) {
-            recordAffected = movieWaitForDelete.get(i).commitUpdate();
+            recordAffected = movieWaitForDelete.get(i).commitDelete();
             if (recordAffected < 1)
                 return false;
         }

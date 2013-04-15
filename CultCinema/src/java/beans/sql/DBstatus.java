@@ -22,14 +22,18 @@ public class DBstatus {
         insert = false;
         delete = false;
     }
-    public void setUpdate() {
+    public void updated() {
+        if (delete || insert)
+            return;
         update = true;
     }
-    public void setInsert() {
+    public void inserted() {
         insert = true;
+        update = false;
     }
-    public void setDelete() {
+    public void deleted() {
         delete = true;
+        update = false;
     }
 //----------------------------------------------------------------------------
     public boolean waitUpdate() {

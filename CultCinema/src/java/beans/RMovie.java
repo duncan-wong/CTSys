@@ -34,11 +34,11 @@ public class RMovie {
         dbs = new DBstatus();
     }
 //--------------------------------------------------------------------------
-    public void waitDelete() {
-        dbs.setDelete();
+    public void deleted() {
+        dbs.deleted();
     }
-    public void waitInsert() {
-        dbs.setInsert();
+    public void inserted() {
+        dbs.inserted();
     }
     public void resetStatus() {
         dbs.reset();
@@ -85,7 +85,7 @@ public class RMovie {
             movie_startDate = in;
         else if (d == MovieColumn.MOVIE_ENDDATE)
             movie_endDate = in;
-        dbs.setUpdate();
+        dbs.updated();
     }
 //----------------------------------------------------------------------------
     public String getLanguage() {
