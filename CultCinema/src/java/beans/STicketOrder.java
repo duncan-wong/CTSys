@@ -8,6 +8,6 @@ package beans;
  *
  * @author DUNCAN
  */
-public class RTicketOrder {
+public class STicketOrder {
     
 }

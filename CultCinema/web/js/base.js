@@ -25,8 +25,12 @@ $(document).ready(function(){
     if (readCookie('languageOption'))
         language = readCookie('languageOption');
     $('a').each(function(){
-        if (!$(this).hasClass('languageOption'))
-            $(this).attr('href', $(this).attr('href') + '?lang=' + language);
+        if (!$(this).hasClass('languageOption')){
+            if ($(this).attr('href') && $(this).attr('href').search("\\?") >= 0)
+                $(this).attr('href', $(this).attr('href') + "&lang=" + language);
+            else
+                $(this).attr('href', $(this).attr('href') + "?lang=" + language);
+        }
     });
     
     //intruupt when language options are clicked
@@ -36,6 +40,7 @@ $(document).ready(function(){
         $(element).attr('href', document.URL.split('?')[0] + '?lang=' + language);
         return true;
     });
+    
 });
 
 function readCookie(name) {
