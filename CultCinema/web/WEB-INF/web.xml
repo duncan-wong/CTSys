@@ -136,6 +136,10 @@
         <servlet-name>ATesting</servlet-name>
         <servlet-class>common.jdbc.testing.ATesting</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrderTicket</servlet-name>
+        <servlet-class>servlets.OrderTicket</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -196,6 +200,10 @@
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderTicket</servlet-name>
+        <url-pattern>/orderTicket</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -212,4 +220,6 @@
         <res-sharing-scope>Shareable</res-sharing-scope>
     </resource-ref>
     <!--=======/Resource======================================================-->
-</web-app>
+
+    -
+    </web-app>

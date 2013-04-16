@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="movieControl">
-            <a class="btn">
+            <a class="btn" href="<%= common.URLConfig.getFullPath(common.URLConfig.SURL_orderTicket) %>?movieId=<jsp:getProperty name="currentMovie" property="movieID"></jsp:getProperty>">
                 <%= sLanguageBean.cMoviesBtnOrderTicket()  %>
             </a>
         </div>

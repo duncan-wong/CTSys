@@ -119,8 +119,8 @@ public class applicationFilter implements Filter {
             HttpServletResponse sResponse = (HttpServletResponse)response;
             HttpSession session = sRequest.getSession(true);
             
-            //Part A: Beans creation
-            //if the bean does not exist
+            //Part A: Beans operation
+            //1. session status (SStatus)
             //Step 1. create beans that put in the session
             //Step 2. add session beans into the session object
             if (session.getAttribute(common.BeansConfig.sStatus) == null){
@@ -128,6 +128,8 @@ public class applicationFilter implements Filter {
                 session.setAttribute(common.BeansConfig.sStatus, sessionStatus);
             }
             
+            //2. ticket order (STicketOrder)
+            //Remove the ticket order bean from the session if
             
             
             //Part B: Information inject
