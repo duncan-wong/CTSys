@@ -125,13 +125,13 @@ public class RUser extends UpdatableBean{
         super.fetchDBData();
         try {
                 DBconnect db = new DBconnect(UserSQL.s7);
-                db.setXxx(1, null);
-                db.setXxx(2, null);
+                db.setXxx(1, account_id);
+                db.setXxx(2, role);
                 db.setXxx(3, login_id);
-                db.setXxx(4, null);
-                db.setXxx(5, null);
-                db.setXxx(6, null);
-                db.setXxx(7, null);
+                db.setXxx(4, login_pw);
+                db.setXxx(5, user_name);
+                db.setXxx(6, user_phone);
+                db.setXxx(7, user_email);
                 db.executeQuery();
                 if (db.queryHasNext()) {
                         setAccountID(db.getXxx(UserColumn.ACCOUNT_ID));
