@@ -4,7 +4,7 @@
  */
 package beans;
 
-import beans.accessInterface.Bean;
+import beans.accessInterface.*;
 import common.jdbc.DBconnect;
 import beans.sqlColumnName.MovieColumn;
 import beans.sql.MovieSQL;
@@ -21,7 +21,7 @@ import javax.naming.NamingException;
 
 
 //collection of RMovie objects
-public class RMovieCol implements Bean {
+public class RMovieCol extends UpdatableBean{
     private ArrayList<RMovie> movieCol;
     private ArrayList<RMovie> movieWaitForDelete;
     private String search_Language;
@@ -31,18 +31,22 @@ public class RMovieCol implements Bean {
     private String order;
 //-----------------------------------------------------------------------------
     public RMovieCol() {
+        super();
         resetSearch();
         movieCol = new ArrayList<RMovie>();
         movieWaitForDelete = new ArrayList<RMovie>();
     }
 //-----------------------------------------------------------------------------
     private void add(RMovie r) {
+        this.setChangedTrue();
         movieCol.add(r);
     }
     public void addMovie(RMovie r) {
+        this.setChangedTrue();
         movieCol.add(r);
     }
     public void deleteMovie(RMovie r) {
+        this.setChangedTrue();
         movieCol.remove(r);
         movieWaitForDelete.add(r);
     }
@@ -79,7 +83,9 @@ public class RMovieCol implements Bean {
         order = null;
     }
 //-----------------------------------------------------------------------------
+    @Override
     public boolean fetchDBData() {
+        super.fetchDBData();
         movieCol.clear();
         try {
             DBconnect db = new DBconnect(MovieSQL.s5);
@@ -99,7 +105,6 @@ public class RMovieCol implements Bean {
                 r.setMovieDuration(db.getXxx(MovieColumn.MOVIE_DURATION));
                 r.setMovieStartDate(db.getXxx(MovieColumn.MOVIE_STARTDATE));
                 r.setMovieEndDate(db.getXxx(MovieColumn.MOVIE_ENDDATE));
-                r.resetFlag();
                 movieCol.add(r);
             }
             db.disconnect();
@@ -112,18 +117,24 @@ public class RMovieCol implements Bean {
         return false;
     }
 
+    @Override
     public boolean commitChange() {
+        super.commitChange();
         boolean isOld;
         for (int i=0; i<movieCol.size(); i++) {
             isOld = movieCol.contains(movieCol.get(i));
-            if (!movieCol.get(i).commitChange(isOld))
+            if (!movieCol.get(i).commitChange()) {
                 return false;
+            }
         }
         for (int i=0; i<movieWaitForDelete.size(); i++) {
-            if (!movieWaitForDelete.get(i).commitDelete())
+            if (!movieWaitForDelete.get(i).commitDelete()) {
                 return false;
+            }
         }
         movieWaitForDelete.clear();
         return true;
     }
+    
+    
 }

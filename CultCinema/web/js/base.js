@@ -25,7 +25,7 @@ $(document).ready(function(){
     if (readCookie('languageOption'))
         language = readCookie('languageOption');
     $('a').each(function(){
-        if (!$(this).hasClass('languageOption')){
+        if (!$(this).hasClass('languageOption') && !$(this).hasClass('noLanguageOption')){
             if ($(this).attr('href') && $(this).attr('href').search("\\?") >= 0)
                 $(this).attr('href', $(this).attr('href') + "&lang=" + language);
             else

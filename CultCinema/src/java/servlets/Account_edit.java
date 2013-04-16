@@ -4,18 +4,21 @@
  */
 package servlets;
 
+import common.BeansConfig;
+import common.URLConfig;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author DUNCAN
  */
-public class OrderTicket extends HttpServlet {
+public class Account_edit extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -29,25 +32,8 @@ public class OrderTicket extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //redirect to /movies if there is no movie selected
-        if (request.getParameter("movieId") == null){
-            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURL_movies));
-            return;
-        }
-        
-        
-        String movieId = (String) request.getAttribute("movieId");
-        
-        //create RMovie object as request bean
-        beans.RMovie rCurrentMovie = new beans.RMovie();
-        //rCurrentMovie set movie id
-        //rCurrentMovie fetch data
-        
-        //put it into the request
-        request.setAttribute(common.BeansConfig.rCurrentMovie, rCurrentMovie);
-        
-        //dispatch
-        this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_orderTicket_time).forward(request, response);
+        //redirect to /account for request not by post
+        response.sendRedirect((common.URLConfig.getFullPath(common.URLConfig.SURL_account)));
         
     }
 
@@ -79,8 +65,24 @@ public class OrderTicket extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        //confirm the request is from /account
+        //redirect if not
+        if (request.getAttribute("isFrom_" + common.URLConfig.SURL_account) == null){
+            this.processRequest(request, response);
+        }
+        
+        HttpSession session = request.getSession(false);
+        beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
+        
+        //put RUser bean into request
+        beans.RUser rUser = new beans.RUser(sStatus.getLoginId());
+        request.setAttribute(common.BeansConfig.rUser, rUser);
+        
+        this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_account_edit).forward(request, response);
+        
     }
+    
 
     /**
      * Returns a short description of the servlet.

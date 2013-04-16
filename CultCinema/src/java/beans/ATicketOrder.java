@@ -9,7 +9,7 @@ import beans.accessInterface.*;
  *
  * @author DUNCAN
  */
-public class ATicketOrder implements Bean {
+public class ATicketOrder extends Bean {
     
     //Use hashtable to store new ticket order [a Ticket Order request bean]
     //Ticket order bean contains the order info, payment status, expire date

@@ -58,5 +58,7 @@ public class LanguageBean {
     public String cMoviesBtnOrderTicket(){return"Order Ticket";}
     //content - account
     public String cAccountLbUsername(){return"Username";}
-    
+    public String cAccountLbName(){return"Name";}
+    public String cAccountLbTel(){return"Tel";}
+    public String cAccountLbEmail(){return"Email";}
 }

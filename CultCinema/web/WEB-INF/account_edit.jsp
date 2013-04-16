@@ -13,7 +13,7 @@
         
         <%@include file="/WEB-INF/jspf/common/headSession.jspf" %>
         
-        <link rel="stylesheet" type="text/css" href="css/account.css" />
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/account.css" />
         
     </head>
     <body>
@@ -41,7 +41,7 @@
             </div>
             
             <div id="content" class="defaultWidth">
-                <div class="formInfoContainer">
+                <form action="account/edit" method="POST" class="formInfoContainer">
                     <div class="formInfoControl">
                         <label class="label">
                             <%= sLanguageBean.cAccountLbUsername()  %>: 
@@ -64,25 +64,21 @@
                         <label class="label">
                             <%= sLanguageBean.cAccountLbTel()  %>: 
                         </label>
-                        <span class="infoLabel">
-                            <jsp:getProperty name="rUser" property="userPhone"></jsp:getProperty>
-                        </span>
+                        <input type="text" name="phone" class="infoInput" value="<jsp:getProperty name="rUser" property="userPhone"></jsp:getProperty>" />
                     </div>
                     
                     <div class="formInfoControl">
                         <label class="label">
                             <%= sLanguageBean.cAccountLbEmail()  %>: 
                         </label>
-                        <span class="infoLabel">
-                            <jsp:getProperty name="rUser" property="userEmail"></jsp:getProperty>
-                        </span>
+                        <input type="text" name="email" class="infoInput" value="<jsp:getProperty name="rUser" property="userEmail"></jsp:getProperty>" />
                     </div>
                         
-                    <form action="<%= common.URLConfig.getFullPath(common.URLConfig.SURL_account) %>" method="POST" class="formInfoControl">
-                        <input type="submit" class="btn" value="Edit" />
-                    </form>
-                    
-                </div>
+                    <div class="formInfoContainer">
+                        <input type="submit" class="btn" value="Save" />
+                        <a class="btn noLanguageOption" href="<%= request.getContextPath() %>/account">Cancel</a>
+                    </div>
+                </form>
             </div>
         </div>
         

@@ -105,11 +105,34 @@ input{
     font-size: 18px;
 }
 
+.formInfoContainer{
+    margin:20px;
+    overflow: hidden;
+}
+
+.formInfoContainer .formInfoControl{
+    width:100%;
+    height:30px;
+    margin:10px;
+    position: relative;
+}
+
+.formInfoContainer .formInfoControl .infoInput,
+.formInfoContainer .formInfoControl .infoLabel{
+    font-size: 18px;
+    
+    position:absolute;
+    left:150px;
+}
+
 .label{
     font-size: 18px;
     font-weight: bold;
     width: 150px;
+    line-height: 30px;
 }
+
+
 
 .overlay{
     position:fixed;

@@ -4,7 +4,7 @@
  */
 package beans;
 
-import beans.accessInterface.Bean;
+import beans.accessInterface.*;
 import beans.sql.UserSQL;
 import beans.sqlColumnName.UserColumn;
 import common.jdbc.DBconnect;
@@ -17,7 +17,7 @@ import javax.naming.NamingException;
  *
  * @author DUNCAN
  */
-public class RUser implements Bean{
+public class RUser extends UpdatableBean{
         private String account_id;
         private String role;
         private String login_id;
@@ -27,129 +27,135 @@ public class RUser implements Bean{
         private String user_email;
 //-----------------------------------------------------------------------------
     public RUser() {
-		account_id = null;
-		role = null;
-		login_id = null;
-		login_pw = null;
-		user_name = null;
-		user_phone = null;
-		user_email = null;
+        super();
+        account_id = null;
+        role = null;
+        login_id = null;
+        login_pw = null;
+        user_name = null;
+        user_phone = null;
+        user_email = null;
     }
-	public RUser(String login_id) {
-		this();
-		this.login_id = login_id;
-	}
-//----------------------------------------------------------------------------
-	public String getAccountID() {
-		return get(UserColumn.ACCOUNT_ID);
-	}
-	public String getRole() {
-		return get(UserColumn.ROLE);
-	}
-	public String getLoginID() {
-		return get(UserColumn.LOGIN_ID);
-	}
-	public String getLoginPW() {
-		return get(UserColumn.LOGIN_PW);
-	}
-	public String getUserName() {
-		return get(UserColumn.USER_NAME);
-	}
-	public String getUserPhone() {
-		return get(UserColumn.USER_PHONE);
-	}
-	public String getUserEmail() {
-		return get(UserColumn.USER_EMAIL);
-	}
-	private String get(String id) {
-		if (id == UserColumn.ACCOUNT_ID)
-			return account_id;
-		else if (id == UserColumn.ROLE)
-			return role;
-		else if (id == UserColumn.LOGIN_ID)
-			return login_id;
-		else if (id == UserColumn.LOGIN_PW)
-			return login_pw;
-		else if (id == UserColumn.USER_NAME)
-			return user_name;
-		else if (id == UserColumn.USER_PHONE)
-			return user_phone;
-		else if (id == UserColumn.USER_EMAIL)
-			return user_email;
-		else
-			return "";
-	}
-//----------------------------------------------------------------------------
-	public void setAccountID(String in) {
-		set(UserColumn.ACCOUNT_ID, in);
-	}
-	public void setRole(String in) {
-		set(UserColumn.ROLE, in);
-	}
-	public void setLoginID(String in) {
-		set(UserColumn.LOGIN_ID, in);
-	}
-	public void setLoginPW(String in) {
-		set(UserColumn.LOGIN_PW, in);
-	}
-	public void setUserName(String in) {
-		set(UserColumn.USER_NAME, in);
-	}
-	public void setUserPhone(String in) {
-		set(UserColumn.USER_PHONE, in);
-	}
-	public void setUserEmail(String in) {
-		set(UserColumn.USER_EMAIL, in);
-	}
-	private void set(String id, String in) {
-		if (id == UserColumn.ACCOUNT_ID)
-			this.account_id = account_id;
-		else if (id == UserColumn.ROLE)
-			this.role = role;
-		else if (id == UserColumn.LOGIN_ID)
-			this.login_id = login_id;
-		else if (id == UserColumn.LOGIN_PW)
-			this.login_pw = login_pw;
-		else if (id == UserColumn.USER_NAME)
-			this.user_name = user_name;
-		else if (id == UserColumn.USER_PHONE)
-			this.user_phone = user_phone;
-		else if (id == UserColumn.USER_EMAIL)
-			this.user_email = user_email;
-	}
-//----------------------------------------------------------------------------
-	public boolean fetchDBData() {
-		try {
-			DBconnect db = new DBconnect(UserSQL.s7);
-			db.setXxx(1, account_id);
-			db.setXxx(2, role);
-			db.setXxx(3, login_id);
-			db.setXxx(4, login_pw);
-			db.setXxx(5, user_name);
-			db.setXxx(6, user_phone);
-			db.setXxx(7, user_email);
-			db.executeQuery();
-			if (db.queryHasNext()) {
-				setAccountID(db.getXxx(UserColumn.ACCOUNT_ID));
-				setRole(db.getXxx(UserColumn.ROLE));
-				setLoginPW(db.getXxx(UserColumn.LOGIN_PW));
-				setUserName(db.getXxx(UserColumn.USER_NAME));
-				setUserPhone(db.getXxx(UserColumn.USER_NAME));
-				setUserEmail(db.getXxx(UserColumn.USER_EMAIL));
-			}
-			db.disconnect();
-			return true;
-		} catch (NamingException ex) {
-			 Logger.getLogger(beans.RUser.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (SQLException ex) {
-			Logger.getLogger(beans.RUser.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		return false;
-	}
-    
-	public boolean commitChange() {
+    public RUser(String login_id) {
+            this();
+            this.login_id = login_id;
+    }
+    //----------------------------------------------------------------------------
+    public String getAccountID() {
+            return get(UserColumn.ACCOUNT_ID);
+    }
+    public String getRole() {
+            return get(UserColumn.ROLE);
+    }
+    public String getLoginID() {
+            return get(UserColumn.LOGIN_ID);
+    }
+    public String getLoginPW() {
+            return get(UserColumn.LOGIN_PW);
+    }
+    public String getUserName() {
+            return get(UserColumn.USER_NAME);
+    }
+    public String getUserPhone() {
+            return get(UserColumn.USER_PHONE);
+    }
+    public String getUserEmail() {
+            return get(UserColumn.USER_EMAIL);
+    }
+    private String get(String id) {
+        if (id == UserColumn.ACCOUNT_ID)
+                return account_id;
+        else if (id == UserColumn.ROLE)
+                return role;
+        else if (id == UserColumn.LOGIN_ID)
+                return login_id;
+        else if (id == UserColumn.LOGIN_PW)
+                return login_pw;
+        else if (id == UserColumn.USER_NAME)
+                return user_name;
+        else if (id == UserColumn.USER_PHONE)
+                return user_phone;
+        else if (id == UserColumn.USER_EMAIL)
+                return user_email;
+        else
+                return "";
+    }
+    //----------------------------------------------------------------------------
+    public void setAccountID(String in) {
+            set(UserColumn.ACCOUNT_ID, in);
+    }
+    public void setRole(String in) {
+            set(UserColumn.ROLE, in);
+    }
+    public void setLoginID(String in) {
+            set(UserColumn.LOGIN_ID, in);
+    }
+    public void setLoginPW(String in) {
+            set(UserColumn.LOGIN_PW, in);
+    }
+    public void setUserName(String in) {
+            set(UserColumn.USER_NAME, in);
+    }
+    public void setUserPhone(String in) {
+            set(UserColumn.USER_PHONE, in);
+    }
+    public void setUserEmail(String in) {
+            set(UserColumn.USER_EMAIL, in);
+    }
+    private void set(String id, String in) {
+        this.setChangedTrue();
+        if (id == UserColumn.ACCOUNT_ID)
+                this.account_id = account_id;
+        else if (id == UserColumn.ROLE)
+                this.role = role;
+        else if (id == UserColumn.LOGIN_ID)
+                this.login_id = login_id;
+        else if (id == UserColumn.LOGIN_PW)
+                this.login_pw = login_pw;
+        else if (id == UserColumn.USER_NAME)
+                this.user_name = user_name;
+        else if (id == UserColumn.USER_PHONE)
+                this.user_phone = user_phone;
+        else if (id == UserColumn.USER_EMAIL)
+                this.user_email = user_email;
+    }
+    //----------------------------------------------------------------------------
+    @Override
+    public boolean fetchDBData() {
+        super.fetchDBData();
+        try {
+                DBconnect db = new DBconnect(UserSQL.s7);
+                db.setXxx(1, null);
+                db.setXxx(2, null);
+                db.setXxx(3, login_id);
+                db.setXxx(4, null);
+                db.setXxx(5, null);
+                db.setXxx(6, null);
+                db.setXxx(7, null);
+                db.executeQuery();
+                if (db.queryHasNext()) {
+                        setAccountID(db.getXxx(UserColumn.ACCOUNT_ID));
+                        setRole(db.getXxx(UserColumn.ROLE));
+                        setLoginPW(db.getXxx(UserColumn.LOGIN_PW));
+                        setUserName(db.getXxx(UserColumn.USER_NAME));
+                        setUserPhone(db.getXxx(UserColumn.USER_NAME));
+                        setUserEmail(db.getXxx(UserColumn.USER_EMAIL));
+                }
+                db.disconnect();
+                return true;
+        } catch (NamingException ex) {
+                 Logger.getLogger(beans.RUser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+                Logger.getLogger(beans.RUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean commitChange() {
+        super.commitChange();
         return commitUpdate();
-	}
+    }
     public boolean commitInsert() {
         int checking = 0;
         try {

@@ -139,11 +139,16 @@ public class applicationFilter implements Filter {
                 && !((beans.SStatus)session.getAttribute(common.BeansConfig.sStatus)).getIsLoggedIn()){
                 
                 beans.SStatus sessionStatus = (beans.SStatus)session.getAttribute(common.BeansConfig.sStatus);
+                
+                //get user data
+                beans.RUser loginedUser = new beans.RUser(sRequest.getUserPrincipal().getName());
+                loginedUser.fetchDBData();
+                
                 //fill session status here
                 sessionStatus.setIsLoggedIn(true);
-                sessionStatus.setUserId(sRequest.getUserPrincipal().getName());
-                //####to be filled with user name
-                sessionStatus.setUserName(sRequest.getUserPrincipal().getName());
+                sessionStatus.setLoginId(loginedUser.getLoginID());
+                //filled with user name
+                sessionStatus.setUserName(loginedUser.getUserName());
             }
             
             //2. language option

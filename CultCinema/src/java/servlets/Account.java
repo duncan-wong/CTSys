@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,8 +33,11 @@ public class Account extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        HttpSession session = request.getSession(false);
+        beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
+        
         //put RUser bean into request
-        beans.RUser rUser = new beans.RUser();
+        beans.RUser rUser = new beans.RUser(sStatus.getLoginId());
         request.setAttribute(BeansConfig.rUser, rUser);
         
         this.getServletContext().getRequestDispatcher(URLConfig.JURL_account).forward(request, response);
@@ -67,7 +71,13 @@ public class Account extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        //dispatch the request to /account/edit if Edit button is clicked
+        
+        //add attribute to request to confirm the origin
+        request.setAttribute("isFrom_" + common.URLConfig.SURL_account, true);
+        
+        this.getServletContext().getRequestDispatcher(common.URLConfig.SURL_account_edit).forward(request, response);
     }
 
     /**

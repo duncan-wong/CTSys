@@ -26,6 +26,6 @@
 <title>Cult Cinema</title>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="./js/base.js"></script>
+<script src="<%= request.getContextPath() %>/js/base.js"></script>
 
-<link rel="stylesheet" type="text/css" href="css/base.css" />
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/base.css" />

@@ -10,13 +10,13 @@ package beans;
  */
 public class SStatus {
     private boolean isLoggedIn;
-    private String userId;
+    private String loginId;
     private String userName;
     private String languageOption;
     
     public SStatus(){
         isLoggedIn = false;
-        userId = null;
+        loginId = null;
         userName = null;
         languageOption = "en";
     }
@@ -29,12 +29,12 @@ public class SStatus {
         return this.isLoggedIn;
     }
     
-    public void setUserId(String userId){
-        this.userId = userId;
+    public void setLoginId(String loginId){
+        this.loginId = loginId;
     }
     
-    public String getUserId(){
-        return this.userId;
+    public String getLoginId(){
+        return this.loginId;
     }
     
     public void setUserName(String userName){

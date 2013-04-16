@@ -4,6 +4,7 @@
  */
 package beans;
 
+import beans.accessInterface.*;
 import beans.sql.MovieSQL;
 import beans.sqlColumnName.MovieColumn;
 import common.jdbc.DBconnect;
@@ -16,7 +17,7 @@ import javax.naming.NamingException;
  *
  * @author 52593578
  */
-public class RMovie {
+public class RMovie extends UpdatableBean {
     private String language;
     private String movie_id;
     private String movie_name;
@@ -25,9 +26,9 @@ public class RMovie {
     private String movie_duration;
     private String movie_startDate;
     private String movie_endDate;
-    private boolean flag;
 //--------------------------------------------------------------------------
     public RMovie() {
+        super();
         language = "";
         movie_id = "";
         movie_name = "";
@@ -36,17 +37,6 @@ public class RMovie {
         movie_duration = "";
         movie_startDate = "";
         movie_endDate = "";
-        resetFlag();
-    }
-//--------------------------------------------------------------------------
-    public void updated() {
-        flag = true;
-    }
-    public boolean getFlag() {
-        return flag;
-    }
-    public void resetFlag() {
-        flag = false;
     }
 //--------------------------------------------------------------------------
     public void setLanguage(String in) {
@@ -90,7 +80,7 @@ public class RMovie {
             movie_startDate = in;
         else if (d == MovieColumn.MOVIE_ENDDATE)
             movie_endDate = in;
-        updated();
+        this.setChangedTrue();
     }
 //----------------------------------------------------------------------------
     public String getLanguage() {
@@ -138,11 +128,15 @@ public class RMovie {
             return "";
     }
 //----------------------------------------------------------------------------
-    public boolean commitChange(boolean isOld) {
-        if (!isOld)
+    @Override
+    public boolean commitChange() {
+        super.commitChange();
+        if (this.isNew()) {
             return commitInsert();
-        else if (getFlag())
+        }
+        else if (this.isChanged()) {
             return commitUpdate();
+        }
         return true;
     }
     public boolean commitInsert() {
@@ -159,8 +153,9 @@ public class RMovie {
             db.executeUpdate();
             checking = db.getResult();
             db.disconnect();
-            if (checking == 0)
+            if (checking == 0) {
                 return true;
+            }
         } catch (NamingException ex) {
             Logger.getLogger(RMovie.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -184,8 +179,9 @@ public class RMovie {
             db.executeUpdate();
             checking = db.getResult();
             db.disconnect();
-            if (checking == 0)
+            if (checking == 0) {
                 return true;
+            }
         } catch (NamingException ex) {
             Logger.getLogger(RMovie.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -202,8 +198,9 @@ public class RMovie {
             db.executeUpdate();
             checking = db.getResult();
             db.disconnect();
-            if (checking == 0)
+            if (checking == 0) {
                 return true;
+            }
         } catch (NamingException ex) {
             Logger.getLogger(RMovie.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

@@ -140,6 +140,10 @@
         <servlet-name>OrderTicket</servlet-name>
         <servlet-class>servlets.OrderTicket</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Account_edit</servlet-name>
+        <servlet-class>servlets.Account_edit</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -147,10 +151,6 @@
     <servlet-mapping>
         <servlet-name>Movies</servlet-name>
         <url-pattern>/movies</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Account</servlet-name>
-        <url-pattern>/account</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
@@ -204,6 +204,14 @@
         <servlet-name>OrderTicket</servlet-name>
         <url-pattern>/orderTicket</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Account</servlet-name>
+        <url-pattern>/account</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Account_edit</servlet-name>
+        <url-pattern>/account/edit</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -220,6 +228,9 @@
         <res-sharing-scope>Shareable</res-sharing-scope>
     </resource-ref>
     <!--=======/Resource======================================================-->
+
+    -
+    
 
     -
     </web-app>

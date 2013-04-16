@@ -3,13 +3,13 @@
 <div class="menuWrapper defaultWidth">
     <ul class="menuLink">
         <li class="special">
-            <a href="index">
+            <a href="<%= request.getContextPath() %>/index">
                 <%= sLanguageBean.mCompanyName() %>
             </a>
         </li>
         
         <li>
-            <a href="movies">
+            <a href="<%= request.getContextPath() %>/movies">
                 <%= sLanguageBean.mMovies() %>
             </a>
         </li>
@@ -22,7 +22,7 @@
         <%-- if the user is a Manager, show Manager option --%>
         <% if (request.isUserInRole(common.RolesConfig.Manager)){ %>
             <li>
-                <a href="manager">
+                <a href="<%= request.getContextPath() %>/manager">
                     <%= sLanguageBean.mManager() %>
                 </a>
             </li>
@@ -36,13 +36,13 @@
             if (((beans.SStatus)session.getAttribute(common.BeansConfig.sStatus)).getIsLoggedIn()){ 
         %>
             <li>
-                <a href="account">
+                <a href="<%= request.getContextPath() %>/account">
                     <jsp:getProperty name="sStatus" property="userName"></jsp:getProperty>
                 </a>
             </li>
             
             <li>
-                <a href="logout">
+                <a href="<%= request.getContextPath() %>/logout">
                     <%= sLanguageBean.mLogOut() %>
                 </a>
             </li>
@@ -51,7 +51,7 @@
             } else { 
         %> 
             <li>
-                <a href="login">
+                <a href="<%= request.getContextPath() %>/login">
                     <%= sLanguageBean.mLogIn() %>
                 </a>
             </li>

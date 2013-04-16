@@ -11,8 +11,8 @@
         
         <%@include file="/WEB-INF/jspf/common/headSession.jspf" %>
         
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <link rel="stylesheet" type="text/css" href="css/movies.css" />
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/index.css" />
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/movies.css" />
         
     </head>
     <body>

@@ -13,7 +13,7 @@
     
         <%@include file="/WEB-INF/jspf/common/headSession.jspf" %>
         
-        <link rel="stylesheet" type="text/css" href="css/login.css" />
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/login.css" />
     </head>
     <body>
         <div class="asgClaim_stayTop scrollLeft">
@@ -41,26 +41,26 @@
             </div>
             
             <div id="content" class="defaultWidth">
-                <form action="j_security_check" method="post" class="loginForm">
+                <form action="j_security_check" method="post" class="formInfoContainer">
                     <%
                         if (((beans.RLogin)request.getAttribute(common.BeansConfig.rLogin)).getErrorMessage() != null){
                     %>
-                        <div class="loginControl">
+                        <div class="formInfoControl">
                             <p class="error">
                                 <jsp:getProperty name="rLogin" property="errorMessage"></jsp:getProperty>
                             </p>
                         </div>
                     <% } %>
                     
-                    <div class="loginControl">
+                    <div class="formInfoControl">
                         <label class="label"><%= sLanguageBean.cLoginLbUsername()  %>: </label>
-                        <input type="text" name="j_username" id="txtUserName" placeholder="Username" />
+                        <input type="text" class="infoInput" name="j_username" id="txtUserName" placeholder="Username" />
                     </div>
-                    <div class="loginControl">
+                    <div class="formInfoControl">
                         <label class="label"><%= sLanguageBean.cLoginLbPassword()  %>: </label>
-                        <input type="password" name="j_password" id="txtPassword" placeholder="Password" />
+                        <input type="password" class="infoInput" name="j_password" id="txtPassword" placeholder="Password" />
                     </div>
-                    <div class="loginControl">
+                    <div class="formInfoControl">
                         <input type="submit" class="btn" value="<%= sLanguageBean.cLoginBtnSubmit()  %>" />
                     </div>
                 </form>
