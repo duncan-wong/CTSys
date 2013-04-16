@@ -86,6 +86,10 @@ public class DBconnect {
         else
             cstmt.setString(id, in);
     }
+    public void setResult()
+            throws SQLException {
+        cstmt.registerOutParameter(1, Types.INTEGER);
+    }
 //---------------------------------------------------------------------------
     public int getXxx(String id, int out)
             throws SQLException {
@@ -94,5 +98,9 @@ public class DBconnect {
     public String getXxx(String id)
             throws SQLException {
         return rs.getString(id);
+    }
+    public int getResult()
+            throws SQLException {
+        return cstmt.getInt(1);
     }
 }

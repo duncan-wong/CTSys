@@ -41,12 +41,10 @@ public class RMovieCol implements Bean {
     }
     public void addMovie(RMovie r) {
         movieCol.add(r);
-        r.inserted();
     }
     public void deleteMovie(RMovie r) {
         movieCol.remove(r);
         movieWaitForDelete.add(r);
-        r.deleted();
     }
 //-----------------------------------------------------------------------------
     public RMovie[] getAll() {
@@ -101,7 +99,7 @@ public class RMovieCol implements Bean {
                 r.setMovieDuration(db.getXxx(MovieColumn.MOVIE_DURATION));
                 r.setMovieStartDate(db.getXxx(MovieColumn.MOVIE_STARTDATE));
                 r.setMovieEndDate(db.getXxx(MovieColumn.MOVIE_ENDDATE));
-                r.resetStatus();
+                r.resetFlag();
                 movieCol.add(r);
             }
             db.disconnect();
@@ -115,15 +113,14 @@ public class RMovieCol implements Bean {
     }
 
     public boolean commitChange() {
-        int recordAffected = 0;
+        boolean isOld;
         for (int i=0; i<movieCol.size(); i++) {
-            recordAffected = movieCol.get(i).commitUpdate();
-            if (recordAffected == -1)
+            isOld = movieCol.contains(movieCol.get(i));
+            if (!movieCol.get(i).commitChange(isOld))
                 return false;
         }
         for (int i=0; i<movieWaitForDelete.size(); i++) {
-            recordAffected = movieWaitForDelete.get(i).commitDelete();
-            if (recordAffected < 1)
+            if (!movieWaitForDelete.get(i).commitDelete())
                 return false;
         }
         movieWaitForDelete.clear();

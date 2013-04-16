@@ -2,8 +2,8 @@ package common.jdbc.testing;
 
 import beans.RMovie;
 import common.jdbc.DBconnect;
-import beans.sqlColumnName.MovieColumn;
-import beans.sql.MovieSQL;
+import beans.sqlColumnName.*;
+import beans.sql.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.CallableStatement;
@@ -90,13 +90,16 @@ public class ATesting extends HttpServlet {
             **/
 //----------------------------------------------------------------------
             DBconnect db = new DBconnect();
-            String procedure = MovieSQL.s4;
+            String procedure = BookingSQL.i1;
             db.prepareCall(procedure);
+            db.setResult();
+            /**
             db.setXxx(1, "en");
             db.setXxx(2, null);
             db.setXxx(3, null);
             db.setXxx(4, searchName);
-            db.executeQuery();
+            **/
+            db.executeUpdate();
 //-----------------------------------------------------------------------
             out.println("<html>");
             out.println("<head>");
@@ -117,7 +120,10 @@ public class ATesting extends HttpServlet {
             out.println("<th align='left'>Author</th><th align='left'>Desc</th><th align='left'>startDate</th><th align='left'>Name</th>");
             out.println("</thead>");
             out.println("<tbody>");
-            /**/
+                out.println("<tr>");
+                out.println("<td>" + db.getResult() + "</td>");
+                out.println("</tr>");
+            /**
             while (db.queryHasNext()) {
                 RMovie rm = new RMovie();
                 rm.setMovieAuthor(db.getXxx(MovieColumn.MOVIE_AUTHOR));

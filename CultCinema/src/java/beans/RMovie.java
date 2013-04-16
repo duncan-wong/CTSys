@@ -4,8 +4,13 @@
  */
 package beans;
 
-import beans.sql.DBstatus;
+import beans.sql.MovieSQL;
 import beans.sqlColumnName.MovieColumn;
+import common.jdbc.DBconnect;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.NamingException;
 
 /**
  *
@@ -20,7 +25,7 @@ public class RMovie {
     private String movie_duration;
     private String movie_startDate;
     private String movie_endDate;
-    private DBstatus dbs;
+    private boolean flag;
 //--------------------------------------------------------------------------
     public RMovie() {
         language = "";
@@ -31,17 +36,17 @@ public class RMovie {
         movie_duration = "";
         movie_startDate = "";
         movie_endDate = "";
-        dbs = new DBstatus();
+        resetFlag();
     }
 //--------------------------------------------------------------------------
-    public void deleted() {
-        dbs.deleted();
+    public void updated() {
+        flag = true;
     }
-    public void inserted() {
-        dbs.inserted();
+    public boolean getFlag() {
+        return flag;
     }
-    public void resetStatus() {
-        dbs.reset();
+    public void resetFlag() {
+        flag = false;
     }
 //--------------------------------------------------------------------------
     public void setLanguage(String in) {
@@ -85,7 +90,7 @@ public class RMovie {
             movie_startDate = in;
         else if (d == MovieColumn.MOVIE_ENDDATE)
             movie_endDate = in;
-        dbs.updated();
+        updated();
     }
 //----------------------------------------------------------------------------
     public String getLanguage() {
@@ -133,23 +138,77 @@ public class RMovie {
             return "";
     }
 //----------------------------------------------------------------------------
-    public int commitUpdate() {
-        int rowsAffected = 0;
-        if (dbs.waitInsert()) {
-            
-        }
-        else if (dbs.waitUpdate()) {
-            
-        }
-        dbs.reset();
-        return rowsAffected;
+    public boolean commitChange(boolean isOld) {
+        if (!isOld)
+            return commitInsert();
+        else if (getFlag())
+            return commitUpdate();
+        return true;
     }
-    public int commitDelete() {
-        int rowsAffected = 0;
-        if (dbs.waitDelete()) {
-            
+    public boolean commitInsert() {
+        int checking = 0;
+        try {
+            DBconnect db = new DBconnect(MovieSQL.i6);
+            db.setResult();
+            db.setXxx(2, movie_name);
+            db.setXxx(3, movie_author);
+            db.setXxx(4, movie_description);
+            db.setXxx(5, movie_startDate);
+            db.setXxx(6, movie_endDate);
+            db.setXxx(7, movie_duration);
+            db.executeUpdate();
+            checking = db.getResult();
+            db.disconnect();
+            if (checking == 0)
+                return true;
+        } catch (NamingException ex) {
+            Logger.getLogger(RMovie.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RMovie.class.getName()).log(Level.SEVERE, null, ex);
         }
-        dbs.reset();
-        return rowsAffected;
+        return false;
+    }
+    public boolean commitUpdate() {
+        int checking = 0;
+        try {
+            DBconnect db = new DBconnect(MovieSQL.u8);
+            db.setResult();
+            db.setXxx(2, language);
+            db.setXxx(3, movie_id);
+            db.setXxx(4, movie_name);
+            db.setXxx(5, movie_author);
+            db.setXxx(6, movie_description);
+            db.setXxx(7, movie_duration);
+            db.setXxx(8, movie_startDate);
+            db.setXxx(9, movie_endDate);
+            db.executeUpdate();
+            checking = db.getResult();
+            db.disconnect();
+            if (checking == 0)
+                return true;
+        } catch (NamingException ex) {
+            Logger.getLogger(RMovie.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RMovie.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    public boolean commitDelete() {
+        int checking = 0;
+        try {
+            DBconnect db = new DBconnect(MovieSQL.d1);
+            db.setResult();
+            db.setXxx(2, movie_id);
+            db.executeUpdate();
+            checking = db.getResult();
+            db.disconnect();
+            if (checking == 0)
+                return true;
+        } catch (NamingException ex) {
+            Logger.getLogger(RMovie.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RMovie.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 }
