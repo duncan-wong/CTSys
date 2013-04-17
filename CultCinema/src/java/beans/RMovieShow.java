@@ -64,22 +64,31 @@ public class RMovieShow extends UpdatableBean {
         set(ShowingColumn.TICKET_PRICE, in);
     }
     private void set(String id, String in) {
-        if (id == ShowingColumn.HOUSE_ID)
+        if (id == ShowingColumn.HOUSE_ID) {
             house_id = in;
-        else if (id == ShowingColumn.SHOWING_ID)
+        }
+        else if (id == ShowingColumn.SHOWING_ID) {
             showing_id = in;
-        else if (id == ShowingColumn.MOVIE_ID)
+        }
+        else if (id == ShowingColumn.MOVIE_ID) {
             movie_id = in;
-        else if (id == ShowingColumn.SHOWING_STARTDATE)
+        }
+        else if (id == ShowingColumn.SHOWING_STARTDATE) {
             showing_startDate = in;
-        else if (id == ShowingColumn.SHOWING_STARTTIME)
+        }
+        else if (id == ShowingColumn.SHOWING_STARTTIME) {
             showing_startTime = in;
-        else if (id == ShowingColumn.SHOWING_ENDDATE)
+        }
+        else if (id == ShowingColumn.SHOWING_ENDDATE) {
             showing_endDate = in;
-        else if (id == ShowingColumn.SHOWING_ENDTIME)
+        }
+        else if (id == ShowingColumn.SHOWING_ENDTIME) {
             showing_endTime = in;
-        else if (id == ShowingColumn.TICKET_PRICE)
+        }
+        else if (id == ShowingColumn.TICKET_PRICE) {
             ticket_price = in;
+        }
+        this.setChangedTrue();
     }
 //-----------------------------------------------------------------------------
     public String getHouseID() {
@@ -107,22 +116,30 @@ public class RMovieShow extends UpdatableBean {
         return get(ShowingColumn.TICKET_PRICE);
     }
     private String get(String id) {
-        if (id == ShowingColumn.HOUSE_ID)
+        if (id == ShowingColumn.HOUSE_ID) {
             return house_id;
-        else if (id == ShowingColumn.SHOWING_ID)
+        }
+        else if (id == ShowingColumn.SHOWING_ID) {
             return showing_id;
-        else if (id == ShowingColumn.MOVIE_ID)
+        }
+        else if (id == ShowingColumn.MOVIE_ID) {
             return movie_id;
-        else if (id == ShowingColumn.SHOWING_STARTDATE)
+        }
+        else if (id == ShowingColumn.SHOWING_STARTDATE) {
             return showing_startDate;
-        else if (id == ShowingColumn.SHOWING_STARTTIME)
+        }
+        else if (id == ShowingColumn.SHOWING_STARTTIME) {
             return showing_startTime;
-        else if (id == ShowingColumn.SHOWING_ENDDATE)
+        }
+        else if (id == ShowingColumn.SHOWING_ENDDATE) {
             return showing_endDate;
-        else if (id == ShowingColumn.SHOWING_ENDTIME)
+        }
+        else if (id == ShowingColumn.SHOWING_ENDTIME) {
             return showing_endTime;
-        else if (id == ShowingColumn.TICKET_PRICE)
+        }
+        else if (id == ShowingColumn.TICKET_PRICE) {
             return ticket_price;
+        }
         return "";
     }
 //-----------------------------------------------------------------------------
@@ -146,7 +163,7 @@ public class RMovieShow extends UpdatableBean {
             db.setResult();
             db.setXxx(2, house_id);
             db.setXxx(3, movie_id);
-            db.setXxx(4, showing_startDate+" "+showing_startTime);
+            db.setXxx(4, showing_startDate +" "+ showing_startTime);
             db.setXxx(5, ticket_price);
             db.executeUpdate();
             checking = db.getResult();
@@ -165,11 +182,46 @@ public class RMovieShow extends UpdatableBean {
     
     public boolean commitUpdate() {
         int checking = 0;
+        try {
+            DBconnect db = new DBconnect(ShowingSQL.u5);
+            db.setResult();
+            db.setXxx(2, showing_id);
+            db.setXxx(3, house_id);
+            db.setXxx(4, movie_id);
+            db.setXxx(5, showing_startDate +" "+ showing_startTime);
+            db.setXxx(6, ticket_price);
+            db.executeUpdate();
+            checking = db.getResult();
+            db.disconnect();
+            if (checking == 0) {
+                return true;
+            }
+        } catch (NamingException ex) {
+            Logger.getLogger(RMovieShow.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RMovieShow.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return false;
     }
     
     
     public boolean commitDelete() {
+        int checking = 0;
+        try {
+            DBconnect db = new DBconnect(ShowingSQL.d1);
+            db.setResult();
+            db.setXxx(2, showing_id);
+            db.executeUpdate();
+            checking = db.getResult();
+            db.disconnect();
+            if (checking == 0) {
+                return true;
+            }
+        } catch (NamingException ex) {
+            Logger.getLogger(RMovieShow.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RMovieShow.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return false;
     }
 }
