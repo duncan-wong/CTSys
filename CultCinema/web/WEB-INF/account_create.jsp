@@ -30,7 +30,7 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        ${sLanguageBean.hAccountMainTitle()}
+                        <%=sLanguageBean.hAccountMainTitle()%>
                     </h1>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 <form action="<%=request.getContextPath()%>/signUp" method="POST" class="formInfoContainer">
                     <div class="formInfoControl">
                         <label class="label">
-                            ${sLanguageBean.cAccountLbUsername()}: 
+                            <%=sLanguageBean.cAccountLbUsername()%>: 
                         </label>
                         <input type="text" name="loginId" class="infoInput" value="" />
                         <c:if test="${errorMsg != null}">
@@ -57,7 +57,7 @@
                     
                     <div class="formInfoControl">
                         <label class="label">
-                            ${sLanguageBean.cAccountLbPassword()}: 
+                            <%=sLanguageBean.cAccountLbPassword()%>: 
                         </label>
                         <input type="password" name="password" class="infoInput" value="" />
                         <c:if test="${errorMsg != null}">
@@ -69,7 +69,7 @@
                             
                     <div class="formInfoControl">
                         <label class="label">
-                            ${sLanguageBean.cAcRegLbPasswordRe()}: 
+                            <%=sLanguageBean.cAcRegLbPasswordRe()%>: 
                         </label>
                         <input type="password" name="passwordr" class="infoInput" value="" />
                         <c:if test="${errorMsg != null}">
@@ -82,7 +82,7 @@
                     
                     <div class="formInfoControl">
                         <label class="label">
-                            ${sLanguageBean.cAccountLbName()}: 
+                            <%=sLanguageBean.cAccountLbName()%>: 
                         </label>
                         <input type="text" name="name" class="infoInput" value="${rUser.userPhone}" />
                         <c:if test="${errorMsg == null}">
@@ -95,7 +95,7 @@
                             
                     <div class="formInfoControl">
                         <label class="label">
-                            ${sLanguageBean.cAccountLbTel()}: 
+                            <%=sLanguageBean.cAccountLbTel()%>: 
                         </label>
                         <input type="text" name="phone" class="infoInput" value="${rUser.userPhone}" />
                         <c:if test="${errorMsg == null}">
@@ -107,7 +107,7 @@
                     
                     <div class="formInfoControl">
                         <label class="label">
-                            ${sLanguageBean.cAccountLbEmail()}: 
+                            <%=sLanguageBean.cAccountLbEmail()%>: 
                         </label>
                         <input type="text" name="email" class="infoInput" value="${rUser.userEmail}" />
                         <c:if test="${errorMsg != null}">
@@ -119,7 +119,7 @@
                             
                     <div class="formInfoControl">
                         <input type="submit" class="btn" value="Save" />
-                        <a class="btn noLanguageOption" href="<%=request.getContextPath()%>/account">Cancel</a>
+                        <a class="btn noLanguageOption" href="<%=request.getContextPath()%>">Cancel</a>
                     </div>
                 </form>
             </div>

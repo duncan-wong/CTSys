@@ -29,11 +29,11 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        ${sLanguageBean.hAccountMainTitle()}
+                        <%=sLanguageBean.hAccountMainTitle()%>
                     </h1>
                     <div class="headerControl">
                         <span>
-                            ${rUser.userName}, ${sLanguageBean.hAccountControlMsg()}
+                            ${rUser.userName}, <%=sLanguageBean.hAccountControlMsg()%>
                         </span>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                 <div class="formInfoContainer">
                     <div class="formInfoControl">
                         <label class="label">
-                            ${sLanguageBean.cAccountLbUsername()}: 
+                            <%=sLanguageBean.cAccountLbUsername()%>: 
                         </label>
                         <span class="infoLabel">
                             ${rUser.loginID}
@@ -52,7 +52,7 @@
                     
                     <div class="formInfoControl">
                         <label class="label">
-                            ${sLanguageBean.cAccountLbName()}: 
+                            <%=sLanguageBean.cAccountLbName()%>: 
                         </label>
                         <span class="infoLabel">
                             ${rUser.userName}
@@ -61,7 +61,7 @@
                     
                     <div class="formInfoControl">
                         <label class="label">
-                            ${sLanguageBean.cAccountLbTel()}: 
+                            <%=sLanguageBean.cAccountLbTel()%>: 
                         </label>
                         <span class="infoLabel">
                             ${rUser.userPhone}
@@ -70,7 +70,7 @@
                     
                     <div class="formInfoControl">
                         <label class="label">
-                            ${sLanguageBean.cAccountLbEmail()}: 
+                            <%=sLanguageBean.cAccountLbEmail()%>: 
                         </label>
                         <span class="infoLabel">
                             ${rUser.userEmail}

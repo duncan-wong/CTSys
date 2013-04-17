@@ -48,7 +48,7 @@
                         </div>
                         <div class="movieDescriptionItem">
                             <span class="label">
-                                ${sLanguageBean.cMoviesLbAuthor()}: 
+                                <%=sLanguageBean.cMoviesLbAuthor()%>: 
                             </span>
                             <span class="content">
                                 ${rCurrentMovie.movieAuthor}
@@ -56,7 +56,7 @@
                         </div>
                         <div class="movieDescriptionItem">
                             <span class="label">
-                                ${sLanguageBean.cMoviesLbLength()}: 
+                                <%=sLanguageBean.cMoviesLbLength()%>: 
                             </span>
                             <span class="content">
                                 ${rCurrentMovie.movieDuration}
@@ -64,7 +64,7 @@
                         </div>
                         <div class="movieDescriptionItem">
                             <span class="label">
-                                ${sLanguageBean.cMoviesLbDescription()}: 
+                                <%=sLanguageBean.cMoviesLbDescription()%>: 
                             </span>
                             <p class="content">
                                 ${rCurrentMovie.movieDescription}

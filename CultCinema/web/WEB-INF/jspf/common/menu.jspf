@@ -4,18 +4,18 @@
     <ul class="menuLink">
         <li class="special">
             <a href="<%=request.getContextPath()%>/index">
-                ${sLanguageBean.mCompanyName()}
+                <%=sLanguageBean.mCompanyName()%>
             </a>
         </li>
         
         <li>
             <a href="<%=request.getContextPath()%>/movies">
-                ${sLanguageBean.mMovies()}
+                <%=sLanguageBean.mMovies()%>
             </a>
         </li>
         <li>
             <a>
-                ${sLanguageBean.mHouses()}
+                <%=sLanguageBean.mHouses()%>
             </a>
         </li>
         
@@ -23,7 +23,7 @@
         <% if (request.isUserInRole(common.RolesConfig.Manager)){ %>
             <li>
                 <a href="<%=request.getContextPath()%>/manager">
-                    ${sLanguageBean.mManager()}
+                    <%=sLanguageBean.mManager()%>
                 </a>
             </li>
         <% } %>
@@ -43,7 +43,7 @@
             
             <li>
                 <a href="<%=request.getContextPath()%>/logout">
-                    ${sLanguageBean.mLogOut()}
+                    <%=sLanguageBean.mLogOut()%>
                 </a>
             </li>
             
@@ -52,7 +52,7 @@
         %> 
             <li>
                 <a href="<%=request.getContextPath()%>/login">
-                    ${sLanguageBean.mLogIn()}
+                    <%=sLanguageBean.mLogIn()%>
                 </a>
             </li>
             
@@ -64,11 +64,11 @@
         
         <li>
             <a href="zh" class="languageOption">
-                ${sLanguageBean.mLOzh()}
+                <%=sLanguageBean.mLOzh()%>
             </a>
             <span>/</span>
             <a href="en" class="languageOption">
-                ${sLanguageBean.mLOen()}
+                <%=sLanguageBean.mLOen()%>
             </a>
         </li>
         

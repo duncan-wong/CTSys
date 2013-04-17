@@ -5,7 +5,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Hashtable;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Account_create extends HttpServlet {
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+   
     /**
      * Handles the HTTP
      * <code>GET</code> method.
@@ -86,12 +85,8 @@ public class Account_create extends HttpServlet {
             isSafeToCommit = false;
             errorMsg.put("email", "Invalid email address");
         }
-        
-        if (!rUser.getLoginPW().contentEquals(password)){
-            isSafeToCommit = false;
-            errorMsg.put("password", "Incorrect password");
-        }
-        
+         
+       
         //commit change
         if (isSafeToCommit){
             try{
@@ -104,12 +99,12 @@ public class Account_create extends HttpServlet {
         }
         
         if (isCommitted){
-            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURL_account));
+            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURL_login));
         }
         else{
             request.setAttribute("errorMsg", errorMsg);
             request.setAttribute(common.BeansConfig.rUser, rUser);
-            this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_account_edit).forward(request, response);
+            this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_signUp).forward(request, response);
         }
         
     }
@@ -122,5 +117,5 @@ public class Account_create extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 }

@@ -28,13 +28,13 @@
             
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
-                    <h1 class="headerMainTitle">${sLanguageBean.hLoginMainTitle()}</h1>
+                    <h1 class="headerMainTitle"><%=sLanguageBean.hLoginMainTitle()%></h1>
                     <div class="headerControl">
                         <span>
-                            ${sLanguageBean.hLoginControlMsg()}
+                            <%=sLanguageBean.hLoginControlMsg()%>
                         </span>
-                        <a class="btn" href="<%= request.getServletPath() %>/signUp">
-                            ${sLanguageBean.hLoginControlBtnSignUp()}
+                        <a class="btn" href="<%= request.getContextPath() %>/signUp">
+                            <%=sLanguageBean.hLoginControlBtnSignUp()%>
                         </a>
                     </div>
                 </div>
@@ -53,15 +53,15 @@
                     <% } %>
                     
                     <div class="formInfoControl">
-                        <label class="label">${sLanguageBean.cLoginLbUsername()}: </label>
+                        <label class="label"><%=sLanguageBean.cLoginLbUsername()%>: </label>
                         <input type="text" class="infoInput" name="j_username" id="txtUserName" placeholder="Username" />
                     </div>
                     <div class="formInfoControl">
-                        <label class="label">${sLanguageBean.cLoginLbPassword()}: </label>
+                        <label class="label"><%=sLanguageBean.cLoginLbPassword()%>: </label>
                         <input type="password" class="infoInput" name="j_password" id="txtPassword" placeholder="Password" />
                     </div>
                     <div class="formInfoControl">
-                        <input type="submit" class="btn" value="${sLanguageBean.cLoginBtnSubmit()}" />
+                        <input type="submit" class="btn" value="<%=sLanguageBean.cLoginBtnSubmit()%>" />
                     </div>
                 </form>
             </div>

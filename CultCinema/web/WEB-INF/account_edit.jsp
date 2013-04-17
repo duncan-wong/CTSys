@@ -30,11 +30,11 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        ${sLanguageBean.hAccountMainTitle()}
+                        <%=sLanguageBean.hAccountMainTitle()%>
                     </h1>
                     <div class="headerControl">
                         <span>
-                            ${rUser.userName}, ${sLanguageBean.hAccountControlMsg()}
+                            ${rUser.userName}, <%=sLanguageBean.hAccountControlMsg()%>
                         </span>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                 <form action="<%=request.getContextPath()%>/account/edit" method="POST" class="formInfoContainer">
                     <div class="formInfoControl">
                         <label class="label">
-                            ${sLanguageBean.cAccountLbUsername()}: 
+                            <%=sLanguageBean.cAccountLbUsername()%>: 
                         </label>
                         <span class="infoLabel">
                             ${rUser.loginID}
@@ -58,7 +58,7 @@
                     
                     <div class="formInfoControl">
                         <label class="label">
-                            ${sLanguageBean.cAccountLbName()}: 
+                            <%=sLanguageBean.cAccountLbName()%>: 
                         </label>
                         <span class="infoLabel">
                             ${rUser.userName}
@@ -67,7 +67,7 @@
                     
                     <div class="formInfoControl">
                         <label class="label">
-                            ${sLanguageBean.cAccountLbTel()}: 
+                            <%=sLanguageBean.cAccountLbTel()%>: 
                         </label>
                         <input type="text" name="phone" class="infoInput" value="${rUser.userPhone}" />
                         <c:if test="${errorMsg == null}">
@@ -79,7 +79,7 @@
                     
                     <div class="formInfoControl">
                         <label class="label">
-                            ${sLanguageBean.cAccountLbEmail()}: 
+                            <%=sLanguageBean.cAccountLbEmail()%>: 
                         </label>
                         <input type="text" name="email" class="infoInput" value="${rUser.userEmail}" />
                         <c:if test="${errorMsg != null}">
@@ -91,7 +91,7 @@
                             
                     <div class="formInfoControl">
                         <label class="label">
-                            ${sLanguageBean.cAccountLbPassword()}: 
+                            <%=sLanguageBean.cAccountLbPassword()%>: 
                         </label>
                         <input type="password" name="password" class="infoInput" value="" />
                         <c:if test="${errorMsg != null}">
