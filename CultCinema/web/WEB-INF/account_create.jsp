@@ -38,7 +38,7 @@
             <div id="content" class="defaultWidth">
                 <c:if test="${errorMsg == null}">
                     <span class="error">
-                        ${errorMsg.get("pageError")}
+                        ${errorMsg["pageError"]}
                     </span>
                 </c:if>   
                     
@@ -50,7 +50,7 @@
                         <input type="text" name="loginId" class="infoInput" value="" />
                         <c:if test="${errorMsg != null}">
                             <span class="error">
-                                ${errorMsg.get("loginId")}
+                                ${errorMsg["loginId"]}
                             </span>
                         </c:if>
                     </div>
@@ -62,7 +62,7 @@
                         <input type="password" name="password" class="infoInput" value="" />
                         <c:if test="${errorMsg != null}">
                             <span class="error">
-                                ${errorMsg.get("password")}
+                                ${errorMsg["password"]}
                             </span>
                         </c:if>
                     </div>
@@ -74,7 +74,7 @@
                         <input type="password" name="passwordr" class="infoInput" value="" />
                         <c:if test="${errorMsg != null}">
                             <span class="error">
-                                ${errorMsg.get("passwordr")}
+                                ${errorMsg["passwordr"]}
                             </span>
                         </c:if>
                     </div>
@@ -87,7 +87,7 @@
                         <input type="text" name="name" class="infoInput" value="${rUser.userPhone}" />
                         <c:if test="${errorMsg == null}">
                             <span class="error">
-                                ${errorMsg.get("name")}
+                                ${errorMsg["name"]}
                             </span>
                         </c:if> 
                     </div>
@@ -100,7 +100,7 @@
                         <input type="text" name="phone" class="infoInput" value="${rUser.userPhone}" />
                         <c:if test="${errorMsg == null}">
                             <span class="error">
-                                ${errorMsg.get("phone")}
+                                ${errorMsg["phone"]}
                             </span>
                         </c:if>    
                     </div>
@@ -112,7 +112,7 @@
                         <input type="text" name="email" class="infoInput" value="${rUser.userEmail}" />
                         <c:if test="${errorMsg != null}">
                             <span class="error">
-                                ${errorMsg.get("email")}
+                                ${errorMsg["email"]}
                             </span>
                         </c:if>
                     </div>

@@ -77,7 +77,7 @@
                         </span>
                     </div>
                         
-                    <form action="${common.URLConfig.getFullPath(common.URLConfig.SURL_account)}" method="POST" class="formInfoControl">
+                    <form action="<%=common.URLConfig.getFullPath(common.URLConfig.SURL_account)%>" method="POST" class="formInfoControl">
                         <input type="submit" class="btn" value="Edit" />
                     </form>
                     
