@@ -144,6 +144,10 @@
         <servlet-name>Account_edit</servlet-name>
         <servlet-class>servlets.Account_edit</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Account_create</servlet-name>
+        <servlet-class>servlets.Account_create</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -211,6 +215,10 @@
     <servlet-mapping>
         <servlet-name>Account_edit</servlet-name>
         <url-pattern>/account/edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Account_create</servlet-name>
+        <url-pattern>/signUp</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -21,6 +21,8 @@ public abstract class BeansConfig {
     //session beans
     public static final String sStatus = "sStatus";
     public static final String sLanguageBean = "sLanguageBean";
+    public static final String sTicketOrder = "sTicketOrder";
+    
     
     //application beans
 }

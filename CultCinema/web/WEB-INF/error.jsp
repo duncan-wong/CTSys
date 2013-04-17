@@ -28,13 +28,13 @@
             <div id="header">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle"> 
-                        <jsp:getProperty name="rError" property="errorCode"></jsp:getProperty>
+                        ${rError.errorCode}
                     </h1>
                     <div class="headerSubTitle">
-                        - <jsp:getProperty name="rError" property="errorMessage"></jsp:getProperty>
+                        - ${rError.errorMessage}
                     </div>
                     <div class="headerControl">
-                        <a class="btn" href="index">Home</a>
+                        <a class="btn" href="<%=request.getContextPath()%>/index">Home</a>
                     </div>
                 </div>
             </div>

@@ -11,8 +11,8 @@
         
         <%@include file="/WEB-INF/jspf/common/headSession.jspf" %>
         
-        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/index.css" />
-        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/movies.css" />
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/index.css" />
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/movies.css" />
         
     </head>
     <body>
@@ -32,7 +32,7 @@
             
             <div id="content" class="defaultWidth">
                 <h2 class="contentTitile">
-                   <%= sLanguageBean.cIndexContentTitle()  %>
+                   ${sLanguageBean.cIndexContentTitle() }
                 </h2>
                 <%
                     request.setAttribute("movieCol", request.getAttribute(common.BeansConfig.rMovieCol_onScreen));

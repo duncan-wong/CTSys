@@ -41,6 +41,11 @@ public abstract class UpdatableBean extends Bean {
         this.isChanged = true;
     }
     
+    //offset the set in fetchDBData
+    protected void afterInternalChange(){
+        this.isChanged = false;
+    }
+    
     //set isNew = false
     protected void setNewFalse(){
         this.isNew = false;

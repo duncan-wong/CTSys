@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -17,41 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class OrderTicket extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        //redirect to /movies if there is no movie selected
-        if (request.getParameter("movieId") == null){
-            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURL_movies));
-            return;
-        }
-        
-        
-        String movieId = (String) request.getAttribute("movieId");
-        
-        //create RMovie object as request bean
-        beans.RMovie rCurrentMovie = new beans.RMovie();
-        //rCurrentMovie set movie id
-        //rCurrentMovie fetch data
-        
-        //put it into the request
-        request.setAttribute(common.BeansConfig.rCurrentMovie, rCurrentMovie);
-        
-        //dispatch
-        this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_orderTicket_time).forward(request, response);
-        
-    }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP
      * <code>GET</code> method.
@@ -64,7 +31,35 @@ public class OrderTicket extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //called from a url-pattern
+        
+        
+        //redirect to /movies if there is no movie selected
+        if (request.getParameter("movieId") == null){
+            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURL_movies));
+            return;
+        }
+        
+        //create new ticket order
+        beans.STicketOrder ticketOrder = new beans.STicketOrder();
+        
+        String movieId = (String) request.getAttribute("movieId");
+        
+        //create RMovie object as request bean
+        beans.RMovie rCurrentMovie = new beans.RMovie();
+        rCurrentMovie.setMovieID(movieId);
+        rCurrentMovie.fetchDBData();
+        
+        //put it into the request
+        request.setAttribute(common.BeansConfig.rCurrentMovie, rCurrentMovie);
+        
+        //add trace attribute to session
+        HttpSession session = request.getSession(false);
+        session.setAttribute(common.URLConfig.lastInternalUrl, common.URLConfig.SURL_orderTicket);
+        
+        //dispatch
+        this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_orderTicket_time).forward(request, response);
+        
     }
 
     /**
@@ -79,7 +74,8 @@ public class OrderTicket extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //called when continuesly in the same ticket order
+        
     }
 
     /**

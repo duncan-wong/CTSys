@@ -32,11 +32,6 @@
                     <h1 class="headerMainTitle">
                         ${sLanguageBean.hAccountMainTitle()}
                     </h1>
-                    <div class="headerControl">
-                        <span>
-                            ${rUser.userName}, ${sLanguageBean.hAccountControlMsg()}
-                        </span>
-                    </div>
                 </div>
             </div>
             
@@ -46,25 +41,58 @@
                         ${errorMsg.get("pageError")}
                     </span>
                 </c:if>   
-                <form action="<%=request.getContextPath()%>/account/edit" method="POST" class="formInfoContainer">
+                    
+                <form action="<%=request.getContextPath()%>/signUp" method="POST" class="formInfoContainer">
                     <div class="formInfoControl">
                         <label class="label">
                             ${sLanguageBean.cAccountLbUsername()}: 
                         </label>
-                        <span class="infoLabel">
-                            ${rUser.loginID}
-                        </span>
+                        <input type="text" name="loginId" class="infoInput" value="" />
+                        <c:if test="${errorMsg != null}">
+                            <span class="error">
+                                ${errorMsg.get("loginId")}
+                            </span>
+                        </c:if>
                     </div>
+                    
+                    <div class="formInfoControl">
+                        <label class="label">
+                            ${sLanguageBean.cAccountLbPassword()}: 
+                        </label>
+                        <input type="password" name="password" class="infoInput" value="" />
+                        <c:if test="${errorMsg != null}">
+                            <span class="error">
+                                ${errorMsg.get("password")}
+                            </span>
+                        </c:if>
+                    </div>
+                            
+                    <div class="formInfoControl">
+                        <label class="label">
+                            ${sLanguageBean.cAcRegLbPasswordRe()}: 
+                        </label>
+                        <input type="password" name="passwordr" class="infoInput" value="" />
+                        <c:if test="${errorMsg != null}">
+                            <span class="error">
+                                ${errorMsg.get("passwordr")}
+                            </span>
+                        </c:if>
+                    </div>
+                    
                     
                     <div class="formInfoControl">
                         <label class="label">
                             ${sLanguageBean.cAccountLbName()}: 
                         </label>
-                        <span class="infoLabel">
-                            ${rUser.userName}
-                        </span>
+                        <input type="text" name="name" class="infoInput" value="${rUser.userPhone}" />
+                        <c:if test="${errorMsg == null}">
+                            <span class="error">
+                                ${errorMsg.get("name")}
+                            </span>
+                        </c:if> 
                     </div>
-                    
+                        
+                            
                     <div class="formInfoControl">
                         <label class="label">
                             ${sLanguageBean.cAccountLbTel()}: 
@@ -89,18 +117,6 @@
                         </c:if>
                     </div>
                             
-                    <div class="formInfoControl">
-                        <label class="label">
-                            ${sLanguageBean.cAccountLbPassword()}: 
-                        </label>
-                        <input type="password" name="password" class="infoInput" value="" />
-                        <c:if test="${errorMsg != null}">
-                            <span class="error">
-                                ${errorMsg.get("password")}
-                            </span>
-                        </c:if>
-                    </div>
-                        
                     <div class="formInfoControl">
                         <input type="submit" class="btn" value="Save" />
                         <a class="btn noLanguageOption" href="<%=request.getContextPath()%>/account">Cancel</a>

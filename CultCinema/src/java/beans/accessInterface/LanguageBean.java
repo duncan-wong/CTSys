@@ -40,7 +40,8 @@ public class LanguageBean {
     //header - Account
     public String hAccountMainTitle(){return"Account";}
     public String hAccountControlMsg(){return"you may do your account-specific works here";}
-    
+    //header - Registration
+    public String hAcRegMainTitle(){return"Sign Up";}
     
     
     //content
@@ -57,8 +58,11 @@ public class LanguageBean {
     public String cMoviesLbDescription(){return"Description";}
     public String cMoviesBtnOrderTicket(){return"Order Ticket";}
     //content - account
-    public String cAccountLbUsername(){return"Username";}
+    public String cAccountLbUsername(){return"Login ID";}
     public String cAccountLbName(){return"Name";}
     public String cAccountLbTel(){return"Tel";}
     public String cAccountLbEmail(){return"Email";}
+    public String cAccountLbPassword(){return"Password";}
+    //content - registration , use most label of account page
+    public String cAcRegLbPasswordRe(){return"Confirm password";}
 }

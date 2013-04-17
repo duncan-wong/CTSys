@@ -38,11 +38,11 @@ public class RMovieCol extends UpdatableBean{
     }
 //-----------------------------------------------------------------------------
     public void addMovie(RMovie r) {
-        this.setChangedTrue();
+        super.setChangedTrue();
         movieCol.add(r);
     }
     public void deleteMovie(RMovie r) {
-        this.setChangedTrue();
+        super.setChangedTrue();
         movieCol.remove(r);
         movieWaitForDelete.add(r);
     }
@@ -110,6 +110,10 @@ public class RMovieCol extends UpdatableBean{
         } catch (SQLException ex) {
             Logger.getLogger(RMovieCol.class.getName()).log(Level.SEVERE, null, ex);
         }
+        finally{
+            super.afterInternalChange();
+        }
+        
         return false;
     }
 

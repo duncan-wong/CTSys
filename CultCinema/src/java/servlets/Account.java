@@ -38,9 +38,9 @@ public class Account extends HttpServlet {
         
         //put RUser bean into request
         beans.RUser rUser = new beans.RUser(sStatus.getLoginId());
+        rUser.fetchDBData();
         request.setAttribute(BeansConfig.rUser, rUser);
         
-        this.getServletContext().getRequestDispatcher(URLConfig.JURL_account).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -57,6 +57,9 @@ public class Account extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+        //forward to account page(show info)
+        this.getServletContext().getRequestDispatcher(URLConfig.JURL_account).forward(request, response);
     }
 
     /**
@@ -71,14 +74,16 @@ public class Account extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        processRequest(request, response);
         
         //dispatch the request to /account/edit if Edit button is clicked
         
         //add attribute to request to confirm the origin
-        request.setAttribute("isFrom_" + common.URLConfig.SURL_account, true);
+        request.setAttribute(common.URLConfig.isFrom(common.URLConfig.SURL_account), true);
         
         this.getServletContext().getRequestDispatcher(common.URLConfig.SURL_account_edit).forward(request, response);
     }
+    
 
     /**
      * Returns a short description of the servlet.

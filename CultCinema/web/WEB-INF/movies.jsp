@@ -11,7 +11,7 @@
         
         <%@include file="/WEB-INF/jspf/common/headSession.jspf" %>
         
-        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/movies.css" />
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/movies.css" />
         
     </head>
     <body>
@@ -28,15 +28,15 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        <%= sLanguageBean.hMoviesMainTitle()  %>
+                        ${sLanguageBean.hMoviesMainTitle()}
                     </h1>
                     <div class="headerControl">
                         <span class="btn btnContentControl" contentGroup="movieContentGroup" contentGroup_target="movieOnScreen">
-                            <%= sLanguageBean.hMoviesControlBtnOnScreen()  %>
+                            ${sLanguageBean.hMoviesControlBtnOnScreen()}
                         </span>
                         
                         <span class="btn btnContentControl" contentGroup="movieContentGroup" contentGroup_target="movieTomorrow">
-                            <%= sLanguageBean.hMoviesControlBtnTomorrow()  %>
+                            ${sLanguageBean.hMoviesControlBtnTomorrow()}
                         </span>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
             <div id="content" class="defaultWidth">
                 <div class="movieContentGroup movieOnScreen">
                     <h2 class="contentTitile">
-                        <%= sLanguageBean.hMoviesControlBtnOnScreen()  %>
+                        ${sLanguageBean.hMoviesControlBtnOnScreen()}
                     </h2>
                     <%
                         request.setAttribute("movieCol", request.getAttribute(common.BeansConfig.rMovieCol_onScreen));
@@ -55,7 +55,7 @@
                 <div class="movieContentGroup movieTomorrow inactiveContent">
                     
                     <h2 class="contentTitile">
-                        <%= sLanguageBean.hMoviesControlBtnTomorrow()  %>
+                        ${sLanguageBean.hMoviesControlBtnTomorrow()}
                     </h2>
                     <%
                         request.setAttribute("movieCol", request.getAttribute(common.BeansConfig.rMovieCol_tomorrow));

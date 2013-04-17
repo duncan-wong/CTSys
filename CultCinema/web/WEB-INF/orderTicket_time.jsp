@@ -13,7 +13,7 @@
         
         <%@include file="/WEB-INF/jspf/common/headSession.jspf" %>
         
-        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/movies.css" />
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/movies.css" />
         
     </head>
     <body>
@@ -39,35 +39,35 @@
             <div id="content" class="defaultWidth">
                 <div id="MovieID" class="movieContainer">
 
-                    <img src="XXX" class="moviePoster" alt="Image not found">
+                    <img src="<%=request.getContextPath()%>/moviePoster/${currentMovie.movieID}.jpg" class="moviePoster" alt="Image not found">
                     <div class="movieDescription">
                         <div class="movieDescriptionItem">
                             <span class="movieTitle">
-                                <jsp:getProperty name="rCurrentMovie" property="movieName"></jsp:getProperty>
+                                ${rCurrentMovie.movieName}
                             </span>
                         </div>
                         <div class="movieDescriptionItem">
                             <span class="label">
-                                <%= sLanguageBean.cMoviesLbAuthor()  %>: 
+                                ${sLanguageBean.cMoviesLbAuthor()}: 
                             </span>
                             <span class="content">
-                                <jsp:getProperty name="rCurrentMovie" property="movieAuthor"></jsp:getProperty>
+                                ${rCurrentMovie.movieAuthor}
                             </span>
                         </div>
                         <div class="movieDescriptionItem">
                             <span class="label">
-                                <%= sLanguageBean.cMoviesLbLength()  %>: 
+                                ${sLanguageBean.cMoviesLbLength()}: 
                             </span>
                             <span class="content">
-                                <jsp:getProperty name="rCurrentMovie" property="movieDuration"></jsp:getProperty>
+                                ${rCurrentMovie.movieDuration}
                             </span>
                         </div>
                         <div class="movieDescriptionItem">
                             <span class="label">
-                                <%= sLanguageBean.cMoviesLbDescription()  %>: 
+                                ${sLanguageBean.cMoviesLbDescription()}: 
                             </span>
                             <p class="content">
-                                <jsp:getProperty name="rCurrentMovie" property="movieDescription"></jsp:getProperty>
+                                ${rCurrentMovie.movieDescription}
                             </p>
                         </div>
                     </div>

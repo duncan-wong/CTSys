@@ -3,27 +3,27 @@
 <div class="menuWrapper defaultWidth">
     <ul class="menuLink">
         <li class="special">
-            <a href="<%= request.getContextPath() %>/index">
-                <%= sLanguageBean.mCompanyName() %>
+            <a href="<%=request.getContextPath()%>/index">
+                ${sLanguageBean.mCompanyName()}
             </a>
         </li>
         
         <li>
-            <a href="<%= request.getContextPath() %>/movies">
-                <%= sLanguageBean.mMovies() %>
+            <a href="<%=request.getContextPath()%>/movies">
+                ${sLanguageBean.mMovies()}
             </a>
         </li>
         <li>
             <a>
-                <%= sLanguageBean.mHouses() %>
+                ${sLanguageBean.mHouses()}
             </a>
         </li>
         
         <%-- if the user is a Manager, show Manager option --%>
         <% if (request.isUserInRole(common.RolesConfig.Manager)){ %>
             <li>
-                <a href="<%= request.getContextPath() %>/manager">
-                    <%= sLanguageBean.mManager() %>
+                <a href="<%=request.getContextPath()%>/manager">
+                    ${sLanguageBean.mManager()}
                 </a>
             </li>
         <% } %>
@@ -36,14 +36,14 @@
             if (((beans.SStatus)session.getAttribute(common.BeansConfig.sStatus)).getIsLoggedIn()){ 
         %>
             <li>
-                <a href="<%= request.getContextPath() %>/account">
+                <a href="<%=request.getContextPath()%>/account">
                     <jsp:getProperty name="sStatus" property="userName"></jsp:getProperty>
                 </a>
             </li>
             
             <li>
-                <a href="<%= request.getContextPath() %>/logout">
-                    <%= sLanguageBean.mLogOut() %>
+                <a href="<%=request.getContextPath()%>/logout">
+                    ${sLanguageBean.mLogOut()}
                 </a>
             </li>
             
@@ -51,8 +51,8 @@
             } else { 
         %> 
             <li>
-                <a href="<%= request.getContextPath() %>/login">
-                    <%= sLanguageBean.mLogIn() %>
+                <a href="<%=request.getContextPath()%>/login">
+                    ${sLanguageBean.mLogIn()}
                 </a>
             </li>
             
@@ -64,11 +64,11 @@
         
         <li>
             <a href="zh" class="languageOption">
-                <%= sLanguageBean.mLOzh() %>
+                ${sLanguageBean.mLOzh()}
             </a>
             <span>/</span>
             <a href="en" class="languageOption">
-                <%= sLanguageBean.mLOen() %>
+                ${sLanguageBean.mLOen()}
             </a>
         </li>
         

@@ -14,6 +14,14 @@ public abstract class URLConfig {
         return ContextPath + partUrl;
     }
     
+    //trace attribute key
+    public static final String lastInternalUrl = "lastInternalUrl";
+    
+    //trace attribute or key
+    public static String isFrom(String url){
+        return "isFrom_" + url;
+    }
+    
     //context path
     public static final String ContextPath = "/CultCinema";
     
@@ -27,6 +35,7 @@ public abstract class URLConfig {
     public static final String SURL_account_edit = "/account/edit";
     public static final String SURL_movies = "/movies";
     public static final String SURL_orderTicket = "/orderTicket";
+    public static final String SURL_signUp = "/signUp";
     
     //jsp
     public static final String JURL_index = "/WEB-INF/index.jsp";
@@ -36,6 +45,7 @@ public abstract class URLConfig {
     public static final String JURL_error = "/WEB-INF/error.jsp";
     public static final String JURL_movies = "/WEB-INF/movies.jsp";
     public static final String JURL_orderTicket_time = "/WEB-INF/orderTicket_time.jsp";
+    public static final String JURL_signUp = "/WEB-INF/account_create.jsp";
     //jsp - m
     public static final String JURLm_Manage = "/WEB-INF/mJsp/mManage.jsp";
 }

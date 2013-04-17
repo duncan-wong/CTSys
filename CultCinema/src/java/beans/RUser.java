@@ -103,7 +103,7 @@ public class RUser extends UpdatableBean{
             set(UserColumn.USER_EMAIL, in);
     }
     private void set(String id, String in) {
-        this.setChangedTrue();
+        super.setChangedTrue();
         if (id == UserColumn.ACCOUNT_ID)
             this.account_id = in;
         else if (id == UserColumn.ROLE)
@@ -148,6 +148,9 @@ public class RUser extends UpdatableBean{
                 Logger.getLogger(beans.RUser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
                 Logger.getLogger(beans.RUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            super.afterInternalChange();
         }
         return false;
     }
