@@ -37,8 +37,8 @@ public class RUser extends UpdatableBean{
         user_email = null;
     }
     public RUser(String login_id) {
-            this();
-            this.login_id = login_id;
+        this();
+        this.login_id = login_id;
     }
     //----------------------------------------------------------------------------
     public String getAccountID() {
@@ -64,21 +64,21 @@ public class RUser extends UpdatableBean{
     }
     private String get(String id) {
         if (id == UserColumn.ACCOUNT_ID)
-                return account_id;
+            return account_id;
         else if (id == UserColumn.ROLE)
-                return role;
+            return role;
         else if (id == UserColumn.LOGIN_ID)
-                return login_id;
+            return login_id;
         else if (id == UserColumn.LOGIN_PW)
-                return login_pw;
+            return login_pw;
         else if (id == UserColumn.USER_NAME)
-                return user_name;
+            return user_name;
         else if (id == UserColumn.USER_PHONE)
-                return user_phone;
+            return user_phone;
         else if (id == UserColumn.USER_EMAIL)
-                return user_email;
+            return user_email;
         else
-                return "";
+            return "";
     }
     //----------------------------------------------------------------------------
     public void setAccountID(String in) {
@@ -105,19 +105,19 @@ public class RUser extends UpdatableBean{
     private void set(String id, String in) {
         this.setChangedTrue();
         if (id == UserColumn.ACCOUNT_ID)
-                this.account_id = account_id;
+            this.account_id = in;
         else if (id == UserColumn.ROLE)
-                this.role = role;
+            this.role = in;
         else if (id == UserColumn.LOGIN_ID)
-                this.login_id = login_id;
+            this.login_id = in;
         else if (id == UserColumn.LOGIN_PW)
-                this.login_pw = login_pw;
+            this.login_pw = in;
         else if (id == UserColumn.USER_NAME)
-                this.user_name = user_name;
+            this.user_name = in;
         else if (id == UserColumn.USER_PHONE)
-                this.user_phone = user_phone;
+            this.user_phone = in;
         else if (id == UserColumn.USER_EMAIL)
-                this.user_email = user_email;
+            this.user_email = in;
     }
     //----------------------------------------------------------------------------
     @Override
@@ -134,17 +134,18 @@ public class RUser extends UpdatableBean{
                 db.setXxx(7, user_email);
                 db.executeQuery();
                 if (db.queryHasNext()) {
-                        setAccountID(db.getXxx(UserColumn.ACCOUNT_ID));
-                        setRole(db.getXxx(UserColumn.ROLE));
-                        setLoginPW(db.getXxx(UserColumn.LOGIN_PW));
-                        setUserName(db.getXxx(UserColumn.USER_NAME));
-                        setUserPhone(db.getXxx(UserColumn.USER_NAME));
-                        setUserEmail(db.getXxx(UserColumn.USER_EMAIL));
+                    setAccountID(db.getXxx(UserColumn.ACCOUNT_ID));
+                    setRole(db.getXxx(UserColumn.ROLE));
+                    setLoginID(db.getXxx(UserColumn.LOGIN_ID));
+                    setLoginPW(db.getXxx(UserColumn.LOGIN_PW));
+                    setUserName(db.getXxx(UserColumn.USER_NAME));
+                    setUserPhone(db.getXxx(UserColumn.USER_PHONE));
+                    setUserEmail(db.getXxx(UserColumn.USER_EMAIL));
                 }
                 db.disconnect();
                 return true;
         } catch (NamingException ex) {
-                 Logger.getLogger(beans.RUser.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(beans.RUser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
                 Logger.getLogger(beans.RUser.class.getName()).log(Level.SEVERE, null, ex);
         }
