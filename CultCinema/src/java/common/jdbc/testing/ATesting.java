@@ -1,6 +1,7 @@
 package common.jdbc.testing;
 
 import beans.RMovie;
+import beans.RUser;
 import common.jdbc.DBconnect;
 import beans.sqlColumnName.*;
 import beans.sql.*;
@@ -89,17 +90,15 @@ public class ATesting extends HttpServlet {
             rs = cstmt.getResultSet();
             **/
 //----------------------------------------------------------------------
-            DBconnect db = new DBconnect();
-            String procedure = BookingSQL.i1;
-            db.prepareCall(procedure);
-            db.setResult();
+            RUser r = new RUser("duncan");
+            r.fetchDBData();
             /**
             db.setXxx(1, "en");
             db.setXxx(2, null);
             db.setXxx(3, null);
             db.setXxx(4, searchName);
             **/
-            db.executeUpdate();
+            //db.executeUpdate();
 //-----------------------------------------------------------------------
             out.println("<html>");
             out.println("<head>");
@@ -121,7 +120,10 @@ public class ATesting extends HttpServlet {
             out.println("</thead>");
             out.println("<tbody>");
                 out.println("<tr>");
-                out.println("<td>" + db.getResult() + "</td>");
+                out.println("<td>" + r.getAccountID()+ "</td>");
+                out.println("<td>" + r.getRole()+ "</td>");
+                out.println("<td>" + r.getUserEmail()+ "</td>");
+                out.println("<td>" + r.getUserName()+ "</td>");
                 out.println("</tr>");
             /**
             while (db.queryHasNext()) {
@@ -161,12 +163,13 @@ public class ATesting extends HttpServlet {
             out.println("</div>");
             out.println("</body>");
             out.println("</html>");
-            db.disconnect();
-        }
-        catch (NamingException e) {
+            //db.disconnect();
+            /*
+        } catch (NamingException e) {
             out.println("<div style='color: red'>" + e.toString() + "</div>");
         } catch (SQLException e) {
             out.println("<div style='color: red'>" + e.toString() + "</div>");
+            */
         } finally {
             out.close();
         }

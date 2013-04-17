@@ -29,14 +29,14 @@ public class RMovie extends UpdatableBean {
 //--------------------------------------------------------------------------
     public RMovie() {
         super();
-        language = "";
-        movie_id = "";
-        movie_name = "";
-        movie_author = "";
-        movie_description = "";
-        movie_duration = "";
-        movie_startDate = "";
-        movie_endDate = "";
+        language = null;
+        movie_id = null;
+        movie_name = null;
+        movie_author = null;
+        movie_description = null;
+        movie_duration = null;
+        movie_startDate = null;
+        movie_endDate = null;
     }
 //--------------------------------------------------------------------------
     public void setLanguage(String in) {
@@ -139,6 +139,8 @@ public class RMovie extends UpdatableBean {
         }
         return true;
     }
+    
+    
     public boolean commitInsert() {
         int checking = 0;
         try {
@@ -163,6 +165,8 @@ public class RMovie extends UpdatableBean {
         }
         return false;
     }
+    
+    
     public boolean commitUpdate() {
         int checking = 0;
         try {
@@ -189,6 +193,8 @@ public class RMovie extends UpdatableBean {
         }
         return false;
     }
+    
+    
     public boolean commitDelete() {
         int checking = 0;
         try {

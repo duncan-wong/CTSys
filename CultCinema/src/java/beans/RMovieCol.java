@@ -37,10 +37,6 @@ public class RMovieCol extends UpdatableBean{
         movieWaitForDelete = new ArrayList<RMovie>();
     }
 //-----------------------------------------------------------------------------
-    private void add(RMovie r) {
-        this.setChangedTrue();
-        movieCol.add(r);
-    }
     public void addMovie(RMovie r) {
         this.setChangedTrue();
         movieCol.add(r);
@@ -54,8 +50,8 @@ public class RMovieCol extends UpdatableBean{
     public RMovie[] getAll() {
         return movieCol.toArray(new RMovie[movieCol.size()]);
     }
-    public RMovie getAt(int i) {
-        return movieCol.get(i);
+    public RMovie getAt(int id) {
+        return movieCol.get(id);
     }
     public int count() {
         return movieCol.size();
@@ -72,8 +68,8 @@ public class RMovieCol extends UpdatableBean{
     public void searchMovieAuthor(String in) {
         search_Author = in;
     }
-    public void changeOrder(String in) {
-        order = in;
+    public void changeOrder(String columnName) {
+        order = columnName;
     }
     public void resetSearch() {
         search_Language = null;
@@ -120,9 +116,7 @@ public class RMovieCol extends UpdatableBean{
     @Override
     public boolean commitChange() {
         super.commitChange();
-        boolean isOld;
         for (int i=0; i<movieCol.size(); i++) {
-            isOld = movieCol.contains(movieCol.get(i));
             if (!movieCol.get(i).commitChange()) {
                 return false;
             }
