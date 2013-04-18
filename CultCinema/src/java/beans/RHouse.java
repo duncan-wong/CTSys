@@ -63,6 +63,7 @@ public class RHouse extends UpdatableBean {
         rowCount = 0;
     }
 //-----------------------------------------------------------------------------
+    /**
     public static RHouse[] getAllHouses() {
         ArrayList<RHouse> rHouseCol = new ArrayList<RHouse>();
         RHouse rhTemp = new RHouse();
@@ -96,7 +97,7 @@ public class RHouse extends UpdatableBean {
         }
         return null;
     }
-    /**/
+    /**
     public RSeat[][] getAllSeatOf(String showing_id) {
         ArrayList<RSeat> r = new ArrayList<RSeat>();
         RSeat[][] seating = new RSeat[rowCount][];
@@ -177,6 +178,16 @@ public class RHouse extends UpdatableBean {
             Logger.getLogger(RHouse.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(RHouse.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    @Override
+    public boolean commitChange() {
+        super.commitChange();
+        int checking = 0;
+        if (checking == 0) {
+            return true;
         }
         return false;
     }
