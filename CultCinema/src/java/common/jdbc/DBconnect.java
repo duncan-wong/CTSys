@@ -81,10 +81,12 @@ public class DBconnect {
     }
     public void setXxx(int id, String in)
             throws SQLException {
-        if (in == null)
+        if (in == null) {
             cstmt.setNull(id, Types.NULL);
-        else
+        }
+        else {
             cstmt.setString(id, in);
+        }
     }
     public void setResult()
             throws SQLException {
