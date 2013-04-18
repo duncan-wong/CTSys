@@ -6,7 +6,9 @@ package beans;
 
 import beans.accessInterface.UpdatableBean;
 import beans.sql.HouseSQL;
+import beans.sql.SeatSQL;
 import beans.sqlColumnName.HouseColumn;
+import beans.sqlColumnName.SeatColumn;
 import common.jdbc.DBconnect;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,12 +24,14 @@ public class RHouse extends UpdatableBean {
     private String house_id;
     private String house_name;
     private int[] rowMax;
+    private int rowCount;
 //-----------------------------------------------------------------------------
     public RHouse() {
         super();
         house_id = null;
         house_name = null;
         rowMax = new int[100];
+        resetRowCount();
     }
 //-----------------------------------------------------------------------------
     public void setHouseID(String in) {
@@ -54,6 +58,9 @@ public class RHouse extends UpdatableBean {
             rowMax[index] = max;
         }
         this.setChangedTrue();
+    }
+    public void resetRowCount() {
+        rowCount = 0;
     }
 //-----------------------------------------------------------------------------
     public static RHouse[] getAllHouses() {
@@ -89,6 +96,52 @@ public class RHouse extends UpdatableBean {
         }
         return null;
     }
+    /**/
+    public RSeat[][] getAllSeatOf(String showing_id) {
+        ArrayList<RSeat> r = new ArrayList<RSeat>();
+        RSeat[][] seating = new RSeat[rowCount][];
+        try {
+            RSeat rsTemp = new RSeat();
+            DBconnect db = new DBconnect(SeatSQL.s1);
+            db.setXxx(1, house_id);
+            db.executeQuery();
+            int row = 0;
+            while (db.queryHasNext()) {
+                row = db.getXxx(SeatColumn.ROW_NUMBER, 0);
+                rsTemp = new RSeat();
+                rsTemp.setShowingID(db.getXxx(SeatColumn.SHOWING_ID));
+                rsTemp.setBookingID(db.getXxx(SeatColumn.BOOKING_ID));
+                rsTemp.setRowNum(db.getXxx(SeatColumn.ROW_NUMBER, 0));
+                rsTemp.setSeatNum(db.getXxx(SeatColumn.SEAT_NUMBER, 0));
+                r.add(rsTemp);
+            }
+            int sid = 0;
+            for (int i=0; i<rowCount; i++) {
+                seating[i] = new RSeat[rowMax[i]];
+                for (int j=0; j<rowMax[i]; j++) {
+                    if (r.get(sid).getRowNum() == i && r.get(sid).getSeatNum() == j) {
+                        seating[i][j] = r.get(sid);
+                        sid++;
+                    }
+                    else {
+                        rsTemp = new RSeat();
+                        rsTemp.setRowNum(i);
+                        rsTemp.setSeatNum(j);
+                        rsTemp.setShowingID(showing_id);
+                        seating[i][j] = rsTemp;
+                    }
+                    seating[i][j].afterInitialization();
+                }
+            }
+            return seating;
+        } catch (NamingException ex) {
+            Logger.getLogger(RHouse.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RHouse.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    /**/
     public String getHouseID() {
         return house_id;
     }
@@ -103,6 +156,7 @@ public class RHouse extends UpdatableBean {
     @Override
     public boolean fetchDBData() {
         super.fetchDBData();
+        resetRowCount();
         try {
             DBconnect db = new DBconnect(HouseSQL.s1);
             db.setXxx(1, house_id);
@@ -115,6 +169,7 @@ public class RHouse extends UpdatableBean {
                 int row = db.getXxx(HouseColumn.ROW_NUMBER, 0);
                 int max = db.getXxx(HouseColumn.ROW_MAX, 0);
                 setRowMax(row, max);
+                rowCount++;
             } while (db.queryHasNext());
             db.disconnect();
             return true;

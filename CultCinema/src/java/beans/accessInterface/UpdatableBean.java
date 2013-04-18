@@ -48,6 +48,7 @@ public abstract class UpdatableBean extends Bean {
     
     //call to reset after external initialization works
     public void afterInitialization(){
+        this.isNew = false;
         this.isChanged = false;
     }
     

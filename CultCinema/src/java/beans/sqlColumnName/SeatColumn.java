@@ -14,6 +14,7 @@ public abstract class SeatColumn {
             ROW_NUMBER = "row_number",
             SEAT_NUMBER = "seat_number",
             SEAT_ID = "seat_id",
+            BOOKING_ID = "booking_id",
             ISBOOKED = "isBooked",
             ISEMPTY = "isEmpty";
 }
