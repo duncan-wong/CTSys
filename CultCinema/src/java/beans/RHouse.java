@@ -31,7 +31,7 @@ public class RHouse extends UpdatableBean {
     }
     public RHouse(String house_id) {
         this();
-        setHouseID(house_id);
+        this.house_id = house_id;
     }
 //-----------------------------------------------------------------------------
     public void setHouseID(String in) {
@@ -117,6 +117,9 @@ public class RHouse extends UpdatableBean {
     public boolean commitChange() {
         this.commitChange();
         if (this.isChanged()) {
+            if (!commitDelete()) {
+                return false;
+            }
             return commitUpdate();
         }
         else if (this.isNew()) {
@@ -126,14 +129,67 @@ public class RHouse extends UpdatableBean {
     }
     
     public boolean commitUpdate() {
+        int checking = 0;
+        try {
+            DBconnect db = new DBconnect(HouseSQL.i4);
+            db.setResult();
+            db.setXxx(2, house_name);
+            db.setXxx(3, house_capacity);
+            db.setXxx(4, row_count);
+            db.setXxx(5, house_id);
+            db.executeUpdate();
+            checking = db.getResult();
+            db.disconnect();
+            if (checking == 0) {
+                return true;
+            }
+        } catch (NamingException ex) {
+            Logger.getLogger(RHouse.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RHouse.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return false;
     }
     
     public boolean commitInsert() {
+        int checking = 0;
+        try {
+            DBconnect db = new DBconnect(HouseSQL.i4);
+            db.setResult();
+            db.setXxx(2, house_name);
+            db.setXxx(3, house_capacity);
+            db.setXxx(4, row_count);
+            db.executeUpdate();
+            checking = db.getResult();
+            db.disconnect();
+            if (checking == 0) {
+                return true;
+            }
+        } catch (NamingException ex) {
+            Logger.getLogger(RHouse.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RHouse.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return false;
     }
     
     public boolean commitDelete() {
+        int checking = 0;
+        try {
+            DBconnect db = new DBconnect(HouseSQL.d1);
+            db.setResult();
+            db.setXxx(2, house_id);
+            db.executeUpdate();
+            checking = db.getResult();
+            db.disconnect();
+            if (checking == 0) {
+                return true;
+            }
+        } catch (NamingException ex) {
+            Logger.getLogger(RHouse.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RHouse.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return false;
     }
 }
