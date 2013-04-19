@@ -10,7 +10,11 @@
     userCredCol="login_pw"
     userRoleTable="Membership"
     roleNameCol="role"
+<<<<<<< HEAD
     digest="md5" />
+=======
+    digest="MD5" />
+>>>>>>> add MD5 in context.xml
 <!-- Resource ==================================================================-->
     <Resource name="jdbc/cinema" auth="Container"
     type="javax.sql.DataSource"
