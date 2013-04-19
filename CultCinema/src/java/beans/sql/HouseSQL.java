@@ -11,6 +11,6 @@ package beans.sql;
 public abstract class HouseSQL {
     // 1 search     house_id
     public static final String
-            s1 = "{ call show_HouseRow(?) }";
+            s1 = "{ call show_House(?) }";
 //-----------------------------------------------------------------------------
 }

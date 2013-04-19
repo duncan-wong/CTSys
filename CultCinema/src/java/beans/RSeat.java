@@ -12,7 +12,7 @@ import beans.sqlColumnName.SeatColumn;
  * @author A
  */
 public class RSeat extends UpdatableBean {
-    private String showing_id;
+    private String showing_id;  // <-----------
     private String booking_id;
     private String row_number;
     private String seat_number;

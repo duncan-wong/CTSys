@@ -8,10 +8,10 @@ package beans.sqlColumnName;
  *
  * @author A
  */
-public abstract class HouseColumn {
+public class ShowSeatingColumn {
     public static final String
             HOUSE_ID = "house_id",
-            HOUSE_NAME = "house_name",
-            HOUSE_CAPACITY = "house_capacity",
-            ROW_NUMBER = "row_number";
+            SHOWING_ID = "showing_id",
+            ROW_NUMBER = "row_number",
+            ROW_MAX = "row_max";
 }
