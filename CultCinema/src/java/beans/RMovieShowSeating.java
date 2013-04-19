@@ -23,14 +23,12 @@ import javax.naming.NamingException;
 public class RMovieShowSeating extends UpdatableBean {
     private String showing_id;
     private String house_id;
-    private ArrayList<Integer> rowMax;
     private RSeat[][] seating;
 //-----------------------------------------------------------------------------
     public RMovieShowSeating() {
         super();
         house_id = null;
         showing_id = null;
-        rowMax = new ArrayList<Integer>();
     }
 //-----------------------------------------------------------------------------
     public void setHouseID(String in) {
@@ -84,7 +82,7 @@ public class RMovieShowSeating extends UpdatableBean {
         ArrayList<RSeat> b = new ArrayList<RSeat>();
         RSeat t;
         int bc = 0;
-        int row;
+        int row, rowMax;
         try {
             DBconnect db = new DBconnect(ShowSeatingSQL.s1);
             db.setXxx(1, showing_id);
@@ -96,17 +94,23 @@ public class RMovieShowSeating extends UpdatableBean {
                 b.add(t);
             }
             db.disconnect();
-            /**
-            db.prepareCall(ShowSeatingSQL.s2_seatPlan);
+            /**/
+            db =  new DBconnect(ShowSeatingSQL.s2_seatPlan);
             db.setXxx(1, null);
             db.setXxx(2, showing_id);
             if (db.queryHasNext()) {
-                row = db.getXxx(, row)
+                row = db.getXxx(ShowSeatingColumn.ROW_NUMBER, 0);
+                rowMax = db.getXxx(ShowSeatingColumn.ROW_MAX, 0);
+                seating = new RSeat[row][];
+                seating[row] = new RSeat[rowMax];
             }
             while (db.queryHasNext()) {
-                row
+                row = db.getXxx(ShowSeatingColumn.ROW_NUMBER, 0);
+                if (row == 1) {
+                    
+                }
             }
-            */
+            /**/
             db.disconnect();
         } catch (NamingException ex) {
             Logger.getLogger(RMovieShowSeating.class.getName()).log(Level.SEVERE, null, ex);
