@@ -70,6 +70,15 @@ public class Account_create extends HttpServlet {
       
         
         //validation
+        if (!common.Validation.isNull(loginId)
+            && !common.Validation.isConsistSpace(loginId)){
+            rUser.setLoginID(loginId);
+        }
+        else{
+            isSafeToCommit = false;
+            errorMsg.put("loginId", "Invalid login ID. No space is allowed.");
+        }
+        
         if (common.Validation.isPhone(phone)){
             rUser.setUserPhone(phone);
         }
@@ -85,12 +94,56 @@ public class Account_create extends HttpServlet {
             isSafeToCommit = false;
             errorMsg.put("email", "Invalid email address");
         }
-         
+        
+        if (!common.Validation.isNull(name)){
+            rUser.setUserName(name);
+        }
+        else{
+            isSafeToCommit = false;
+            errorMsg.put("name", "Invalid name");
+        }
+        
+        if (!common.Validation.isNull(password)
+            && password.equals(passwordr)){
+            rUser.setLoginPW(password);
+        }
+        else{
+            isSafeToCommit = false;
+            errorMsg.put("passwordr", "Does not match the password");
+        }
+        
+        if (isSafeToCommit){
+            beans.RUser uc = new beans.RUser();
+            
+            uc.setLoginID(loginId);
+            uc.fetchDBData();
+            if (uc.getAccountID() != null){
+                isSafeToCommit = false;
+                errorMsg.put("loginId", "This ID is not available");
+            }
+            /*
+            uc = new beans.RUser();
+            uc.setUserPhone(phone);
+            uc.fetchDBData();
+            if (uc.getAccountID() != null){
+                isSafeToCommit = false;
+                errorMsg.put("phone", "This phone number had already registered");
+            }
+            
+            uc = new beans.RUser();
+            uc.setUserEmail(email);
+            uc.fetchDBData();
+            if (uc.getAccountID() != null){
+                isSafeToCommit = false;
+                errorMsg.put("email", "This email address had already registered");
+            }*/
+        }
        
         //commit change
         if (isSafeToCommit){
             try{
-                //rUser.commitChange();
+                rUser.setRole(common.RolesConfig.Member);
+                rUser.commitChange();
                 isCommitted = true;
             }
             catch(Exception e){
@@ -103,6 +156,7 @@ public class Account_create extends HttpServlet {
         }
         else{
             request.setAttribute("errorMsg", errorMsg);
+            rUser.setLoginPW(null);
             request.setAttribute(common.BeansConfig.rUser, rUser);
             this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_signUp).forward(request, response);
         }

@@ -13,4 +13,7 @@ public abstract class RolesConfig {
     public static final String Member = "Member";
     public static final String Officer = "Officer";
     public static final String Manager = "Manager";
+    
+    public static final String guestLoginId = "guest";
+    public static final String guestUsername = "guest";
 }

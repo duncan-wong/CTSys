@@ -33,6 +33,12 @@ $(document).ready(function(){
         }
     });
     
+    
+    //submit form link button
+    $('a.btn[type="submit"]').click(function(){
+       $(this).closest('form').submit(); 
+    });
+    
     //intruupt when language options are clicked
     $('.languageOption').click(function(event){
         var element = event.srcElement || event.target;

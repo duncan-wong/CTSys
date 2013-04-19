@@ -47,7 +47,7 @@
                         <label class="label">
                             <%=sLanguageBean.cAccountLbUsername()%>: 
                         </label>
-                        <input type="text" name="loginId" class="infoInput" value="" />
+                            <input type="text" name="loginId" class="infoInput" value="${rUser.loginID}" />
                         <c:if test="${errorMsg != null}">
                             <span class="error">
                                 ${errorMsg["loginId"]}
@@ -69,7 +69,7 @@
                             
                     <div class="formInfoControl">
                         <label class="label">
-                            <%=sLanguageBean.cAcRegLbPasswordRe()%>: 
+                            <%=sLanguageBean.cAccountLbPasswordRe()%>: 
                         </label>
                         <input type="password" name="passwordr" class="infoInput" value="" />
                         <c:if test="${errorMsg != null}">
@@ -118,7 +118,7 @@
                     </div>
                             
                     <div class="formInfoControl">
-                        <input type="submit" class="btn" value="Save" />
+                        <a type="submit" class="btn noLanguageOption">Sign Up!</a>
                         <a class="btn noLanguageOption" href="<%=request.getContextPath()%>">Cancel</a>
                     </div>
                 </form>

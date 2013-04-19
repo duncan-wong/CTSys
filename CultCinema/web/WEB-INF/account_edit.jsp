@@ -61,9 +61,12 @@
                         <label class="label">
                             <%=sLanguageBean.cAccountLbName()%>: 
                         </label>
-                        <span class="infoLabel">
-                            ${rUser.userName}
-                        </span>
+                        <input type="text" name="name" class="infoInput" value="${rUser.userName}" />
+                        <c:if test="${errorMsg == null}">
+                            <span class="error">
+                                ${errorMsg["name"]}
+                            </span>
+                        </c:if>    
                     </div>
                     
                     <div class="formInfoControl">
@@ -91,19 +94,50 @@
                     </div>
                             
                     <div class="formInfoControl">
+                        <br />
+                        <span><%=sLanguageBean.cAccountLbSetPasswordHints()%></span>
+                        <hr />
+                    </div>
+                    
+                    <div class="formInfoControl">
+                        <label class="label">
+                            <%=sLanguageBean.cAccountLbNewPassword()%>: 
+                        </label>
+                        <input type="password" name="newPassword" class="infoInput" value="" placeholder="<%=sLanguageBean.cAccountLbNewPasswordHints()%>" />
+                    </div>
+                        
+                    <div class="formInfoControl">
+                        <label class="label">
+                            <%=sLanguageBean.cAccountLbNewPasswordRe()%>: 
+                        </label>
+                        <input type="password" name="newPasswordRe" class="infoInput" value="" placeholder="<%=sLanguageBean.cAccountLbConfirmPasswordHints()%>" />
+                        <c:if test="${errorMsg != null}">
+                            <span class="error">
+                                ${errorMsg["newPasswordRe"]}
+                            </span>
+                        </c:if>
+                    </div>
+                            
+                    <div class="formInfoControl">
+                        <hr />
+                        <br />
+                    </div>
+                            
+                    <div class="formInfoControl">
                         <label class="label">
                             <%=sLanguageBean.cAccountLbPassword()%>: 
                         </label>
-                        <input type="password" name="password" class="infoInput" value="" />
+                        <input type="password" name="password" class="infoInput" value="" placeholder="<%=sLanguageBean.cAccountLbOriginalPasswordHints()%>" />
                         <c:if test="${errorMsg != null}">
                             <span class="error">
                                 ${errorMsg["password"]}
                             </span>
                         </c:if>
                     </div>
+                   
                         
                     <div class="formInfoControl">
-                        <input type="submit" class="btn" value="Save" />
+                        <a type="submit" class="btn noLanguageOption">Save</a>
                         <a class="btn noLanguageOption" href="<%=request.getContextPath()%>/account">Cancel</a>
                     </div>
                 </form>

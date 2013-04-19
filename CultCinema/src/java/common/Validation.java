@@ -10,8 +10,20 @@ package common;
  */
 public class Validation {
     public static boolean isNull(Object obj){
-        return (obj == null);
+        return (obj == null) || obj.equals("");
     }
+    
+    public static boolean isConsistSpace(String str){
+        if (isNull(str)) return false;
+        
+        for (int i = 0; i < str.length(); i ++){
+            if (str.charAt(i) == ' '){
+                return true;
+            }
+        }
+        return false;
+    }
+    
     
     public static boolean isPhone(String phone){
         if (isNull(phone)) return false;

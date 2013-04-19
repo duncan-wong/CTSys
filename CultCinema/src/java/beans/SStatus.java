@@ -16,8 +16,8 @@ public class SStatus {
     
     public SStatus(){
         isLoggedIn = false;
-        loginId = null;
-        userName = null;
+        loginId = common.RolesConfig.guestLoginId;
+        userName = common.RolesConfig.guestUsername;
         languageOption = "en";
     }
     

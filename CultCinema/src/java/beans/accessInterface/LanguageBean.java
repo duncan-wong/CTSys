@@ -62,7 +62,14 @@ public class LanguageBean {
     public String cAccountLbName(){return"Name";}
     public String cAccountLbTel(){return"Tel";}
     public String cAccountLbEmail(){return"Email";}
+    public String cAccountLbNewPassword(){return"New Password";}
+    public String cAccountLbNewPasswordRe(){return"Confirm New Password";}
     public String cAccountLbPassword(){return"Password";}
+    public String cAccountLbPasswordRe(){return"Confirm password";}
+    public String cAccountLbSetPasswordHints(){return "Please leave it blank if don't want to change password.";}
+    public String cAccountLbNewPasswordHints(){return "New Password";}
+    public String cAccountLbConfirmPasswordHints(){return "Confirm Password";}
+    public String cAccountLbOriginalPasswordHints(){return "Original Password";}
     //content - registration , use most label of account page
-    public String cAcRegLbPasswordRe(){return"Confirm password";}
+    
 }

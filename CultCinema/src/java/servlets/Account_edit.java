@@ -50,6 +50,10 @@ public class Account_edit extends HttpServlet {
         
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
+        String name = request.getParameter("name");
+        String newPassword = request.getParameter("newPassword");
+        String newPasswordRe = request.getParameter("newPasswordRe");
+        
         String password = request.getParameter("password");
         Hashtable<String, String> errorMsg = new Hashtable<String, String>();
         
@@ -70,10 +74,31 @@ public class Account_edit extends HttpServlet {
             errorMsg.put("email", "Invalid email address");
         }
         
+        if (!common.Validation.isNull(name)){
+            rUser.setUserName(name);
+        }
+        else{
+            isSafeToCommit = false;
+            errorMsg.put("name", "Invalid name");
+        }
+        
+        if (!newPassword.equals(newPasswordRe)){
+            isSafeToCommit = false;
+            errorMsg.put("newPasswordRe", "Does not match the new password");
+        }
+        
+        
         if (!rUser.getLoginPW().contentEquals(password)){
             isSafeToCommit = false;
             errorMsg.put("password", "Incorrect password");
         }
+        else if (isSafeToCommit 
+                    && common.Validation.isNull(newPassword)
+                    && newPassword.equals(newPasswordRe)){
+            rUser.setLoginPW(newPassword);
+        }
+        
+        
         
         //commit change
         if (isSafeToCommit){

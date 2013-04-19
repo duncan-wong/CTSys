@@ -171,6 +171,8 @@ public class RUser extends UpdatableBean{
     @Override
     public boolean commitChange() {
         super.commitChange();
+        if (this.isNew())
+            return commitInsert();
         return commitUpdate();
     }
     public boolean commitInsert() {
