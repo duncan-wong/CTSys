@@ -12,7 +12,6 @@ import beans.sqlColumnName.SeatColumn;
  * @author A
  */
 public class RSeat extends UpdatableBean {
-    private String showing_id;  // <-----------
     private String booking_id;
     private String row_number;
     private String seat_number;
@@ -20,16 +19,12 @@ public class RSeat extends UpdatableBean {
 //-----------------------------------------------------------------------------
     public RSeat() {
         super();
-        showing_id = null;
         row_number = null;
         seat_number = null;
         seat_id = null;
         setEmpty();
     }
 //-----------------------------------------------------------------------------
-    public void setShowingID(String in) {
-        set(SeatColumn.SHOWING_ID, in);
-    }
     public void setRowNum(int in) {
         set(SeatColumn.ROW_NUMBER, Integer.toString(in));
         updateSeatID();
@@ -45,10 +40,7 @@ public class RSeat extends UpdatableBean {
         set(SeatColumn.ISEMPTY, "");
     }
     private void set(String id, String in) {
-        if (id == SeatColumn.SHOWING_ID) {
-            showing_id = in;
-        }
-        else if (id == SeatColumn.ROW_NUMBER) {
+        if (id == SeatColumn.ROW_NUMBER) {
             row_number = in;
         }
         else if (id == SeatColumn.SEAT_NUMBER) {
@@ -68,9 +60,6 @@ public class RSeat extends UpdatableBean {
         seat_id = row_id + seat_number;
     }
 //-----------------------------------------------------------------------------
-    public String getShowingID() {
-        return showing_id;
-    }
     public int getRowNum() {
         return Integer.parseInt(row_number);
     }
@@ -94,7 +83,7 @@ public class RSeat extends UpdatableBean {
         super.commitChange();
         if (this.isChanged()) {
             if (isBooked()) {
-                return commitUpdate();
+                return commitInsert();
             }
             else {
                 return commitDelete();
@@ -102,7 +91,7 @@ public class RSeat extends UpdatableBean {
         }
         return false;
     }
-    public boolean commitUpdate() {
+    public boolean commitInsert() {
         int checking = 0;
         if (checking == 0) {
             return true;
