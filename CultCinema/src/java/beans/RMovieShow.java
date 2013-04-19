@@ -5,8 +5,8 @@
 package beans;
 
 import beans.accessInterface.UpdatableBean;
-import beans.sql.ShowingSQL;
-import beans.sqlColumnName.ShowingColumn;
+import beans.sql.MovieShowSQL;
+import beans.sqlColumnName.MovieShowColumn;
 import common.jdbc.DBconnect;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -40,107 +40,80 @@ public class RMovieShow extends UpdatableBean {
     }
 //-----------------------------------------------------------------------------
     public void setHouseID(String in) {
-        set(ShowingColumn.HOUSE_ID, in);
+        set(MovieShowColumn.HOUSE_ID, in);
     }
     public void setShowingID(String in) {
-        set(ShowingColumn.SHOWING_ID, in);
+        set(MovieShowColumn.SHOWING_ID, in);
     }
     public void setMovieID(String in) {
-        set(ShowingColumn.MOVIE_ID, in);
+        set(MovieShowColumn.MOVIE_ID, in);
     }
     public void setShowingStartDate(String in) {
-        set(ShowingColumn.SHOWING_STARTDATE, in);
+        set(MovieShowColumn.SHOWING_STARTDATE, in);
     }
     public void setShowingStartTime(String in) {
-        set(ShowingColumn.SHOWING_STARTTIME, in);
+        set(MovieShowColumn.SHOWING_STARTTIME, in);
     }
     public void setShowingEndDate(String in) {
-        set(ShowingColumn.SHOWING_ENDDATE, in);
+        set(MovieShowColumn.SHOWING_ENDDATE, in);
     }
     public void setShowingEndTime(String in) {
-        set(ShowingColumn.SHOWING_ENDTIME, in);
+        set(MovieShowColumn.SHOWING_ENDTIME, in);
     }
     public void setTicketPrice(String in) {
-        set(ShowingColumn.TICKET_PRICE, in);
+        set(MovieShowColumn.TICKET_PRICE, in);
     }
     private void set(String id, String in) {
-        if (id == ShowingColumn.HOUSE_ID) {
+        if (id == MovieShowColumn.HOUSE_ID) {
             house_id = in;
         }
-        else if (id == ShowingColumn.SHOWING_ID) {
+        else if (id == MovieShowColumn.SHOWING_ID) {
             showing_id = in;
         }
-        else if (id == ShowingColumn.MOVIE_ID) {
+        else if (id == MovieShowColumn.MOVIE_ID) {
             movie_id = in;
         }
-        else if (id == ShowingColumn.SHOWING_STARTDATE) {
+        else if (id == MovieShowColumn.SHOWING_STARTDATE) {
             showing_startDate = in;
         }
-        else if (id == ShowingColumn.SHOWING_STARTTIME) {
+        else if (id == MovieShowColumn.SHOWING_STARTTIME) {
             showing_startTime = in;
         }
-        else if (id == ShowingColumn.SHOWING_ENDDATE) {
+        else if (id == MovieShowColumn.SHOWING_ENDDATE) {
             showing_endDate = in;
         }
-        else if (id == ShowingColumn.SHOWING_ENDTIME) {
+        else if (id == MovieShowColumn.SHOWING_ENDTIME) {
             showing_endTime = in;
         }
-        else if (id == ShowingColumn.TICKET_PRICE) {
+        else if (id == MovieShowColumn.TICKET_PRICE) {
             ticket_price = in;
         }
         this.setChangedTrue();
     }
 //-----------------------------------------------------------------------------
     public String getHouseID() {
-        return get(ShowingColumn.HOUSE_ID);
+        return house_id;
     }
     public String getShowingID() {
-        return get(ShowingColumn.SHOWING_ID);
+        return showing_id;
     }
     public String getMovieID() {
-        return get(ShowingColumn.MOVIE_ID);
+        return movie_id;
     }
     public String getShowingStartDate() {
-        return get(ShowingColumn.SHOWING_STARTDATE);
+        return showing_startDate;
     }
     public String getShowingStartTime() {
-        return get(ShowingColumn.SHOWING_STARTTIME);
+        return showing_startTime;
     }
     public String getShowingEndDate() {
-        return get(ShowingColumn.SHOWING_ENDDATE);
+        return showing_endDate;
     }
     public String getShowingEndTime() {
-        return get(ShowingColumn.SHOWING_ENDTIME);
+        return showing_endTime;
     }
     public String getTicketPrice() {
-        return get(ShowingColumn.TICKET_PRICE);
-    }
-    private String get(String id) {
-        if (id == ShowingColumn.HOUSE_ID) {
-            return house_id;
-        }
-        else if (id == ShowingColumn.SHOWING_ID) {
-            return showing_id;
-        }
-        else if (id == ShowingColumn.MOVIE_ID) {
-            return movie_id;
-        }
-        else if (id == ShowingColumn.SHOWING_STARTDATE) {
-            return showing_startDate;
-        }
-        else if (id == ShowingColumn.SHOWING_STARTTIME) {
-            return showing_startTime;
-        }
-        else if (id == ShowingColumn.SHOWING_ENDDATE) {
-            return showing_endDate;
-        }
-        else if (id == ShowingColumn.SHOWING_ENDTIME) {
-            return showing_endTime;
-        }
-        else if (id == ShowingColumn.TICKET_PRICE) {
-            return ticket_price;
-        }
-        return "";
+        return ticket_price;
     }
 //-----------------------------------------------------------------------------
     @Override
@@ -159,7 +132,7 @@ public class RMovieShow extends UpdatableBean {
     public boolean commitInsert() {
         int checking = 0;
         try {
-            DBconnect db = new DBconnect(ShowingSQL.i4);
+            DBconnect db = new DBconnect(MovieShowSQL.i4);
             db.setResult();
             db.setXxx(2, house_id);
             db.setXxx(3, movie_id);
@@ -183,7 +156,7 @@ public class RMovieShow extends UpdatableBean {
     public boolean commitUpdate() {
         int checking = 0;
         try {
-            DBconnect db = new DBconnect(ShowingSQL.u5);
+            DBconnect db = new DBconnect(MovieShowSQL.u5);
             db.setResult();
             db.setXxx(2, showing_id);
             db.setXxx(3, house_id);
@@ -208,7 +181,7 @@ public class RMovieShow extends UpdatableBean {
     public boolean commitDelete() {
         int checking = 0;
         try {
-            DBconnect db = new DBconnect(ShowingSQL.d1);
+            DBconnect db = new DBconnect(MovieShowSQL.d1);
             db.setResult();
             db.setXxx(2, showing_id);
             db.executeUpdate();

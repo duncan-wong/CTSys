@@ -8,6 +8,7 @@ import beans.accessInterface.*;
 import beans.sql.UserSQL;
 import beans.sqlColumnName.UserColumn;
 import common.jdbc.DBconnect;
+import common.jdbc.hash.Hash;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +26,7 @@ public class RUser extends UpdatableBean{
         private String user_name;
         private String user_phone;
         private String user_email;
+        private String pt;  // for testing : plaintext pw
 //-----------------------------------------------------------------------------
     public RUser() {
         super();
@@ -35,12 +37,22 @@ public class RUser extends UpdatableBean{
         user_name = null;
         user_phone = null;
         user_email = null;
+        pt = null;
     }
     public RUser(String login_id) {
         this();
         this.login_id = login_id;
     }
-    //----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+    public boolean checkPassword(String pw) {
+        if (Hash.encrypt("md5", pw) == login_pw) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+//-----------------------------------------------------------------------------
     public String getAccountID() {
         return get(UserColumn.ACCOUNT_ID);
     }
@@ -97,6 +109,7 @@ public class RUser extends UpdatableBean{
         set(UserColumn.LOGIN_ID, in);
     }
     public void setLoginPW(String in) {
+        pt = in;
         set(UserColumn.LOGIN_PW, in);
     }
     public void setUserName(String in) {
@@ -119,7 +132,7 @@ public class RUser extends UpdatableBean{
             this.login_id = in;
         }
         else if (id == UserColumn.LOGIN_PW) {
-            this.login_pw = in;
+            this.login_pw = Hash.encrypt("md5", in);
         }
         else if (id == UserColumn.USER_NAME) {
             this.user_name = in;
@@ -184,6 +197,7 @@ public class RUser extends UpdatableBean{
             db.setXxx(5, user_name);
             db.setXxx(6, user_phone);
             db.setXxx(7, user_email);
+            db.setXxx(8, pt);
             db.executeUpdate();
             checking = db.getResult();
             db.disconnect();

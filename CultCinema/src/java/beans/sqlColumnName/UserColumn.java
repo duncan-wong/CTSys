@@ -16,5 +16,6 @@ public abstract class UserColumn {
 			LOGIN_PW = "login_pw",
 			USER_NAME = "user_name",
 			USER_PHONE = "user_phone",
-			USER_EMAIL = "user_email";
+			USER_EMAIL = "user_email",
+            PT = "plaintext";
 }

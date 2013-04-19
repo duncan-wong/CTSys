@@ -101,6 +101,7 @@ public class RMovieCol extends UpdatableBean{
                 r.setMovieDuration(db.getXxx(MovieColumn.MOVIE_DURATION));
                 r.setMovieStartDate(db.getXxx(MovieColumn.MOVIE_STARTDATE));
                 r.setMovieEndDate(db.getXxx(MovieColumn.MOVIE_ENDDATE));
+                r.afterInitialization();
                 movieCol.add(r);
             }
             db.disconnect();

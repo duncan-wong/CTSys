@@ -63,34 +63,17 @@ public class RHouse extends UpdatableBean {
     }
 //-----------------------------------------------------------------------------
     public String getHouseID() {
-        return get(HouseColumn.HOUSE_ID);
+        return house_id;
     }
     public String getHouseName() {
-        return get(HouseColumn.HOUSE_NAME);
+        return house_name;
     }
     public int getHouseCapacity() {
-        return Integer.parseInt(get(HouseColumn.HOUSE_CAPACITY));
+        return Integer.parseInt(house_capacity);
     }
     public int getRow() {
-        return Integer.parseInt(get(HouseColumn.ROW_NUMBER));
+        return Integer.parseInt(row_count);
     }
-    private String get(String id) {
-        if (id == HouseColumn.HOUSE_ID) {
-            return house_id;
-        }
-        else if (id == HouseColumn.HOUSE_NAME) {
-            return house_name;
-        }
-        else if (id == HouseColumn.HOUSE_CAPACITY) {
-            return house_capacity;
-        }
-        else if (id == HouseColumn.ROW_NUMBER) {
-            return row_count;
-        }
-        return "";
-    }
-//-----------------------------------------------------------------------------
-//-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
     @Override
     public boolean fetchDBData() {
@@ -116,18 +99,13 @@ public class RHouse extends UpdatableBean {
     @Override
     public boolean commitChange() {
         this.commitChange();
-        if (this.isChanged()) {
-            if (!commitDelete()) {
-                return false;
-            }
-            return commitUpdate();
-        }
-        else if (this.isNew()) {
+        if (this.isNew()) {
             return commitInsert();
         }
         return false;
     }
     
+    // assumed not to update
     public boolean commitUpdate() {
         int checking = 0;
         try {

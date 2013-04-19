@@ -15,8 +15,9 @@ import java.security.NoSuchAlgorithmException;
 public class Hash {
     public static String encrypt(String hashType, String input) {
         String cipher = null;
-        if(null == input) return null;
-        
+        if(null == input) {
+            return null;
+        }
         try {
             MessageDigest digest = MessageDigest.getInstance(hashType);
             digest.update(input.getBytes(), 0, input.length());
@@ -26,5 +27,9 @@ public class Hash {
         }
         return cipher;
     }
-
+    /**
+    public static void main(String args[]) {
+        System.out.println(encrypt("md5","of"));
+    }
+    /**/
 }
