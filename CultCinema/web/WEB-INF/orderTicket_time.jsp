@@ -5,7 +5,8 @@
 --%>
 
 <jsp:useBean id="rCurrentMovie" type="beans.RMovie" scope="request"></jsp:useBean>
-
+<jsp:useBean id="rHouseCol" type="beans.RHouseCol" scope="request"></jsp:useBean>
+    
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -37,7 +38,7 @@
             </div>
             
             <div id="content" class="defaultWidth">
-                <div id="MovieID" class="movieContainer">
+                <div id="movie${rCurrentMovie.movieID}" class="movieContainer">
 
                     <img src="<%=request.getContextPath()%>/moviePoster/${rCurrentMovie.movieID}.jpg" class="moviePoster" alt="Image not found">
                     <div class="movieDescription">
@@ -72,6 +73,14 @@
                         </div>
                     </div>
                     
+                </div>
+                            
+                            
+                <div id="movieShows">
+                    <c:set var="movie" value="${rCurrentMovie}" scope="page" />
+                    <c:forEach items="${rHouseCol.allHouse}" var="house">
+                        <%@include file="/WEB-INF/jspf/movieShows/movieShows.jspf" %>
+                    </c:forEach>
                 </div>
             </div>
         </div>

@@ -1,17 +1,29 @@
 <%-- any content can be specified here e.g.: --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page pageEncoding="UTF-8" %>
-<%--<jsp:useBean id="sLanguageBean" type="beans.accessInterface.LanguageBean" scope="session"></jsp:useBean>--%>
-<%--<jsp:useBean id="movieShowsCol" type="beans.RMovieCol" scope="request"></jsp:useBean>--%>
+<%--<jsp:useBean id="sLanguageBean" type="beans.accessInterface.LanguageBean" scope="session"></jsp:useBean>
+<jsp:useBean id="movieShowsCol" class="beans.RMovieShowCol" scope="request"></jsp:useBean>--%>
+<jsp:useBean id="movie" class="beans.RMovie" scope="page"></jsp:useBean>
+<jsp:useBean id="house" class="beans.RHouse" scope="page"></jsp:useBean>
 
-<div class="formInfoContainer">
 
+<%
+    beans.RMovieShowCol movieShowCol = new beans.RMovieShowCol();
+    movieShowCol.searchMovieID(movie.getMovieID());
+    movieShowCol.searchHouseID(house.getHouseID());
+    movieShowCol.fetchDBData();
+%>
 <c:if test="${movieShowsCol.count() > 0}">
-    <div class="formInfoControl">
-        <span class="infoLabel span1">Movie</span>
+    <div class="formInfoContainer">
+        <div class="formInfoControl">
+            <span class="infoLabel span4">House ${house.houseID} - ${house.houseName}</span>
+        </div>
+        
+        <form class="formInfoControl">
+            <select class="infoInput">
+            </select>
+        </form>
+
     </div>
 
-
-
 </c:if>
-
-</div>
