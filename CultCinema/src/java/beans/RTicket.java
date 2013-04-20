@@ -17,6 +17,7 @@ public class RTicket extends UpdatableBean {
     private String booking_id;
 //-----------------------------------------------------------------------------
     public RTicket() {
+        super();
         showing_id = null;
         row_number = null;
         seat_number = null;

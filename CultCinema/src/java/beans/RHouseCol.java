@@ -18,10 +18,10 @@ import javax.naming.NamingException;
  *
  * @author A
  */
-public class RHouseList extends Bean {
+public class RHouseCol extends Bean {
     private ArrayList<RHouse> houses;
 //------------------------------------------------------------------------------
-    public RHouseList() {
+    public RHouseCol() {
         houses = new ArrayList<RHouse>();
     }
 //------------------------------------------------------------------------------

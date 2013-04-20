@@ -46,7 +46,7 @@ public class RSeat extends UpdatableBean {
     public void setActiveStatus(int in) {
         set(SeatColumn.ACTIVE, Integer.toString(in));
     }
-    public void set(String id, String in) {
+    private void set(String id, String in) {
         if (id == SeatColumn.ROW_NUMBER) {
             row_number = in;
         }
