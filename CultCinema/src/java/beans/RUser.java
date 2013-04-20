@@ -19,13 +19,13 @@ import javax.naming.NamingException;
  * @author DUNCAN
  */
 public class RUser extends UpdatableBean{
-        private String account_id;
-        private String role;
-        private String login_id;
-        private String login_pw;
-        private String user_name;
-        private String user_phone;
-        private String user_email;
+    private String account_id;
+    private String role;
+    private String login_id;
+    private String login_pw;
+    private String user_name;
+    private String user_phone;
+    private String user_email;
 //-----------------------------------------------------------------------------
     public RUser() {
         super();
@@ -181,8 +181,9 @@ public class RUser extends UpdatableBean{
     @Override
     public boolean commitChange() {
         super.commitChange();
-        if (this.isNew())
+        if (this.isNew()) {
             return commitInsert();
+        }
         return commitUpdate();
     }
     public boolean commitInsert() {
