@@ -9,7 +9,8 @@
     userNameCol="login_id"
     userCredCol="login_pw"
     userRoleTable="Membership"
-    roleNameCol="role"/>
+    roleNameCol="role"
+    digest="md5" />
 <!-- Resource ==================================================================-->
     <Resource name="jdbc/cinema" auth="Container"
     type="javax.sql.DataSource"

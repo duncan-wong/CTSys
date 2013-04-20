@@ -5,8 +5,8 @@
 package beans;
 
 import beans.accessInterface.UpdatableBean;
-import beans.sql.ShowingSQL;
-import beans.sqlColumnName.ShowingColumn;
+import beans.sql.MovieShowSQL;
+import beans.sqlColumnName.MovieShowColumn;
 import common.jdbc.DBconnect;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -32,21 +32,6 @@ public class RMovieShowCol extends UpdatableBean {
         resetSearch();
         showingCol = new ArrayList<RMovieShow>();
         showingWaitForDelete = new ArrayList<RMovieShow>();
-    }
-    public void searchDay(String day) {
-        this.search_dayBefore = day;
-    }
-    public void setTime(String time) {
-        this.search_timeAfter = time;
-    }
-    public void setHouseID(String house_id) {
-        this.search_houseID = house_id;
-    }
-    public void setMovieID(String movie_id) {
-        this.search_movieID = movie_id;
-    }
-    public void setLanguage(String language) {
-        this.search_language = language;
     }
 //-----------------------------------------------------------------------------
     public void addShowing(RMovieShow r) {
@@ -96,7 +81,7 @@ public class RMovieShowCol extends UpdatableBean {
         super.fetchDBData();
         showingCol.clear();
         try {
-            DBconnect db = new DBconnect(ShowingSQL.s5);
+            DBconnect db = new DBconnect(MovieShowSQL.s5);
             db.setXxx(1, search_dayBefore);
             db.setXxx(2, search_timeAfter);
             db.setXxx(3, search_houseID);
@@ -105,14 +90,15 @@ public class RMovieShowCol extends UpdatableBean {
             db.executeQuery();
             while (db.queryHasNext()) {
                 RMovieShow r = new RMovieShow();
-                r.setHouseID(db.getXxx(ShowingColumn.HOUSE_ID));
-                r.setMovieID(db.getXxx(ShowingColumn.MOVIE_ID));
-                r.setShowingEndDate(db.getXxx(ShowingColumn.SHOWING_ENDDATE));
-                r.setShowingEndTime(db.getXxx(ShowingColumn.SHOWING_ENDTIME));
-                r.setShowingID(db.getXxx(ShowingColumn.SHOWING_ID));
-                r.setShowingStartDate(db.getXxx(ShowingColumn.SHOWING_STARTDATE));
-                r.setShowingStartTime(db.getXxx(ShowingColumn.SHOWING_STARTTIME));
-                r.setTicketPrice(db.getXxx(ShowingColumn.TICKET_PRICE));
+                r.setHouseID(db.getXxx(MovieShowColumn.HOUSE_ID));
+                r.setMovieID(db.getXxx(MovieShowColumn.MOVIE_ID));
+                r.setShowingEndDate(db.getXxx(MovieShowColumn.SHOWING_ENDDATE));
+                r.setShowingEndTime(db.getXxx(MovieShowColumn.SHOWING_ENDTIME));
+                r.setShowingID(db.getXxx(MovieShowColumn.SHOWING_ID));
+                r.setShowingStartDate(db.getXxx(MovieShowColumn.SHOWING_STARTDATE));
+                r.setShowingStartTime(db.getXxx(MovieShowColumn.SHOWING_STARTTIME));
+                r.setTicketPrice(db.getXxx(MovieShowColumn.TICKET_PRICE));
+                r.afterInitialization();
                 showingCol.add(r);
             }
             db.disconnect();
@@ -138,6 +124,6 @@ public class RMovieShowCol extends UpdatableBean {
             }
         }
         showingWaitForDelete.clear();
-        return false;
+        return true;
     }
 }

@@ -8,7 +8,7 @@ package beans.sqlColumnName;
  *
  * @author A
  */
-public abstract class ShowingColumn {
+public abstract class MovieShowColumn {
     public static final String 
             HOUSE_ID = "house_id",
             SHOWING_ID = "showing_id",

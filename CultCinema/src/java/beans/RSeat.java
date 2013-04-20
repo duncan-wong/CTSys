@@ -27,11 +27,9 @@ public class RSeat extends UpdatableBean {
 //-----------------------------------------------------------------------------
     public void setRowNum(int in) {
         set(SeatColumn.ROW_NUMBER, Integer.toString(in));
-        updateSeatID();
     }
     public void setSeatNum(int in) {
         set(SeatColumn.SEAT_NUMBER, Integer.toString(in));
-        updateSeatID();
     }
     public void setBookingID(String in) {
         set(SeatColumn.BOOKING_ID, in);
@@ -54,11 +52,6 @@ public class RSeat extends UpdatableBean {
         }
         this.setChangedTrue();
     }
-    private void updateSeatID() {
-        char row_id;
-        row_id = (char) ('A' - 1 + Integer.parseInt(row_number));
-        seat_id = row_id + seat_number;
-    }
 //-----------------------------------------------------------------------------
     public int getRowNum() {
         return Integer.parseInt(row_number);
@@ -67,7 +60,9 @@ public class RSeat extends UpdatableBean {
         return Integer.parseInt(seat_number);
     }
     public String getSeatID() {
-        return seat_id;
+        char row_id;
+        row_id = (char) ('A' - 1 + Integer.parseInt(row_number));
+        return row_id + seat_number;
     }
     public boolean isBooked() {
         if (booking_id == null) {

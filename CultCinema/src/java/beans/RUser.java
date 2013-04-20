@@ -8,6 +8,7 @@ import beans.accessInterface.*;
 import beans.sql.UserSQL;
 import beans.sqlColumnName.UserColumn;
 import common.jdbc.DBconnect;
+import common.jdbc.hash.Hash;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,7 +41,16 @@ public class RUser extends UpdatableBean{
         this();
         this.login_id = login_id;
     }
-    //----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+    public boolean checkPassword(String pw) {
+        if (Hash.encrypt("md5", pw) == login_pw) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+//-----------------------------------------------------------------------------
     public String getAccountID() {
         return get(UserColumn.ACCOUNT_ID);
     }
@@ -119,7 +129,7 @@ public class RUser extends UpdatableBean{
             this.login_id = in;
         }
         else if (id == UserColumn.LOGIN_PW) {
-            this.login_pw = in;
+            this.login_pw = Hash.encrypt("md5", in);
         }
         else if (id == UserColumn.USER_NAME) {
             this.user_name = in;

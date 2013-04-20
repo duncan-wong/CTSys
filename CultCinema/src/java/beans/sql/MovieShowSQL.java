@@ -8,7 +8,7 @@ package beans.sql;
  *
  * @author A
  */
-public abstract class ShowingSQL {
+public abstract class MovieShowSQL {
     // 1 search     dayBefore ( default : 365 )
     // 2 search     timeAfter ( default : now )
     // 3 search     house_id
