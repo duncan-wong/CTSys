@@ -148,6 +148,10 @@
         <servlet-name>Account_create</servlet-name>
         <servlet-class>servlets.Account_create</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Houses</servlet-name>
+        <servlet-class>servlets.Houses</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -219,6 +223,10 @@
     <servlet-mapping>
         <servlet-name>Account_create</servlet-name>
         <url-pattern>/signUp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Houses</servlet-name>
+        <url-pattern>/houses</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

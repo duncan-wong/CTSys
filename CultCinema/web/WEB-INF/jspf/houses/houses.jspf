@@ -1,0 +1,42 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<%--<jsp:useBean id="sLanguageBean" type="beans.accessInterface.LanguageBean" scope="session"></jsp:useBean>--%>
+<jsp:useBean id="houseCol" type="beans.RHouseCol" scope="request"></jsp:useBean>
+
+
+<%  
+    request.setAttribute("house", new beans.RHouse());
+%>
+    <jsp:useBean id="house" type="beans.RHouse" scope="request"></jsp:useBean>
+<%
+    for (int i = 0; i < houseCol.count(); i ++){
+        request.setAttribute("house", houseCol.getAt(i));
+%>
+    <!--template--->
+    <div id="house${house.houseID}" class="houseContainer">
+    
+        <img src="<%=request.getContextPath()%>/housePoster/${house.houseID}.jpg" class="housePoster" alt="Image not found">
+        <div class="houseDescription">
+            <div class="houseDescriptionItem">
+                <span class="houseTitle">
+                    ${house.houseName}
+                </span>
+            </div>
+            <div class="houseDescriptionItem">
+                <span class="label">
+                    <%=sLanguageBean.cHousesLbCapacity()%>: 
+                </span>
+                <span class="content">
+                    ${house.houseCapacity}
+                </span>
+            </div>
+            
+        </div>
+                
+    </div>
+<%
+    }
+%>
+        
+
+

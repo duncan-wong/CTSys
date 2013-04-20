@@ -43,15 +43,21 @@ public class OrderTicket extends HttpServlet {
         //create new ticket order
         beans.STicketOrder ticketOrder = new beans.STicketOrder();
         
-        String movieId = (String) request.getAttribute("movieId");
+        String movieId = (String) request.getParameter("movieId");
         
         //create RMovie object as request bean
         beans.RMovie rCurrentMovie = new beans.RMovie();
         rCurrentMovie.setMovieID(movieId);
         rCurrentMovie.fetchDBData();
+        //create RMovieCol as request bean
+        beans.RMovieShowCol rMovieShowCol = new beans.RMovieShowCol();
+        rMovieShowCol.searchMovieID(movieId);
+        rMovieShowCol.fetchDBData();
+        
         
         //put it into the request
         request.setAttribute(common.BeansConfig.rCurrentMovie, rCurrentMovie);
+        request.setAttribute(common.BeansConfig.rMovieShowsCol, this);
         
         //add trace attribute to session
         HttpSession session = request.getSession(false);

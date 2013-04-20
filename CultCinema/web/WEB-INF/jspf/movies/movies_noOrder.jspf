@@ -13,7 +13,7 @@
         request.setAttribute("currentMovie", movieCol.getAt(i));
 %>
     <!--template--->
-    <div id="MovieID" class="movieContainer">
+    <div id="movie${currentMovie.movieID}" class="movieContainer">
     
         <img src="<%=request.getContextPath()%>/moviePoster/${currentMovie.movieID}.jpg" class="moviePoster" alt="Image not found">
         <div class="movieDescription">

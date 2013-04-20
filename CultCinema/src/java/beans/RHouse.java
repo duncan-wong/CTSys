@@ -54,6 +54,7 @@ public class RHouse extends UpdatableBean {
         set(HouseColumn.TOTAL_ROW, Integer.toString(in));
     }
     private void set(String id, String in) {
+        this.setChangedTrue();
         if (id == HouseColumn.HOUSE_ID) {
             house_id = in;
         }
@@ -66,7 +67,6 @@ public class RHouse extends UpdatableBean {
         else if (id == HouseColumn.TOTAL_ROW) {
             total_row = in;
         }
-        this.setChangedTrue();
     }
 //------------------------------------------------------------------------------
     public String getHouseID() {
@@ -90,6 +90,7 @@ public class RHouse extends UpdatableBean {
 //------------------------------------------------------------------------------
     @Override
     public boolean fetchDBData() {
+        super.fetchDBData();
         if (showing_id == null) {
             return fetchHouseData();
         }
@@ -171,12 +172,14 @@ public class RHouse extends UpdatableBean {
             }
             seats[rowCount-1] = oneRow.toArray(new RSeat[oneRow.size()]);
             db.disconnect();
-            return super.fetchDBData();
+            this.afterInitialization();
+            return true;
         } catch (NamingException ex) {
             Logger.getLogger(RHouse.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(RHouse.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         return false;
         
     }

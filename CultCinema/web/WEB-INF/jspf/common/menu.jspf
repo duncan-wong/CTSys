@@ -14,7 +14,7 @@
             </a>
         </li>
         <li>
-            <a>
+            <a href="<%=request.getContextPath()%>/houses">
                 <%=sLanguageBean.mHouses()%>
             </a>
         </li>

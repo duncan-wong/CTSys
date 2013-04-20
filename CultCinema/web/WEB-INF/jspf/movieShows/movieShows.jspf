@@ -1,0 +1,17 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<%--<jsp:useBean id="sLanguageBean" type="beans.accessInterface.LanguageBean" scope="session"></jsp:useBean>--%>
+<%--<jsp:useBean id="movieShowsCol" type="beans.RMovieCol" scope="request"></jsp:useBean>--%>
+
+<div class="formInfoContainer">
+
+<c:if test="${movieShowsCol.count() > 0}">
+    <div class="formInfoControl">
+        <span class="infoLabel span1">Movie</span>
+    </div>
+
+
+
+</c:if>
+
+</div>

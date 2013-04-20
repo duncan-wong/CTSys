@@ -4,16 +4,12 @@
 <jsp:useBean id="movieCol" type="beans.RMovieCol" scope="request"></jsp:useBean>
 
 
-<%  
-    request.setAttribute("currentMovie", new beans.RMovie());
-%>
-    <jsp:useBean id="currentMovie" type="beans.RMovie" scope="request"></jsp:useBean>
 <%
     for (int i = 0; i < movieCol.count(); i ++){
         request.setAttribute("currentMovie", movieCol.getAt(i));
 %>
     <!--template--->
-    <div id="MovieID" class="movieContainer">
+    <div id="movie${currentMovie.movieID}" class="movieContainer">
     
         <img src="<%=request.getContextPath()%>/moviePoster/${currentMovie.movieID}.jpg" class="moviePoster" alt="Image not found">
         <div class="movieDescription">

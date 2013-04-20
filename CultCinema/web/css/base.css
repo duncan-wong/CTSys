@@ -131,7 +131,18 @@ input{
     display: inline-block;
 }
 
+.span1{width: 10%; overflow: hidden;}
+.span2{width: 20%; overflow: hidden;}
+.span3{width: 30%; overflow: hidden;}
+.span4{width: 40%; overflow: hidden;}
+.span5{width: 50%; overflow: hidden;}
+.span6{width: 60%; overflow: hidden;}
+.span7{width: 70%; overflow: hidden;}
+.span8{width: 80%; overflow: hidden;}
+.span9{width: 90%; overflow: hidden;}
+.span10{width: 100%; overflow: hidden;}
 
+.greyBg{background: #EEE;}
 
 .overlay{
     position:fixed;

@@ -42,6 +42,8 @@ public class LanguageBean {
     public String hAccountControlMsg(){return"you may do your account-specific works here";}
     //header - Registration
     public String hAcRegMainTitle(){return"Sign Up";}
+    //header - houses
+    public String hHousesMainTitle(){return"Houses";}
     
     
     //content
@@ -71,5 +73,6 @@ public class LanguageBean {
     public String cAccountLbConfirmPasswordHints(){return "Confirm Password";}
     public String cAccountLbOriginalPasswordHints(){return "Original Password";}
     //content - registration , use most label of account page
-    
+    //content - houses
+    public String cHousesLbCapacity(){return"Capacity";}
 }

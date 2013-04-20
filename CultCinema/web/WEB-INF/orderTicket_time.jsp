@@ -39,7 +39,7 @@
             <div id="content" class="defaultWidth">
                 <div id="MovieID" class="movieContainer">
 
-                    <img src="<%=request.getContextPath()%>/moviePoster/${currentMovie.movieID}.jpg" class="moviePoster" alt="Image not found">
+                    <img src="<%=request.getContextPath()%>/moviePoster/${rCurrentMovie.movieID}.jpg" class="moviePoster" alt="Image not found">
                     <div class="movieDescription">
                         <div class="movieDescriptionItem">
                             <span class="movieTitle">
