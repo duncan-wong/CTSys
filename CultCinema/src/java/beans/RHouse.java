@@ -27,6 +27,7 @@ public class RHouse extends UpdatableBean {
     private RSeat[][] seats;
 //------------------------------------------------------------------------------
     public RHouse() {
+        super();
         house_id = null;
         house_name = null;
         house_capacity = null;

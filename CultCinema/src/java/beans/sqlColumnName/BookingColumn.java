@@ -12,7 +12,6 @@ public abstract class BookingColumn {
     public static final String
             BOOKING_ID = "booking_id",
             ACCOUNT_ID = "account_id",
-            BOOKING_MADEDATE = "booking_madeDate",
-            BOOKING_STATUS = "booking_status",
+            PAYMENT_STATUS = "payment_status",
             GUEST_EMAIL = "guest_email";
 }
