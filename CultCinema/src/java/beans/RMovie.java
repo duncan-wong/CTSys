@@ -144,6 +144,35 @@ public class RMovie extends UpdatableBean {
     }
 //----------------------------------------------------------------------------
     @Override
+    public boolean fetchDBData() {
+        try {
+            DBconnect db = new DBconnect(MovieSQL.s5);
+            db.setXxx(1, language);
+            db.setXxx(2, movie_id);
+            db.setXxx(3, null);
+            db.setXxx(4, null);
+            db.setXxx(5, null);
+            db.executeQuery();
+            if (db.queryHasNext()) {
+                language = db.getXxx(MovieColumn.LANGUAGE);
+                movie_name = db.getXxx(MovieColumn.MOVIE_NAME);
+                movie_author = db.getXxx(MovieColumn.MOVIE_AUTHOR);
+                movie_description = db.getXxx(MovieColumn.MOVIE_DESCRIPTION);
+                movie_duration = db.getXxx(MovieColumn.MOVIE_DURATION);
+                movie_startDate = db.getXxx(MovieColumn.MOVIE_STARTDATE);
+                movie_endDate = db.getXxx(MovieColumn.MOVIE_ENDDATE);
+            }
+            db.disconnect();
+            return super.fetchDBData();
+        } catch (NamingException ex) {
+            Logger.getLogger(RMovieCol.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RMovieCol.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    @Override
     public boolean commitChange() {
         super.commitChange();
         if (this.isNew()) {

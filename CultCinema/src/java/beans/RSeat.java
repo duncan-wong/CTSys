@@ -19,15 +19,20 @@ import javax.naming.NamingException;
  */
 public class RSeat extends UpdatableBean {
     private String house_id;
+    private String active;
     private String row_number;
     private String seat_number;
-    private String active;
+    private String booking_id;
+    private String showing_id;
 //-----------------------------------------------------------------------------
     public RSeat() {
+        super();
         house_id = null;
         row_number = null;
         seat_number = null;
         active = null;
+        showing_id = null;
+        booking_id = null;
     }
     public RSeat(String house_id) {
         this();
@@ -46,6 +51,12 @@ public class RSeat extends UpdatableBean {
     public void setActiveStatus(int in) {
         set(SeatColumn.ACTIVE, Integer.toString(in));
     }
+    public void setBookingID(String in) {
+        set(SeatColumn.BOOKING_ID, in);
+    }
+    public void setShowingID(String in) {
+        set(SeatColumn.SHOWING_ID, in);
+    }
     private void set(String id, String in) {
         if (id == SeatColumn.ROW_NUMBER) {
             row_number = in;
@@ -59,6 +70,12 @@ public class RSeat extends UpdatableBean {
         else if (id == SeatColumn.HOUSE_ID) {
             house_id = in;
         }
+        else if (id == SeatColumn.BOOKING_ID) {
+            booking_id = in;
+        }
+        else if (id == SeatColumn.SHOWING_ID) {
+            showing_id = in;
+        }
         this.setChangedTrue();
     }
 //-----------------------------------------------------------------------------
@@ -71,20 +88,70 @@ public class RSeat extends UpdatableBean {
     public int getActiveStatus() {
         return Integer.parseInt(active);
     }
+    public boolean isDisable() {
+        if (booking_id == "Disable") {
+            return true;
+        }
+        return false;
+    }
+    public boolean isBooked() {
+        if (booking_id == "--") {
+            return false;
+        }
+        return true;
+    }
+    private boolean isTicket() {
+        if (booking_id == null) {
+            return true;
+        }
+        return false;
+    }
 //-----------------------------------------------------------------------------
     @Override
     public boolean commitChange() {
         super.commitChange();
-        if (this.isChanged()) {
-            return commitUpdate();
+        if (isTicket()) {
+            if (this.isChanged()) {
+                return commitInsert_Ticket();
+            }
+        }
+        else {
+            if (this.isChanged()) {
+                return commitUpdate_Seat();
+            }
         }
         return true;
     }
     
-    public boolean commitUpdate() {
+    // for movie show ticket use
+    public boolean commitInsert_Ticket() {
         int checking = 0;
         try {
-            DBconnect db = new DBconnect(SeatSQL.u4);
+            DBconnect db = new DBconnect(SeatSQL.i4_Showing);
+            db.setResult();
+            db.setXxx(2, showing_id);
+            db.setXxx(3, row_number);
+            db.setXxx(4, seat_number);
+            db.setXxx(5, booking_id);
+            db.executeUpdate();
+            checking = db.getResult();
+            db.disconnect();
+            if (checking == 0) {
+                return true;
+            }
+        } catch (NamingException ex) {
+            Logger.getLogger(RSeat.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RSeat.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    // for house seat
+    public boolean commitUpdate_Seat() {
+        int checking = 0;
+        try {
+            DBconnect db = new DBconnect(SeatSQL.u4_House);
             db.setResult();
             db.setXxx(2, house_id);
             db.setXxx(3, row_number);

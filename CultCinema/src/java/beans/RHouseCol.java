@@ -42,7 +42,7 @@ public class RHouseCol extends Bean {
             DBconnect db = new DBconnect(HouseSQL.s1);
             db.setXxx(1, null);
             db.executeQuery();
-            if (db.queryHasNext()) {
+            while (db.queryHasNext()) {
                 RHouse temp = new RHouse();
                 temp.setHouseID(db.getXxx(HouseColumn.HOUSE_ID));
                 temp.setHouseName(db.getXxx(HouseColumn.HOUSE_NAME));

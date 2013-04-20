@@ -17,6 +17,10 @@ public abstract class HouseSQL {
     public static final String
             s1_Seat = "{ call show_HouseSeat(?) }";
 //------------------------------------------------------------------------------
+    // 1 input      showing_id
+    public static final String
+            s1_ShowingSeat = "{ call show_ShowingSeat(?) }";
+//------------------------------------------------------------------------------
     // 0 output     -1 if error
     // 1 input      house_id
     // 2 input      house_name

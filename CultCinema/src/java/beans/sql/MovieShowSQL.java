@@ -14,8 +14,9 @@ public abstract class MovieShowSQL {
     // 3 search     house_id
     // 4 search     movie_id
     // 5 search     language
+    // 6 search     showing_id
     public static final String 
-            s5 = "{ call show_Showing(?,?,?,?,?) }";
+            s6 = "{ call show_Showing(?,?,?,?,?,?) }";
 //-----------------------------------------------------------------------------
     // 0 output     -1 if have error
     // 1 input      house_id

@@ -81,12 +81,13 @@ public class RMovieShowCol extends UpdatableBean {
         super.fetchDBData();
         showingCol.clear();
         try {
-            DBconnect db = new DBconnect(MovieShowSQL.s5);
+            DBconnect db = new DBconnect(MovieShowSQL.s6);
             db.setXxx(1, search_dayBefore);
             db.setXxx(2, search_timeAfter);
             db.setXxx(3, search_houseID);
             db.setXxx(4, search_movieID);
             db.setXxx(5, search_language);
+            db.setXxx(6, null);
             db.executeQuery();
             while (db.queryHasNext()) {
                 RMovieShow r = new RMovieShow();

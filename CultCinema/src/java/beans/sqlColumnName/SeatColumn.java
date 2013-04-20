@@ -13,5 +13,7 @@ public abstract class SeatColumn {
             HOUSE_ID = "house_id",
             ROW_NUMBER = "row_number",
             SEAT_NUMBER = "seat_number",
-            ACTIVE = "active";
+            ACTIVE = "active",
+            SHOWING_ID = "showing_id",
+            BOOKING_ID = "booking_id";
 }

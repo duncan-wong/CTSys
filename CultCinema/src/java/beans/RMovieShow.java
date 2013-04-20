@@ -117,6 +117,36 @@ public class RMovieShow extends UpdatableBean {
     }
 //-----------------------------------------------------------------------------
     @Override
+    public boolean fetchDBData() {
+        try {
+            DBconnect db = new DBconnect(MovieShowSQL.s6);
+            db.setXxx(1, null);
+            db.setXxx(2, null);
+            db.setXxx(3, null);
+            db.setXxx(4, null);
+            db.setXxx(5, null);
+            db.setXxx(6, showing_id);
+            db.executeQuery();
+            if (db.queryHasNext()) {
+                house_id = db.getXxx(MovieShowColumn.HOUSE_ID);
+                movie_id = db.getXxx(MovieShowColumn.MOVIE_ID);
+                showing_endDate = db.getXxx(MovieShowColumn.SHOWING_ENDDATE);
+                showing_endTime = db.getXxx(MovieShowColumn.SHOWING_ENDTIME);
+                showing_startDate = db.getXxx(MovieShowColumn.SHOWING_STARTDATE);
+                showing_startTime = db.getXxx(MovieShowColumn.SHOWING_STARTTIME);
+                ticket_price = db.getXxx(MovieShowColumn.TICKET_PRICE);
+            }
+            db.disconnect();
+            return true;
+        } catch (NamingException ex) {
+            Logger.getLogger(RMovieShowCol.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RMovieShowCol.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    @Override
     public boolean commitChange() {
         super.commitChange();
         if (this.isNew()) {
