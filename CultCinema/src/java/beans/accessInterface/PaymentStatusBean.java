@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package common;
+package beans.accessInterface;
 
 /**
  *
  * @author A
  */
-public abstract class PaymentStatusConfig {
+public abstract class PaymentStatusBean {
     public static final String Payment_Complete = "Payment Complete";
     public static final String Payment_Incomplete = "Payment Incomplete";
     public static final String Cancel = "Cancel";

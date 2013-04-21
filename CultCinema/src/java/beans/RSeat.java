@@ -85,10 +85,13 @@ public class RSeat extends UpdatableBean {
     public int getSeatNum() {
         return Integer.parseInt(seat_number);
     }
-    public int getActiveStatus() {
-        return Integer.parseInt(active);
+    public boolean isActive_Seat() {
+        if (active == "1") {
+            return true;
+        }
+        return false;
     }
-    public boolean isDisable() {
+    public boolean isDisable_Ticket() {
         if (booking_id == "Disable") {
             return true;
         }
@@ -100,17 +103,21 @@ public class RSeat extends UpdatableBean {
         }
         return true;
     }
-    private boolean isTicket() {
-        if (booking_id == null) {
-            return true;
-        }
-        return false;
+    public String getRowID() {
+        char c = (char) ('A' + Integer.parseInt(row_number) - 1);
+        return "" + c;
+    }
+    public String getSeatID() {
+        return getRowID() + String.format("%02d", Integer.parseInt(seat_number));
+    }
+    public String getTicketID() {
+        return String.format("%06d", Integer.parseInt(showing_id)) + "-" + getSeatID();
     }
 //-----------------------------------------------------------------------------
     @Override
     public boolean commitChange() {
         super.commitChange();
-        if (isTicket()) {
+        if (booking_id != null) {
             if (this.isChanged()) {
                 return commitInsert_Ticket();
             }

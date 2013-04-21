@@ -63,6 +63,9 @@ public class RMovieShow extends UpdatableBean {
     public void setTicketPrice(String in) {
         set(MovieShowColumn.TICKET_PRICE, in);
     }
+    public void setTicketPrice(int in) {
+        set(MovieShowColumn.TICKET_PRICE, Integer.toString(in));
+    }
     private void set(String id, String in) {
         if (id == MovieShowColumn.HOUSE_ID) {
             house_id = in;
@@ -114,6 +117,21 @@ public class RMovieShow extends UpdatableBean {
     }
     public String getTicketPrice() {
         return ticket_price;
+    }
+    public String getSales() {
+        String sales = "";
+        try {
+            DBconnect db = new DBconnect(MovieShowSQL.s1_Sales);
+            db.setXxx(1, showing_id);
+            db.executeQuery();
+            sales = db.getXxx(MovieShowColumn.SALES);
+            db.disconnect();
+        } catch (NamingException ex) {
+            Logger.getLogger(RMovieShow.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RMovieShow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sales;
     }
 //-----------------------------------------------------------------------------
     @Override

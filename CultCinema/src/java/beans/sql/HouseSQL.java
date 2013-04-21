@@ -46,4 +46,8 @@ public abstract class HouseSQL {
     // 1 input      house_id
     public static final String
             d1_Seat = "{ ? = call delete_HouseSeat(?) }";
+//------------------------------------------------------------------------------
+    // 1 input      house_id
+    public static final String
+            s1_Sales = "{ call show_HouseSales(?) }";
 }

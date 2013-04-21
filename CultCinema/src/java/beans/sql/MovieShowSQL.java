@@ -39,4 +39,8 @@ public abstract class MovieShowSQL {
     // 1 input      showing_id
     public static final String
             d1 = "{ ? = call update_Showing(?) }";
+//-----------------------------------------------------------------------------
+    // 1 input      showing_id
+    public static final String
+            s1_Sales = "{ call show_ShowingSales(?) }";
 }

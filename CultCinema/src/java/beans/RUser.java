@@ -96,6 +96,22 @@ public class RUser extends UpdatableBean{
         }
         return "";
     }
+    public String getLoyalty() {
+        String loyalty = "";
+        try {
+            DBconnect db;
+            db = new DBconnect(UserSQL.s1_Loyalty);
+            db.setXxx(1, account_id);
+            db.executeQuery();
+            loyalty = db.getXxx("loyalty");
+            db.disconnect();
+        } catch (NamingException ex) {
+            Logger.getLogger(RUser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return loyalty;
+    }
 //----------------------------------------------------------------------------
     public void setAccountID(String in) {
         set(UserColumn.ACCOUNT_ID, in);

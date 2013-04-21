@@ -17,5 +17,6 @@ public abstract class MovieShowColumn {
             SHOWING_STARTTIME = "showing_startTime",
             SHOWING_ENDDATE = "showing_endDate",
             SHOWING_ENDTIME = "showing_endTime",
-            TICKET_PRICE = "ticket_price";
+            TICKET_PRICE = "ticket_price",
+            SALES = "sales";
 }

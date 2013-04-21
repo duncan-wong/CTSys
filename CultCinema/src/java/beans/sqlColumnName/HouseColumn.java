@@ -13,5 +13,8 @@ public abstract class HouseColumn {
             HOUSE_ID = "house_id",
             HOUSE_NAME = "house_name",
             HOUSE_CAPACITYU = "house_capacity",
-            TOTAL_ROW = "total_row";
+            TOTAL_ROW = "total_row",
+            SHOWING_ID = "showing_id",
+            BOOKING_ID = "booking_id",
+            SALES = "sales";
 }

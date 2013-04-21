@@ -5,6 +5,7 @@
 package beans;
 
 import beans.accessInterface.UpdatableBean;
+import beans.sql.BookingSQL;
 import beans.sql.HouseSQL;
 import beans.sql.SeatSQL;
 import beans.sqlColumnName.HouseColumn;
@@ -53,6 +54,9 @@ public class RHouse extends UpdatableBean {
     public void setTotalRow(int in) {
         set(HouseColumn.TOTAL_ROW, Integer.toString(in));
     }
+    public void setShowingID(String in) {
+        set(HouseColumn.SHOWING_ID, in);
+    }
     private void set(String id, String in) {
         this.setChangedTrue();
         if (id == HouseColumn.HOUSE_ID) {
@@ -66,6 +70,9 @@ public class RHouse extends UpdatableBean {
         }
         else if (id == HouseColumn.TOTAL_ROW) {
             total_row = in;
+        }
+        else if (id == HouseColumn.SHOWING_ID) {
+            showing_id = in;
         }
     }
 //------------------------------------------------------------------------------
@@ -87,15 +94,33 @@ public class RHouse extends UpdatableBean {
     public RSeat[][] getAllSeat() {
         return seats;
     }
+    public String getShowingID() {
+        return showing_id;
+    }
+    public String getSales() {
+        String sales = "";
+        try {
+            DBconnect db = new DBconnect(HouseSQL.s1_Sales);
+            db.setXxx(1, house_id);
+            db.executeQuery();
+            sales = db.getXxx(HouseColumn.SALES);
+            db.disconnect();
+        } catch (NamingException ex) {
+            Logger.getLogger(RMovieShow.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RMovieShow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sales;
+    }
 //------------------------------------------------------------------------------
     @Override
     public boolean fetchDBData() {
         super.fetchDBData();
-        if (showing_id == null) {
-            return fetchHouseData();
+        if (showing_id != null) {
+            return fetchMovieShowSeating();
         }
         else {
-            return fetchMovieShowSeating();
+            return fetchHouseData();
         }
     }
     
@@ -127,6 +152,7 @@ public class RHouse extends UpdatableBean {
                 seats[i] = temp;
             }
             house_id = db.getXxx(SeatColumn.HOUSE_ID);
+            total_row = Integer.toString(seats.length);
             db.disconnect();
             return true;
         } catch (NamingException ex) {
@@ -195,12 +221,12 @@ public class RHouse extends UpdatableBean {
                 }
             }
         }
-        if (this.isChanged()) {
+        if (this.isNew()) {
+            return commitInsert();
+        }
+        else if (this.isChanged()) {
             // only allowed to update the house_name only
             return commitUpdate();
-        }
-        else if (this.isNew()) {
-            return commitInsert();
         }
         return true;
     }
@@ -227,6 +253,7 @@ public class RHouse extends UpdatableBean {
         }
         return false;
     }
+    
     // soft delete the house
     public boolean commitDelete() {
         int checking = 0;
@@ -248,6 +275,7 @@ public class RHouse extends UpdatableBean {
         }
         return false;
     }
+    
     /**********
      * CASE 1: if house_id is NULL.
      *   Mean: insert a new house, house_name
@@ -280,6 +308,7 @@ public class RHouse extends UpdatableBean {
         }
         return false;
     }
+    
     // update only the house_name
     public boolean commitUpdate() {
         int checking = 0;

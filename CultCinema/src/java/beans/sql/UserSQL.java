@@ -42,4 +42,8 @@ public abstract class UserSQL {
     // 1 input      account_id
     public static final String
             d1 = "{ ? = call delete_User(?) }";
+//---------------------------------------------------------------------------
+    // 1 input      account_id
+    public static final String
+            s1_Loyalty = "{ call show_UserLoyalty(?) }";
 }

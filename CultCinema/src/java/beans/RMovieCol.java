@@ -81,7 +81,6 @@ public class RMovieCol extends UpdatableBean{
 //-----------------------------------------------------------------------------
     @Override
     public boolean fetchDBData() {
-        super.fetchDBData();
         movieCol.clear();
         try {
             DBconnect db = new DBconnect(MovieSQL.s5);
@@ -105,7 +104,7 @@ public class RMovieCol extends UpdatableBean{
                 movieCol.add(r);
             }
             db.disconnect();
-            return true;
+            return super.fetchDBData();
         } catch (NamingException ex) {
             Logger.getLogger(RMovieCol.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -134,6 +133,4 @@ public class RMovieCol extends UpdatableBean{
         movieWaitForDelete.clear();
         return true;
     }
-    
-    
 }

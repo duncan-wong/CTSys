@@ -16,9 +16,9 @@ public abstract class BookingSQL {
     // 5 search     payment_status
     // 6 search     guest_email
     public static final String
-            s6 = "{ call show_Booking(?,?,?,?,?,?) }";
+            s6 = "{ call show_BookingGrouped(?,?,?,?,?,?) }";
 //------------------------------------------------------------------------------
-    // 0 output     -1 if error
+    // 0 output     booking_id
     // 1 input      account_id
     // 2 input      guest_email
     public static final String

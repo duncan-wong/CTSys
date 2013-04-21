@@ -22,6 +22,11 @@ public class RBooking extends UpdatableBean {
     private String booking_id;
     private String payment_status;
     private String guest_email;
+    
+    // Below : are unchangable values
+    private String showing_id;
+    private String ticket_price;
+    private String num_of_ticket;
 //-----------------------------------------------------------------------------
     public RBooking() {
         super();
@@ -29,6 +34,10 @@ public class RBooking extends UpdatableBean {
         booking_id = null;
         payment_status = null;
         guest_email = null;
+        
+        showing_id = null;
+        ticket_price = null;
+        num_of_ticket = null;
     }
     public RBooking(String booking_id) {
         this();
@@ -62,8 +71,22 @@ public class RBooking extends UpdatableBean {
         }
         this.setChangedTrue();
     }
+    
+    // Below : are unchangable values
+    public void setShowingID(String in) {
+        this.showing_id = in;
+    }
+    public void setTicketPrice(String in) {
+        this.ticket_price = in;
+    }
+    public void setNumOfTicket(String in) {
+        this.num_of_ticket = in;
+    }
 //------------------------------------------------------------------------------
     public String getAccountID() {
+        if (isGuest()) {
+            return guest_email;
+        }
         return account_id;
     }
     public String getBookingID() {
@@ -72,25 +95,42 @@ public class RBooking extends UpdatableBean {
     public String getPaymentStatus() {
         return payment_status;
     }
-    public String getGuestEmail() {
-        return guest_email;
+    public boolean isGuest() {
+        if (guest_email == "--") {
+            return false;
+        }
+        return false;
+    }
+    
+    // Below : are unchangable values
+    public String getShowingID() {
+        return showing_id;
+    }
+    public String getTicketPrice() {
+        return ticket_price;
+    }
+    public int getNumOfTicket() {
+        return Integer.parseInt(num_of_ticket);
     }
 //------------------------------------------------------------------------------
     @Override
     public boolean fetchDBData() {
         try {
             DBconnect db = new DBconnect(BookingSQL.s6);
-            db.setXxx(1, null);
+            db.setXxx(1, account_id);
             db.setXxx(2, null);
             db.setXxx(3, null);
             db.setXxx(4, booking_id);
-            db.setXxx(5, null);
-            db.setXxx(6, null);
+            db.setXxx(5, payment_status);
+            db.setXxx(6, guest_email);
             db.executeQuery();
             if (db.queryHasNext()) {
                 account_id = db.getXxx(BookingColumn.ACCOUNT_ID);
                 guest_email = db.getXxx(BookingColumn.GUEST_EMAIL);
                 payment_status = db.getXxx(BookingColumn.PAYMENT_STATUS);
+                showing_id = db.getXxx(BookingColumn.SHOWING_ID);
+                ticket_price = db.getXxx(BookingColumn.TICKET_PRICE);
+                num_of_ticket = db.getXxx(BookingColumn.NUM_OF_TICKET);
             }
             db.disconnect();
             return super.fetchDBData();
@@ -114,16 +154,15 @@ public class RBooking extends UpdatableBean {
     }
     
     public boolean commitInsert() {
-        int checking = 0;
         try {
             DBconnect db = new DBconnect(BookingSQL.i2);
             db.setResult();
             db.setXxx(2, account_id);
             db.setXxx(3, guest_email);
             db.executeUpdate();
-            checking = db.getResult();
+            booking_id = Integer.toString(db.getResult());
             db.disconnect();
-            if (checking == 0) {
+            if (booking_id != null) {
                 return true;
             }
         } catch (NamingException ex) {
