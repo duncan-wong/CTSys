@@ -12,8 +12,11 @@
     movieShowCol.searchMovieID(movie.getMovieID());
     movieShowCol.searchHouseID(house.getHouseID());
     movieShowCol.fetchDBData();
+    pageContext.setAttribute("movieShowCol", movieShowCol);
+    pageContext.setAttribute("movieShowColCount", movieShowCol.count());
 %>
-<c:if test="${movieShowsCol.count() > 0}">
+
+<c:if test="${movieShowColCount > 0}">
     <div class="formInfoContainer">
         <div class="formInfoControl">
             <span class="infoLabel span4">House ${house.houseID} - ${house.houseName}</span>
@@ -21,6 +24,7 @@
         
         <form class="formInfoControl">
             <select class="infoInput">
+                <option>${movieShowColCount}</option>
             </select>
         </form>
 

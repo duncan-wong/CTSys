@@ -43,7 +43,10 @@ $(document).ready(function(){
     $('.languageOption').click(function(event){
         var element = event.srcElement || event.target;
         language = $(element).attr('href');
-        $(element).attr('href', document.URL.split('?')[0] + '?lang=' + language);
+        if(document.URL.search("lang=") >= 0)
+            $(element).attr('href', document.URL.split('lang=')[0] + 'lang=' + language);
+        else
+            $(element).attr('href', document.URL.split('?')[0] + '?lang=' + language);
         return true;
     });
     

@@ -40,6 +40,10 @@ public class OrderTicket extends HttpServlet {
             return;
         }
         
+        
+        HttpSession session = request.getSession(false);
+        beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
+        
         //create new ticket order
         beans.STicketOrder ticketOrder = new beans.STicketOrder();
         
@@ -47,6 +51,7 @@ public class OrderTicket extends HttpServlet {
         
         //create RMovie object as request bean
         beans.RMovie rCurrentMovie = new beans.RMovie();
+        rCurrentMovie.setLanguage(sStatus.getLanguageOption());
         rCurrentMovie.setMovieID(movieId);
         rCurrentMovie.fetchDBData();
         //create RHouse object as request bean
@@ -58,7 +63,6 @@ public class OrderTicket extends HttpServlet {
         request.setAttribute(common.BeansConfig.rHouseCol, rHouseCol);
         
         //add trace attribute to session
-        HttpSession session = request.getSession(false);
         session.setAttribute(common.URLConfig.lastInternalUrl, common.URLConfig.SURL_orderTicket);
         
         //dispatch
