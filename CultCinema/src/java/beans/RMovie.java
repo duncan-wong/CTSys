@@ -162,6 +162,9 @@ public class RMovie extends UpdatableBean {
                 movie_startDate = db.getXxx(MovieColumn.MOVIE_STARTDATE);
                 movie_endDate = db.getXxx(MovieColumn.MOVIE_ENDDATE);
             }
+            else{
+                return false;
+            }
             db.disconnect();
             return super.fetchDBData();
         } catch (NamingException ex) {

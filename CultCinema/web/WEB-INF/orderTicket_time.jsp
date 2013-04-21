@@ -31,7 +31,7 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        Order ticket
+                        <%=sLanguageBean.hOTMainTitle()%>
                     </h1>
                     
                 </div>

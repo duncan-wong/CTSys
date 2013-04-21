@@ -44,7 +44,8 @@ public class LanguageBean {
     public String hAcRegMainTitle(){return"Sign Up";}
     //header - houses
     public String hHousesMainTitle(){return"Houses";}
-    
+    //header - OrderTicket
+    public String hOTMainTitle(){return"Order ticket";}
     
     //content
     //content - index
@@ -75,4 +76,5 @@ public class LanguageBean {
     //content - registration , use most label of account page
     //content - houses
     public String cHousesLbCapacity(){return"Capacity";}
+    //content - OrderTicket
 }

@@ -6,8 +6,8 @@ package beans;
 
 /**
  *
- * @author DUNCAN
+ * @author A
  */
-public class STicketOrder {
-    
+public class SBooking extends RBooking {
+   
 }

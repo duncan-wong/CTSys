@@ -18,12 +18,12 @@ public abstract class BeansConfig {
     public static final String rCurrentMovie = "rCurrentMovie";
     public static final String rHouseCol = "rHouseCol";
     public static final String rMovieShowCol = "rMovieShowCol";
-    
+    public static final String rMovieShow = "rMovieShow";
     
     //session beans
     public static final String sStatus = "sStatus";
     public static final String sLanguageBean = "sLanguageBean";
-    public static final String sTicketOrder = "sTicketOrder";
+    public static final String sBooking = "sBooking";
     
     
     //application beans

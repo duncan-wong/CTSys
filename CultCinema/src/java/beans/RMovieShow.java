@@ -100,6 +100,9 @@ public class RMovieShow extends UpdatableBean {
     public String getShowingID() {
         return showing_id;
     }
+    public String getMovieShowID(){
+        return showing_id;
+    }
     public String getMovieID() {
         return movie_id;
     }
