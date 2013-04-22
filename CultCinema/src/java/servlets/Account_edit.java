@@ -88,7 +88,7 @@ public class Account_edit extends HttpServlet {
         }
         
         
-        if (rUser.checkPassword(password)){
+        if (!rUser.checkPassword(password)){
             isSafeToCommit = false;
             errorMsg.put("password", "Incorrect password");
         }

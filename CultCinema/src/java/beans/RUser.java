@@ -43,7 +43,7 @@ public class RUser extends UpdatableBean{
     }
 //-----------------------------------------------------------------------------
     public boolean checkPassword(String pw) {
-        if (Hash.encrypt("md5", pw) == login_pw) {
+        if (Hash.encrypt("md5", pw).equals(login_pw)) {
             return true;
         }
         else {
