@@ -18,8 +18,22 @@ import java.util.logging.Logger;
 import javax.naming.NamingException;
 
 /**
- *
- * @author A
+ * CASE 1:  input house_id
+ * Mean:    get house detail and its seats [ active / inactive ]
+ * Has:
+ *          - total_row
+ *          - house_capacity
+ *          - house_name
+ *          - seats of house
+ * 
+ * 
+ * CASE 2:  input movieShow_id
+ * Mean:    get the ticket status in the movieShow [ booked / empty ]
+ * Has :
+ *          - house_id
+ *          - total_row
+ *          - seats of the movieShow
+ * 
  */
 public class RHouse extends UpdatableBean {
     private String showing_id;
@@ -138,6 +152,8 @@ public class RHouse extends UpdatableBean {
                 if (rowCount + 1 == db.getXxx(SeatColumn.ROW_NUMBER, 0)) {
                     rows.add(oneRow.toArray(new RSeat[oneRow.size()]));
                     rowCount++;
+                    oneRow.clear();
+                    house_id = db.getXxx(SeatColumn.HOUSE_ID);
                 }
                 rsTemp.setBookingID(db.getXxx(SeatColumn.BOOKING_ID));
                 rsTemp.setRowNum(db.getXxx(SeatColumn.ROW_NUMBER, 0));
@@ -148,10 +164,8 @@ public class RHouse extends UpdatableBean {
             rows.add(oneRow.toArray(new RSeat[oneRow.size()]));
             seats = rows.toArray(new RSeat[rows.size()][]);
             for (int i=0; i<rows.size(); i++) {
-                RSeat[] temp = rows.get(i);
-                seats[i] = temp;
+                seats[i] = rows.get(i);
             }
-            house_id = db.getXxx(SeatColumn.HOUSE_ID);
             total_row = Integer.toString(seats.length);
             db.disconnect();
             return true;

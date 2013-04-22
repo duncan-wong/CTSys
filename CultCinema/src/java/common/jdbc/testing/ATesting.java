@@ -1,5 +1,6 @@
 package common.jdbc.testing;
 
+import beans.RHouse;
 import beans.RMovie;
 import beans.RUser;
 import common.jdbc.DBconnect;
@@ -90,7 +91,8 @@ public class ATesting extends HttpServlet {
             rs = cstmt.getResultSet();
             **/
 //----------------------------------------------------------------------
-            RUser r = new RUser("duncan");
+            RHouse r = new RHouse();
+            r.setMovieShowID(searchName);
             r.fetchDBData();
             /**
             db.setXxx(1, "en");
@@ -120,10 +122,10 @@ public class ATesting extends HttpServlet {
             out.println("</thead>");
             out.println("<tbody>");
                 out.println("<tr>");
-                out.println("<td>" + r.getAccountID()+ "</td>");
-                out.println("<td>" + r.getRole()+ "</td>");
-                out.println("<td>" + r.getUserEmail()+ "</td>");
-                out.println("<td>" + r.getUserName()+ "</td>");
+                out.println("<td>" + r.getTotalRow()+ "</td>");
+                out.println("<td>" + r.getHouseCapacity()+ "</td>");
+                out.println("<td>" + r.getHouseName()+ "</td>");
+                out.println("<td>" + r.getMovieShowID()+ "</td>");
                 out.println("</tr>");
             /**
             while (db.queryHasNext()) {
