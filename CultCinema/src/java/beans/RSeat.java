@@ -58,22 +58,22 @@ public class RSeat extends UpdatableBean {
         set(SeatColumn.SHOWING_ID, in);
     }
     private void set(String id, String in) {
-        if (id == SeatColumn.ROW_NUMBER) {
+        if (id.equals(SeatColumn.ROW_NUMBER)) {
             row_number = in;
         }
-        else if (id == SeatColumn.SEAT_NUMBER) {
+        else if (id.equals(SeatColumn.SEAT_NUMBER)) {
             seat_number = in;
         }
-        else if (id == SeatColumn.ACTIVE) {
+        else if (id.equals(SeatColumn.ACTIVE)) {
             active = in;
         }
-        else if (id == SeatColumn.HOUSE_ID) {
+        else if (id.equals(SeatColumn.HOUSE_ID)) {
             house_id = in;
         }
-        else if (id == SeatColumn.BOOKING_ID) {
+        else if (id.equals(SeatColumn.BOOKING_ID)) {
             booking_id = in;
         }
-        else if (id == SeatColumn.SHOWING_ID) {
+        else if (id.equals(SeatColumn.SHOWING_ID)) {
             showing_id = in;
         }
         this.setChangedTrue();
@@ -86,19 +86,19 @@ public class RSeat extends UpdatableBean {
         return Integer.parseInt(seat_number);
     }
     public boolean isActive_Seat() {
-        if (active == "1") {
+        if (active.equals("1")) {
             return true;
         }
         return false;
     }
     public boolean isDisable_Ticket() {
-        if (booking_id == "Disable") {
+        if (booking_id.equals("Disable")) {
             return true;
         }
         return false;
     }
     public boolean isBooked() {
-        if (booking_id == "--") {
+        if (booking_id.equals("--")) {
             return false;
         }
         return true;

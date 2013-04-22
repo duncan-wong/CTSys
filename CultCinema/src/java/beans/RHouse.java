@@ -59,19 +59,19 @@ public class RHouse extends UpdatableBean {
     }
     private void set(String id, String in) {
         this.setChangedTrue();
-        if (id == HouseColumn.HOUSE_ID) {
+        if (id.equals(HouseColumn.HOUSE_ID)) {
             house_id = in;
         }
-        else if (id == HouseColumn.HOUSE_NAME) {
+        else if (id.equals(HouseColumn.HOUSE_NAME)) {
             house_name = in;
         }
-        else if (id == HouseColumn.HOUSE_CAPACITYU) {
+        else if (id.equals(HouseColumn.HOUSE_CAPACITYU)) {
             house_capacity = in;
         }
-        else if (id == HouseColumn.TOTAL_ROW) {
+        else if (id.equals(HouseColumn.TOTAL_ROW)) {
             total_row = in;
         }
-        else if (id == HouseColumn.SHOWING_ID) {
+        else if (id.equals(HouseColumn.SHOWING_ID)) {
             showing_id = in;
         }
     }

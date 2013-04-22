@@ -73,25 +73,25 @@ public class RUser extends UpdatableBean{
         return get(UserColumn.USER_EMAIL);
     }
     private String get(String id) {
-        if (id == UserColumn.ACCOUNT_ID) {
+        if (id.equals(UserColumn.ACCOUNT_ID)) {
             return account_id;
         }
-        else if (id == UserColumn.ROLE) {
+        else if (id.equals(UserColumn.ROLE)) {
             return role;
         }
-        else if (id == UserColumn.LOGIN_ID) {
+        else if (id.equals(UserColumn.LOGIN_ID)) {
             return login_id;
         }
-        else if (id == UserColumn.LOGIN_PW) {
+        else if (id.equals(UserColumn.LOGIN_PW)) {
             return login_pw;
         }
-        else if (id == UserColumn.USER_NAME) {
+        else if (id.equals(UserColumn.USER_NAME)) {
             return user_name;
         }
-        else if (id == UserColumn.USER_PHONE) {
+        else if (id.equals(UserColumn.USER_PHONE)) {
             return user_phone;
         }
-        else if (id == UserColumn.USER_EMAIL) {
+        else if (id.equals(UserColumn.USER_EMAIL)) {
             return user_email;
         }
         return "";
@@ -126,6 +126,9 @@ public class RUser extends UpdatableBean{
         set(UserColumn.LOGIN_PW, in);
     }
     public void setUserName(String in) {
+        if (in.equals("--")) {
+            in = null;
+        }
         set(UserColumn.USER_NAME, in);
     }
     public void setUserPhone(String in) {
@@ -135,25 +138,25 @@ public class RUser extends UpdatableBean{
         set(UserColumn.USER_EMAIL, in);
     }
     private void set(String id, String in) {
-        if (id == UserColumn.ACCOUNT_ID) {
+        if (id.equals(UserColumn.ACCOUNT_ID)) {
             this.account_id = in;
         }
-        else if (id == UserColumn.ROLE) {
+        else if (id.equals(UserColumn.ROLE)) {
             this.role = in;
         }
-        else if (id == UserColumn.LOGIN_ID) {
+        else if (id.equals(UserColumn.LOGIN_ID)) {
             this.login_id = in;
         }
-        else if (id == UserColumn.LOGIN_PW) {
+        else if (id.equals(UserColumn.LOGIN_PW)) {
             this.login_pw = Hash.encrypt("md5", in);
         }
-        else if (id == UserColumn.USER_NAME) {
+        else if (id.equals(UserColumn.USER_NAME)) {
             this.user_name = in;
         }
-        else if (id == UserColumn.USER_PHONE) {
+        else if (id.equals(UserColumn.USER_PHONE)) {
             this.user_phone = in;
         }
-        else if (id == UserColumn.USER_EMAIL) {
+        else if (id.equals(UserColumn.USER_EMAIL)) {
             this.user_email = in;
         }
         this.setChangedTrue();

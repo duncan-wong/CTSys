@@ -67,28 +67,28 @@ public class RMovieShow extends UpdatableBean {
         set(MovieShowColumn.TICKET_PRICE, Integer.toString(in));
     }
     private void set(String id, String in) {
-        if (id == MovieShowColumn.HOUSE_ID) {
+        if (id.equals(MovieShowColumn.HOUSE_ID)) {
             house_id = in;
         }
-        else if (id == MovieShowColumn.SHOWING_ID) {
+        else if (id.equals(MovieShowColumn.SHOWING_ID)) {
             showing_id = in;
         }
-        else if (id == MovieShowColumn.MOVIE_ID) {
+        else if (id.equals(MovieShowColumn.MOVIE_ID)) {
             movie_id = in;
         }
-        else if (id == MovieShowColumn.SHOWING_STARTDATE) {
+        else if (id.equals(MovieShowColumn.SHOWING_STARTDATE)) {
             showing_startDate = in;
         }
-        else if (id == MovieShowColumn.SHOWING_STARTTIME) {
+        else if (id.equals(MovieShowColumn.SHOWING_STARTTIME)) {
             showing_startTime = in;
         }
-        else if (id == MovieShowColumn.SHOWING_ENDDATE) {
+        else if (id.equals(MovieShowColumn.SHOWING_ENDDATE)) {
             showing_endDate = in;
         }
-        else if (id == MovieShowColumn.SHOWING_ENDTIME) {
+        else if (id.equals(MovieShowColumn.SHOWING_ENDTIME)) {
             showing_endTime = in;
         }
-        else if (id == MovieShowColumn.TICKET_PRICE) {
+        else if (id.equals(MovieShowColumn.TICKET_PRICE)) {
             ticket_price = in;
         }
         this.setChangedTrue();

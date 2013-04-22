@@ -59,16 +59,16 @@ public class RBooking extends UpdatableBean {
         set(BookingColumn.GUEST_EMAIL, in);
     }
     private void set(String id, String in) {
-        if (id == BookingColumn.ACCOUNT_ID) {
+        if (id.equals(BookingColumn.ACCOUNT_ID)) {
             account_id = in;
         }
-        else if (id == BookingColumn.BOOKING_ID) {
+        else if (id.equals(BookingColumn.BOOKING_ID)) {
             booking_id = in;
         }
-        else if (id == BookingColumn.PAYMENT_STATUS) {
+        else if (id.equals(BookingColumn.PAYMENT_STATUS)) {
             payment_status = in;
         }
-        else if (id == BookingColumn.GUEST_EMAIL) {
+        else if (id.equals(BookingColumn.GUEST_EMAIL)) {
             guest_email = in;
         }
         this.setChangedTrue();
@@ -86,9 +86,6 @@ public class RBooking extends UpdatableBean {
     }
 //------------------------------------------------------------------------------
     public String getAccountID() {
-        if (isGuest()) {
-            return guest_email;
-        }
         return account_id;
     }
     public String getBookingID() {
@@ -98,10 +95,13 @@ public class RBooking extends UpdatableBean {
         return payment_status;
     }
     public boolean isGuest() {
-        if (guest_email == "--") {
+        if (account_id.equals("0")) {
             return false;
         }
         return false;
+    }
+    public String getGuestEmail() {
+        return guest_email;
     }
     
     // Below : are unchangable values

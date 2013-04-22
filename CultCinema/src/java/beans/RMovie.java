@@ -52,6 +52,9 @@ public class RMovie extends UpdatableBean {
         set(MovieColumn.MOVIE_AUTHOR, in);
     }
     public void setMovieDescription(String in) {
+        if (in.equals("--")) {
+            in = null;
+        }
         set(MovieColumn.MOVIE_DESCRIPTION, in);
     }
     public void setMovieDuration(String in) {
@@ -64,28 +67,28 @@ public class RMovie extends UpdatableBean {
         set(MovieColumn.MOVIE_ENDDATE, in);
     }
     private void set(String d, String in) {
-        if (d == MovieColumn.LANGUAGE) {
+        if (d.equals(MovieColumn.LANGUAGE)) {
             language = in;
         }
-        else if (d == MovieColumn.MOVIE_ID) {
+        else if (d.equals(MovieColumn.MOVIE_ID)) {
             movie_id = in;
         }
-        else if (d == MovieColumn.MOVIE_NAME) {
+        else if (d.equals(MovieColumn.MOVIE_NAME)) {
             movie_name = in;
         }
-        else if (d == MovieColumn.MOVIE_AUTHOR) {
+        else if (d.equals(MovieColumn.MOVIE_AUTHOR)) {
             movie_author = in;
         }
-        else if (d == MovieColumn.MOVIE_DESCRIPTION) {
+        else if (d.equals(MovieColumn.MOVIE_DESCRIPTION)) {
             movie_description = in;
         }
-        else if (d == MovieColumn.MOVIE_DURATION) {
+        else if (d.equals(MovieColumn.MOVIE_DURATION)) {
             movie_duration = in;
         }
-        else if (d == MovieColumn.MOVIE_STARTDATE) {
+        else if (d.equals(MovieColumn.MOVIE_STARTDATE)) {
             movie_startDate = in;
         }
-        else if (d == MovieColumn.MOVIE_ENDDATE) {
+        else if (d.equals(MovieColumn.MOVIE_ENDDATE)) {
             movie_endDate = in;
         }
         this.setChangedTrue();
@@ -116,28 +119,28 @@ public class RMovie extends UpdatableBean {
         return get(MovieColumn.MOVIE_ENDDATE);
     }
     private String get(String d) {
-        if (d == MovieColumn.LANGUAGE) {
+        if (d.equals(MovieColumn.LANGUAGE)) {
             return language;
         }
-        else if (d == MovieColumn.MOVIE_ID) {
+        else if (d.equals(MovieColumn.MOVIE_ID)) {
             return movie_id;
         }
-        else if (d == MovieColumn.MOVIE_NAME) {
+        else if (d.equals(MovieColumn.MOVIE_NAME)) {
             return movie_name;
         }
-        else if (d == MovieColumn.MOVIE_AUTHOR) {
+        else if (d.equals(MovieColumn.MOVIE_AUTHOR)) {
             return movie_author;
         }
-        else if (d == MovieColumn.MOVIE_DESCRIPTION) {
+        else if (d.equals(MovieColumn.MOVIE_DESCRIPTION)) {
             return movie_description;
         }
-        else if (d == MovieColumn.MOVIE_DURATION) {
+        else if (d.equals(MovieColumn.MOVIE_DURATION)) {
             return movie_duration;
         }
-        else if (d == MovieColumn.MOVIE_STARTDATE) {
+        else if (d.equals(MovieColumn.MOVIE_STARTDATE)) {
             return movie_startDate;
         }
-        else if (d == MovieColumn.MOVIE_ENDDATE) {
+        else if (d.equals(MovieColumn.MOVIE_ENDDATE)) {
             return movie_endDate;
         }
         return "";
