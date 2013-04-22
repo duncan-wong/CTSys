@@ -126,18 +126,27 @@ public class OrderTicket extends HttpServlet {
             
             String movieShowId = request.getParameter("movieShowId");
             
-            //get movieShowId
+            //create movieShow object
             beans.RMovieShow rMovieShow = new beans.RMovieShow();
             rMovieShow.setMovieShowID(movieShowId);
-            
-            
-            //update sBooking
+            //update sBooking if the movie show exist
             if (rMovieShow.fetchDBData()){
                 sBooking.setMovieShowID(movieShowId);
             }
+            else{
+                this.unauthorizedAccess(response);
+                return;
+            }
             
-            //add to request
+            
+            //get house seat
+            beans.RHouse rHouse = new beans.RHouse();
+            rHouse.setMovieShowID(movieShowId);
+            rHouse.fetchDBData();
+            
+            //add beans to request
             request.setAttribute(common.BeansConfig.rMovieShow, rMovieShow);
+            request.setAttribute(common.BeansConfig.rHouse, rHouse);
             
             //update trace attribute in session
             if(sBooking.getMovieShowID() != null){
