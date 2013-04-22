@@ -54,7 +54,7 @@ public class RSeat extends UpdatableBean {
     public void setBookingID(String in) {
         set(SeatColumn.BOOKING_ID, in);
     }
-    public void setShowingID(String in) {
+    public void setMovieShowID(String in) {
         set(SeatColumn.SHOWING_ID, in);
     }
     private void set(String id, String in) {

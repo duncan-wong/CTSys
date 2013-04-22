@@ -89,7 +89,7 @@ public class RBookingCol extends UpdatableBean {
                 temp.setNumOfTicket(db.getXxx(BookingColumn.NUM_OF_TICKET));
                 temp.setPaymentStatus(db.getXxx(BookingColumn.PAYMENT_STATUS));
                 temp.setTicketPrice(db.getXxx(BookingColumn.TICKET_PRICE));
-                temp.setShowingID(db.getXxx(BookingColumn.SHOWING_ID));
+                temp.setMovieShowID(db.getXxx(BookingColumn.SHOWING_ID));
                 temp.afterInitialization();
                 bookings.add(temp);
             }

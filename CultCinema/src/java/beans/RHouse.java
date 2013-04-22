@@ -54,7 +54,7 @@ public class RHouse extends UpdatableBean {
     public void setTotalRow(int in) {
         set(HouseColumn.TOTAL_ROW, Integer.toString(in));
     }
-    public void setShowingID(String in) {
+    public void setMovieShowID(String in) {
         set(HouseColumn.SHOWING_ID, in);
     }
     private void set(String id, String in) {
@@ -94,7 +94,7 @@ public class RHouse extends UpdatableBean {
     public RSeat[][] getAllSeat() {
         return seats;
     }
-    public String getShowingID() {
+    public String getMovieShowID() {
         return showing_id;
     }
     public String getSales() {

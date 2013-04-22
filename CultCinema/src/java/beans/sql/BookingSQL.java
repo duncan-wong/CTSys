@@ -34,4 +34,9 @@ public abstract class BookingSQL {
     // 2 input      payment_status
     public static final String
             u2 = "{ ? = call update_BookingStatus(?,?) }";
+//------------------------------------------------------------------------------
+    // 1 input      showing_id
+    // 2 input      booking_id
+    public static final String
+            s2_ShowSeat = "{ call show_ShowingSeat(?,?) }";
 }

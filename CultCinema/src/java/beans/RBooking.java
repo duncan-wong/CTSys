@@ -7,8 +7,10 @@ package beans;
 import beans.accessInterface.UpdatableBean;
 import beans.sql.BookingSQL;
 import beans.sqlColumnName.BookingColumn;
+import beans.sqlColumnName.SeatColumn;
 import common.jdbc.DBconnect;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
@@ -73,7 +75,7 @@ public class RBooking extends UpdatableBean {
     }
     
     // Below : are unchangable values
-    public void setShowingID(String in) {
+    public void setMovieShowID(String in) {
         this.showing_id = in;
     }
     public void setTicketPrice(String in) {
@@ -103,7 +105,7 @@ public class RBooking extends UpdatableBean {
     }
     
     // Below : are unchangable values
-    public String getShowingID() {
+    public String getMovieShowID() {
         return showing_id;
     }
     public String getTicketPrice() {
@@ -111,6 +113,29 @@ public class RBooking extends UpdatableBean {
     }
     public int getNumOfTicket() {
         return Integer.parseInt(num_of_ticket);
+    }
+    public RSeat[] getBookedSeat() {
+        ArrayList<RSeat> seats = new ArrayList<RSeat>();
+        try {
+            DBconnect db = new DBconnect(BookingSQL.s2_ShowSeat);
+            db.setXxx(1, showing_id);
+            db.setXxx(2, booking_id);
+            db.executeQuery();
+            while (db.queryHasNext()) {
+                RSeat temp = new RSeat();
+                temp.setRowNum(db.getXxx(SeatColumn.ROW_NUMBER, 0));
+                temp.setSeatNum(db.getXxx(SeatColumn.SEAT_NUMBER, 0));
+                temp.afterInitialization();
+                seats.add(temp);
+            }
+            db.disconnect();
+            return seats.toArray(new RSeat[seats.size()]);
+        } catch (NamingException ex) {
+            Logger.getLogger(RBooking.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RBooking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 //------------------------------------------------------------------------------
     @Override

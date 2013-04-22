@@ -42,7 +42,7 @@ public class RMovieShow extends UpdatableBean {
     public void setHouseID(String in) {
         set(MovieShowColumn.HOUSE_ID, in);
     }
-    public void setShowingID(String in) {
+    public void setMovieShowID(String in) {
         set(MovieShowColumn.SHOWING_ID, in);
     }
     public void setMovieID(String in) {
@@ -97,10 +97,7 @@ public class RMovieShow extends UpdatableBean {
     public String getHouseID() {
         return house_id;
     }
-    public String getShowingID() {
-        return showing_id;
-    }
-    public String getMovieShowID(){
+    public String getMovieShowID() {
         return showing_id;
     }
     public String getMovieID() {
