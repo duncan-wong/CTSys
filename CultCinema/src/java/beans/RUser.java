@@ -173,13 +173,13 @@ public class RUser extends UpdatableBean{
             db.setXxx(7, user_email);
             db.executeQuery();
             if (db.queryHasNext()) {
-                setAccountID(db.getXxx(UserColumn.ACCOUNT_ID));
-                setRole(db.getXxx(UserColumn.ROLE));
-                setLoginID(db.getXxx(UserColumn.LOGIN_ID));
-                setLoginPW(db.getXxx(UserColumn.LOGIN_PW));
-                setUserName(db.getXxx(UserColumn.USER_NAME));
-                setUserPhone(db.getXxx(UserColumn.USER_PHONE));
-                setUserEmail(db.getXxx(UserColumn.USER_EMAIL));
+                account_id = db.getXxx(UserColumn.ACCOUNT_ID);
+                role = db.getXxx(UserColumn.ROLE);
+                login_id = db.getXxx(UserColumn.LOGIN_ID);
+                login_pw = db.getXxx(UserColumn.LOGIN_PW);
+                user_name = db.getXxx(UserColumn.USER_NAME);
+                user_phone = db.getXxx(UserColumn.USER_PHONE);
+                user_email = db.getXxx(UserColumn.USER_EMAIL);
             }
             db.disconnect();
             return true;
