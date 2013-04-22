@@ -44,7 +44,7 @@
             
             <div id="content" class="defaultWidth">
                 <div class="movieContentGroup movieOnScreen">
-                    <h2 class="contentTitile">
+                    <h2 class="contentTitle">
                         <%=sLanguageBean.hMoviesControlBtnOnScreen()%>
                     </h2>
                     <%
@@ -54,7 +54,7 @@
                 </div>
                 <div class="movieContentGroup movieTomorrow inactiveContent">
                     
-                    <h2 class="contentTitile">
+                    <h2 class="contentTitle">
                         <%=sLanguageBean.hMoviesControlBtnTomorrow()%>
                     </h2>
                     <%
