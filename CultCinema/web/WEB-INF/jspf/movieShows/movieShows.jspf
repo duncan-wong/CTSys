@@ -26,7 +26,7 @@
         <form class="formInfoControl" action="<%=request.getContextPath()%>/orderTicket?movieId=${movie.movieID}" method="POST" >
             <select class="infoInput span6" name="movieShowId">
                 <c:forEach items="${movieShowCol.all}" var="movieShow">
-                    <option value="${ movieShow.showingID }">${movie.movieName}|${house.houseName}|${movieShow.showingStartDate}|${movieShow.showingStartTime}|HKD ${movieShow.ticketPrice}</option>
+                    <option value="${ movieShow.movieShowID }">${movie.movieName}|${house.houseName}|${movieShow.movieShowStartDate}|${movieShow.movieShowStartTime}|HKD ${movieShow.ticketPrice}</option>
                 </c:forEach>
             </select>
             <a class="btn noLanguageOption" type="submit">Order</a>

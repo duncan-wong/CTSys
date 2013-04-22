@@ -44,10 +44,10 @@
                             House ${rMovieShow.houseID}
                         </span>
                         <span class="infoLabel">
-                            - ${rMovieShow.showingStartDate}
+                            - ${rMovieShow.movieShowStartDate}
                         </span>
                         <span class="infoLabel">
-                            ${rMovieShow.showingStartTime}
+                            ${rMovieShow.movieShowStartTime}
                         </span>
                     </div>
                     <div class="formInfoControl">

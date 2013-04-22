@@ -128,19 +128,19 @@ public class OrderTicket extends HttpServlet {
             
             //get movieShowId
             beans.RMovieShow rMovieShow = new beans.RMovieShow();
-            rMovieShow.setShowingID(movieShowId);
+            rMovieShow.setMovieShowID(movieShowId);
             
             
             //update sBooking
             if (rMovieShow.fetchDBData()){
-                sBooking.setShowingID(movieShowId);
+                sBooking.setMovieShowID(movieShowId);
             }
             
             //add to request
             request.setAttribute(common.BeansConfig.rMovieShow, rMovieShow);
             
             //update trace attribute in session
-            if(sBooking.getShowingID() != null){
+            if(sBooking.getMovieShowID() != null){
                 session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[2]);
             }
             

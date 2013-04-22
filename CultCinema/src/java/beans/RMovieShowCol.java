@@ -92,11 +92,11 @@ public class RMovieShowCol extends UpdatableBean {
                 RMovieShow r = new RMovieShow();
                 r.setHouseID(db.getXxx(MovieShowColumn.HOUSE_ID));
                 r.setMovieID(db.getXxx(MovieShowColumn.MOVIE_ID));
-                r.setShowingEndDate(db.getXxx(MovieShowColumn.SHOWING_ENDDATE));
-                r.setShowingEndTime(db.getXxx(MovieShowColumn.SHOWING_ENDTIME));
+                r.setMovieShowEndDate(db.getXxx(MovieShowColumn.SHOWING_ENDDATE));
+                r.setMovieShowEndTime(db.getXxx(MovieShowColumn.SHOWING_ENDTIME));
                 r.setMovieShowID(db.getXxx(MovieShowColumn.SHOWING_ID));
-                r.setShowingStartDate(db.getXxx(MovieShowColumn.SHOWING_STARTDATE));
-                r.setShowingStartTime(db.getXxx(MovieShowColumn.SHOWING_STARTTIME));
+                r.setMovieShowStartDate(db.getXxx(MovieShowColumn.SHOWING_STARTDATE));
+                r.setMovieShowStartTime(db.getXxx(MovieShowColumn.SHOWING_STARTTIME));
                 r.setTicketPrice(db.getXxx(MovieShowColumn.TICKET_PRICE));
                 r.afterInitialization();
                 showingCol.add(r);

@@ -48,16 +48,16 @@ public class RMovieShow extends UpdatableBean {
     public void setMovieID(String in) {
         set(MovieShowColumn.MOVIE_ID, in);
     }
-    public void setShowingStartDate(String in) {
+    public void setMovieShowStartDate(String in) {
         set(MovieShowColumn.SHOWING_STARTDATE, in);
     }
-    public void setShowingStartTime(String in) {
+    public void setMovieShowStartTime(String in) {
         set(MovieShowColumn.SHOWING_STARTTIME, in);
     }
-    public void setShowingEndDate(String in) {
+    public void setMovieShowEndDate(String in) {
         set(MovieShowColumn.SHOWING_ENDDATE, in);
     }
-    public void setShowingEndTime(String in) {
+    public void setMovieShowEndTime(String in) {
         set(MovieShowColumn.SHOWING_ENDTIME, in);
     }
     public void setTicketPrice(String in) {
@@ -103,16 +103,16 @@ public class RMovieShow extends UpdatableBean {
     public String getMovieID() {
         return movie_id;
     }
-    public String getShowingStartDate() {
+    public String getMovieShowStartDate() {
         return showing_startDate;
     }
-    public String getShowingStartTime() {
+    public String getMovieShowStartTime() {
         return showing_startTime;
     }
-    public String getShowingEndDate() {
+    public String getMovieShowEndDate() {
         return showing_endDate;
     }
-    public String getShowingEndTime() {
+    public String getMovieShowEndTime() {
         return showing_endTime;
     }
     public String getTicketPrice() {
