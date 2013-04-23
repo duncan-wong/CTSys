@@ -6,7 +6,7 @@
 
 <jsp:useBean id="rCurrentMovie" type="beans.RMovie" scope="request"></jsp:useBean>
 <jsp:useBean id="rMovieShow" type="beans.RMovieShow" scope="request"></jsp:useBean>
-    
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +14,7 @@
         
         <%@include file="/WEB-INF/jspf/common/headSession.jspf" %>
         
-        
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/houseSeat.css" />
     </head>
     <body>
         <div class="asgClaim_stayTop scrollLeft">
@@ -55,7 +55,22 @@
                             HKD ${rMovieShow.ticketPrice}
                         </span>
                     </div>
-                </div>   
+                </div>
+                        
+                <div class="formInfoContainer">
+                    <c:set var="activeSeats" scope="page" value="${activeSeats}" />
+                    <div class="houseSeatPlan">
+                        <c:forEach var="row" items="${activeSeats}">
+                            <div class="houseRow">
+                                <c:forEach var="seat" items="${row}">
+                                    <span class="houseSeat" status="${seat}">
+                                        ${seat}
+                                    </span>
+                                </c:forEach>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </div>
             </div>
         </div>
         

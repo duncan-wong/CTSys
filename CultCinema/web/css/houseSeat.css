@@ -1,0 +1,32 @@
+/* 
+    Document   : houseSeat
+    Created on : Apr 23, 2013, 1:11:37 AM
+    Author     : DUNCAN
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.houseSeatPlan{
+    display:block;
+    position:relative;
+    margin: 0 auto;
+    background: #5A5A5A;
+}
+
+
+.houseRow{
+    width:100%;
+}
+
+.houseSeat{
+    display:block;
+    float:left;
+    margin:0;
+    padding:0;
+    font-size: 20px;
+    color:white;
+    width:28px;
+    height:28px;
+    border:solid 1px white;
+}
+

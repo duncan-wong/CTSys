@@ -140,13 +140,41 @@ public class OrderTicket extends HttpServlet {
             
             
             //get house seat
-            beans.RHouse rHouse = new beans.RHouse();
-            rHouse.setMovieShowID(movieShowId);
+            beans.RHouse rHouse_show = new beans.RHouse();
+            rHouse_show.setMovieShowID(movieShowId);
+            rHouse_show.fetchDBData();
+            
+            beans.RHouse rHouse = new beans.RHouse(rMovieShow.getHouseID());
             rHouse.fetchDBData();
+            
+            //intergate seat status
+            beans.RSeat[][] houseSeats = rHouse.getAllSeat();
+            int[][] activeSeats = new int[houseSeats.length][houseSeats[0].length];
+            String[][] seatsId = new String[houseSeats.length][houseSeats[0].length];
+            for (int i = 0; i < houseSeats.length; i ++){
+                for (int j = 0; j < houseSeats[i].length; j++){
+                    seatsId[i][j] = houseSeats[i][j].getSeatID();
+                    if (houseSeats[i][j].isActive_Seat()){
+                        if (rHouse_show.getSeatAt(i, j).isBooked()){
+                            activeSeats[i][j] = 0;
+                        }
+                        else{
+                            activeSeats[i][j] = 1;
+                        }
+                    }
+                    else{
+                        activeSeats[i][j] = -1;
+                    }
+                }
+            }
+            
+            //add activeSeat to reequest
+            request.setAttribute("activeSeats", activeSeats);
+            request.setAttribute("seatsId", seatsId);
             
             //add beans to request
             request.setAttribute(common.BeansConfig.rMovieShow, rMovieShow);
-            request.setAttribute(common.BeansConfig.rHouse, rHouse);
+            request.setAttribute(common.BeansConfig.rHouse, rHouse_show);
             
             //update trace attribute in session
             if(sBooking.getMovieShowID() != null){
