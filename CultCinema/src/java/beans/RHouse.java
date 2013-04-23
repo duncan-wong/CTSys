@@ -105,6 +105,11 @@ public class RHouse extends UpdatableBean {
     public RSeat getSeatAt(int row, int seat) {
         return seats[row][seat];
     }
+    public RSeat getSeatAt(String seatId){
+        int row = seatId.charAt(0) - 'A';
+        int seat = Integer.valueOf(seatId.substring(1, 2));
+        return this.getSeatAt(row, seat);
+    }
     public RSeat[][] getAllSeat() {
         return seats;
     }

@@ -103,12 +103,19 @@ public class RSeat extends UpdatableBean {
         }
         return true;
     }
+    //not set by fetching
+    public String getActiveStatus(){
+        return this.active;
+    }
     public String getRowID() {
         char c = (char) ('A' + Integer.parseInt(row_number) - 1);
         return "" + c;
     }
     public String getSeatID() {
         return getRowID() + String.format("%02d", Integer.parseInt(seat_number));
+    }
+    public String getSeatIdInRow(){
+        return String.format("%02d", Integer.parseInt(seat_number));
     }
     public String getTicketID() {
         return String.format("%06d", Integer.parseInt(showing_id)) + "-" + getSeatID();

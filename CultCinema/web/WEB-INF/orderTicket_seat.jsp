@@ -15,6 +15,7 @@
         <%@include file="/WEB-INF/jspf/common/headSession.jspf" %>
         
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/houseSeat.css" />
+        <script src="<%=request.getContextPath()%>/js/houseSeatPlan.js"></script>
     </head>
     <body>
         <div class="asgClaim_stayTop scrollLeft">
@@ -57,22 +58,33 @@
                     </div>
                 </div>
                         
-                <div class="formInfoContainer">
-                    <c:set var="activeSeats" scope="page" value="${activeSeats}" />
+                            <form class="formInfoContainer" action="<%=request.getContextPath()%>/orderTicket?movieId=${rCurrentMovie.movieID}" method="POST">
+                    <c:set var="houseSeats" scope="page" value="${houseSeats}" />
                     <div class="houseSeatPlanContainer">
-                    <table class="houseSeatPlan">
-                        <c:forEach var="row" items="${activeSeats}">
-                            <tr class="houseRow">
-                                <c:forEach var="seat" items="${row}">
-                                    <td class="houseSeat" status="${seat}">
-                                        ${seat}
+                        <div class="houseScreen">
+                            SCREEN
+                        </div>
+                        
+                        <table class="houseSeatPlan">
+                            <c:forEach var="row" items="${houseSeats}">
+                                <tr class="houseRow">
+                                    <td class="houseRowId">
+                                        ${row[0].rowID}
                                     </td>
-                                </c:forEach>
-                            </tr>
-                        </c:forEach>
-                    </table>
+                                    <c:forEach var="seat" items="${row}">
+                                        <td id="${seat.seatID}" class="houseSeat" status="${seat.activeStatus}" seatId="${seat.seatIdInRow}">
+                                        </td>
+                                    </c:forEach>
+                                    <td class="houseRowId">
+                                        ${row[0].rowID}
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                        <input type="hidden" name="selectedSeats" id="txtSelectedSeat" />
                     </div>
-                </div>
+                    <a class="btn noLanguageOption" type="submit_orderTicket">Order</a>
+                </form>
             </div>
         </div>
         

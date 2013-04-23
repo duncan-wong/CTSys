@@ -124,7 +124,17 @@ public class OrderTicket extends HttpServlet {
         if(this.stepTrace[1].equals(nextStep)){
             //handle selected movieShow and select seat
             
-            String movieShowId = request.getParameter("movieShowId");
+            String movieShowId = "1";
+            if (request.getParameter("movieShowId") != null){
+                movieShowId = request.getParameter("movieShowId");
+            }
+            else if (sBooking.getMovieShowID() != null){
+                movieShowId = sBooking.getMovieShowID();
+            }
+            else{
+                this.unauthorizedAccess(response);
+                return;
+            }
             
             //create movieShow object
             beans.RMovieShow rMovieShow = new beans.RMovieShow();
@@ -138,7 +148,11 @@ public class OrderTicket extends HttpServlet {
                 return;
             }
             
+            //fill in sBooking
+            sBooking.setMovieShowID(movieShowId);
             
+            
+            //preparation for selecting seats
             //get house seat
             beans.RHouse rHouse_show = new beans.RHouse();
             rHouse_show.setMovieShowID(movieShowId);
@@ -148,29 +162,29 @@ public class OrderTicket extends HttpServlet {
             rHouse.fetchDBData();
             
             //intergate seat status
+            //status: 
+            //  available: 1
+            //  booked: 0
+            //  disable: -1
             beans.RSeat[][] houseSeats = rHouse.getAllSeat();
-            int[][] activeSeats = new int[houseSeats.length][houseSeats[0].length];
-            String[][] seatsId = new String[houseSeats.length][houseSeats[0].length];
             for (int i = 0; i < houseSeats.length; i ++){
                 for (int j = 0; j < houseSeats[i].length; j++){
-                    seatsId[i][j] = houseSeats[i][j].getSeatID();
                     if (houseSeats[i][j].isActive_Seat()){
                         if (rHouse_show.getSeatAt(i, j).isBooked()){
-                            activeSeats[i][j] = 0;
+                            houseSeats[i][j].setActiveStatus(0);
                         }
                         else{
-                            activeSeats[i][j] = 1;
+                            houseSeats[i][j].setActiveStatus(1);
                         }
                     }
                     else{
-                        activeSeats[i][j] = -1;
+                        houseSeats[i][j].setActiveStatus(-1);
                     }
                 }
             }
             
             //add activeSeat to reequest
-            request.setAttribute("activeSeats", activeSeats);
-            request.setAttribute("seatsId", seatsId);
+            request.setAttribute("houseSeats", houseSeats);
             
             //add beans to request
             request.setAttribute(common.BeansConfig.rMovieShow, rMovieShow);
@@ -188,10 +202,18 @@ public class OrderTicket extends HttpServlet {
             //handle selected seat and make payment
             
             
+            //handle selected seat
+            //and update trace attribute in session
+            String selectedSeatsStr = request.getParameter("selectedSeats") ;
             
-            //update trace attribute in session
-            if (request.getAttribute("seats") != null){
+            
+            if (selectedSeatsStr != null){
+                String[] selectedSeatsId = selectedSeatsStr.split(",");
+                
+                
+                //update trace attribute
                 session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[3]);
+                
                 //dispatch to payment
                 this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_orderTicket_time).forward(request, response);
             }

@@ -17,18 +17,57 @@
     background: #5A5A5A;
 }
 
+.houseRowId{
+    color: white;
+}
 
 .houseRow{
     width:100%;
 }
 
+.houseScreen{
+    width:298px;
+    border:solid 1px red;
+    margin:20px auto;
+    text-align: center;
+}
+
 .houseSeat{
     margin:0;
     padding:0;
-    font-size: 20px;
+    font-size: 16px;
     color:white;
     width:28px;
     height:28px;
     border:solid 1px white;
+    text-align: center;
+    font-weight: lighter;
+    cursor: pointer;
 }
 
+.houseSeat.seat_available{
+    background:#64e242;
+    color:black;
+}
+
+.houseSeat.seat_hold{
+    background: yellow;
+    color:black;
+}
+
+.houseSeat.seat_book{
+    background:#b4041f;
+    color:black;
+}
+
+.houseSeat.seat_disable{
+    background:#5A5A5A;
+    color:#5A5A5A;
+    border-color:#5A5A5A;
+    cursor:default;
+}
+
+.houseSeat.seat_select{
+    background:white;
+    color:black;
+}
