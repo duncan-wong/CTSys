@@ -5,7 +5,6 @@
 package beans;
 
 import beans.accessInterface.UpdatableBean;
-import beans.sql.BookingSQL;
 import beans.sql.HouseSQL;
 import beans.sql.SeatSQL;
 import beans.sqlColumnName.HouseColumn;
@@ -143,6 +142,8 @@ public class RHouse extends UpdatableBean {
         }
     }
     
+    
+    
     private boolean fetchMovieShowSeating() {
         try {
             ArrayList<RSeat[]> rows = new ArrayList<RSeat[]>();
@@ -154,6 +155,8 @@ public class RHouse extends UpdatableBean {
             int rowCount = 1;
             while (db.queryHasNext()) {
                 rsTemp = new RSeat();
+                
+                //store the row and clear the row temp
                 if (rowCount + 1 == db.getXxx(SeatColumn.ROW_NUMBER, 0)) {
                     rows.add(oneRow.toArray(new RSeat[oneRow.size()]));
                     rowCount++;
@@ -163,15 +166,35 @@ public class RHouse extends UpdatableBean {
                 rsTemp.setBookingID(db.getXxx(SeatColumn.BOOKING_ID));
                 rsTemp.setRowNum(db.getXxx(SeatColumn.ROW_NUMBER, 0));
                 rsTemp.setSeatNum(db.getXxx(SeatColumn.SEAT_NUMBER, 0));
+                rsTemp.setActiveStatus(db.getXxx(SeatColumn.ACTIVE));
                 rsTemp.afterInitialization();
                 oneRow.add(rsTemp);
             }
             rows.add(oneRow.toArray(new RSeat[oneRow.size()]));
-            seats = rows.toArray(new RSeat[rows.size()][]);
+            seats = rows.toArray(new RSeat[rows.size() + 1][]);
             for (int i=0; i<rows.size(); i++) {
                 seats[i] = rows.get(i);
             }
-            total_row = Integer.toString(seats.length);
+            total_row = Integer.toString(rows.size());
+            db.disconnect();
+            
+            // store the queue into [total_row + 1]
+            db = new DBconnect("{ call show_SeatQueue(?) }");
+            db.setXxx(1, showing_id);
+            db.executeQuery();
+            oneRow.clear();
+            while (db.queryHasNext()) {
+                rsTemp = new RSeatQueue();
+                rsTemp.setBookingID(db.getXxx(SeatColumn.BOOKING_ID));
+                rsTemp.setRowNum(db.getXxx(SeatColumn.ROW_NUMBER, 0));
+                rsTemp.setSeatNum(db.getXxx(SeatColumn.SEAT_NUMBER, 0));
+                rsTemp.setActiveStatus(db.getXxx(SeatColumn.ACTIVE));
+                rsTemp.afterInitialization();
+                oneRow.add(rsTemp);
+            }
+            seats[rowCount] = oneRow.toArray(new RSeat[oneRow.size()]);
+            
+            
             db.disconnect();
             return true;
         } catch (NamingException ex) {
@@ -182,6 +205,8 @@ public class RHouse extends UpdatableBean {
         return false;
     }
     
+    
+   
     private boolean fetchHouseData() {
         try {
             DBconnect db = new DBconnect(HouseSQL.s1);

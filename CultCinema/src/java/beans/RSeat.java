@@ -19,7 +19,7 @@ import javax.naming.NamingException;
  */
 public class RSeat extends UpdatableBean {
     private String house_id;
-    private String active;
+    private String seat_status;
     private String row_number;
     private String seat_number;
     private String booking_id;
@@ -30,7 +30,7 @@ public class RSeat extends UpdatableBean {
         house_id = null;
         row_number = null;
         seat_number = null;
-        active = null;
+        seat_status = null;
         showing_id = null;
         booking_id = null;
     }
@@ -51,6 +51,9 @@ public class RSeat extends UpdatableBean {
     public void setActiveStatus(int in) {
         set(SeatColumn.ACTIVE, Integer.toString(in));
     }
+    public void setActiveStatus(String in) {
+        set(SeatColumn.ACTIVE, in);
+    }
     public void setBookingID(String in) {
         set(SeatColumn.BOOKING_ID, in);
     }
@@ -65,7 +68,7 @@ public class RSeat extends UpdatableBean {
             seat_number = in;
         }
         else if (id.equals(SeatColumn.ACTIVE)) {
-            active = in;
+            seat_status = in;
         }
         else if (id.equals(SeatColumn.HOUSE_ID)) {
             house_id = in;
@@ -86,13 +89,7 @@ public class RSeat extends UpdatableBean {
         return Integer.parseInt(seat_number);
     }
     public boolean isActive_Seat() {
-        if (active.equals("1")) {
-            return true;
-        }
-        return false;
-    }
-    public boolean isDisable_Ticket() {
-        if (booking_id.equals("Disable")) {
+        if (seat_status.equals("1")) {
             return true;
         }
         return false;
@@ -105,7 +102,17 @@ public class RSeat extends UpdatableBean {
     }
     //not set by fetching
     public String getActiveStatus(){
-        return this.active;
+        if (seat_status.equals("Disable")) {
+        }
+        else if (seat_status.equals("Refund Pending")) {
+        }
+        return this.seat_status;
+    }
+    public String getMovieShowID() {
+        return showing_id;
+    }
+    public String getBookingID() {
+        return booking_id;
     }
     public String getRowID() {
         char c = (char) ('A' + Integer.parseInt(row_number) - 1);
@@ -138,7 +145,7 @@ public class RSeat extends UpdatableBean {
     }
     
     // for movie show ticket use
-    public boolean commitInsert_Ticket() {
+    private boolean commitInsert_Ticket() {
         int checking = 0;
         try {
             DBconnect db = new DBconnect(SeatSQL.i4_Showing);
@@ -162,7 +169,7 @@ public class RSeat extends UpdatableBean {
     }
     
     // for house seat
-    public boolean commitUpdate_Seat() {
+    private boolean commitUpdate_Seat() {
         int checking = 0;
         try {
             DBconnect db = new DBconnect(SeatSQL.u4_House);
@@ -170,7 +177,7 @@ public class RSeat extends UpdatableBean {
             db.setXxx(2, house_id);
             db.setXxx(3, row_number);
             db.setXxx(4, seat_number);
-            db.setXxx(5, active);
+            db.setXxx(5, seat_status);
             db.executeUpdate();
             checking = db.getResult();
             db.disconnect();
