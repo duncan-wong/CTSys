@@ -11,7 +11,7 @@ package beans.accessInterface;
 public abstract class PaymentStatusBean {
     public static final String Payment_Complete = "Payment Complete";
     public static final String Payment_Incomplete = "Payment Incomplete";
-    public static final String Cancel = "Cancel";
+    public static final String Payment_Cancel = "Payment Cancel";
     public static final String Refund_Pending = "Refund Pending";
     public static final String Refund_Accepted = "Refund Accepted";
     public static final String Refund_Declined = "Refund Decliend";

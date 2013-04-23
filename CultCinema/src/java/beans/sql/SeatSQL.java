@@ -27,5 +27,5 @@ public class SeatSQL {
     // 3 input      seat_number
     // 4 input      booking_id
     public static final String
-            i4_Showing = "{ ? = call insert_ShowingSeatBooking(?,?,?,?) }";
+            i4_Showing = "{ ? = call insert_ShowingSeat(?,?,?,?) }";
 }
