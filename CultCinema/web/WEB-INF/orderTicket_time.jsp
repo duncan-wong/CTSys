@@ -49,7 +49,7 @@
                         </div>
                         <div class="movieDescriptionItem">
                             <span class="label">
-                                <%=sLanguageBean.cMoviesLbAuthor()%>: 
+                                <%=sLanguageBean.cMoviesLbDirector()%>: 
                             </span>
                             <span class="content">
                                 ${rCurrentMovie.movieAuthor}

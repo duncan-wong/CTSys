@@ -56,6 +56,9 @@ public class RMovieCol extends UpdatableBean{
     public int count() {
         return movieCol.size();
     }
+    public int getCount(){
+        return movieCol.size();
+    }
     public void changeLang(String in) {
         search_Language = in;
     }

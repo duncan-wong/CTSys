@@ -152,6 +152,10 @@
         <servlet-name>Houses</servlet-name>
         <servlet-class>servlets.Houses</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Search</servlet-name>
+        <servlet-class>servlets.Search</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -227,6 +231,10 @@
     <servlet-mapping>
         <servlet-name>Houses</servlet-name>
         <url-pattern>/houses</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Search</servlet-name>
+        <url-pattern>/search</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

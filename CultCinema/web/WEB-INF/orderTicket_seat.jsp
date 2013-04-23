@@ -57,8 +57,15 @@
                         </span>
                     </div>
                 </div>
-                        
-                            <form class="formInfoContainer" action="<%=request.getContextPath()%>/orderTicket?movieId=${rCurrentMovie.movieID}" method="POST">
+                
+                <c:if test="${errorMsg != null}">
+                    <span class="error">
+                        ${errorMsg["purchaseError"]}
+                    </span>
+                    <a class="btn">Log In</a>
+                    <a class="btn">Sign Up!</a>
+                </c:if>
+                <form class="formInfoContainer" action="<%=request.getContextPath()%>/orderTicket?movieId=${rCurrentMovie.movieID}" method="POST">
                     <c:set var="houseSeats" scope="page" value="${houseSeats}" />
                     <div class="houseSeatPlanContainer">
                         <div class="houseScreen">

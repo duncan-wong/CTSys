@@ -36,7 +36,7 @@
             </div>
             
             <div id="content" class="defaultWidth">
-                <c:if test="${errorMsg == null}">
+                <c:if test="${errorMsg != null}">
                     <span class="error">
                         ${errorMsg["pageError"]}
                     </span>

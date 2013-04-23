@@ -6,6 +6,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Hashtable;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -96,6 +97,7 @@ public class OrderTicket extends HttpServlet {
         //get trace attribute in session
         HttpSession session = request.getSession(false);
         String nextStep = (String) session.getAttribute(common.URLConfig.nextInternalUrl);
+        beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
         
         //get urlencoded movie id
         String movieId = (String) request.getParameter("movieId");
@@ -207,12 +209,23 @@ public class OrderTicket extends HttpServlet {
             String selectedSeatsStr = request.getParameter("selectedSeats") ;
             
             
-            if (selectedSeatsStr != null){
+            if (selectedSeatsStr != null && !selectedSeatsStr.equals("")){
                 String[] selectedSeatsId = selectedSeatsStr.split(",");
+                Hashtable<String, String> errorMsg = new Hashtable<String, String>();
                 
+                if (!sStatus.getIsLoggedIn() && selectedSeatsId.length > 1){
+                    errorMsg.put("purchaseError", "Sign up to purchase more than 1 ticket at once!");
+                    request.setAttribute("errorMsg", errorMsg);
+                    
+                    session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[1]);
+                    //dispatch to select seat
+                    this.getServletContext().getRequestDispatcher(common.URLConfig.SURL_orderTicket).forward(request, response);
+                    return;
+                }
                 
                 //update trace attribute
                 session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[3]);
+                session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[1]);
                 
                 //dispatch to payment
                 this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_orderTicket_time).forward(request, response);

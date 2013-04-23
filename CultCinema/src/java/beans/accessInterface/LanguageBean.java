@@ -56,7 +56,7 @@ public class LanguageBean {
     public String cLoginBtnSubmit(){return"Log In";}
     //content - movies
     public String cMoviesLbMovieTitle(){return"MovieTitle";}
-    public String cMoviesLbAuthor(){return"Author";}
+    public String cMoviesLbDirector(){return"Director";}
     public String cMoviesLbLength(){return"Length";}
     public String cMoviesLbDescription(){return"Description";}
     public String cMoviesBtnOrderTicket(){return"Order Ticket";}

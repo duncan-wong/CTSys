@@ -24,7 +24,7 @@ public class SLanguageB_zh extends beans.accessInterface.LanguageBean{
     //header
     //header - index
     public String hIndexMainTitle(){return"Cult Cinema";}
-    public String hIndexSubTitle(){return"我們所有您想要的!";}
+    public String hIndexSubTitle(){return"我們有您想要的!";}
     public String hIndexGreetingMsg(){return"請享受你的歡樂時光, ";}
     public String hIndexControlMsg(){return"是會員嗎?";}
     public String hIndexControlBtnLogIn(){return"登入";}
