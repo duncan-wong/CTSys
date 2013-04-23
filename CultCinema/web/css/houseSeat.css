@@ -6,8 +6,12 @@
         Purpose of the stylesheet follows.
 */
 
+.houseSeatPlanContainer {
+    width:100%;
+    overflow-x: auto;
+}
+
 .houseSeatPlan{
-    display:block;
     position:relative;
     margin: 0 auto;
     background: #5A5A5A;
@@ -19,8 +23,6 @@
 }
 
 .houseSeat{
-    display:block;
-    float:left;
     margin:0;
     padding:0;
     font-size: 20px;

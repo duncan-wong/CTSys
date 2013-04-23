@@ -59,16 +59,18 @@
                         
                 <div class="formInfoContainer">
                     <c:set var="activeSeats" scope="page" value="${activeSeats}" />
-                    <div class="houseSeatPlan">
+                    <div class="houseSeatPlanContainer">
+                    <table class="houseSeatPlan">
                         <c:forEach var="row" items="${activeSeats}">
-                            <div class="houseRow">
+                            <tr class="houseRow">
                                 <c:forEach var="seat" items="${row}">
-                                    <span class="houseSeat" status="${seat}">
+                                    <td class="houseSeat" status="${seat}">
                                         ${seat}
-                                    </span>
+                                    </td>
                                 </c:forEach>
-                            </div>
+                            </tr>
                         </c:forEach>
+                    </table>
                     </div>
                 </div>
             </div>
