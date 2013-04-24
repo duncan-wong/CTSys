@@ -172,9 +172,10 @@ public class RHouse extends UpdatableBean {
             }
             rows.add(oneRow.toArray(new RSeat[oneRow.size()]));
             seats = rows.toArray(new RSeat[rows.size() + 1][]);
+            /*
             for (int i=0; i<rows.size(); i++) {
                 seats[i] = rows.get(i);
-            }
+            } /**/
             total_row = Integer.toString(rows.size());
             db.disconnect();
             
