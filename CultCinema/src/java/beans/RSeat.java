@@ -82,30 +82,30 @@ public class RSeat extends UpdatableBean {
         this.setChangedTrue();
     }
 //-----------------------------------------------------------------------------
-    public int getRowNum() {
-        return Integer.parseInt(row_number);
-    }
-    public int getSeatNum() {
-        return Integer.parseInt(seat_number);
-    }
     public boolean isActive_Seat() {
-        if (seat_status.equals("1")) {
-            return true;
+        if (seat_status.equals("0")) {
+            return false;
         }
-        return false;
+        return true;
     }
+    
     public boolean isBooked() {
         if (booking_id.equals("--")) {
             return false;
         }
         return true;
     }
-    //not set by fetching
+    
+    //check the booking is Refund pending or not
+    public boolean isPendingRefund() {
+        if (seat_status.equals("2")) {
+            return true;
+        }
+        return false;
+    }
+    
+    // 0 == disable, 2 == refund pending
     public String getActiveStatus(){
-        if (seat_status.equals("Disable")) {
-        }
-        else if (seat_status.equals("Refund Pending")) {
-        }
         return this.seat_status;
     }
     public String getMovieShowID() {
@@ -114,16 +114,36 @@ public class RSeat extends UpdatableBean {
     public String getBookingID() {
         return booking_id;
     }
+    // row number
+    public int getRowNum() {
+        return Integer.parseInt(row_number);
+    }
+    
+    // seat number
+    public int getSeatNum() {
+        return Integer.parseInt(seat_number);
+    }
+    
+    // row in charactor
     public String getRowID() {
         char c = (char) ('A' + Integer.parseInt(row_number) - 1);
         return "" + c;
     }
+    
+    // seat left padding with two '0'
+    //  +
+    // row in charactor
     public String getSeatID() {
         return getRowID() + String.format("%02d", Integer.parseInt(seat_number));
     }
+    
     public String getSeatIdInRow(){
         return String.format("%02d", Integer.parseInt(seat_number));
     }
+    
+    // left padding movieShowID with six '0'
+    //  +
+    // seatID
     public String getTicketID() {
         return String.format("%06d", Integer.parseInt(showing_id)) + "-" + getSeatID();
     }

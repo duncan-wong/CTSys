@@ -21,10 +21,13 @@ public class RSeatQueue extends RSeat {
     
     @Override
     public boolean commitChange() {
-        return false;
+        if (this.isNew()) {
+            return commitInsert();
+        }
+        return true;
     }
     
-    public boolean commitInsert() {
+    private boolean commitInsert() {
         int checking = 0;
         try {
             DBconnect db = new DBconnect("{ ? = call insert_SeatQueue(?,?,?,?) }");
@@ -46,6 +49,7 @@ public class RSeatQueue extends RSeat {
         }
         return false;
     }
+    
     
     public boolean commitDelete() {
         int checking = 0;
