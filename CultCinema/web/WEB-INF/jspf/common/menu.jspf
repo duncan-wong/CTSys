@@ -59,7 +59,9 @@
         <% } %>
         
         <li>
-            <input type="text" id="searchText" name="searchText" placeholder="Search" />
+            <form action="<%=request.getContextPath() %>/search" method="POST" class="inline">
+                <input type="text" id="txtSearch" name="searchStr" placeholder="Search" />
+            </form>
         </li>
         
         <li>

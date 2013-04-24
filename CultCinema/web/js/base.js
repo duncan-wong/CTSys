@@ -50,6 +50,16 @@ $(document).ready(function(){
         return true;
     });
     
+    
+    //search function in menu bar
+    $('#txtSearch').closest('form').submit(function(){
+        var searchStr = $('#txtSearch').val();
+        if (searchStr != null){
+            return true;
+        }
+        return false;
+    });
+    
 });
 
 function readCookie(name) {

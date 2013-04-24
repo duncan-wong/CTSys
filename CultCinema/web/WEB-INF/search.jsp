@@ -30,28 +30,27 @@
                     <h1 class="headerMainTitle">
                         <%=sLanguageBean.hMoviesMainTitle()%>
                     </h1>
-                    </div>
                 </div>
             </div>
             
             <div id="content" class="defaultWidth">
-                <div class="movieContentGroup movieOnScreen">
-                    <h2 class="contentTitle">
-                        Movie title
-                    </h2>
-                    <%
-                        request.setAttribute("movieCol", request.getAttribute(common.BeansConfig.rMovieCol_onScreen));
-                    %>
-                    <%@include file="/WEB-INF/jspf/movies/movies.jspf" %>
+                <div class="movieContentGroup">
+                    <c:if test="${rMC_title.count > 0}">
+                        <h2 class="contentTitle">
+                            Movie title
+                        </h2>
+                        <c:set var="movieCol" value="${rMC_title}" scope="request" />
+                        <%@include file="/WEB-INF/jspf/movies/movies.jspf" %>
+                    </c:if>
                 </div>
-                <div class="movieContentGroup movieTomorrow inactiveContent">
-                    
-                    <h2 class="contentTitle">
-                        Director
-                    </h2>
-                    <%
-                        request.setAttribute("movieCol", request.getAttribute(common.BeansConfig.rMovieCol_tomorrow));
-                    %>
+                <div class="movieContentGroup">
+                    <c:if test="${rMC_director.count > 0}">
+                        <h2 class="contentTitle">
+                            Director
+                        </h2>
+                        <c:set var="movieCol" value="${rMC_director}" scope="request" />
+                        <%@include file="/WEB-INF/jspf/movies/movies.jspf" %>
+                    </c:if>
                 </div>
             </div>
         </div>

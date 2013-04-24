@@ -211,16 +211,13 @@ public class OrderTicket extends HttpServlet {
             
             if (selectedSeatsStr != null && !selectedSeatsStr.equals("")){
                 String[] selectedSeatsId = selectedSeatsStr.split(",");
-                Hashtable<String, String> errorMsg = new Hashtable<String, String>();
                 
-                if (!sStatus.getIsLoggedIn() && selectedSeatsId.length > 1){
-                    errorMsg.put("purchaseError", "Sign up to purchase more than 1 ticket at once!");
-                    request.setAttribute("errorMsg", errorMsg);
-                    
-                    session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[1]);
-                    //dispatch to select seat
-                    this.getServletContext().getRequestDispatcher(common.URLConfig.SURL_orderTicket).forward(request, response);
-                    return;
+                if (selectedSeatsId.length > 0){
+                    sBooking.setNumOfTicket(selectedSeatsId.length);
+                    for (int i = 0; i < selectedSeatsId.length; i ++){
+                        //create tickets and put into sBooking
+                        //beans.RSeat
+                    }
                 }
                 
                 //update trace attribute

@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,25 +30,38 @@ public class Search extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        HttpSession session = request.getSession();
+        beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
         String searchStr = request.getParameter("searchStr");
+        if (!(searchStr == null || searchStr.equals(""))){
+            searchStr = new String(request.getParameter("searchStr").getBytes("ISO-8859-1"), "UTF-8");
+            session.setAttribute("searchStr", searchStr);
+        }
+        
+        searchStr = (String)session.getAttribute("searchStr");
         //redirect to /movies if no search string
         if (searchStr == null || searchStr.equals("")){
             response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURL_movies));
             return;
         }
         
+        
+        
         //do search
         beans.RMovieCol rMovieCol_title = new beans.RMovieCol();
         rMovieCol_title.searchMovieName(searchStr);
-        rMovieCol_title.fetchDBData();;
+        rMovieCol_title.changeLang(sStatus.getLanguageOption());
+        rMovieCol_title.fetchDBData();
         
-        beans.RMovieCol rMovieCol_author = new beans.RMovieCol();
-        rMovieCol_author.searchMovieAuthor(searchStr);
-        rMovieCol_author.fetchDBData();
+        beans.RMovieCol rMovieCol_director = new beans.RMovieCol();
+        rMovieCol_director.searchMovieAuthor(searchStr);
+        rMovieCol_director.changeLang(sStatus.getLanguageOption());
+        rMovieCol_director.fetchDBData();
         
         //add to request
         request.setAttribute(common.BeansConfig.rMovieCol_title, rMovieCol_title);
-        request.setAttribute(common.BeansConfig.rMovieCol_author, rMovieCol_author);
+        request.setAttribute(common.BeansConfig.rMovieCol_director, rMovieCol_director);
         
         //dispatch
         this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_search).forward(request, response);

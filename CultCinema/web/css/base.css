@@ -164,6 +164,11 @@ input{
     bottom:0;
     z-index: 1000;
 }
+
+.inline{
+    display:inline; !important
+}
+
 /*---------header----------*/
 div#header{
     margin-top:40px;

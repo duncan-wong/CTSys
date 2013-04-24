@@ -21,7 +21,7 @@ public abstract class BeansConfig {
     public static final String rMovieShowCol = "rMovieShowCol";
     public static final String rMovieShow = "rMovieShow";
     public static final String rMovieCol_title = "rMC_title";
-    public static final String rMovieCol_author = "rMC_author";
+    public static final String rMovieCol_director = "rMC_director";
     
     //session beans
     public static final String sStatus = "sStatus";

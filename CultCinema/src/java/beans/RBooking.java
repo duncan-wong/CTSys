@@ -29,6 +29,10 @@ public class RBooking extends UpdatableBean {
     private String showing_id;
     private String ticket_price;
     private String num_of_ticket;
+    
+    // web app internal use
+    private RSeat[] selectedTickets;
+    private int noOfTickets;
 //-----------------------------------------------------------------------------
     public RBooking() {
         super();
@@ -40,6 +44,9 @@ public class RBooking extends UpdatableBean {
         showing_id = null;
         ticket_price = null;
         num_of_ticket = null;
+        
+        this.selectedTickets = null;
+        
     }
     public RBooking(String booking_id) {
         this();
@@ -83,7 +90,15 @@ public class RBooking extends UpdatableBean {
     }
     public void setNumOfTicket(String in) {
         this.num_of_ticket = in;
+        
+        this.selectedTickets = new RSeat[Integer.valueOf(this.num_of_ticket)];
     }
+    public void setNumOfTicket(int in) {
+        this.num_of_ticket = Integer.toString(in);
+        
+        this.selectedTickets = new RSeat[Integer.valueOf(this.num_of_ticket)];
+    }
+    
 //------------------------------------------------------------------------------
     public String getAccountID() {
         return account_id;
@@ -108,8 +123,8 @@ public class RBooking extends UpdatableBean {
     public String getMovieShowID() {
         return showing_id;
     }
-    public String getTicketPrice() {
-        return ticket_price;
+    public float getTicketPrice() {
+        return Float.valueOf(ticket_price);
     }
     public int getNumOfTicket() {
         return Integer.parseInt(num_of_ticket);

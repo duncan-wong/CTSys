@@ -31,7 +31,7 @@
             </div>
             
             <div id="content" class="defaultWidth">
-                <h2 class="contentTitile">
+                <h2 class="contentTitle">
                    <%=sLanguageBean.cIndexContentTitle()%>
                 </h2>
                 <%

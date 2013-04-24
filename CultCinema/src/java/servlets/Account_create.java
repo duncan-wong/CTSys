@@ -72,6 +72,7 @@ public class Account_create extends HttpServlet {
         //validation
         if (!common.Validation.isNull(loginId)
             && !common.Validation.isConsistSpace(loginId)){
+            loginId = new String(loginId.getBytes("ISO-8859-1"), "UTF-8");
             rUser.setLoginID(loginId);
         }
         else{
@@ -88,6 +89,7 @@ public class Account_create extends HttpServlet {
         }
         
         if (common.Validation.isEmail(email)){
+            email = new String(email.getBytes("ISO-8859-1"), "UTF-8");
             rUser.setUserEmail(email);
         }
         else{
@@ -96,6 +98,7 @@ public class Account_create extends HttpServlet {
         }
         
         if (!common.Validation.isNull(name)){
+            name = new String(name.getBytes("ISO-8859-1"), "UTF-8");
             rUser.setUserName(name);
         }
         else{
