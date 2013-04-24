@@ -60,6 +60,12 @@ public class RSeat extends UpdatableBean {
     public void setMovieShowID(String in) {
         set(SeatColumn.SHOWING_ID, in);
     }
+    
+    public void setSeatId(String seatId){
+        set(SeatColumn.SEAT_NUMBER, seatId.substring(1, seatId.length()));
+        set(SeatColumn.ROW_NUMBER, String.valueOf(seatId.charAt(0) - 'A'));
+    }
+    
     private void set(String id, String in) {
         if (id.equals(SeatColumn.ROW_NUMBER)) {
             row_number = in;
