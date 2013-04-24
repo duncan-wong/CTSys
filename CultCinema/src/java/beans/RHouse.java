@@ -124,7 +124,7 @@ public class RHouse extends UpdatableBean {
     }
     
     // get the seats
-    public RSeat[][] getAllSeat() {
+    public RSeat[][] getAllSeats() {
         return seats;
     }
     

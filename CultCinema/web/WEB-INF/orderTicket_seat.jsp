@@ -62,8 +62,6 @@
                     <span class="error">
                         ${errorMsg["purchaseError"]}
                     </span>
-                    <a class="btn">Log In</a>
-                    <a class="btn">Sign Up!</a>
                 </c:if>
                 <form class="formInfoContainer" action="<%=request.getContextPath()%>/orderTicket?movieId=${rCurrentMovie.movieID}" method="POST">
                     <c:set var="houseSeats" scope="page" value="${houseSeats}" />
@@ -73,13 +71,13 @@
                         </div>
                         
                         <table class="houseSeatPlan">
-                            <c:forEach var="row" items="${houseSeats}">
+                            <c:forEach var="row" items="${rHouse.allSeats}">
                                 <tr class="houseRow">
                                     <td class="houseRowId">
                                         ${row[0].rowID}
                                     </td>
                                     <c:forEach var="seat" items="${row}">
-                                        <td id="${seat.seatID}" class="houseSeat" status="${seat.activeStatus}" seatId="${seat.seatIdInRow}">
+                                        <td id="${seat.rowNum}-${seat.seatNum}" class="houseSeat" status="${seat.seatStatus}" seatId="${seat.seatIdInRow}">
                                         </td>
                                     </c:forEach>
                                     <td class="houseRowId">
@@ -88,9 +86,12 @@
                                 </tr>
                             </c:forEach>
                         </table>
-                        <input type="hidden" name="selectedSeats" id="txtSelectedSeat" />
+                        <input type="hidden" name="selectedSeats" id="txtSelectedSeat" value="${selectedSeatsId}" />
                     </div>
-                    <a class="btn noLanguageOption" type="submit_orderTicket">Order</a>
+                    <div class="formInfoControl">
+                        <a class="btn noLanguageOption" type="submit_orderTicket">Order</a>
+                        <a class="btn noLanguageOption" href="<%=request.getContextPath()%>/orderTicket?movieId=${rCurrentMovie.movieID}">Back</a>
+                    </div>
                 </form>
             </div>
         </div>

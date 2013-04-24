@@ -47,6 +47,7 @@ public abstract class URLConfig {
     public static final String JURL_movies = "/WEB-INF/movies.jsp";
     public static final String JURL_orderTicket_time = "/WEB-INF/orderTicket_time.jsp";
     public static final String JURL_orderTicket_seat = "/WEB-INF/orderTicket_seat.jsp";
+    public static final String JURL_orderTicket_info = "/WEB-INF/orderTicket_info.jsp";
     public static final String JURL_signUp = "/WEB-INF/account_create.jsp";
     public static final String JURL_houses = "/WEB-INF/houses.jsp";
     public static final String JURL_search = "/WEB-INF/search.jsp";

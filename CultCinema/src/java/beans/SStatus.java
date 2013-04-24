@@ -12,6 +12,7 @@ public class SStatus {
     private boolean isLoggedIn;
     private String loginId;
     private String userName;
+    private String userRole;
     private String languageOption;
     
     public SStatus(){
@@ -45,6 +46,14 @@ public class SStatus {
         return this.userName;
     }
     
+    public void setUserRole(String userRole){
+        this.userRole = userRole;
+    }
+    
+    public String getUserRole(){
+        return this.userRole;
+    }
+    
     public void setLanguageOption(String languageOption){
         this.languageOption = languageOption;
     } 
@@ -52,4 +61,6 @@ public class SStatus {
     public String getLanguageOption(){
         return this.languageOption;
     }
+    
+    
 }

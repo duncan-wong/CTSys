@@ -156,44 +156,25 @@ public class OrderTicket extends HttpServlet {
             
             //preparation for selecting seats
             //get house seat
-            beans.RHouse rHouse_show = new beans.RHouse();
-            rHouse_show.setMovieShowID(movieShowId);
-            rHouse_show.fetchDBData();
-            
-            beans.RHouse rHouse = new beans.RHouse(rMovieShow.getHouseID());
+            beans.RHouse rHouse = new beans.RHouse();
+            rHouse.setMovieShowID(movieShowId);
             rHouse.fetchDBData();
-            
-            //intergate seat status
-            //status: 
-            //  available: 1
-            //  booked: 0
-            //  disable: -1
-            beans.RSeat[][] houseSeats = rHouse.getAllSeat();
-            for (int i = 0; i < houseSeats.length; i ++){
-                for (int j = 0; j < houseSeats[i].length; j++){
-                    if (houseSeats[i][j].isActive_Seat()){
-                        if (rHouse_show.getSeatAt(i, j).isBooked()){
-                            houseSeats[i][j].setActiveStatus(0);
-                        }
-                        else{
-                            houseSeats[i][j].setActiveStatus(1);
-                        }
-                    }
-                    else{
-                        houseSeats[i][j].setActiveStatus(-1);
-                    }
-                }
-            }
-            
-            //add activeSeat to reequest
-            request.setAttribute("houseSeats", houseSeats);
             
             //add beans to request
             request.setAttribute(common.BeansConfig.rMovieShow, rMovieShow);
-            request.setAttribute(common.BeansConfig.rHouse, rHouse_show);
+            request.setAttribute(common.BeansConfig.rHouse, rHouse);
             
-            if (sBooking.getSelectedTickets() != null){
-                
+            //if seats had been selected before
+            if(sBooking.getSelectedTickets() != null){
+                String selectedSeatsIdStr = "";
+                beans.RSeat[] selectedTickets = sBooking.getSelectedTickets();
+                for (int i = 0; i < sBooking.getSelectedTickets().length; i ++){
+                    if (i > 0) {
+                        selectedSeatsIdStr += ",";
+                    }
+                    selectedSeatsIdStr += selectedTickets[i].getRowNum() + "-" + selectedTickets[i].getSeatNum();
+                }
+                request.setAttribute("selectedSeatsId", selectedSeatsIdStr);
             }
             
             //update trace attribute in session
@@ -215,6 +196,7 @@ public class OrderTicket extends HttpServlet {
             
             if (selectedSeatsStr != null && !selectedSeatsStr.equals("")){
                 String[] selectedSeatsId = selectedSeatsStr.split(",");
+                java.util.Arrays.sort(selectedSeatsId);
                 
                 if (selectedSeatsId.length > 0){
                     sBooking.setNumOfTicket(selectedSeatsId.length);
@@ -223,28 +205,77 @@ public class OrderTicket extends HttpServlet {
                         //create tickets and put into sBooking
                         beans.RSeat ticket = new beans.RSeat();
                         ticket.setMovieShowID(sBooking.getMovieShowID());
-                        ticket.setSeatId(selectedSeatsId[i]);
+                        String[] seatId = new String[2];
+                        if (selectedSeatsId[i].contains("-")){
+                            seatId[0] = selectedSeatsId[i].split("-")[0];
+                            seatId[1] = selectedSeatsId[i].split("-")[1];
+                            ticket.setRowNum(Integer.valueOf(seatId[0]));
+                            ticket.setSeatNum(Integer.valueOf(seatId[1]));
+                        }
+                        else{
+                            this.unauthorizedAccess(response);
+                            return;
+                        }
+                        
                         selectedSeats[i] = ticket;
                     }
                     sBooking.setSelectedTickets(selectedSeats);
                 }
+                else{
+                    this.unauthorizedAccess(response);
+                    return;
+                }
                 
-                //update trace attribute
-                session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[3]);
-                session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[1]);
                 
-                //dispatch to payment
-                this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_orderTicket_time).forward(request, response);
             }
-            else{
+            else if (sBooking.getSelectedTickets() == null){
                 session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[1]);
                 //dispatch to select seat
                 this.getServletContext().getRequestDispatcher(common.URLConfig.SURL_orderTicket).forward(request, response);
             }
             
+            //parepare request for confirm booking page
+            beans.RMovieShow rMovieShow = new beans.RMovieShow();
+            rMovieShow.setMovieShowID(sBooking.getMovieShowID());
+            rMovieShow.fetchDBData();
+            request.setAttribute(common.BeansConfig.rMovieShow, rMovieShow);
+
+            request.setAttribute(common.BeansConfig.sBooking, sBooking);
+
+            //update trace attribute
+            session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[3]);
+
+            //dispatch to confirm booking\
+            this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_orderTicket_info).forward(request, response);
+            
         }
         else if(this.stepTrace[3].equals(nextStep)){
+            //handle confirmation booking request and payment
             
+            //go backward
+            if ("1".equals(request.getParameter("backward"))){
+                //update trace attribute
+                session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[1]);
+
+                //dispatch to seat
+                this.getServletContext().getRequestDispatcher(common.URLConfig.SURL_orderTicket+"?movieId="+request.getParameter("movieId")).forward(request, response);
+                return;
+            }
+            
+            //purphase
+            if (sBooking.getSelectedTickets() != null){
+                
+            }
+            else{
+                this.unauthorizedAccess(response);
+                return;
+            }
+            
+            //update trace attribute
+            session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[3]);
+
+            //dispatch to confirm booking
+            this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_orderTicket_info).forward(request, response);
         }
         else{
             session.setAttribute(common.URLConfig.nextInternalUrl, null);

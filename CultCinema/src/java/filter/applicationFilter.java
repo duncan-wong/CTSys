@@ -147,6 +147,7 @@ public class applicationFilter implements Filter {
                 //fill session status here
                 sessionStatus.setIsLoggedIn(true);
                 sessionStatus.setLoginId(loginedUser.getLoginID());
+                sessionStatus.setUserRole(loginedUser.getRole());
                 //filled with user name
                 sessionStatus.setUserName(loginedUser.getUserName());
             }

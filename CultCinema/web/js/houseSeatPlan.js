@@ -26,31 +26,46 @@ $(document).ready(function(){
     });
     
     //select and deselect
-    var selectedSeat = new Array();
+    var selectedSeats = new Array();
     $(".houseSeatPlan .houseSeat.seat_available").click(function(event){
         var className = 'seat_select';
         var element = event.srcElement || event.target;
         //select seat
         if (!$(this).hasClass(className)){
             $(this).addClass(className);
-            selectedSeat.push(element.id);
+            selectedSeats.push(element.id);
         }
         //deselect seat
         else{
             $(this).removeClass(className);
-            for (i = 0; i < selectedSeat.length; i ++){
-                if (selectedSeat[i] == element.id){
-                    selectedSeat.splice(i, 1);
+            for (i = 0; i < selectedSeats.length; i ++){
+                if (selectedSeats[i] == element.id){
+                    selectedSeats.splice(i, 1);
                 }
             }
         }
     });
     
+    //read selected seats in to seat plan
+    var selectedSeatsId = $("#txtSelectedSeat").val();
+    if (selectedSeatsId != "" && selectedSeatsId != null){
+        var seatsId = selectedSeatsId.split(",");
+        for (i = 0; i < seatsId.length; i ++){
+            $("#" + seatsId[i]).click();
+        }
+    }
     
     //attach the selectedSeat array when submitting form
-    $('a.btn[type="submit_orderTicket"]').click(function(){
-        var element = event.srcElement || event.target;
-        $('#txtSelectedSeat').val(selectedSeat);
+    $('a.btn[type="submit_orderTicket"]').click(function(event){
+        event.preventDefault();
+        $('#txtSelectedSeat').val(selectedSeats);
         $(this).closest('form').submit();
     });
+    
+    //go backward
+    $('a.btn[type="submit_backward"]').click(function(event){
+        event.preventDefault();
+        $(this).closest('form').attr("action", $(this).closest('form').attr("action") + "&backward=1");
+        $(this).closest('form').submit();
+    })
 });

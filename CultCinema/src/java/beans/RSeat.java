@@ -114,6 +114,18 @@ public class RSeat extends UpdatableBean {
     public String getActiveStatus(){
         return this.seat_status;
     }
+    // 0 = booked, 1 = available, -1 = disabled
+    public int getSeatStatus(){
+        if (this.isActive_Seat()){
+          if (this.isBooked()){
+            return 0;
+          }
+          else{
+              return 1;
+          }
+        }
+        return -1;
+    }
     public String getMovieShowID() {
         return showing_id;
     }
