@@ -192,6 +192,10 @@ public class OrderTicket extends HttpServlet {
             request.setAttribute(common.BeansConfig.rMovieShow, rMovieShow);
             request.setAttribute(common.BeansConfig.rHouse, rHouse_show);
             
+            if (sBooking.getSelectedTickets() != null){
+                
+            }
+            
             //update trace attribute in session
             if(sBooking.getMovieShowID() != null){
                 session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[2]);
@@ -214,10 +218,15 @@ public class OrderTicket extends HttpServlet {
                 
                 if (selectedSeatsId.length > 0){
                     sBooking.setNumOfTicket(selectedSeatsId.length);
+                    beans.RSeat[] selectedSeats = new beans.RSeat[selectedSeatsId.length];
                     for (int i = 0; i < selectedSeatsId.length; i ++){
                         //create tickets and put into sBooking
-                        //beans.RSeat
+                        beans.RSeat ticket = new beans.RSeat();
+                        ticket.setMovieShowID(sBooking.getMovieShowID());
+                        ticket.setSeatId(selectedSeatsId[i]);
+                        selectedSeats[i] = ticket;
                     }
+                    sBooking.setSelectedTickets(selectedSeats);
                 }
                 
                 //update trace attribute

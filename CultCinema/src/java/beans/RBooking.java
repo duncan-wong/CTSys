@@ -98,6 +98,10 @@ public class RBooking extends UpdatableBean {
         
         this.selectedTickets = new RSeat[Integer.valueOf(this.num_of_ticket)];
     }
+    public void setSelectedTickets(RSeat[] seats){
+        this.selectedTickets = seats;
+    }
+    
     
 //------------------------------------------------------------------------------
     public String getAccountID() {
@@ -151,6 +155,10 @@ public class RBooking extends UpdatableBean {
             Logger.getLogger(RBooking.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    
+    public RSeat[] getSelectedTickets(){
+        return this.selectedTickets;
     }
 //------------------------------------------------------------------------------
     @Override
