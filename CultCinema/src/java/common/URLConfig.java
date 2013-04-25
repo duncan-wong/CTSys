@@ -35,6 +35,7 @@ public abstract class URLConfig {
     public static final String SURL_account_edit = "/account/edit";
     public static final String SURL_movies = "/movies";
     public static final String SURL_orderTicket = "/orderTicket";
+    public static final String SURL_orderTicket_member = "/orderTicket_member";
     public static final String SURL_signUp = "/signUp";
     public static final String SURL_houses = "/houses";
     

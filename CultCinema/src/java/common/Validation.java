@@ -13,9 +13,17 @@ public class Validation {
         return (obj == null) || obj.equals("");
     }
     
-    public static boolean isConsistSpace(String str){
-        if (isNull(str)) return false;
+    public static boolean isOnlyDigit(String str){
+        for (int i = 0; i < str.length(); i ++){
+            if (!Character.isDigit(str.charAt(i))){
+                return false;
+            }
+        }
         
+        return true;
+    }
+    
+    public static boolean isConsistSpace(String str){
         for (int i = 0; i < str.length(); i ++){
             if (str.charAt(i) == ' '){
                 return true;
@@ -28,12 +36,7 @@ public class Validation {
     public static boolean isPhone(String phone){
         if (isNull(phone)) return false;
         
-        for (int i = 0; i < phone.length(); i ++){
-            if (!Character.isDigit(phone.charAt(i))){
-                return false;
-            }
-        }
-        return true;
+        return isOnlyDigit(phone);
     }
     
     
@@ -50,4 +53,25 @@ public class Validation {
         
         return true;
     }
+    
+    public static boolean isCreditCardNo(String no){
+        if (isNull(no)) return false;
+        
+        if (!(isOnlyDigit(no) && no.length() == 16)){
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public static boolean isCreditCardSafeNo(String no){
+        if (isNull(no)) return false;
+        
+        if (!(isOnlyDigit(no) && no.length() == 3)){
+            return false;
+        }
+        
+        return true;
+    }
+    
 }

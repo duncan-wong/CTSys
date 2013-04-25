@@ -61,15 +61,18 @@
                         <span class="label">Seats: </span>
                         <c:forEach items="${sBooking.selectedTickets}" var="seat">
                             <span class="houseSeat seat_select">
-                                |${seat.seatID}|
+                                &nbsp-&nbsp${seat.seatID}&nbsp-&nbsp&nbsp
                             </span>
                         </c:forEach>
                     </div>
                         
                     <div class="formInfoControl">
-                        <c:set var="total" value="${seat.ticketPrice * sBooking.numOfTicket}" scope="page" />
+                        <c:set var="total" value="${rMovieShow.ticketPrice * sBooking.numOfTicket}" scope="page" />
                         <span class="label">
-                            Total: ${total}
+                            Total: 
+                        </span>
+                        <span class="infoLabel">
+                            HKD ${total}
                         </span>
                     </div>
                 </div>
@@ -94,30 +97,34 @@
                        </div>
                        <div class="formInfoControl">
                            <span class="label">Email: </span>
-                           <input id="txtEmail" name="non-member_email" type="text" class="infoInput" />
-                       </div>
-                       <div class="formInfoControl">
-                           <span class="label">Credit card no.: </span>
-                           <input id="txtCreditCardNo" name="non-member_creditCardNo" type="text" class="infoInput" />
-                       </div>
-                       <div class="formInfoControl">
-                           <span class="label">Credit card safe no.: </span>
-                           <input id="txtCreditCardNo" name="non-member_creditCardSafeNo" type="text" class="infoInput" />
+                           <input id="txtEmail" name="email" type="text" class="infoInput" value="${sBooking.guestEmail}" />
+                           <c:if test="${errorMsg != null}">
+                               <span class="error">
+                                   ${errorMsg["email"]}
+                               </span>
+                           </c:if>
                        </div>
                     </c:if>
-                
-                
-                    <%-- member --%>
-                    <c:if test="${sStatus.isLoggedIn}">
-                        <div class="formInfoControl">
-                            <span class="label">Credit card no.: </span>
-                            <input id="txtCreditCardNo" name="member_creditCardNo" type="text" class="infoInput" />
-                        </div>
-                        <div class="formInfoControl">
-                            <span class="label">Credit card safe no.: </span>
-                            <input id="txtCreditCardNo" name="member_creditCardSafeNo" type="text" class="infoInput" />
-                        </div>
-                    </c:if>
+                    
+                    <%-- common purchas information --%>
+                    <div class="formInfoControl">
+                        <span class="label">Credit card no.: </span>
+                        <input id="txtCreditCardNo" name="creditCardNo" type="text" class="infoInput" />
+                        <c:if test="${errorMsg != null}">
+                               <span class="error">
+                                   ${errorMsg["creditCardNo"]}
+                               </span>
+                           </c:if>
+                    </div>
+                    <div class="formInfoControl">
+                        <span class="label">Credit card safe no.: </span>
+                        <input id="txtCreditCardNo" name="creditCardSafeNo" type="text" class="infoInput" />
+                        <c:if test="${errorMsg != null}">
+                               <span class="error">
+                                   ${errorMsg["creditCardSafeNo"]}
+                               </span>
+                           </c:if>
+                    </div>
                     
                     <div class="formInfoControl">
                         <a class="btn noLanguageOption" type="submit">Purchase</a>

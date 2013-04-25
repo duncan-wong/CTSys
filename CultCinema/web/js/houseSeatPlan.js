@@ -68,4 +68,5 @@ $(document).ready(function(){
         $(this).closest('form').attr("action", $(this).closest('form').attr("action") + "&backward=1");
         $(this).closest('form').submit();
     })
+    
 });

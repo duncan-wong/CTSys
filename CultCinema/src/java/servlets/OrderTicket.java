@@ -6,6 +6,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Hashtable;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +23,8 @@ public class OrderTicket extends HttpServlet {
         "/select_movie_show",
         "/select_seat",
         "/payment",
-        "/complete"
+        "/complete",
+        "/thank_you"
     };
 
     /**
@@ -40,9 +42,23 @@ public class OrderTicket extends HttpServlet {
         //called from a url-pattern
         
         
+        HttpSession session = request.getSession(false);
+        beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
+        
         //redirect to /movies if there is no movie selected
         if (request.getParameter("movieId") == null || request.getParameter("movieId").equals("")){
             this.unauthorizedAccess(response);
+            return;
+        }
+        
+        //forward the request to doPost if it is falsely triggered after the login
+        String nextInternalUrl = (String) session.getAttribute(common.URLConfig.nextInternalUrl);
+        if (nextInternalUrl != null 
+            && this.stepTrace[2].contains(nextInternalUrl)
+            && request.getRequestURI().contains(common.URLConfig.SURL_orderTicket_member)){
+            session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[2]);
+            session.setAttribute("enableRedirectToOrderTicket", Boolean.TRUE);
+            this.doPost(request, response);
             return;
         }
         
@@ -50,9 +66,6 @@ public class OrderTicket extends HttpServlet {
         //initialize booking
         //put booking into session object
         //------------------
-        
-        HttpSession session = request.getSession(false);
-        beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
         
         
         //create new booking
@@ -93,11 +106,11 @@ public class OrderTicket extends HttpServlet {
             throws ServletException, IOException {
         //called when continuesly in the same booking
         
-        
         //get trace attribute in session
         HttpSession session = request.getSession(false);
         String nextStep = (String) session.getAttribute(common.URLConfig.nextInternalUrl);
         beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
+        
         
         //get urlencoded movie id
         String movieId = (String) request.getParameter("movieId");
@@ -237,17 +250,12 @@ public class OrderTicket extends HttpServlet {
             }
             
             //parepare request for confirm booking page
-            beans.RMovieShow rMovieShow = new beans.RMovieShow();
-            rMovieShow.setMovieShowID(sBooking.getMovieShowID());
-            rMovieShow.fetchDBData();
-            request.setAttribute(common.BeansConfig.rMovieShow, rMovieShow);
-
-            request.setAttribute(common.BeansConfig.sBooking, sBooking);
+            this.perpareReuqest(request, response, sBooking);
 
             //update trace attribute
             session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[3]);
 
-            //dispatch to confirm booking\
+            //dispatch to confirm booking
             this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_orderTicket_info).forward(request, response);
             
         }
@@ -260,18 +268,56 @@ public class OrderTicket extends HttpServlet {
                 session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[1]);
 
                 //dispatch to seat
-                this.getServletContext().getRequestDispatcher(common.URLConfig.SURL_orderTicket+"?movieId="+request.getParameter("movieId")).forward(request, response);
+                this.getServletContext().getRequestDispatcher(common.URLConfig.SURL_orderTicket).forward(request, response);
                 return;
             }
             
             //purphase
             if (sBooking.getSelectedTickets() != null){
-                //development
-                //update trace attribute
-                session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[2]);
+                boolean isValidBooking = true;
+                HashMap<String, String> errorMsg = new HashMap<String, String>();
+                
+                //validation
+                //non-member validation
+                if (!sStatus.getIsLoggedIn()){
+                    String email = request.getParameter("email");
+                    sBooking.setGuestEmail(email);
+                    if (!common.Validation.isEmail(email)){
+                        isValidBooking = false;
+                        errorMsg.put("email", "Invalid email");
+                    }
+                }
+                else{
+                    sBooking.setGuestEmail(null);
+                }
+                //common part
+                String creditCardNo = request.getParameter("creditCardNo");
+                if (!common.Validation.isCreditCardNo(creditCardNo)){
+                    isValidBooking = false;
+                    errorMsg.put("creditCardNo", "Invalid credit card no.");
+                }
+                
+                String creditCardSafeNo = request.getParameter("creditCardSafeNo");
+                if (!common.Validation.isCreditCardSafeNo(creditCardSafeNo)){
+                    isValidBooking = false;
+                    errorMsg.put("creditCardSafeNo", "Invalid credit card safe no.");
+                }
+                
+                
+                if (isValidBooking){
+                    //update trace attribute
+                    session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[4]);
 
-                //dispatch to confirm booking
-                this.getServletContext().getRequestDispatcher(common.URLConfig.SURL_orderTicket+"?movieId="+request.getParameter("movieId")).forward(request, response);
+                    //dispatch to confirm booking
+                    this.getServletContext().getRequestDispatcher(common.URLConfig.SURL_orderTicket).forward(request, response);
+                    
+                    return;
+                }
+                else{
+                    //put errorMsg into request
+                    request.setAttribute("errorMsg", errorMsg);
+                    
+                }
             }
             else{
                 this.unauthorizedAccess(response);
@@ -280,9 +326,20 @@ public class OrderTicket extends HttpServlet {
             
             //update trace attribute
             session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[3]);
-
+            
+            //prepare request
+            if (!(this.perpareReuqest(request, response) && this.perpareReuqest(request, response, sBooking))){
+                this.unauthorizedAccess(response);
+                return;
+            }
+            
             //dispatch to confirm booking
             this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_orderTicket_info).forward(request, response);
+        }
+        else if(this.stepTrace[4].equals(nextStep)){
+            //completed purchase and thank you
+            
+            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURL_index)+"?movieId="+request.getParameter("movieId"));
         }
         else{
             session.setAttribute(common.URLConfig.nextInternalUrl, null);
@@ -324,6 +381,18 @@ public class OrderTicket extends HttpServlet {
         
         //put it into the request
         request.setAttribute(common.BeansConfig.rCurrentMovie, rCurrentMovie);
+        return true;
+    }
+    
+    //regular perpartion for request with movieShow
+    private boolean perpareReuqest(HttpServletRequest request, HttpServletResponse response, beans.SBooking sBooking) throws IOException{
+        beans.RMovieShow rMovieShow = new beans.RMovieShow();
+        rMovieShow.setMovieShowID(sBooking.getMovieShowID());
+        rMovieShow.fetchDBData();
+        request.setAttribute(common.BeansConfig.rMovieShow, rMovieShow);
+
+        request.setAttribute(common.BeansConfig.sBooking, sBooking);
+        
         return true;
     }
 }
