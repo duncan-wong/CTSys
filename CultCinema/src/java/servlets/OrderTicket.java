@@ -175,6 +175,7 @@ public class OrderTicket extends HttpServlet {
                     selectedSeatsIdStr += selectedTickets[i].getRowNum() + "-" + selectedTickets[i].getSeatNum();
                 }
                 request.setAttribute("selectedSeatsId", selectedSeatsIdStr);
+                sBooking.setSelectedTickets(null);
             }
             
             //update trace attribute in session
@@ -232,6 +233,7 @@ public class OrderTicket extends HttpServlet {
                 session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[1]);
                 //dispatch to select seat
                 this.getServletContext().getRequestDispatcher(common.URLConfig.SURL_orderTicket).forward(request, response);
+                return;
             }
             
             //parepare request for confirm booking page
@@ -264,7 +266,12 @@ public class OrderTicket extends HttpServlet {
             
             //purphase
             if (sBooking.getSelectedTickets() != null){
-                
+                //development
+                //update trace attribute
+                session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[2]);
+
+                //dispatch to confirm booking
+                this.getServletContext().getRequestDispatcher(common.URLConfig.SURL_orderTicket+"?movieId="+request.getParameter("movieId")).forward(request, response);
             }
             else{
                 this.unauthorizedAccess(response);

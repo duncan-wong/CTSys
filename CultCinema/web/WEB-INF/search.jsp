@@ -36,6 +36,7 @@
             <div id="content" class="defaultWidth">
                 <div class="movieContentGroup">
                     <c:if test="${rMC_title.count > 0}">
+                        <c:set var="hasResult" value="${true}" scope="page" />
                         <h2 class="contentTitle">
                             Movie title
                         </h2>
@@ -45,6 +46,7 @@
                 </div>
                 <div class="movieContentGroup">
                     <c:if test="${rMC_director.count > 0}">
+                        <c:set var="hasResult" value="${true}" scope="page" />
                         <h2 class="contentTitle">
                             Director
                         </h2>
@@ -52,6 +54,15 @@
                         <%@include file="/WEB-INF/jspf/movies/movies.jspf" %>
                     </c:if>
                 </div>
+                <c:if test="${hasResult != true}">
+                    <div class="formInfoContainer">
+                        <div class="formInfoControl">
+                            <span class="infoLabel">
+                                No match.
+                            </span>
+                        </div>
+                    </div>
+                </c:if>
             </div>
         </div>
         

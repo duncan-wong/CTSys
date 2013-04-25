@@ -56,6 +56,22 @@
                             HKD ${rMovieShow.ticketPrice}
                         </span>
                     </div>
+                        
+                    <div class="formInfoControl">
+                        <span class="label">Seats: </span>
+                        <c:forEach items="${sBooking.selectedTickets}" var="seat">
+                            <span class="houseSeat seat_select">
+                                |${seat.seatID}|
+                            </span>
+                        </c:forEach>
+                    </div>
+                        
+                    <div class="formInfoControl">
+                        <c:set var="total" value="${seat.ticketPrice * sBooking.numOfTicket}" scope="page" />
+                        <span class="label">
+                            Total: ${total}
+                        </span>
+                    </div>
                 </div>
                 
                 <%-- non-member --%>
@@ -103,15 +119,6 @@
                         </div>
                     </c:if>
                     
-                    <div class="formInfoControl">
-                        <span class="label">Seats: </span>
-                        <c:forEach items="${sBooking.selectedTickets}" var="seat">
-                            <span class="houseSeat seat_select">
-                                ${seat.seatID}
-                            </span>
-                        </c:forEach>
-                    </div>
-                  
                     <div class="formInfoControl">
                         <a class="btn noLanguageOption" type="submit">Purchase</a>
                         <a class="btn noLanguageOption" type="submit_backward">Back</a>
