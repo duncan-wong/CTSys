@@ -89,7 +89,7 @@ public class RSeat extends UpdatableBean {
     }
 //-----------------------------------------------------------------------------
     public boolean isActive_Seat() {
-        if (seat_status.equals("0")) {
+        if ("0".equals(seat_status)) {
             return false;
         }
         return true;
@@ -104,7 +104,7 @@ public class RSeat extends UpdatableBean {
     
     //check the booking is Refund pending or not
     public boolean isPendingRefund() {
-        if (seat_status.equals("2")) {
+        if ("2".equals(seat_status)) {
             return true;
         }
         return false;
@@ -117,12 +117,12 @@ public class RSeat extends UpdatableBean {
     // 0 = booked, 1 = available, -1 = disabled
     public int getSeatStatus(){
         if (this.isActive_Seat()){
-          if (this.isBooked()){
-            return 0;
-          }
-          else{
-              return 1;
-          }
+            if (this.isBooked()){
+                return 0;
+            }
+            else{
+                return 1;
+            }
         }
         return -1;
     }

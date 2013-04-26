@@ -29,7 +29,7 @@ public class RBooking extends UpdatableBean {
     private String showing_id;
     private String ticket_price;  // total spent of this booking
     private String num_of_ticket;
-    private String booking_madeDate; // format : dd/MM/yyyy
+    private String booking_madeDate; // format : yyyy.MM.dd
     private String booking_madeTime;
     
     // web app internal use
