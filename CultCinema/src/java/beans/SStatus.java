@@ -14,12 +14,14 @@ public class SStatus {
     private String userName;
     private String userRole;
     private String languageOption;
+    private beans.SBooking currentBooking;
     
     public SStatus(){
         isLoggedIn = false;
         loginId = common.RolesConfig.guestLoginId;
         userName = common.RolesConfig.guestUsername;
         languageOption = "en";
+        currentBooking = null;
     }
     
     public void setIsLoggedIn(boolean isLoggedIn){
@@ -60,6 +62,20 @@ public class SStatus {
     
     public String getLanguageOption(){
         return this.languageOption;
+    }
+
+    /**
+     * @return the currentBooking
+     */
+    public beans.SBooking getCurrentBooking() {
+        return currentBooking;
+    }
+
+    /**
+     * @param currentBooking the currentBooking to set
+     */
+    public void setCurrentBooking(beans.SBooking currentBooking) {
+        this.currentBooking = currentBooking;
     }
     
     

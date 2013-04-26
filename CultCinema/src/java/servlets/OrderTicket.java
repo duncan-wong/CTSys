@@ -54,13 +54,19 @@ public class OrderTicket extends HttpServlet {
         //forward the request to doPost if it is falsely triggered after the login
         String nextInternalUrl = (String) session.getAttribute(common.URLConfig.nextInternalUrl);
         if (nextInternalUrl != null 
-            && this.stepTrace[2].contains(nextInternalUrl)
+            && (this.stepTrace[3].contains(nextInternalUrl)
+                || session.getAttribute("enableRedirectToOrderTicket") == Boolean.TRUE)
             && request.getRequestURI().contains(common.URLConfig.SURL_orderTicket_member)){
             session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[2]);
             session.setAttribute("enableRedirectToOrderTicket", Boolean.TRUE);
             this.doPost(request, response);
             return;
         }
+        
+        //remove previous booking - currentBooking
+        //clean up
+        servlets.orderTicketHelper.BookingHandler.clearSessionCurrentBooking(session);
+        
         
         //-------------------
         //initialize booking
@@ -234,6 +240,13 @@ public class OrderTicket extends HttpServlet {
                         selectedSeats[i] = ticket;
                     }
                     sBooking.setSelectedTickets(selectedSeats);
+                    
+                    //commit selected seats
+                    if (!servlets.orderTicketHelper.BookingHandler.makingNewBooking(session, sBooking, beans.accessInterface.BookingPaymentStatus.Payment_Incomplete)){
+                        this.unauthorizedAccess(response);
+                        return;
+                    }
+                    
                 }
                 else{
                     this.unauthorizedAccess(response);
@@ -264,6 +277,9 @@ public class OrderTicket extends HttpServlet {
             
             //go backward
             if ("1".equals(request.getParameter("backward"))){
+                //clean up
+                servlets.orderTicketHelper.BookingHandler.clearSessionCurrentBooking(session);
+                
                 //update trace attribute
                 session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[1]);
 
@@ -294,17 +310,40 @@ public class OrderTicket extends HttpServlet {
                 String creditCardNo = request.getParameter("creditCardNo");
                 if (!common.Validation.isCreditCardNo(creditCardNo)){
                     isValidBooking = false;
-                    errorMsg.put("creditCardNo", "Invalid credit card no.");
+                    if (!common.Validation.isNull(creditCardNo)){
+                        errorMsg.put("creditCardNo", "Invalid credit card no.");
+                    }
                 }
                 
                 String creditCardSafeNo = request.getParameter("creditCardSafeNo");
                 if (!common.Validation.isCreditCardSafeNo(creditCardSafeNo)){
                     isValidBooking = false;
-                    errorMsg.put("creditCardSafeNo", "Invalid credit card safe no.");
+                    if (!common.Validation.isNull(creditCardSafeNo)){
+                        errorMsg.put("creditCardSafeNo", "Invalid credit card safe no.");
+                    }
                 }
                 
                 
                 if (isValidBooking){
+                    //add back the account id
+                    if (sStatus.getIsLoggedIn()){
+                        beans.RUser rUser = new beans.RUser(sStatus.getLoginId());
+                        rUser.fetchDBData();
+                        sBooking.setAccountID(rUser.getAccountID());
+                    }
+                    
+                    //update and commit sBooking
+                    //make payment
+                    if (!servlets.orderTicketHelper.BookingHandler.makePayment(session, sBooking)){
+                        //update trace attribute
+                        session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[1]);
+
+                        //dispatch to seat
+                        this.getServletContext().getRequestDispatcher(common.URLConfig.SURL_orderTicket).forward(request, response);
+                        return;
+                    }
+                    
+                    
                     //update trace attribute
                     session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[4]);
 
@@ -332,6 +371,7 @@ public class OrderTicket extends HttpServlet {
                 this.unauthorizedAccess(response);
                 return;
             }
+            
             
             //dispatch to confirm booking
             this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_orderTicket_info).forward(request, response);
@@ -395,4 +435,5 @@ public class OrderTicket extends HttpServlet {
         
         return true;
     }
+    
 }

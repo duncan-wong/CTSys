@@ -198,7 +198,6 @@ public class RSeat extends UpdatableBean {
     
     @Override
     public boolean commitChange() {
-        super.commitChange();
         if (booking_id != null) {
             if (this.isChanged()) {
                 return commitInsert_Ticket();
@@ -209,6 +208,8 @@ public class RSeat extends UpdatableBean {
                 return commitUpdate_Seat();
             }
         }
+        
+        super.commitChange();
         return true;
     }
     

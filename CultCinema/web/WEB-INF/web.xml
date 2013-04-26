@@ -162,6 +162,10 @@
         <servlet-name>Manager_MovieShow</servlet-name>
         <servlet-class>servlets.manager.Manager_MovieShow</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrderTicketCancel</servlet-name>
+        <servlet-class>servlets.OrderTicketCancel</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -250,6 +254,10 @@
     <servlet-mapping>
         <servlet-name>Manager_MovieShow</servlet-name>
         <url-pattern>/manager/movieShow</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderTicketCancel</servlet-name>
+        <url-pattern>/orderTicketCancel</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
