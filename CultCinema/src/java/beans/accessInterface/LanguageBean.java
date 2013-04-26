@@ -14,6 +14,7 @@ public class LanguageBean {
     public String mMovies(){return"Movies";}
     public String mHouses(){return"Houses";}
     public String mManager(){return"Manager";}
+    public String mOfficer(){return"Officer";}
     public String mLogIn(){return"Log In";}
     public String mLogOut(){return"Log Out";}
     //menu > language option

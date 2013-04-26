@@ -32,7 +32,7 @@
         <% if (request.isUserInRole(common.RolesConfig.Officer)) { %>
             <li>
                 <a href="<%=request.getContextPath()%>/officer">
-                    <%=sLanguageBean.mManager()%>
+                    <%=sLanguageBean.mOfficer()%>
                 </a>
             </li>
         <% } %>

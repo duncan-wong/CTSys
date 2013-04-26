@@ -259,10 +259,31 @@ public class RBooking extends UpdatableBean {
         return false;
     }
     // soft delete
-    public boolean commitDelete() {
+    public boolean commitCancel() {
         int checking = 0;
         try {
             DBconnect db = new DBconnect(BookingSQL.d1);
+            db.setResult();
+            db.setXxx(2, booking_id);
+            db.executeUpdate();
+            checking = db.getResult();
+            db.disconnect();
+            if (checking == 0) {
+                return true;
+            }
+        } catch (NamingException ex) {
+            Logger.getLogger(RBooking.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RBooking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    // hard delete
+    public boolean commitDelete() {
+        int checking = 0;
+        try {
+            DBconnect db = new DBconnect("{ ? = call delete_Booking_hard(?) }");
             db.setResult();
             db.setXxx(2, booking_id);
             db.executeUpdate();
