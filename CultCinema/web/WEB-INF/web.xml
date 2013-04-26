@@ -158,6 +158,10 @@
         <servlet-name>Officer</servlet-name>
         <servlet-class>servlets.officer.Officer</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Manager_MovieShow</servlet-name>
+        <servlet-class>servlets.manager.Manager_MovieShow</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -242,6 +246,10 @@
     <servlet-mapping>
         <servlet-name>Officer</servlet-name>
         <url-pattern>/officer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Manager_MovieShow</servlet-name>
+        <url-pattern>/manager/movieShow</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

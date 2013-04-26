@@ -96,7 +96,7 @@ public class RSeat extends UpdatableBean {
     }
     
     public boolean isBooked() {
-        if (booking_id.equals("--")) {
+        if (booking_id ==  null) {
             return false;
         }
         return true;
@@ -166,8 +166,7 @@ public class RSeat extends UpdatableBean {
         return String.format("%06d", Integer.parseInt(showing_id)) + "-" + getSeatID();
     }
 //-----------------------------------------------------------------------------
-    @Override
-    /*
+    /**
      * Input:
      *          showing_id
      *          row_number
@@ -176,6 +175,7 @@ public class RSeat extends UpdatableBean {
      * Output:
      *          booking_id
      */
+    @Override
     public boolean fetchDBData() {
         try {
             DBconnect db = new DBconnect("{ show_ShowingSeat(?,?,?,?) }");

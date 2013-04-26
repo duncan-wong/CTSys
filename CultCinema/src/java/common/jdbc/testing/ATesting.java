@@ -3,6 +3,7 @@ package common.jdbc.testing;
 import beans.RBooking;
 import beans.RHouse;
 import beans.RMovie;
+import beans.RSeat;
 import beans.RUser;
 import common.jdbc.DBconnect;
 import beans.sqlColumnName.*;
@@ -16,6 +17,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -92,9 +95,14 @@ public class ATesting extends HttpServlet {
             rs = cstmt.getResultSet();
             **/
 //----------------------------------------------------------------------
-            RBooking r = new RBooking();
-            r.commitChange();
-            r.getBookingID();
+            DBconnect db = new DBconnect("{ call show_showingSeat(1,null,3,4) }");
+            db.executeQuery();
+            String i = "";
+            if (db.queryHasNext()) {
+                i = db.getXxx("booking_id");
+            }
+            if (i == null)
+                i = "123";
             /**
             db.setXxx(1, "en");
             db.setXxx(2, null);
@@ -113,7 +121,7 @@ public class ATesting extends HttpServlet {
             out.println("<div style='width:600px'>");
             out.println("<fieldset>");
             out.println("<legend>Searching for ...</legend>");
-            out.println("<p>Name: " + r.getBookingID() + "<br/><br/></p>");
+            out.println("<p>Name: " + i + "<br/><br/></p>");
             out.println("</fieldset>");
             out.println("<fieldset>");
             out.println("<legend>Results</legend>");
@@ -121,6 +129,7 @@ public class ATesting extends HttpServlet {
             out.println("<thead>");
             out.println("<th align='left'>Author</th><th align='left'>Desc</th><th align='left'>startDate</th><th align='left'>Name</th>");
             out.println("</thead>");
+            /**
             out.println("<tbody>");
                 out.println("<tr>");
                 out.println("<td>" + r.getBookingID()+ "</td>");
@@ -129,6 +138,7 @@ public class ATesting extends HttpServlet {
                 out.println("<td>" + r.getBookingID()+ "</td>");
                 out.println("</tr>");
             out.println("</tbody>");
+            */
             out.println("</table></div>");
             out.println("<br/><a href='" + request.getRequestURI() + "'>Back</a>");
             out.println("</fieldset>");
@@ -142,6 +152,10 @@ public class ATesting extends HttpServlet {
         } catch (SQLException e) {
             out.println("<div style='color: red'>" + e.toString() + "</div>");
             */
+        } catch (NamingException ex) {
+            Logger.getLogger(ATesting.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ATesting.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             out.close();
         }

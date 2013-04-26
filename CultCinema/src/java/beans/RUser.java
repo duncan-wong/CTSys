@@ -126,9 +126,6 @@ public class RUser extends UpdatableBean{
         set(UserColumn.LOGIN_PW, in);
     }
     public void setUserName(String in) {
-        if (in.equals("--")) {
-            in = null;
-        }
         set(UserColumn.USER_NAME, in);
     }
     public void setUserPhone(String in) {

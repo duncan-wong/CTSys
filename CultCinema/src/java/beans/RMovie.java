@@ -52,9 +52,6 @@ public class RMovie extends UpdatableBean {
         set(MovieColumn.MOVIE_AUTHOR, in);
     }
     public void setMovieDescription(String in) {
-        if (in.equals("--")) {
-            in = null;
-        }
         set(MovieColumn.MOVIE_DESCRIPTION, in);
     }
     public void setMovieDuration(String in) {
