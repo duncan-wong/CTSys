@@ -27,6 +27,16 @@
                 </a>
             </li>
         <% } %>
+        
+        <%-- else if the user is an Officer, show Officer option --%>
+        <% else if (request.isUserInRole(common.RolesConfig.Officer)) { %>
+            <li>
+                <a href="<%=request.getContextPath()%>/officer">
+                    <%=sLanguageBean.mManager()%>
+                </a>
+            </li>
+        <% } %>
+            
     </ul>
 
     <ul class="menuControl">

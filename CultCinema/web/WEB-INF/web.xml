@@ -154,6 +154,10 @@
         <servlet-name>Search</servlet-name>
         <servlet-class>servlets.Search</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Officer</servlet-name>
+        <servlet-class>servlets.officer.Officer</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -234,6 +238,10 @@
         <servlet-name>OrderTicket</servlet-name>
         <url-pattern>/orderTicket_member</url-pattern>
         <url-pattern>/orderTicket</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Officer</servlet-name>
+        <url-pattern>/officer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

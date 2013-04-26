@@ -27,8 +27,10 @@ public class RBooking extends UpdatableBean {
     
     // Below : are unchangable values
     private String showing_id;
-    private String ticket_price;
+    private String ticket_price;  // total spent of this booking
     private String num_of_ticket;
+    private String booking_madeDate; // format : dd/MM/yyyy
+    private String booking_madeTime;
     
     // web app internal use
     private RSeat[] selectedTickets;
@@ -44,6 +46,8 @@ public class RBooking extends UpdatableBean {
         showing_id = null;
         ticket_price = null;
         num_of_ticket = null;
+        booking_madeDate = null;
+        booking_madeTime = null;
         
         this.selectedTickets = null;
         
@@ -82,6 +86,12 @@ public class RBooking extends UpdatableBean {
     }
     
     // Below : are unchangable values
+    public void setBookingMadeDate(String in) {
+        booking_madeDate = in;
+    }
+    public void setBookingMadeTime(String in) {
+        booking_madeTime = in;
+    }
     public void setMovieShowID(String in) {
         this.showing_id = in;
     }
@@ -124,6 +134,12 @@ public class RBooking extends UpdatableBean {
     }
     
     // Below : are unchangable values
+    public String getBookingMadeDate() {
+        return booking_madeDate;
+    }
+    public String getBookingMadeTime() {
+        return booking_madeTime;
+    }
     public String getMovieShowID() {
         return showing_id;
     }
@@ -179,6 +195,8 @@ public class RBooking extends UpdatableBean {
                 showing_id = db.getXxx(BookingColumn.SHOWING_ID);
                 ticket_price = db.getXxx(BookingColumn.TICKET_PRICE);
                 num_of_ticket = db.getXxx(BookingColumn.NUM_OF_TICKET);
+                booking_madeDate = db.getXxx("booking_madeDate");
+                booking_madeTime = db.getXxx("booking_madeTime");
             }
             db.disconnect();
             return super.fetchDBData();

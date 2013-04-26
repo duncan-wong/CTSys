@@ -167,6 +167,36 @@ public class RSeat extends UpdatableBean {
     }
 //-----------------------------------------------------------------------------
     @Override
+    /*
+     * Input:
+     *          showing_id
+     *          row_number
+     *          seat_number
+     * 
+     * Output:
+     *          booking_id
+     */
+    public boolean fetchDBData() {
+        try {
+            DBconnect db = new DBconnect("{ show_ShowingSeat(?,?,?,?) }");
+            db.setXxx(1, showing_id);
+            db.setXxx(2, null);
+            db.setXxx(3, row_number);
+            db.setXxx(4, seat_number);
+            db.executeQuery();
+            if (db.queryHasNext()) {
+                booking_id = db.getXxx("booking_id");
+            }
+            return true;
+        } catch (NamingException ex) {
+            Logger.getLogger(RSeat.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RSeat.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    @Override
     public boolean commitChange() {
         super.commitChange();
         if (booking_id != null) {

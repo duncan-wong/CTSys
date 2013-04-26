@@ -1,5 +1,6 @@
 package common.jdbc.testing;
 
+import beans.RBooking;
 import beans.RHouse;
 import beans.RMovie;
 import beans.RUser;
@@ -91,9 +92,9 @@ public class ATesting extends HttpServlet {
             rs = cstmt.getResultSet();
             **/
 //----------------------------------------------------------------------
-            RHouse r = new RHouse();
-            r.setMovieShowID(searchName);
-            r.fetchDBData();
+            RBooking r = new RBooking();
+            r.commitChange();
+            r.getBookingID();
             /**
             db.setXxx(1, "en");
             db.setXxx(2, null);
@@ -112,7 +113,7 @@ public class ATesting extends HttpServlet {
             out.println("<div style='width:600px'>");
             out.println("<fieldset>");
             out.println("<legend>Searching for ...</legend>");
-            out.println("<p>Name: " + searchName + "<br/><br/></p>");
+            out.println("<p>Name: " + r.getBookingID() + "<br/><br/></p>");
             out.println("</fieldset>");
             out.println("<fieldset>");
             out.println("<legend>Results</legend>");
@@ -122,42 +123,11 @@ public class ATesting extends HttpServlet {
             out.println("</thead>");
             out.println("<tbody>");
                 out.println("<tr>");
-                out.println("<td>" + r.getTotalRow()+ "</td>");
-                out.println("<td>" + r.getHouseCapacity()+ "</td>");
-                out.println("<td>" + r.getHouseName()+ "</td>");
-                out.println("<td>" + r.getMovieShowID()+ "</td>");
+                out.println("<td>" + r.getBookingID()+ "</td>");
+                out.println("<td>" + r.getBookingID()+ "</td>");
+                out.println("<td>" + r.getBookingID()+ "</td>");
+                out.println("<td>" + r.getBookingID()+ "</td>");
                 out.println("</tr>");
-            /**
-            while (db.queryHasNext()) {
-                RMovie rm = new RMovie();
-                rm.setMovieAuthor(db.getXxx(MovieColumn.MOVIE_AUTHOR));
-                rm.setMovieID(db.getXxx(MovieColumn.MOVIE_ID));
-                rm.setMovieName(db.getXxx(MovieColumn.MOVIE_NAME));
-                rm.setMovieStartDate(db.getXxx(MovieColumn.MOVIE_STARTDATE));
-                out.println("<tr>");
-                out.println("<td>" + rm.getMovieAuthor() + "</td>");
-                out.println("<td>" + rm.getMovieID() + "</td>");
-                out.println("<td>" + rm.getMovieName() + "</td>");
-                out.println("<td>" + rm.getMovieStartDate() + "</td>");
-                out.println("</tr>");
-            }
-            /**
-            while (db.queryHasNext()) {
-                out.println("<tr>");
-                out.println("<td>" + db.getXxx("movie_start","") + "</td>");
-                out.println("<td>" + db.getXxx("time","") + "</td>");
-                out.println("</tr>");
-            }
-            /**
-            while (db.queryHasNext()) {
-                out.println("<tr>");
-                out.println("<td>" + db.getXxx("house_id","") + "</td>");
-                out.println("<td>" + db.getXxx("house_name","") + "</td>");
-                out.println("<td>" + db.getXxx("movie_end","") + "</td>");
-                out.println("<td>" + db.getXxx("movie_start","") + "</td>");
-                out.println("</tr>");
-            }
-            /**/
             out.println("</tbody>");
             out.println("</table></div>");
             out.println("<br/><a href='" + request.getRequestURI() + "'>Back</a>");
