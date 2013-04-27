@@ -103,7 +103,9 @@ public class RUser extends UpdatableBean{
             db = new DBconnect(UserSQL.s1_Loyalty);
             db.setXxx(1, account_id);
             db.executeQuery();
-            loyalty = db.getXxx("loyalty");
+            if (db.queryHasNext()) {
+                loyalty = db.getXxx("loyalty");
+            }
             db.disconnect();
         } catch (NamingException ex) {
             Logger.getLogger(RUser.class.getName()).log(Level.SEVERE, null, ex);

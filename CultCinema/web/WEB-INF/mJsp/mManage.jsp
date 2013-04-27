@@ -29,7 +29,7 @@
             </div>
             
             <div id="content" class="defaultWidth overflow_x_hidden">
-                <a href="<%=request.getContextPath()%>/manager_movieShow"class="btn_large bottom_border">
+                <a href="<%=request.getContextPath()%>/manager/movies" class="btn_large bottom_border">
                     <h1 class="contentTitle">MOVIES</h1>
                 </a>
                 <a class="btn_large bottom_border">
