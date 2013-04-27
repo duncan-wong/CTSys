@@ -57,6 +57,7 @@
                         </span>
                     </div>
                         
+                       
                     <div class="formInfoControl">
                         <span class="label">Seats: </span>
                         <c:forEach items="${sBooking.selectedTickets}" var="seat">
@@ -75,6 +76,16 @@
                             HKD ${total}
                         </span>
                     </div>
+                    <c:if test="${sStatus.isLoggedIn && sStatus.isCustomer}">    
+                        <div class="formInfoControl">
+                            <span class="label">
+                                Loyalty point: 
+                            </span>
+                            <span class="infoLabel">
+                                <c:out default="0" value="${rUser.loyalty}" />
+                            </span>
+                        </div>
+                    </c:if>
                 </div>
                 
                 <%-- non-member --%>
@@ -106,15 +117,24 @@
                        </div>
                     </c:if>
                     
+                    <c:if test="${sStatus.isLoggedIn && sStatus.isCustomer && total <= rUser.loyalty_int}">
+                        <div class="formInfoControl">
+                            <span class="label">
+                                Use loyalty point?
+                            </span>
+                            <input type="checkbox" name="loyaltyPoint" value="loyaltyPoint" />
+                        </div>
+                    </c:if>
+                    
                     <%-- common purchas information --%>
                     <div class="formInfoControl">
                         <span class="label">Credit card no.: </span>
                         <input id="txtCreditCardNo" name="creditCardNo" type="text" class="infoInput" />
                         <c:if test="${errorMsg != null}">
-                               <span class="error">
-                                   ${errorMsg["creditCardNo"]}
-                               </span>
-                           </c:if>
+                            <span class="error">
+                                ${errorMsg["creditCardNo"]}
+                            </span>
+                        </c:if>
                     </div>
                     <div class="formInfoControl">
                         <span class="label">Credit card safe no.: </span>

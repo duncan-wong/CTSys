@@ -75,6 +75,17 @@
                             HKD ${total}
                         </span>
                     </div>
+                        
+                    <c:if test="${sStatus.isLoggedIn && sStatus.isCustomer}">    
+                        <div class="formInfoControl">
+                            <span class="label">
+                                Loyalty point: 
+                            </span>
+                            <span class="infoLabel">
+                                <c:out default="0" value="${rUser.loyalty}" />
+                            </span>
+                        </div>
+                    </c:if>
                 </div>
                 
                     <div class="formInfoControl">

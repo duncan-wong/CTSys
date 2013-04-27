@@ -73,12 +73,12 @@ public class BookingHandler {
     
     
     //confirm booking with valid payment
-    static public boolean makePayment(HttpSession session, beans.SBooking bookingReq){
+    static public boolean makePayment(HttpSession session, beans.SBooking bookingReq, String paymentType){
         beans.SBooking checkObj = new beans.SBooking();
         checkObj.setBookingID(bookingReq.getBookingID());
         checkObj.fetchDBData();
         
-        if (checkObj.getPaymentStatus().equals("Payment Timeout")){
+        if ( beans.accessInterface.BookingPaymentStatus.Payment_Timeout.equals(checkObj.getPaymentStatus())){
             bookingReq.setSelectedTickets(null);
             bookingReq.setNumOfTicket(0);
             bookingReq.setBookingID(null);
@@ -88,7 +88,7 @@ public class BookingHandler {
         }
         
         
-        bookingReq.setPaymentStatus(beans.accessInterface.BookingPaymentStatus.Payment_Complete);
+        bookingReq.setPaymentStatus(paymentType);
         bookingReq.commitUpdate();
         beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
         if (sStatus != null){
