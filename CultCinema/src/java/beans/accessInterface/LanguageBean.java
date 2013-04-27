@@ -78,4 +78,5 @@ public class LanguageBean {
     //content - houses
     public String cHousesLbCapacity(){return"Capacity";}
     //content - OrderTicket
+    public String cOTErrorPaymentTimeout(){return"Your purchase is timed out. Please select again.";}
 }

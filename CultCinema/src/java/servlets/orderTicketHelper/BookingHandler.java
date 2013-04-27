@@ -16,10 +16,7 @@ public class BookingHandler {
     static public boolean makingNewBooking(HttpSession session,beans.SBooking bookingReq, String paymentStatus){
         beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
         //remove the old booking if exist
-        if (sStatus.getCurrentBooking() != null){
-            sStatus.getCurrentBooking().commitDelete();
-            sStatus.setCurrentBooking(null);
-        }
+        servlets.orderTicketHelper.BookingHandler.clearSessionCurrentBooking(session);
         
         beans.SBooking booking = new beans.SBooking();
         booking.setMovieShowID(bookingReq.getMovieShowID());

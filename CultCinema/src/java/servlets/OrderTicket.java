@@ -335,6 +335,9 @@ public class OrderTicket extends HttpServlet {
                     //update and commit sBooking
                     //make payment
                     if (!servlets.orderTicketHelper.BookingHandler.makePayment(session, sBooking)){
+                        beans.accessInterface.LanguageBean lb = beans.languageBeans.LanguageBeanPicker.getLanguageBean(sStatus.getLanguageOption());
+                        servlets.helper.Helper.addErrorMsgToRequest(request, "purchaseError", lb.cOTErrorPaymentTimeout());
+                        
                         //update trace attribute
                         session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[1]);
 
@@ -399,15 +402,6 @@ public class OrderTicket extends HttpServlet {
         
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
     
     //redirect to /movies for unauthorized access
     private void unauthorizedAccess(HttpServletResponse response) throws IOException{

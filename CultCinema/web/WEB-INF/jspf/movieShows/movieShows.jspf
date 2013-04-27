@@ -12,6 +12,12 @@
     beans.RMovieShowCol movieShowCol = new beans.RMovieShowCol();
     movieShowCol.searchMovieID(movie.getMovieID());
     movieShowCol.searchHouseID(house.getHouseID());
+    if (sStatus.getIsLoggedIn()){
+        movieShowCol.searchInDayRange(1);
+    }
+    else{
+        movieShowCol.searchInDayRange(7);
+    }
     movieShowCol.fetchDBData();
     pageContext.setAttribute("movieShowCol", movieShowCol);
     pageContext.setAttribute("movieShowColCount", movieShowCol.count());
@@ -34,4 +40,4 @@
 
     </div>
 
-</c:if>
+</c:if>  
