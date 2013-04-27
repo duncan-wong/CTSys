@@ -350,7 +350,7 @@ public class OrderTicket extends HttpServlet {
                     else{
                         isPaymentSuccess = servlets.orderTicketHelper.BookingHandler.makePayment(session, sBooking, beans.accessInterface.BookingPaymentStatus.Payment_Deferred);
                     }
-                    if (isPaymentSuccess){
+                    if (!isPaymentSuccess){
                         beans.accessInterface.LanguageBean lb = beans.languageBeans.LanguageBeanPicker.getLanguageBean(sStatus.getLanguageOption());
                         servlets.helper.Helper.addErrorMsgToRequest(request, "purchaseError", lb.cOTErrorPaymentTimeout());
                         
