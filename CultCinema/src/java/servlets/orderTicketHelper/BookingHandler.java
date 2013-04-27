@@ -64,9 +64,12 @@ public class BookingHandler {
    //clear currentBooking
     static public void clearSessionCurrentBooking(HttpSession session){
         beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
-        if (sStatus != null && sStatus.getCurrentBooking() != null){
-            sStatus.getCurrentBooking().commitDelete();
-            sStatus.getCurrentBooking().commitDelete();
+        if (sStatus != null){ 
+            if (sStatus.getCurrentBooking() != null 
+                && !beans.accessInterface.BookingPaymentStatus.Payment_Complete.equals(sStatus.getCurrentBooking().getPaymentStatus())){
+                sStatus.getCurrentBooking().commitDelete();
+                sStatus.getCurrentBooking().commitDelete();
+            }
             sStatus.setCurrentBooking(null);
         }
     }
@@ -87,7 +90,13 @@ public class BookingHandler {
             return false;
         }
         
+        
+        bookingReq.setPaymentStatus(beans.accessInterface.BookingPaymentStatus.Payment_Complete);
         bookingReq.commitUpdate();
+        beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
+        if (sStatus != null){
+            sStatus.setCurrentBooking(null);
+        }
         
         BookingHandler.clearSessionCurrentBooking(session);
         return true;

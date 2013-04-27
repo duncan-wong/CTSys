@@ -85,7 +85,7 @@ public class OrderTicket extends HttpServlet {
         
         //put it into the request
         request.setAttribute(common.BeansConfig.rHouseCol, rHouseCol);
-        if (!this.perpareReuqest(request, response)){
+        if (!this.prepareRequest(request, response)){
             this.unauthorizedAccess(response);
             return;
         }
@@ -137,7 +137,7 @@ public class OrderTicket extends HttpServlet {
         request.setAttribute(common.BeansConfig.rHouseCol, rHouseCol);
         
         //prepare request
-        if (!this.perpareReuqest(request, response)){
+        if (!this.prepareRequest(request, response)){
             this.unauthorizedAccess(response);
             return;
         }
@@ -263,7 +263,7 @@ public class OrderTicket extends HttpServlet {
             }
             
             //parepare request for confirm booking page
-            this.perpareReuqest(request, response, sBooking);
+            this.prepareRequest(request, response, sBooking);
 
             //update trace attribute
             session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[3]);
@@ -367,7 +367,7 @@ public class OrderTicket extends HttpServlet {
             session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[3]);
             
             //prepare request
-            if (!(this.perpareReuqest(request, response) && this.perpareReuqest(request, response, sBooking))){
+            if (!(this.prepareRequest(request, response) && this.prepareRequest(request, response, sBooking))){
                 this.unauthorizedAccess(response);
                 return;
             }
@@ -379,7 +379,18 @@ public class OrderTicket extends HttpServlet {
         else if(this.stepTrace[4].equals(nextStep)){
             //completed purchase and thank you
             
-            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURL_index)+"?movieId="+request.getParameter("movieId"));
+            //prepare request
+            if (!(this.prepareRequest(request, response) && this.prepareRequest(request, response, sBooking))){
+                this.unauthorizedAccess(response);
+                return;
+            }
+            
+            beans.RBooking rBooking = new beans.RBooking(sBooking.getBookingID());
+            rBooking.fetchDBData();
+            request.setAttribute(common.BeansConfig.rBooking, rBooking);
+            
+            request.setAttribute(common.URLConfig.nextInternalUrl, null);
+            this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_orderTicket_thankYou).forward(request, response);
         }
         else{
             session.setAttribute(common.URLConfig.nextInternalUrl, null);
@@ -404,7 +415,7 @@ public class OrderTicket extends HttpServlet {
     }
     
     //regular perpartion for request
-    private boolean perpareReuqest(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    private boolean prepareRequest(HttpServletRequest request, HttpServletResponse response) throws IOException{
         HttpSession session = request.getSession(false);
         beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
         
@@ -425,7 +436,7 @@ public class OrderTicket extends HttpServlet {
     }
     
     //regular perpartion for request with movieShow
-    private boolean perpareReuqest(HttpServletRequest request, HttpServletResponse response, beans.SBooking sBooking) throws IOException{
+    private boolean prepareRequest(HttpServletRequest request, HttpServletResponse response, beans.SBooking sBooking) throws IOException{
         beans.RMovieShow rMovieShow = new beans.RMovieShow();
         rMovieShow.setMovieShowID(sBooking.getMovieShowID());
         rMovieShow.fetchDBData();
