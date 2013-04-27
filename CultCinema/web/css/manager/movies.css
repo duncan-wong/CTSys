@@ -1,0 +1,101 @@
+/* 
+    Document   : manage_movie
+    Created on : Apr 27, 2013, 5:31:15 PM
+    Author     : A
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#content .movieContainer{
+    display:block;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-bottom:solid 3px #ddd;
+    margin-bottom: 0px;
+    position:relative;
+}
+
+/*---- Poster ----*/
+.movieContainer .moviePoster{
+    width: 300px;
+    height: 420px;
+    float:left;
+    
+    border-bottom:solid 1px black;
+    border-top:solid 1px black;
+}
+
+/*---- Movie Description ----*/
+.movieContainer .movieDescription{
+    max-width: 710px;
+    height:auto;
+    padding: 5px;
+    float:left;
+}
+
+.movieContainer .movieDescription .movieDescriptionItem{
+    width:100%;
+    display: block;
+    margin: 10px 0;
+    overflow: auto;
+    overflow-y:hidden;
+}
+
+.movieContainer .movieDescription .movieDescriptionItem .movieTitle{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.movieContainer .movieDescription .movieDescriptionItem .label{
+    font-weight: bold;
+    float:left;
+}
+
+.movieContainer .movieDescription .movieDescriptionItem .content{
+    float: left;
+}
+
+
+/*---- Movie Control ----*/
+.movieContainer .movieControl {
+    left: 300px;
+    bottom: 0;
+    position: absolute;
+}
+
+.movieContainer .movieControl ul {
+    list-style: none;
+}
+
+.movieContainer .movieControl ul li {
+    display: inline;
+}
+
+.movieContainer .movieDescription .movieDescriptionItem .dateContent {
+    width: 300px;
+}
+
+/*---- Movie Input Control ----*/
+.formInfoContainer .formInfoControl .infoInputArea {
+    font-family: Helvetica, Arial, sans-serif;
+    display: inline-block;
+    font-size: 18px;
+    position: relative;
+    height: 200px;
+    width: 600px;
+    resize: none;
+    vertical-align: top;
+}
+
+.formInfoContainer .formInfoControl .infoInput {
+    width: 400px;
+}
+
+.formInfoContainer .formInfoControl .dateInput {
+    width: 180px;
+}
+
+.formInfoContainer .formInfoControl .infoSeparator {
+    padding: 0 10px;
+}

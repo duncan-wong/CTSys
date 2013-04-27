@@ -166,6 +166,22 @@
         <servlet-name>OrderTicketCancel</servlet-name>
         <servlet-class>servlets.OrderTicketCancel</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Manager_Movie</servlet-name>
+        <servlet-class>servlets.manager.Manager_Movie</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Movies_Edit</servlet-name>
+        <servlet-class>servlets.manager.Movies_edit</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Movies_remove</servlet-name>
+        <servlet-class>servlets.manager.Movies_remove</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Movies_create</servlet-name>
+        <servlet-class>servlets.manager.Movies_create</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -253,11 +269,27 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Manager_MovieShow</servlet-name>
-        <url-pattern>/manager_movieShow</url-pattern>
+        <url-pattern>/manager/movies/movieShow</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>OrderTicketCancel</servlet-name>
         <url-pattern>/orderTicketCancel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Manager_Movie</servlet-name>
+        <url-pattern>/manager/movies</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Movies_Edit</servlet-name>
+        <url-pattern>/manager/movies/edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Movies_remove</servlet-name>
+        <url-pattern>/manager/movies/remove</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Movies_create</servlet-name>
+        <url-pattern>/manager/movies/create</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

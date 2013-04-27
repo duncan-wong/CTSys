@@ -241,11 +241,12 @@ public class RBooking extends UpdatableBean {
     public boolean commitUpdate() {
         int checking = 0;
         try {
-            DBconnect db = new DBconnect("{ ? = call update_BookingStatus(?,?,?) }");
+            DBconnect db = new DBconnect("{ ? = call update_BookingStatus(?,?,?,?) }");
             db.setResult();
             db.setXxx(2, booking_id);
             db.setXxx(3, payment_status);
             db.setXxx(4, account_id);
+            db.setXxx(5, guest_email);
             db.executeUpdate();
             checking = db.getResult();
             db.disconnect();
