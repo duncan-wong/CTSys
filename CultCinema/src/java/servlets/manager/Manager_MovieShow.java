@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,7 +32,15 @@ public class Manager_MovieShow extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        this.getServletContext().getRequestDispatcher(URLConfig.JURLm_Manage).forward(request, response);
+        HttpSession session = request.getSession(false);
+        beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
+        
+        beans.RMovieCol rMovieCol = new beans.RMovieCol();
+        
+        //fetch information
+        rMovieCol.changeLang(sStatus.getLanguageOption());
+        
+        this.getServletContext().getRequestDispatcher(URLConfig.JURLm_Manage_MovieShow).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

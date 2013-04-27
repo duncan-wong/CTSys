@@ -54,6 +54,6 @@ public abstract class URLConfig {
     public static final String JURL_search = "/WEB-INF/search.jsp";
     //jsp - m
     public static final String JURLm_Manage = "/WEB-INF/mJsp/mManage.jsp";
-    public static final String JURLm_Manage_MovieShow = "";
+    public static final String JURLm_Manage_MovieShow = "/WEB-INF/mJsp/mManage_movieShow.jsp";
     public static final String JURLm_Officer = "/WEB-INF/mJsp/mOfficer.jsp";
 }

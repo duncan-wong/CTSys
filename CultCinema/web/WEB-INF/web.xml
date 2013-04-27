@@ -249,7 +249,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Manager_MovieShow</servlet-name>
-        <url-pattern>/manager/movieShow</url-pattern>
+        <url-pattern>/manager_movieShow</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
