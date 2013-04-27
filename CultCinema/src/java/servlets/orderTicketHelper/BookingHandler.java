@@ -28,7 +28,6 @@ public class BookingHandler {
         booking.commitInsert();
         
         bookingReq.setBookingID(booking.getBookingID());
-        
         //get ticket locks
         //return false if the current can't get all ticket locks
         for (int i = 0; i < bookingReq.getNumOfTicket(); i ++){
