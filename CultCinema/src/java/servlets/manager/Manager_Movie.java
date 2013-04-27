@@ -4,7 +4,6 @@
  */
 package servlets.manager;
 
-import common.URLConfig;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,7 +16,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author A
  */
-public class Manager_MovieShow extends HttpServlet {
+public class Manager_Movie extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -35,16 +34,16 @@ public class Manager_MovieShow extends HttpServlet {
         HttpSession session = request.getSession(true);
         beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
         
-        beans.RMovieShowCol managerMovieShowCol = new beans.RMovieShowCol();
+        beans.RMovieCol managerMovieCol = new beans.RMovieCol();
         
         //fetch information
-        managerMovieShowCol.changeLang(sStatus.getLanguageOption());
-        managerMovieShowCol.searchMovieID("1");
+        managerMovieCol.changeLang(sStatus.getLanguageOption());
+        managerMovieCol.fetchDBData();
         
         // put the bean into request
-        request.setAttribute("managerMovieShowCol", managerMovieShowCol);
+        request.setAttribute("managerMovieCol", managerMovieCol);
         
-        this.getServletContext().getRequestDispatcher("/WEB-INF/manager/movies/mManage_movieShow.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/manager/movies.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

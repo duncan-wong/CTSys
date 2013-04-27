@@ -4,6 +4,13 @@
  */
 package common;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author DUNCAN
@@ -72,6 +79,29 @@ public class Validation {
         }
         
         return true;
+    }
+    
+    public static boolean isDateSmaller(String date1, String date2) {
+        try {
+            // check the date string is valid
+            // if invalid -> go ParseException
+            DateFormat df = new SimpleDateFormat("yyyy.MM.dd");
+            df.setLenient(false);
+            df.parse(date1);
+            df.parse(date2);
+            
+            // compare the date string
+            Date d1 = new SimpleDateFormat("yyyy.MM.dd").parse(date1);
+            Date d2 = new SimpleDateFormat("yyyy.MM.dd").parse(date2);
+            
+            if (d1.before(d2))
+                return true;
+            else
+                return false;
+            
+        } catch (ParseException ex) {
+            return false;
+        }
     }
     
 }

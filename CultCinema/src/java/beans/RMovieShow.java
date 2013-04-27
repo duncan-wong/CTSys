@@ -124,7 +124,9 @@ public class RMovieShow extends UpdatableBean {
             DBconnect db = new DBconnect(MovieShowSQL.s1_Sales);
             db.setXxx(1, showing_id);
             db.executeQuery();
-            sales = db.getXxx(MovieShowColumn.SALES);
+            if (db.queryHasNext()) {
+                sales = db.getXxx(MovieShowColumn.SALES);
+            }
             db.disconnect();
         } catch (NamingException ex) {
             Logger.getLogger(RMovieShow.class.getName()).log(Level.SEVERE, null, ex);
