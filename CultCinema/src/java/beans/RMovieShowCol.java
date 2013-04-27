@@ -19,7 +19,7 @@ import javax.naming.NamingException;
  * @author A
  */
 public class RMovieShowCol extends UpdatableBean {
-    private String search_dayBefore; // ( Default 365 days )
+    private String search_dayRange;  // ( Default 0 )
     private String search_timeAfter; // ( Default : now )
     private String search_houseID;
     private String search_movieID;
@@ -62,17 +62,14 @@ public class RMovieShowCol extends UpdatableBean {
     public void searchHouseID(String in) {
         search_houseID = in;
     }
-    public void searchDayBefore(String in) {
-        search_dayBefore = in;
-    }
     public void searchTimeAfter(String in) {
         search_timeAfter = in;
     }
     public void searchInDayRange(int in) {
-        search_dayBefore = String.valueOf(in);
+        search_dayRange = String.valueOf(in);
     }
     public void resetSearch() {
-        search_dayBefore = null;
+        search_dayRange = null;
         search_timeAfter = null;
         search_houseID = null;
         search_movieID = null;
@@ -84,7 +81,7 @@ public class RMovieShowCol extends UpdatableBean {
         showingCol.clear();
         try {
             DBconnect db = new DBconnect(MovieShowSQL.s6);
-            db.setXxx(1, search_dayBefore);
+            db.setXxx(1, search_dayRange);
             db.setXxx(2, search_timeAfter);
             db.setXxx(3, search_houseID);
             db.setXxx(4, search_movieID);

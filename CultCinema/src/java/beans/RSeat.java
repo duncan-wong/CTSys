@@ -24,6 +24,7 @@ public class RSeat extends UpdatableBean {
     private String seat_number;
     private String booking_id;
     private String showing_id;
+    private String payment_status;
 //-----------------------------------------------------------------------------
     public RSeat() {
         super();
@@ -33,6 +34,7 @@ public class RSeat extends UpdatableBean {
         seat_status = null;
         showing_id = null;
         booking_id = null;
+        payment_status = null;
     }
     public RSeat(String house_id) {
         this();
@@ -59,6 +61,9 @@ public class RSeat extends UpdatableBean {
     }
     public void setMovieShowID(String in) {
         set(SeatColumn.SHOWING_ID, in);
+    }
+    public void setPaymentStatus(String in) {
+        payment_status = in;
     }
     
     public void setSeatId(String seatId){
@@ -114,6 +119,11 @@ public class RSeat extends UpdatableBean {
     public String getActiveStatus(){
         return this.seat_status;
     }
+    
+    public String getPaymentStatus() {
+        return payment_status;
+    }
+    
     // 0 = booked, 1 = available, -1 = disabled
     public int getSeatStatus(){
         if (this.isActive_Seat()){

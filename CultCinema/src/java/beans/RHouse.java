@@ -41,7 +41,6 @@ public class RHouse extends UpdatableBean {
     private String house_capacity;
     private String total_row;
     private RSeat[][] seats;
-    private ArrayList<RSeatQueue> seatsQueue;
 //------------------------------------------------------------------------------
     public RHouse() {
         super();
@@ -51,7 +50,6 @@ public class RHouse extends UpdatableBean {
         house_capacity = null;
         total_row = null;
         seats = null;
-        seatsQueue = new ArrayList<RSeatQueue>();
     }
     public RHouse(String house_id) {
         this.house_id = house_id;
@@ -90,17 +88,6 @@ public class RHouse extends UpdatableBean {
             showing_id = in;
         }
     }
-    
-    // add a seat queue
-    public void addSeatQueue(RSeatQueue r) {
-        seatsQueue.add(r);
-    }
-    
-    // delete a seat queue directly **hard delete**
-    public void deleteSeatQueue(RSeatQueue r) {
-        seatsQueue.remove(r);
-        r.commitChange();
-    }
 //------------------------------------------------------------------------------
     public String getHouseID() {
         return house_id;
@@ -128,10 +115,6 @@ public class RHouse extends UpdatableBean {
         return seats;
     }
     
-    // get the queueing seats
-    public RSeatQueue[] getAllSeatQueue() {
-        return seatsQueue.toArray(new RSeatQueue[seatsQueue.size()]);
-    }
     public String getMovieShowID() {
         return showing_id;
     }
@@ -194,25 +177,6 @@ public class RHouse extends UpdatableBean {
             rows.add(oneRow.toArray(new RSeat[oneRow.size()]));
             seats = rows.toArray(new RSeat[rows.size()][]);
             total_row = Integer.toString(rows.size());
-            db.disconnect();
-            
-            
-            // get the seat queue according movieShowID
-            seatsQueue.clear();
-            db = new DBconnect("{ call show_SeatQueue(?) }");
-            db.setXxx(1, showing_id);
-            db.executeQuery();
-            oneRow.clear();
-            while (db.queryHasNext()) {
-                RSeatQueue rsTemp = new RSeatQueue();
-                rsTemp.setMovieShowID(showing_id);
-                rsTemp.setBookingID(db.getXxx(SeatColumn.BOOKING_ID));
-                rsTemp.setRowNum(db.getXxx(SeatColumn.ROW_NUMBER, 0));
-                rsTemp.setSeatNum(db.getXxx(SeatColumn.SEAT_NUMBER, 0));
-                rsTemp.setActiveStatus(db.getXxx(SeatColumn.ACTIVE));
-                rsTemp.afterInitialization();
-                seatsQueue.add(rsTemp);
-            }
             db.disconnect();
             return true;
         } catch (NamingException ex) {
@@ -285,12 +249,6 @@ public class RHouse extends UpdatableBean {
             }
         }
         
-        // commit the queue ( insert only )
-        for (int i=0; i<seatsQueue.size(); i++) {
-            if (!seatsQueue.get(i).commitChange()) {
-                return false;
-            }
-        }
         if (this.isNew()) {
             return commitInsert();
         }
