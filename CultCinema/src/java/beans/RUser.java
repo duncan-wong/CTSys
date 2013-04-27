@@ -112,6 +112,14 @@ public class RUser extends UpdatableBean{
         }
         return loyalty;
     }
+    
+    public int getLoyalty_int(){
+        String loyalty = this.getLoyalty();
+        if (loyalty != null && !loyalty.equals("") ){
+            return Integer.parseInt(loyalty);
+        }
+        return 0;
+    }
 //----------------------------------------------------------------------------
     public void setAccountID(String in) {
         set(UserColumn.ACCOUNT_ID, in);

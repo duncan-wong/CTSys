@@ -95,14 +95,10 @@ public class ATesting extends HttpServlet {
             rs = cstmt.getResultSet();
             **/
 //----------------------------------------------------------------------
-            DBconnect db = new DBconnect("{ call show_showingSeat(1,null,3,4) }");
-            db.executeQuery();
-            String i = "";
-            if (db.queryHasNext()) {
-                i = db.getXxx("booking_id");
-            }
-            if (i == null)
-                i = "123";
+            RBooking r = new RBooking();
+            r.setAccountID(null);
+            r.setBookingID(searchName);
+            r.fetchDBData();
             /**
             db.setXxx(1, "en");
             db.setXxx(2, null);
@@ -121,7 +117,7 @@ public class ATesting extends HttpServlet {
             out.println("<div style='width:600px'>");
             out.println("<fieldset>");
             out.println("<legend>Searching for ...</legend>");
-            out.println("<p>Name: " + i + "<br/><br/></p>");
+            out.println("<p>Name: " + r.getPaymentStatus()+ "<br/><br/></p>");
             out.println("</fieldset>");
             out.println("<fieldset>");
             out.println("<legend>Results</legend>");
@@ -152,10 +148,6 @@ public class ATesting extends HttpServlet {
         } catch (SQLException e) {
             out.println("<div style='color: red'>" + e.toString() + "</div>");
             */
-        } catch (NamingException ex) {
-            Logger.getLogger(ATesting.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ATesting.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             out.close();
         }

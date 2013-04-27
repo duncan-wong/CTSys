@@ -68,6 +68,9 @@ public class RMovieShowCol extends UpdatableBean {
     public void searchTimeAfter(String in) {
         search_timeAfter = in;
     }
+    public void searchInDayRange(int in) {
+        search_dayBefore = String.valueOf(in);
+    }
     public void resetSearch() {
         search_dayBefore = null;
         search_timeAfter = null;

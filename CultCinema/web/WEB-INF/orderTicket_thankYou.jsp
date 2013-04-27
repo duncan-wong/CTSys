@@ -31,7 +31,7 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        Order ticket
+                        Order ticket - Thank you!
                     </h1>
                     
                 </div>
@@ -57,10 +57,9 @@
                         </span>
                     </div>
                         
-                       
                     <div class="formInfoControl">
                         <span class="label">Seats: </span>
-                        <c:forEach items="${sBooking.selectedTickets}" var="seat">
+                        <c:forEach items="${rBooking.bookedSeat}" var="seat">
                             <span class="houseSeat seat_select">
                                 &nbsp-&nbsp${seat.seatID}&nbsp-&nbsp&nbsp
                             </span>
@@ -76,6 +75,7 @@
                             HKD ${total}
                         </span>
                     </div>
+                        
                     <c:if test="${sStatus.isLoggedIn && sStatus.isCustomer}">    
                         <div class="formInfoControl">
                             <span class="label">
@@ -88,67 +88,8 @@
                     </c:if>
                 </div>
                 
-                <%-- non-member --%>
-                <c:if test="${!sStatus.isLoggedIn}">
-                    <form action="<%=request.getContextPath()%>/orderTicket_member?movieId=${rCurrentMovie.movieID}"
-                          method="POST"
-                          class="formInfoContainer">
-                        <span class="infoLabel">Are you a member?</span>
-                        <a class="btn noLanguageOption" type="submit">Log In</a>
-                        <a class="btn noLanguageOption" href="<%=request.getContextPath()%><%=common.URLConfig.SURL_signUp%>" target="blank">Sign Up!</a>
-                    </form>
-                </c:if>
-                <form action="<%=request.getContextPath()%>/orderTicket?movieId=${rCurrentMovie.movieID}" method="POST" class="formInfoContainer">
-                    <%-- non-member purchase --%>
-                    <c:if test="${!sStatus.isLoggedIn}">
-                       <div class="formInfoControl">
-                           <span class="infoLabel">
-                               Non-member purchase
-                           </span>
-                       </div>
-                       <div class="formInfoControl">
-                           <span class="label">Email: </span>
-                           <input id="txtEmail" name="email" type="text" class="infoInput" value="${sBooking.guestEmail}" />
-                           <c:if test="${errorMsg != null}">
-                               <span class="error">
-                                   ${errorMsg["email"]}
-                               </span>
-                           </c:if>
-                       </div>
-                    </c:if>
-                    
-                    <c:if test="${sStatus.isLoggedIn && sStatus.isCustomer && total <= rUser.loyalty_int}">
-                        <div class="formInfoControl">
-                            <span class="label">
-                                Use loyalty point?
-                            </span>
-                            <input type="checkbox" name="loyaltyPoint" value="loyaltyPoint" />
-                        </div>
-                    </c:if>
-                    
-                    <%-- common purchas information --%>
                     <div class="formInfoControl">
-                        <span class="label">Credit card no.: </span>
-                        <input id="txtCreditCardNo" name="creditCardNo" type="text" class="infoInput" />
-                        <c:if test="${errorMsg != null}">
-                            <span class="error">
-                                ${errorMsg["creditCardNo"]}
-                            </span>
-                        </c:if>
-                    </div>
-                    <div class="formInfoControl">
-                        <span class="label">Credit card safe no.: </span>
-                        <input id="txtCreditCardNo" name="creditCardSafeNo" type="text" class="infoInput" />
-                        <c:if test="${errorMsg != null}">
-                               <span class="error">
-                                   ${errorMsg["creditCardSafeNo"]}
-                               </span>
-                           </c:if>
-                    </div>
-                    
-                    <div class="formInfoControl">
-                        <a class="btn noLanguageOption" type="submit">Purchase</a>
-                        <a class="btn noLanguageOption" type="submit_backward">Back</a>
+                        <a class="btn noLanguageOption" href="<%=request.getContextPath()%>/movies">Other movies</a>
                         <a class="btn noLanguageOption" href="<%=request.getContextPath()%>/orderTicketCancel">Cancel</a>
                     </div>
                 </form>

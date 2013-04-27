@@ -16,10 +16,7 @@ public class BookingHandler {
     static public boolean makingNewBooking(HttpSession session,beans.SBooking bookingReq, String paymentStatus){
         beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
         //remove the old booking if exist
-        if (sStatus.getCurrentBooking() != null){
-            sStatus.getCurrentBooking().commitDelete();
-            sStatus.setCurrentBooking(null);
-        }
+        servlets.orderTicketHelper.BookingHandler.clearSessionCurrentBooking(session);
         
         beans.SBooking booking = new beans.SBooking();
         booking.setMovieShowID(bookingReq.getMovieShowID());
@@ -63,21 +60,24 @@ public class BookingHandler {
    //clear currentBooking
     static public void clearSessionCurrentBooking(HttpSession session){
         beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
-        if (sStatus != null && sStatus.getCurrentBooking() != null){
-            sStatus.getCurrentBooking().commitDelete();
-            sStatus.getCurrentBooking().commitDelete();
+        if (sStatus != null){ 
+            if (sStatus.getCurrentBooking() != null 
+                && !beans.accessInterface.BookingPaymentStatus.Payment_Complete.equals(sStatus.getCurrentBooking().getPaymentStatus())){
+                sStatus.getCurrentBooking().commitDelete();
+                sStatus.getCurrentBooking().commitDelete();
+            }
             sStatus.setCurrentBooking(null);
         }
     }
     
     
     //confirm booking with valid payment
-    static public boolean makePayment(HttpSession session, beans.SBooking bookingReq){
+    static public boolean makePayment(HttpSession session, beans.SBooking bookingReq, String paymentType){
         beans.SBooking checkObj = new beans.SBooking();
         checkObj.setBookingID(bookingReq.getBookingID());
         checkObj.fetchDBData();
         
-        if (checkObj.getPaymentStatus().equals("Payment Timeout")){
+        if ( beans.accessInterface.BookingPaymentStatus.Payment_Timeout.equals(checkObj.getPaymentStatus())){
             bookingReq.setSelectedTickets(null);
             bookingReq.setNumOfTicket(0);
             bookingReq.setBookingID(null);
@@ -86,7 +86,13 @@ public class BookingHandler {
             return false;
         }
         
+        
+        bookingReq.setPaymentStatus(paymentType);
         bookingReq.commitUpdate();
+        beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
+        if (sStatus != null){
+            sStatus.setCurrentBooking(null);
+        }
         
         BookingHandler.clearSessionCurrentBooking(session);
         return true;

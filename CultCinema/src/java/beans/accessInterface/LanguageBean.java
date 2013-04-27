@@ -9,6 +9,14 @@ package beans.accessInterface;
  * @author DUNCAN
  */
 public class LanguageBean {
+    //errorMsg
+    public String errorRange(){return"Out of range";}
+    public String errorEmail(){return"Invalid email";}
+    public String errorPhone(){return"Invalid phone no.";}
+    public String errorCreditCard(){return"Invalid credit card no.";}
+    public String errorCreditCardSafe(){return"Invalid credit card safe no.";}
+    
+    
     //menu
     public String mCompanyName(){return"Cult Cinema";}
     public String mMovies(){return"Movies";}
@@ -78,4 +86,5 @@ public class LanguageBean {
     //content - houses
     public String cHousesLbCapacity(){return"Capacity";}
     //content - OrderTicket
+    public String cOTErrorPaymentTimeout(){return"Your purchase is timed out. Please select again.";}
 }

@@ -56,6 +56,10 @@ public class SStatus {
         return this.userRole;
     }
     
+    public boolean getIsCustomer(){
+        return common.RolesConfig.Member.equals(this.userRole);
+    }
+    
     public void setLanguageOption(String languageOption){
         this.languageOption = languageOption;
     } 

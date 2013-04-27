@@ -85,7 +85,7 @@ public class OrderTicket extends HttpServlet {
         
         //put it into the request
         request.setAttribute(common.BeansConfig.rHouseCol, rHouseCol);
-        if (!this.perpareReuqest(request, response)){
+        if (!this.prepareRequest(request, response)){
             this.unauthorizedAccess(response);
             return;
         }
@@ -137,7 +137,7 @@ public class OrderTicket extends HttpServlet {
         request.setAttribute(common.BeansConfig.rHouseCol, rHouseCol);
         
         //prepare request
-        if (!this.perpareReuqest(request, response)){
+        if (!this.prepareRequest(request, response)){
             this.unauthorizedAccess(response);
             return;
         }
@@ -263,8 +263,13 @@ public class OrderTicket extends HttpServlet {
             }
             
             //parepare request for confirm booking page
-            this.perpareReuqest(request, response, sBooking);
-
+            this.prepareRequest_movieShow(request, response, sBooking);
+            
+            //member only
+            if(sStatus.getIsLoggedIn()){
+                this.prepareRequest_user(request);
+            }
+            
             //update trace attribute
             session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[3]);
 
@@ -306,12 +311,14 @@ public class OrderTicket extends HttpServlet {
                 else{
                     sBooking.setGuestEmail(null);
                 }
+                
+                
                 //common part
                 String creditCardNo = request.getParameter("creditCardNo");
                 if (!common.Validation.isCreditCardNo(creditCardNo)){
                     isValidBooking = false;
                     if (!common.Validation.isNull(creditCardNo)){
-                        errorMsg.put("creditCardNo", "Invalid credit card no.");
+                        servlets.helper.Helper.addErrorMsgToRequest(request, "creditCardNo", "Invalid credit card no.");
                     }
                 }
                 
@@ -319,29 +326,42 @@ public class OrderTicket extends HttpServlet {
                 if (!common.Validation.isCreditCardSafeNo(creditCardSafeNo)){
                     isValidBooking = false;
                     if (!common.Validation.isNull(creditCardSafeNo)){
-                        errorMsg.put("creditCardSafeNo", "Invalid credit card safe no.");
+                        servlets.helper.Helper.addErrorMsgToRequest(request, "creditCardSafeNo", "Invalid credit card safe no.");
                     }
                 }
                 
                 
                 if (isValidBooking){
+                    beans.RUser rUser;
+                    
                     //add back the account id
                     if (sStatus.getIsLoggedIn()){
-                        beans.RUser rUser = new beans.RUser(sStatus.getLoginId());
+                        rUser = new beans.RUser(sStatus.getLoginId());
                         rUser.fetchDBData();
                         sBooking.setAccountID(rUser.getAccountID());
                     }
                     
                     //update and commit sBooking
                     //make payment
-                    if (!servlets.orderTicketHelper.BookingHandler.makePayment(session, sBooking)){
+                    boolean isPaymentSuccess;
+                    if (request.getParameter("loyaltyPoint") != null){
+                        isPaymentSuccess = servlets.orderTicketHelper.BookingHandler.makePayment(session, sBooking, beans.accessInterface.BookingPaymentStatus.Payment_Complete);
+                    }
+                    else{
+                        isPaymentSuccess = servlets.orderTicketHelper.BookingHandler.makePayment(session, sBooking, beans.accessInterface.BookingPaymentStatus.Payment_Deferred);
+                    }
+                    if (isPaymentSuccess){
+                        beans.accessInterface.LanguageBean lb = beans.languageBeans.LanguageBeanPicker.getLanguageBean(sStatus.getLanguageOption());
+                        servlets.helper.Helper.addErrorMsgToRequest(request, "purchaseError", lb.cOTErrorPaymentTimeout());
+                        
                         //update trace attribute
                         session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[1]);
-
+                        
                         //dispatch to seat
                         this.getServletContext().getRequestDispatcher(common.URLConfig.SURL_orderTicket).forward(request, response);
                         return;
                     }
+                    
                     
                     
                     //update trace attribute
@@ -351,11 +371,6 @@ public class OrderTicket extends HttpServlet {
                     this.getServletContext().getRequestDispatcher(common.URLConfig.SURL_orderTicket).forward(request, response);
                     
                     return;
-                }
-                else{
-                    //put errorMsg into request
-                    request.setAttribute("errorMsg", errorMsg);
-                    
                 }
             }
             else{
@@ -367,11 +382,15 @@ public class OrderTicket extends HttpServlet {
             session.setAttribute(common.URLConfig.nextInternalUrl, this.stepTrace[3]);
             
             //prepare request
-            if (!(this.perpareReuqest(request, response) && this.perpareReuqest(request, response, sBooking))){
+            if (!(this.prepareRequest(request, response) && this.prepareRequest_movieShow(request, response, sBooking))){
                 this.unauthorizedAccess(response);
                 return;
             }
             
+            //member only
+            if(sStatus.getIsLoggedIn()){
+                this.prepareRequest_user(request);
+            }
             
             //dispatch to confirm booking
             this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_orderTicket_info).forward(request, response);
@@ -379,7 +398,18 @@ public class OrderTicket extends HttpServlet {
         else if(this.stepTrace[4].equals(nextStep)){
             //completed purchase and thank you
             
-            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURL_index)+"?movieId="+request.getParameter("movieId"));
+            //prepare request
+            if (!(this.prepareRequest(request, response) && this.prepareRequest_movieShow(request, response, sBooking))){
+                this.unauthorizedAccess(response);
+                return;
+            }
+            
+            beans.RBooking rBooking = new beans.RBooking(sBooking.getBookingID());
+            rBooking.fetchDBData();
+            request.setAttribute(common.BeansConfig.rBooking, rBooking);
+            
+            request.setAttribute(common.URLConfig.nextInternalUrl, null);
+            this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_orderTicket_thankYou).forward(request, response);
         }
         else{
             session.setAttribute(common.URLConfig.nextInternalUrl, null);
@@ -388,15 +418,6 @@ public class OrderTicket extends HttpServlet {
         
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
     
     //redirect to /movies for unauthorized access
     private void unauthorizedAccess(HttpServletResponse response) throws IOException{
@@ -404,7 +425,7 @@ public class OrderTicket extends HttpServlet {
     }
     
     //regular perpartion for request
-    private boolean perpareReuqest(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    private boolean prepareRequest(HttpServletRequest request, HttpServletResponse response) throws IOException{
         HttpSession session = request.getSession(false);
         beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
         
@@ -425,10 +446,12 @@ public class OrderTicket extends HttpServlet {
     }
     
     //regular perpartion for request with movieShow
-    private boolean perpareReuqest(HttpServletRequest request, HttpServletResponse response, beans.SBooking sBooking) throws IOException{
+    private boolean prepareRequest_movieShow(HttpServletRequest request, HttpServletResponse response, beans.SBooking sBooking) throws IOException{
         beans.RMovieShow rMovieShow = new beans.RMovieShow();
         rMovieShow.setMovieShowID(sBooking.getMovieShowID());
-        rMovieShow.fetchDBData();
+        if(!rMovieShow.fetchDBData()){
+            return false;
+        }
         request.setAttribute(common.BeansConfig.rMovieShow, rMovieShow);
 
         request.setAttribute(common.BeansConfig.sBooking, sBooking);
@@ -436,4 +459,17 @@ public class OrderTicket extends HttpServlet {
         return true;
     }
     
+    //prepare request with member
+    private boolean prepareRequest_user(HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+        beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
+        beans.RUser rUser = new beans.RUser(sStatus.getLoginId());
+        if (!rUser.fetchDBData()){
+            return false;
+        }
+        
+        request.setAttribute(common.BeansConfig.rUser, rUser);
+        
+        return true;
+    }
 }
