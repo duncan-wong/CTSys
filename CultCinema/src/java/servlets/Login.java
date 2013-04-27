@@ -47,8 +47,10 @@ public class Login extends HttpServlet {
             }
             // /login is called by java container before any servlet
             else{
-                beans.SStatus sStatus = new beans.SStatus();
-                session.setAttribute(BeansConfig.sStatus, sStatus);
+                if (session.getAttribute(common.BeansConfig.sStatus) == null){
+                    beans.SStatus sStatus = new beans.SStatus();
+                    session.setAttribute(BeansConfig.sStatus, sStatus);
+                }
                 
                 //set language
                 if (request.getParameter("lang") != null

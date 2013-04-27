@@ -129,6 +129,7 @@
                     <div class="formInfoControl">
                         <a class="btn noLanguageOption" type="submit">Purchase</a>
                         <a class="btn noLanguageOption" type="submit_backward">Back</a>
+                        <a class="btn noLanguageOption" href="<%=request.getContextPath()%>/orderTicketCancel">Cancel</a>
                     </div>
                 </form>
             </div>
