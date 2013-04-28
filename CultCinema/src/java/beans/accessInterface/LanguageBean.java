@@ -17,6 +17,12 @@ public class LanguageBean {
     public String errorCreditCardSafe(){return"Invalid credit card safe no.";}
     public String errorRefund(){return"Not enough loyalty point";}
     
+    //paymentMsg
+    public String pMsgPayOne(){return"The payment is completed";}
+    public String pMsgCancelOne(){return"The booking is canceled";}
+    public String pMsgPayAll(){return"The payments are completed";}
+    public String pMsgCancelAll(){return"The bookings are canceled";}
+    
     //menu
     public String mCompanyName(){return"Cult Cinema";}
     public String mMovies(){return"Movies";}

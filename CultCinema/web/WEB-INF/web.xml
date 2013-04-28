@@ -36,6 +36,17 @@
             <role-name>Manager</role-name>
         </auth-constraint>
     </security-constraint>
+    
+    <security-constraint>
+        <display-name>Security Constraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>Officer Pages</web-resource-name>
+            <url-pattern>/officer/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Officer</role-name>
+        </auth-constraint>
+    </security-constraint>
     <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>JDBC Realm</realm-name>
@@ -186,6 +197,14 @@
         <servlet-name>RrderTicket_refund</servlet-name>
         <servlet-class>servlets.OrderTicket_Refund</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Officer_Refund</servlet-name>
+        <servlet-class>servlets.officer.Officer_Refund</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Officer_Checkout</servlet-name>
+        <servlet-class>servlets.officer.Officer_Checkout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -298,6 +317,18 @@
     <servlet-mapping>
         <servlet-name>RrderTicket_refund</servlet-name>
         <url-pattern>/orderTicket/refund</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Officer_Refund</servlet-name>
+        <url-pattern>/officer/refund</url-pattern>
+        <url-pattern>/officer/refundApproved</url-pattern>
+        <url-pattern>/officer/refundDeclined</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Officer_Checkout</servlet-name>
+        <url-pattern>/officer/checkout</url-pattern>
+        <url-pattern>/officer/checkoutPay</url-pattern>
+        <url-pattern>/officer/checkoutCancel</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

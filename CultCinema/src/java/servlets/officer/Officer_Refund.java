@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlets;
+package servlets.officer;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,13 +10,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author 52593578
+ * @author DUNCAN
  */
-public class OrderTicket_Refund extends HttpServlet {
+public class Officer_Refund extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -30,25 +29,29 @@ public class OrderTicket_Refund extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        //customer request refund
-        if (session.getAttribute(common.URLConfig.isFrom(common.URLConfig.SURL_account)) != null){
-            session.setAttribute(common.URLConfig.isFrom(common.URLConfig.SURL_account), null);
-            
-            if (request.getParameter("bid") != null && !request.getParameter("bid").equals("")){
-                beans.RBooking booking = new beans.RBooking(request.getParameter("bid"));
-                if (booking.fetchDBData()){
-                    if (!servlets.orderTicketHelper.BookingHandler.requestRefund(request, booking)){
-                        beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
-                        beans.accessInterface.LanguageBean lb = beans.languageBeans.LanguageBeanPicker.getLanguageBean(sStatus.getLanguageOption());
-                        servlets.helper.Helper.addErrorMsgToSession(request, "refundError", lb.errorRefund());
-                    }
+        
+         if (!common.Validation.isNull(request.getParameter("bid"))){
+            beans.RBooking booking = new beans.RBooking(request.getParameter("bid"));
+            if (booking != null){
+                if (request.getServletPath().equals(common.URLConfig.SURLo_refundDeclined)){
+                    servlets.orderTicketHelper.BookingHandler.declineRefund(request, booking);
+                }
+                else if(request.getServletPath().equals(common.URLConfig.SURLo_refundApproved)){
+                    servlets.orderTicketHelper.BookingHandler.approveRefund(request, booking);
                 }
             }
-            
         }
         
-        response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURL_account));
+        
+        
+        
+        beans.RBookingCol rBookingCol = new beans.RBookingCol();
+        rBookingCol.searchPaymentStatus(beans.accessInterface.BookingPaymentStatus.Refund_Pending);
+        rBookingCol.fetchDBData();
+        
+        request.setAttribute(common.BeansConfig.rBookingCol, rBookingCol);
+        
+        this.getServletContext().getRequestDispatcher(common.URLConfig.JURLo_refund).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -80,7 +83,6 @@ public class OrderTicket_Refund extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
     }
 
     /**

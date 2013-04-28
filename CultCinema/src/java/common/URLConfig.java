@@ -39,7 +39,16 @@ public abstract class URLConfig {
     public static final String SURL_orderTicketCancel = "/orderTicket/cancel";
     public static final String SURL_signUp = "/signUp";
     public static final String SURL_houses = "/houses";
+    //officer
     public static final String SURLo_officer = "/officer";
+    public static final String SURLo_refund = "/officer/refund";
+    public static final String SURLo_refundApproved = "/officer/refundApproved";
+    public static final String SURLo_refundDeclined = "/officer/refundDeclined";
+    public static final String SURLo_checkout = "/officer/checkout";
+    public static final String SURLo_checkoutCancel = "/officer/checkoutCancel";
+    public static final String SURLo_checkoutPay = "/officer/checkoutPay";
+    
+    
     
     //jsp
     public static final String JURL_index = "/WEB-INF/index.jsp";
@@ -59,4 +68,10 @@ public abstract class URLConfig {
     public static final String JURLm_Manage = "/WEB-INF/mJsp/mManage.jsp";
     public static final String JURLm_Manage_MovieShow = "/WEB-INF/mJsp/mManage_movieShow.jsp";
     public static final String JURLm_Officer = "/WEB-INF/mJsp/mOfficer.jsp";
+    //jsp - o
+    public static final String JURLo_manage = "/WEB-INF/oJsp/oManage.jsp";
+    public static final String JURLo_refund = "/WEB-INF/oJsp/oRefund.jsp";
+    public static final String JURLo_checkout = "/WEB-INF/oJsp/oCheckout.jsp";
+    
+
 }

@@ -72,8 +72,8 @@ public class BookingHandler {
     
     
     //confirm booking with valid payment
-    static public boolean makePayment(HttpSession session, beans.SBooking bookingReq, String paymentType){
-        beans.SBooking checkObj = new beans.SBooking();
+    static public boolean makePayment(HttpSession session, beans.RBooking bookingReq, String paymentType){
+        beans.RBooking checkObj = new beans.RBooking();
         checkObj.setBookingID(bookingReq.getBookingID());
         checkObj.fetchDBData();
         
@@ -118,6 +118,26 @@ public class BookingHandler {
         
         //refund
         booking.setPaymentStatus(beans.accessInterface.BookingPaymentStatus.Refund_Pending);
+        booking.commitUpdate();
+        
+        return true;
+    }
+    
+    //approve refund
+    static public boolean approveRefund(HttpServletRequest request, beans.RBooking booking){
+        
+        //refund
+        booking.setPaymentStatus(beans.accessInterface.BookingPaymentStatus.Refund_Accepted);
+        booking.commitUpdate();
+        
+        return true;
+    }
+    
+    //decline refund
+    static public boolean declineRefund(HttpServletRequest request, beans.RBooking booking){
+        
+        //refund
+        booking.setPaymentStatus(beans.accessInterface.BookingPaymentStatus.Refund_Declined);
         booking.commitUpdate();
         
         return true;

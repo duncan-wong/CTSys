@@ -103,7 +103,6 @@
 
                 <div class="formInfoControl">
                     <a class="btn noLanguageOption" href="<%=request.getContextPath()%>/movies">Other movies</a>
-                    <a class="btn noLanguageOption" href="<%=request.getContextPath()%>/orderTicketCancel">Cancel</a>
                 </div>
                 </form>
             </div>

@@ -29,7 +29,7 @@ public class Officer extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        this.getServletContext().getRequestDispatcher(common.URLConfig.JURLo_manage).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

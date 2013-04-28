@@ -5,7 +5,7 @@
 --%>
 
 <jsp:useBean id="rUser" type="beans.RUser" scope="request"></jsp:useBean>
-<jsp:useBean id="rBookingCol" type="beans.RBookingCol" scope="request"></jsp:useBean>
+<%--<jsp:useBean id="rBookingCol" type="beans.RBookingCol" scope="request"></jsp:useBean>--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -90,11 +90,11 @@
                     </c:if>
 
                     <form action="<%=common.URLConfig.getFullPath(common.URLConfig.SURL_account)%>" method="POST" class="formInfoControl">
-                        <a type="submit" class="btn">Edit</a>
+                        <a type="submit" class="btn noLanguageOption">Edit</a>
                     </form>
 
                 </div>
-
+                
                 <div class="formInfoContainer">
                     <c:if test="${errorMsg != null}">
                         <span class="error">
@@ -118,7 +118,6 @@
                             request.setAttribute("isRefundPossible", booking.isBeforeHours(3));
                         %>
                         <div class="formInfoControl border_bottom">
-                            <span class="infoLabel">${movieShow.movieShowStartTime}</span>
                             <span class="infoLabel span3">${movie.movieName}</span>
                             <span class="infoLabel span3">House ${movieShow.houseID}: ${movieShow.movieShowStartDate}-${movieShow.movieShowStartTime}</span>
                             <span class="infoLabel span1">${booking.numOfTicket}</span>

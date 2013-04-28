@@ -68,6 +68,10 @@ public class RBookingCol extends UpdatableBean {
     public RBooking getAt(int i) {
         return bookings.get(i);
     }
+    
+    public int getCount(){
+        return this.bookings.size();
+    }
 //------------------------------------------------------------------------------
     @Override
     public boolean fetchDBData() {
