@@ -204,6 +204,17 @@
     <servlet>
         <servlet-name>Officer_Checkout</servlet-name>
         <servlet-class>servlets.officer.Officer_Checkout</servlet-class>
+    <servlet>
+        <servlet-name>MovieShow_create</servlet-name>
+        <servlet-class>servlets.manager.MovieShow_create</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MovieShow_edit</servlet-name>
+        <servlet-class>servlets.manager.MovieShow_edit</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MovieShow_remove</servlet-name>
+        <servlet-class>servlets.manager.MovieShow_remove</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
@@ -329,6 +340,17 @@
         <url-pattern>/officer/checkout</url-pattern>
         <url-pattern>/officer/checkoutPay</url-pattern>
         <url-pattern>/officer/checkoutCancel</url-pattern>
+    <servlet-mapping>
+        <servlet-name>MovieShow_create</servlet-name>
+        <url-pattern>/manager/movies/movieShow/create</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MovieShow_edit</servlet-name>
+        <url-pattern>/manager/movies/movieShow/edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MovieShow_remove</servlet-name>
+        <url-pattern>/manager/movies/movieShow/remove</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

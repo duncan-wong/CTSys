@@ -53,7 +53,7 @@
                     </span>
                 </c:if>   
                     
-                <form action="<%=request.getContextPath()%>/manager/movies/create" method="POST" class="formInfoContainer">
+                <form action="<%=common.URLConfig.getFullPath(common.URLConfig.SURL_m_Movies_create)%>" method="POST" class="formInfoContainer">
                     <div class="formInfoControl">
                         <label class="label">
                             <%="Movie Name"%>: 

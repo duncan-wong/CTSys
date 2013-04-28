@@ -156,6 +156,7 @@ public class RMovie extends UpdatableBean {
             if (db.queryHasNext()) {
                 language = db.getXxx(MovieColumn.LANGUAGE);
                 movie_name = db.getXxx(MovieColumn.MOVIE_NAME);
+                movie_id = db.getXxx(MovieColumn.MOVIE_ID);
                 movie_author = db.getXxx(MovieColumn.MOVIE_AUTHOR);
                 movie_description = db.getXxx(MovieColumn.MOVIE_DESCRIPTION);
                 movie_duration = db.getXxx(MovieColumn.MOVIE_DURATION);

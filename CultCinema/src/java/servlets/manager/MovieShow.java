@@ -18,71 +18,51 @@ import javax.servlet.http.HttpSession;
  * @author A
  */
 public class MovieShow extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
-     *
-     * @param request  servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
-     */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
         beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
         
-        beans.RMovieShowCol managerMovieShowCol = new beans.RMovieShowCol();
+        beans.RMovie rCurrentMovie = new beans.RMovie();
+        beans.RHouseCol rHouseCol = new beans.RHouseCol();
         
-        //fetch information
-        managerMovieShowCol.changeLang(sStatus.getLanguageOption());
-        managerMovieShowCol.searchMovieID("1");
+        // fetch info
+        rCurrentMovie.setLanguage(sStatus.getLanguageOption());
+        rCurrentMovie.setMovieID(request.getParameter("movieId"));
+        rCurrentMovie.fetchDBData();
+        rHouseCol.fetchDBData();
+        
         
         // put the bean into request
-        request.setAttribute("managerMovieShowCol", managerMovieShowCol);
+        request.setAttribute("rCurrentMovie", rCurrentMovie);
+        request.setAttribute("rHouseCol", rHouseCol);
         
-        this.getServletContext().getRequestDispatcher("/WEB-INF/manager/movies/mManage_movieShow.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_m_MovieShow).forward(request, response);
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP
-     * <code>GET</code> method.
-     *
-     * @param request  servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
-     */
+    
+    
+    
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Handles the HTTP
-     * <code>POST</code> method.
-     *
-     * @param request  servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
-     */
+    
+    
+    
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    
+    
+    
+    
     @Override
     public String getServletInfo() {
         return "Short description";

@@ -31,7 +31,7 @@
                         <%=sLanguageBean.hMoviesMainTitle()%>
                     </h1>
                     <div class="headerControl">
-                        <a href="<%=request.getContextPath()%>/manager/movies/create" class="btn">
+                        <a href="<%=common.URLConfig.getFullPath(common.URLConfig.SURL_m_Movies_create)%>" class="btn">
                             <%="Add New Movie"%>
                         </a>
                     </div>
@@ -43,7 +43,7 @@
                     <%
                         request.setAttribute("managerMovieCol", request.getAttribute("managerMovieCol"));
                     %>
-                    <%@include file="/WEB-INF/manager/jspf/oneMovie.jspf" %>
+                    <%@include file="/WEB-INF/jspf/manager/oneMovie.jspf" %>
                 </div>
             </div>
         </div>

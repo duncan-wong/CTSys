@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -19,11 +20,28 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Movies_edit extends HttpServlet {
     
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        RMovie rMovie = new RMovie();
+        rMovie.setMovieID(request.getParameter("movieId"));
+        rMovie.fetchDBData();
+        request.setAttribute("rMovie", rMovie);
+        this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_m_Movies_edit).forward(request, response);
+    }
+    
+    
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        HttpSession session = request.getSession(false);
+        beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
         
         RMovie rMovie = new RMovie();
         rMovie.setMovieID(request.getParameter("movieId"));
+        rMovie.setLanguage(sStatus.getLanguageOption());
         rMovie.fetchDBData();
         
         boolean isSafeToCommit = true;
@@ -81,10 +99,9 @@ public class Movies_edit extends HttpServlet {
             errorMsg.put("movieDescription", "Invalid Description");
         }
         
-        
         if (isSafeToCommit) {
             try {
-                rMovie.commitChange();
+                rMovie.commitUpdate();
                 isCommitted = true;
             }
             catch(Exception e){
@@ -93,34 +110,12 @@ public class Movies_edit extends HttpServlet {
         }
         
         if (isCommitted) {
-            response.sendRedirect(request.getContextPath()+"/manager/movies");
+            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURL_m_Movies));
         }
         else {
             request.setAttribute("rMovie", rMovie);
             request.setAttribute("errorMsg", errorMsg);
-            this.getServletContext().getRequestDispatcher("/WEB-INF/manager/movies_edit.jsp").forward(request, response);
-        }
-    }
-    
-    
-    
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        //redirect for request not from manager/movies
-        response.sendRedirect(request.getContextPath()+"/manager/movies");
-    }
-    
-    
-    
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        if (request.getAttribute(common.URLConfig.isFrom("/manager/movies")) != null) {
-            this.getServletContext().getRequestDispatcher("/WEB-INF/manager/movies_edit.jsp").forward(request, response);
-        }
-        else {
-            processRequest(request, response);
+            this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_m_Movies_edit).forward(request, response);
         }
     }
     

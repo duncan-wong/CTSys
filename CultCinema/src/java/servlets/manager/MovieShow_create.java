@@ -4,9 +4,10 @@
  */
 package servlets.manager;
 
-import beans.RMovie;
+import beans.RMovieShow;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Hashtable;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,17 +17,18 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author A
  */
-public class Movies_remove extends HttpServlet {
+public class MovieShow_create extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // call from a url-pattern
+        // provide the registration form
+        RMovieShow rMovieShow = new RMovieShow();
+        request.setAttribute("rMovieShow", rMovieShow);
         
-        RMovie rMovie = new RMovie();
-        rMovie.setMovieID(request.getParameter("movieId"));
-        rMovie.fetchDBData();
-        request.setAttribute("rMovie", rMovie);
-        this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_m_Movies_remove).forward(request, response);
+        // dispatch
+        this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_m_MovieShow_create).forward(request, response);
     }
     
     
@@ -36,11 +38,12 @@ public class Movies_remove extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        RMovie rMovie = new RMovie();
-        rMovie.setMovieID(request.getParameter("movieId"));
-        rMovie.fetchDBData();
-        rMovie.commitDelete();
-        response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURL_m_Movies));
+        RMovieShow rMovieShow = new RMovieShow();
+        request.setAttribute("rMovieShow", rMovieShow);
+        
+        boolean isSafeToCommit = true;
+        boolean isCommitted = false;
+        Hashtable<String, String> errorMsg = new Hashtable<String, String>();
     }
     
     

@@ -4,6 +4,7 @@
  */
 package servlets.manager;
 
+import common.URLConfig;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -21,7 +22,7 @@ public class Movies extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
         beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
         
         beans.RMovieCol managerMovieCol = new beans.RMovieCol();
@@ -32,8 +33,6 @@ public class Movies extends HttpServlet {
         
         // put the bean into request
         request.setAttribute("managerMovieCol", managerMovieCol);
-        
-        this.getServletContext().getRequestDispatcher("/WEB-INF/manager/movies.jsp").forward(request, response);
     }
     
     
@@ -41,7 +40,9 @@ public class Movies extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         processRequest(request, response);
+        this.getServletContext().getRequestDispatcher(URLConfig.JURL_m_Movies).forward(request, response);
     }
     
     
@@ -49,10 +50,9 @@ public class Movies extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute(common.URLConfig.isFrom("/manager/movies"), true);
         
         processRequest(request, response);
-        
+        this.getServletContext().getRequestDispatcher(URLConfig.JURL_m_Movies).forward(request, response);
     }
     
     

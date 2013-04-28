@@ -1,0 +1,44 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page pageEncoding="UTF-8" %>
+<jsp:useBean id="movie" class="beans.RMovie" scope="page"></jsp:useBean>
+<jsp:useBean id="house" class="beans.RHouse" scope="page"></jsp:useBean>
+
+
+<%
+    beans.RMovieShowCol movieShowCol = new beans.RMovieShowCol();
+    movieShowCol.searchMovieID(movie.getMovieID());
+    movieShowCol.searchHouseID(house.getHouseID());
+    /*if (sStatus.getIsLoggedIn()){
+        movieShowCol.searchInDayRange(1);
+    }
+    else{
+        movieShowCol.searchInDayRange(7);
+    }*/
+    movieShowCol.fetchDBData();
+    pageContext.setAttribute("movieShowCol", movieShowCol);
+    pageContext.setAttribute("movieShowColCount", movieShowCol.count());
+%>
+
+
+<c:if test="${movieShowColCount > 0}">
+    <div class="formInfoContainer">
+        <div class="formInfoControl">
+            <span class="infoLabel span4">House ${house.houseID} - ${house.houseName}</span>
+        </div>
+        
+        <div class="formInfoControl">
+            <ul class="infoInput" name="movieShowId">
+                <c:forEach items="${movieShowCol.all}" var="movieShow">
+                    <li class="infoItem">${movieShow.movieShowStartDate} | ${movieShow.movieShowStartTime} | HKD ${movieShow.ticketPrice}
+                        <a class="btn1 btn noLanguageOption">Sales: HKD ${movieShow.sales}</a>
+                        <a href="<%=common.URLConfig.getFullPath(common.URLConfig.SURL_m_MovieShow_edit)%>?movieShowID=${movieShow.movieShowID}" class="btn2 btn noLanguageOption">Change</a>
+                        <a href="<%=common.URLConfig.getFullPath(common.URLConfig.SURL_m_MovieShow_remove)%>?movieShowID=${movieShow.movieShowID}" class="btn3 btn noLanguageOption">Remove</a>
+                    </li>
+                </c:forEach>
+            </ul>
+        </div>
+
+    </div>
+
+</c:if>
