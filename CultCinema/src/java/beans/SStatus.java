@@ -10,6 +10,7 @@ package beans;
  */
 public class SStatus {
     private boolean isLoggedIn;
+    private boolean isExclusivelyLoggedIn;
     private String loginId;
     private String userName;
     private String userRole;
@@ -18,6 +19,7 @@ public class SStatus {
     
     public SStatus(){
         isLoggedIn = false;
+        isExclusivelyLoggedIn = false;
         loginId = common.RolesConfig.guestLoginId;
         userName = common.RolesConfig.guestUsername;
         languageOption = "en";
@@ -84,6 +86,20 @@ public class SStatus {
      */
     public void setCurrentBooking(beans.SBooking currentBooking) {
         this.currentBooking = currentBooking;
+    }
+
+    /**
+     * @return the isExclusivelyLoggedIn
+     */
+    public boolean getIsExclusivelyLoggedIn() {
+        return isExclusivelyLoggedIn;
+    }
+
+    /**
+     * @param isExclusivelyLoggedIn the isExclusivelyLoggedIn to set
+     */
+    public void setIsExclusivelyLoggedIn(boolean isExclusivelyLoggedIn) {
+        this.isExclusivelyLoggedIn = isExclusivelyLoggedIn;
     }
     
     

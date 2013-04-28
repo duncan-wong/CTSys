@@ -33,7 +33,7 @@ public abstract class URLConfig {
     //servlet
     public static final String SURL_exclusiveLogin = "/exclusiveLogin";
     public static final String SURL_excludeExclusiveLogin = "/exclude/exclusiveLogin";
-    public static final String SURL_excludeLogin = "/exclude/logout";
+    public static final String SURL_excludeLogout = "/exclude/logout";
     public static final String SURL_index = "/index";
     public static final String SURL_login = "/login";
     public static final String SURL_login_user = "/login_user";

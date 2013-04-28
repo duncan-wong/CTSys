@@ -23,6 +23,24 @@ public class LanguageBean {
     public String pMsgPayAll(){return"The payments are completed";}
     public String pMsgCancelAll(){return"The bookings are canceled";}
     
+    //common
+    public String comSignUp(){return"Sign Up!";}
+    public String comLogIn(){return"Log In";}
+    public String comLogOut(){return"Log Out";}
+    public String comCancel(){return"Cancel";}
+    public String comBack(){return"Back";}
+    public String comPurchase(){return"Purchase";}
+    public String comEdit(){return"Edit";}
+    public String comSave(){return"Save";}
+    public String comHKD(){return"HKD";}
+    public String comHouse(){return"House";}
+    public String comSeats(){return"Seats";}
+    public String comLoyaltyPoint(){return"Loyalty point";}
+    public String comEmail(){return"Email";}
+    public String comScreen(){return"Screen";}
+    public String comOrder(){return"Order";}
+    public String comTotal(){return"Total";}
+    
     //menu
     public String mCompanyName(){return"Cult Cinema";}
     public String mMovies(){return"Movies";}
@@ -61,6 +79,7 @@ public class LanguageBean {
     public String hHousesMainTitle(){return"Houses";}
     //header - OrderTicket
     public String hOTMainTitle(){return"Order ticket";}
+    public String hOTMainTitleThankYou(){return"Thank you";}
     
     //content
     //content - index
@@ -93,4 +112,15 @@ public class LanguageBean {
     public String cHousesLbCapacity(){return"Capacity";}
     //content - OrderTicket
     public String cOTErrorPaymentTimeout(){return"Your purchase is timed out. Please select again.";}
+    public String cOTAreYouMember(){return"Are you a member?";}
+    public String cOTNonMemberPurchase(){return"Non-member purchase";}
+    public String cOTUseLoyaltyPoint(){return"Use loyalty point";}
+    public String cOTCreditCardNo(){return"Credit Card No.";}
+    public String cOTCreditCardSafeNo(){return"Credit Card Safe No.";}
+    public String cOTBtnOtherMovies(){return"Other movies";}
+    //content - exclusiveLogin
+    public String cELoginLbStatus(){return"The account is currently logged in at elsewhere.";}
+    public String cELoginLbInstruction(){return"Would you like to force others to logout?";}
+    public String cELoginBtnForceOther(){return"Force other to logout";}
+    public String cELoginBtnLogoutHere(){return"Logout here";}
 }

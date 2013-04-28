@@ -151,7 +151,9 @@ public class applicationFilter implements Filter {
                 
                 //prevent concurrent login
                 beans.AUserMonitor aUserMonitor = beans.AUserMonitor.getInstance();
-                aUserMonitor.userLogin(loginedUser.getLoginID(), session);
+                if (aUserMonitor.userLogin(loginedUser.getLoginID(), session)){
+                    sessionStatus.setIsExclusivelyLoggedIn(true);
+                }
                 
             }
             
@@ -185,13 +187,20 @@ public class applicationFilter implements Filter {
             }
             
             
+            //Part D
             //force logout if the login is not exclusive
             if (sRequest.getUserPrincipal() != null){
                 beans.AUserMonitor aUserMonitor = beans.AUserMonitor.getInstance();
                 beans.SStatus sessionStatus = (beans.SStatus)session.getAttribute(common.BeansConfig.sStatus);
-                if (!aUserMonitor.isSingleLogin(sessionStatus.getLoginId(), session)
+                if(!aUserMonitor.isSingleLogin(sessionStatus.getLoginId(), session)
+                        && sessionStatus.getIsExclusivelyLoggedIn()){
+                    sRequest.getRequestDispatcher(common.URLConfig.SURL_excludeLogout).forward(request, response);
+                    return;
+                }
+                else if (!aUserMonitor.isSingleLogin(sessionStatus.getLoginId(), session)
                         && !sRequest.getServletPath().contains(common.URLConfig.js)
-                        && !sRequest.getServletPath().contains(common.URLConfig.css)){
+                        && !sRequest.getServletPath().contains(common.URLConfig.css)
+                        && !sRequest.getServletPath().contains(common.URLConfig.exclude)){
                     sRequest.getRequestDispatcher(common.URLConfig.SURL_exclusiveLogin).forward(sRequest, sResponse);
                     return;
                 }

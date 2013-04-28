@@ -31,7 +31,7 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        Order ticket
+                        <%=sLanguageBean.hOTMainTitle() %>
                     </h1>
                     
                 </div>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="formInfoControl">
                         <span class="infoLabel">
-                            HKD ${rMovieShow.ticketPrice}
+                            <%=sLanguageBean.comHKD() %> ${rMovieShow.ticketPrice}
                         </span>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                     <c:set var="houseSeats" scope="page" value="${houseSeats}" />
                     <div class="houseSeatPlanContainer">
                         <div class="houseScreen">
-                            SCREEN
+                            <%=sLanguageBean.comScreen() %>
                         </div>
                         
                         <table class="houseSeatPlan">
@@ -89,8 +89,8 @@
                         <input type="hidden" name="selectedSeats" id="txtSelectedSeat" value="${selectedSeatsId}" />
                     </div>
                     <div class="formInfoControl">
-                        <a class="btn noLanguageOption" type="submit_orderTicket">Order</a>
-                        <a class="btn noLanguageOption" href="<%=request.getContextPath()%>/orderTicket?movieId=${rCurrentMovie.movieID}">Back</a>
+                        <a class="btn noLanguageOption" type="submit_orderTicket"><%=sLanguageBean.comOrder() %></a>
+                        <a class="btn noLanguageOption" href="<%=request.getContextPath()%>/orderTicket?movieId=${rCurrentMovie.movieID}"><%=sLanguageBean.comBack() %></a>
                     </div>
                 </form>
             </div>

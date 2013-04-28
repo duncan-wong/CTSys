@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,8 +31,25 @@ public class ExclusiveLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        HttpSession session = request.getSession();
+        beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
+        String path = request.getServletPath();
         
-        this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_exclusiveLogin).forward(request, response);
+        //exclusive login
+        if (path.contains(common.URLConfig.SURL_excludeExclusiveLogin)){
+            beans.AUserMonitor aUserMonitor = beans.AUserMonitor.getInstance();
+            aUserMonitor.userLoginExclusivly(sStatus.getLoginId(), session);
+            sStatus.setIsExclusivelyLoggedIn(true);
+            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURL_index));
+        }
+        //logout
+        else if(path.contains(common.URLConfig.SURL_excludeLogout)){
+            session.invalidate();
+            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURL_index));
+        }
+        else{
+            this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_exclusiveLogin).forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

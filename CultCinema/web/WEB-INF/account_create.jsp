@@ -118,8 +118,8 @@
                     </div>
                             
                     <div class="formInfoControl">
-                        <a type="submit" class="btn noLanguageOption">Sign Up!</a>
-                        <a class="btn noLanguageOption" href="<%=request.getContextPath()%>">Cancel</a>
+                        <a type="submit" class="btn noLanguageOption"><%=sLanguageBean.comSignUp() %></a>
+                        <a class="btn noLanguageOption" href="<%=request.getContextPath()%>"><%=sLanguageBean.comCancel() %></a>
                     </div>
                 </form>
             </div>

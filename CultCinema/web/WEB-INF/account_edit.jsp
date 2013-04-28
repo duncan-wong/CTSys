@@ -137,8 +137,8 @@
                    
                         
                     <div class="formInfoControl">
-                        <a type="submit" class="btn noLanguageOption">Save</a>
-                        <a class="btn noLanguageOption" href="<%=request.getContextPath()%>/account">Cancel</a>
+                        <a type="submit" class="btn noLanguageOption"><%=sLanguageBean.comSave() %></a>
+                        <a class="btn noLanguageOption" href="<%=request.getContextPath()%>/account"><%=sLanguageBean.comCancel() %></a>
                     </div>
                 </form>
             </div>

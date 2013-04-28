@@ -32,7 +32,7 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        Order ticket - Thank you!
+                        <%=sLanguageBean.hOTMainTitle() %> - <%=sLanguageBean.hOTMainTitleThankYou() %>!
                     </h1>
 
                 </div>
@@ -52,7 +52,7 @@
 
                     <div class="formInfoControl">
                         <span class="infoLabel">
-                            House ${rMovieShow.houseID}
+                            <%=sLanguageBean.comHouse() %> ${rMovieShow.houseID}
                         </span>
                         <span class="infoLabel">
                             - ${rMovieShow.movieShowStartDate}
@@ -64,12 +64,12 @@
 
                     <div class="formInfoControl">
                         <span class="infoLabel">
-                            HKD ${rMovieShow.ticketPrice}
+                            <%=sLanguageBean.comHKD() %> ${rMovieShow.ticketPrice}
                         </span>
                     </div>
 
                     <div class="formInfoControl">
-                        <span class="label">Seats: </span>
+                        <span class="label"><%=sLanguageBean.comSeats() %>: </span>
                         <c:forEach items="${rBooking.bookedSeat}" var="seat">
                             <span class="houseSeat seat_select">
                                 &nbsp-&nbsp${seat.seatID}&nbsp-&nbsp&nbsp
@@ -81,10 +81,10 @@
                         <div class="formInfoControl">
                             <c:set var="total" value="${rMovieShow.ticketPrice * sBooking.numOfTicket}" scope="page" />
                             <span class="label">
-                                Total: 
+                                <%=sLanguageBean.comTotal() %>: 
                             </span>
                             <span class="infoLabel">
-                                HKD ${total}
+                                <%=sLanguageBean.comHKD() %> ${total}
                             </span>
                         </div>
                     </c:if>
@@ -92,7 +92,7 @@
                     <c:if test="${sStatus.isLoggedIn && sStatus.isCustomer}">    
                         <div class="formInfoControl">
                             <span class="label">
-                                Loyalty point: 
+                                <%=sLanguageBean.comLoyaltyPoint() %>: 
                             </span>
                             <span class="infoLabel">
                                 <c:out default="0" value="${rUser.loyalty}" />
@@ -102,7 +102,7 @@
                 </div>
 
                 <div class="formInfoControl">
-                    <a class="btn noLanguageOption" href="<%=request.getContextPath()%>/movies">Other movies</a>
+                    <a class="btn noLanguageOption" href="<%=request.getContextPath()%>/movies"><%=sLanguageBean.cOTBtnOtherMovies() %></a>
                 </div>
                 </form>
             </div>

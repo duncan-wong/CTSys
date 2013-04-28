@@ -59,7 +59,8 @@ public class Login extends HttpServlet {
 
                     //put the languag option into the bean
                     //create language bean
-                    if (request.getParameter("lang").equalsIgnoreCase(sessionStatus.getLanguageOption())){
+                    if (!request.getParameter("lang").equalsIgnoreCase(sessionStatus.getLanguageOption())
+                            || session.getAttribute(common.BeansConfig.sLanguageBean) == null){
                         sessionStatus.setLanguageOption(request.getParameter("lang"));
                         beans.accessInterface.LanguageBean sLanguageBean = beans.languageBeans.LanguageBeanPicker.getLanguageBean(sessionStatus.getLanguageOption());
                         session.setAttribute(common.BeansConfig.sLanguageBean, sLanguageBean);

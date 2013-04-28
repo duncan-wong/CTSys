@@ -34,7 +34,7 @@
                             <%=sLanguageBean.hLoginControlMsg()%>
                         </span>
                         <a class="btn" href="<%= request.getContextPath() %>/signUp">
-                            <%=sLanguageBean.hLoginControlBtnSignUp()%>
+                            <%=sLanguageBean.comSignUp() %>
                         </a>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                         <input type="password" class="infoInput" name="j_password" id="txtPassword" placeholder="Password" />
                     </div>
                     <div class="formInfoControl">
-                        <input type="submit" class="btn" value="<%=sLanguageBean.cLoginBtnSubmit()%>" />
+                        <input type="submit" class="btn" value="<%=sLanguageBean.comLogIn() %>" />
                     </div>
                 </form>
             </div>

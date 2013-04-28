@@ -34,19 +34,19 @@
                 <div class="formInfoContainer">
                     <div class="formInfoControl">
                         <span class="infoLabel error">
-                            The account is currently logged in at somewhere.
+                            <%=sLanguageBean.cELoginLbStatus() %>
                         </span>
                     </div>
                     
                     <div class="formInfoControl">
                         <span class="infoLabel">
-                            Would you like to force others to logout?
+                            <%=sLanguageBean.cELoginLbInstruction() %>
                         </span>
                         <a class="btn" href="<%=request.getContextPath()%>/exclude/exclusiveLogin">
-                            Force other to logout
+                            <%=sLanguageBean.cELoginBtnForceOther() %>
                         </a>
                         <a class="btn" href="<%=request.getContextPath()%>/exclude/logout">
-                            Logout here
+                            <%=sLanguageBean.cELoginBtnLogoutHere() %>
                         </a>
                     </div>
                 </div>

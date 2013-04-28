@@ -31,7 +31,7 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        Order ticket
+                        <%=sLanguageBean.hOTMainTitle() %>
                     </h1>
                     
                 </div>
@@ -42,7 +42,7 @@
                 <div class="formInfoContainer">
                     <div class="formInfoControl">
                         <span class="infoLabel">
-                            House ${rMovieShow.houseID}
+                            <%=sLanguageBean.comHouse() %> ${rMovieShow.houseID}
                         </span>
                         <span class="infoLabel">
                             - ${rMovieShow.movieShowStartDate}
@@ -53,13 +53,13 @@
                     </div>
                     <div class="formInfoControl">
                         <span class="infoLabel">
-                            HKD ${rMovieShow.ticketPrice}
+                            <%=sLanguageBean.comHKD() %> ${rMovieShow.ticketPrice}
                         </span>
                     </div>
                         
                        
                     <div class="formInfoControl">
-                        <span class="label">Seats: </span>
+                        <span class="label"><%=sLanguageBean.comSeats() %>: </span>
                         <c:forEach items="${sBooking.selectedTickets}" var="seat">
                             <span class="houseSeat seat_select">
                                 &nbsp-&nbsp${seat.seatID}&nbsp-&nbsp&nbsp
@@ -73,13 +73,13 @@
                             Total: 
                         </span>
                         <span class="infoLabel">
-                            HKD ${total}
+                            <%=sLanguageBean.comHKD() %> ${total}
                         </span>
                     </div>
                     <c:if test="${sStatus.isLoggedIn && sStatus.isCustomer}">    
                         <div class="formInfoControl">
                             <span class="label">
-                                Loyalty point: 
+                                <%=sLanguageBean.comLoyaltyPoint() %>: 
                             </span>
                             <span class="infoLabel">
                                 <c:out default="0" value="${rUser.loyalty}" />
@@ -93,9 +93,9 @@
                     <form action="<%=request.getContextPath()%>/orderTicket_member?movieId=${rCurrentMovie.movieID}"
                           method="POST"
                           class="formInfoContainer">
-                        <span class="infoLabel">Are you a member?</span>
-                        <a class="btn noLanguageOption" type="submit">Log In</a>
-                        <a class="btn noLanguageOption" href="<%=request.getContextPath()%><%=common.URLConfig.SURL_signUp%>" target="blank">Sign Up!</a>
+                        <span class="infoLabel"><%=sLanguageBean.cOTAreYouMember() %>? </span>
+                        <a class="btn noLanguageOption" type="submit"><%=sLanguageBean.comLogIn() %></a>
+                        <a class="btn noLanguageOption" href="<%=request.getContextPath()%><%=common.URLConfig.SURL_signUp%>" target="blank"><%=sLanguageBean.comSignUp() %></a>
                     </form>
                 </c:if>
                 <form action="<%=request.getContextPath()%>/orderTicket?movieId=${rCurrentMovie.movieID}" method="POST" class="formInfoContainer">
@@ -103,11 +103,11 @@
                     <c:if test="${!sStatus.isLoggedIn}">
                        <div class="formInfoControl">
                            <span class="infoLabel">
-                               Non-member purchase
+                               <%=sLanguageBean.cOTNonMemberPurchase() %>
                            </span>
                        </div>
                        <div class="formInfoControl">
-                           <span class="label">Email: </span>
+                           <span class="label"><%=sLanguageBean.comEmail() %>: </span>
                            <input id="txtEmail" name="email" type="text" class="infoInput" value="${sBooking.guestEmail}" />
                            <c:if test="${errorMsg != null}">
                                <span class="error">
@@ -120,7 +120,7 @@
                     <c:if test="${sStatus.isLoggedIn && sStatus.isCustomer && total <= rUser.loyalty_int}">
                         <div class="formInfoControl">
                             <span class="label">
-                                Use loyalty point?
+                                <%=sLanguageBean.cOTUseLoyaltyPoint() %>?
                             </span>
                             <input type="checkbox" name="loyaltyPoint" value="loyaltyPoint" />
                         </div>
@@ -129,7 +129,7 @@
                     <%-- common purchas information --%>
                     <c:if test="${sStatus.isCustomer}">
                         <div class="formInfoControl">
-                            <span class="label">Credit card no.: </span>
+                            <span class="label"><%=sLanguageBean.cOTCreditCardNo() %>: </span>
                             <input id="txtCreditCardNo" name="creditCardNo" type="text" class="infoInput" />
                             <c:if test="${errorMsg != null}">
                                 <span class="error">
@@ -138,7 +138,7 @@
                             </c:if>
                         </div>
                         <div class="formInfoControl">
-                            <span class="label">Credit card safe no.: </span>
+                            <span class="label"><%=sLanguageBean.cOTCreditCardSafeNo() %>: </span>
                             <input id="txtCreditCardNo" name="creditCardSafeNo" type="text" class="infoInput" />
                             <c:if test="${errorMsg != null}">
                                    <span class="error">
@@ -149,9 +149,9 @@
                     </c:if>
                     
                     <div class="formInfoControl">
-                        <a class="btn noLanguageOption" type="submit">Purchase</a>
-                        <a class="btn noLanguageOption" type="submit_backward">Back</a>
-                        <a class="btn noLanguageOption" href="<%=request.getContextPath()%>/orderTicket/cancel">Cancel</a>
+                        <a class="btn noLanguageOption" type="submit"><%=sLanguageBean.comPurchase() %></a>
+                        <a class="btn noLanguageOption" type="submit_backward"><%=sLanguageBean.comBack() %></a>
+                        <a class="btn noLanguageOption" href="<%=request.getContextPath()%>/orderTicket/cancel"><%=sLanguageBean.comCancel() %></a>
                     </div>
                 </form>
             </div>
