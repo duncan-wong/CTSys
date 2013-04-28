@@ -13,6 +13,7 @@
         
         <%@include file="/WEB-INF/jspf/common/headSession.jspf" %>
         
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/movies.css" />
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/manager/movies.css" />
     <!-- jQuery datepicker -->
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -58,7 +59,7 @@
                         <label class="label">
                             <%="Movie Name"%>: 
                         </label>
-                            <input type="text" name="movieName" class="infoInput" value="${rMovie.movieName}" />
+                            <input type="text" name="movieName" class="infoInput span5" value="${rMovie.movieName}" />
                         <c:if test="${errorMsg != null}">
                             <span class="error">
                                 ${errorMsg["movieName"]}
@@ -70,7 +71,7 @@
                         <label class="label">
                             <%="Director"%>: 
                         </label>
-                        <input type="text" name="movieAuthor" class="infoInput" value="${rMovie.movieAuthor}" />
+                        <input type="text" name="movieAuthor" class="infoInput span5" value="${rMovie.movieAuthor}" />
                         <c:if test="${errorMsg != null}">
                             <span class="error">
                                 ${errorMsg["movieAuthor"]}
@@ -82,7 +83,7 @@
                         <label class="label">
                             <%="Length (mins)"%>: 
                         </label>
-                            <input type="text" name="movieDuration" class="infoInput" value="${rMovie.movieDuration}" />
+                            <input type="text" name="movieDuration" class="infoInput span5" value="${rMovie.movieDuration}" />
                         <c:if test="${errorMsg != null}">
                             <span class="error">
                                 ${errorMsg["movieDuration"]}
@@ -95,9 +96,9 @@
                         <label class="label">
                             <%="On Screen Date"%>: 
                         </label>
-                            <input type="text" name="movieStartDate" class="infoInput dateInput" id="popupDatepicker" value="${rMovie.movieStartDate}" />
+                            <input type="text" name="movieStartDate" class="infoInput dateInput span2" id="popupDatepicker" value="${rMovie.movieStartDate}" />
                         <span class="infoSeparator">-</span>
-                            <input type="text" name="movieEndDate" class="infoInput dateInput" id="popupDatepicker2" value="${rMovie.movieEndDate}" />
+                            <input type="text" name="movieEndDate" class="infoInput dateInput span2" id="popupDatepicker2" value="${rMovie.movieEndDate}" />
                         <c:if test="${errorMsg != null}">
                             <span class="error">
                                 ${errorMsg["movieDate"]}
@@ -109,7 +110,7 @@
                         <label class="label">
                             <%="Description"%>: 
                         </label>
-                            <textarea name="movieDescription" class="infoInputArea">${rMovie.movieDescription}</textarea>
+                            <textarea name="movieDescription" class="infoInputArea span5">${rMovie.movieDescription}</textarea>
                         <c:if test="${errorMsg != null}">
                             <span class="error">
                                 ${errorMsg["movieDescription"]}
