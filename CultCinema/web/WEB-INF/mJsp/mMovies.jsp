@@ -32,7 +32,7 @@
                         <%=sLanguageBean.hMoviesMainTitle()%>
                     </h1>
                     <div class="headerControl">
-                        <a href="<%=common.URLConfig.getFullPath(common.URLConfig.SURL_m_Movies_create)%>" class="btn">
+                        <a href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Movies_create)%>" class="btn">
                             <%="Add New Movie"%>
                         </a>
                     </div>

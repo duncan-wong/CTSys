@@ -38,7 +38,7 @@ public abstract class MovieShowSQL {
     // 0 output     -1 if have error
     // 1 input      showing_id
     public static final String
-            d1 = "{ ? = call update_Showing(?) }";
+            d1 = "{ ? = call delete_Showing(?) }";
 //-----------------------------------------------------------------------------
     // 1 input      showing_id
     public static final String

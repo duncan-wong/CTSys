@@ -56,15 +56,15 @@ public abstract class URLConfig {
     public static final String SURLo_checkoutCancel = "/officer/checkoutCancel";
     public static final String SURLo_checkoutPay = "/officer/checkoutPay";
     //servlet - manager
-    public static final String SURL_m_Manager = "/manager";
-    public static final String SURL_m_Movies = "/manager/movies";
-    public static final String SURL_m_Movies_edit = "/manager/movies/edit";
-    public static final String SURL_m_Movies_create = "/manager/movies/create";
-    public static final String SURL_m_Movies_remove = "/manager/movies/remove";
-    public static final String SURL_m_MovieShow = "/manager/movies/movieShow";
-    public static final String SURL_m_MovieShow_edit = "/manager/movies/movieShow/edit";
-    public static final String SURL_m_MovieShow_create = "/manager/movies/movieShow/create";
-    public static final String SURL_m_MovieShow_remove = "/manager/movies/movieShow/remove";
+    public static final String SURLm_Manager = "/manager";
+    public static final String SURLm_Movies = "/manager/movies";
+    public static final String SURLm_Movies_edit = "/manager/movies/edit";
+    public static final String SURLm_Movies_create = "/manager/movies/create";
+    public static final String SURLm_Movies_remove = "/manager/movies/remove";
+    public static final String SURLm_MovieShow = "/manager/movies/movieShow";
+    public static final String SURLm_MovieShow_edit = "/manager/movies/movieShow/edit";
+    public static final String SURLm_MovieShow_create = "/manager/movies/movieShow/create";
+    public static final String SURLm_MovieShow_remove = "/manager/movies/movieShow/remove";
     
     //jsp
     public static final String JURL_exclusiveLogin= "/WEB-INF/exclusiveLogin.jsp";
@@ -83,14 +83,14 @@ public abstract class URLConfig {
     public static final String JURL_search = "/WEB-INF/search.jsp";
     //jsp - manager
     public static final String JURLm_Manage = "/WEB-INF/mJsp/mManage.jsp";
-    public static final String JURL_m_Movies = "/WEB-INF/mJsp/mMovies.jsp";
-    public static final String JURL_m_Movies_edit = "/WEB-INF/mJsp/mMovies_edit.jsp";
-    public static final String JURL_m_Movies_remove = "/WEB-INF/mJsp/mMovies_remove.jsp";
-    public static final String JURL_m_Movies_create = "/WEB-INF/mJsp/mMovies_create.jsp";
-    public static final String JURL_m_MovieShow = "/WEB-INF/mJsp/mMovieShow.jsp";
-    public static final String JURL_m_MovieShow_create = "/WEB-INF/mJsp/mMovieShow_create.jsp";
-    public static final String JURL_m_MovieShow_edit = "/WEB-INF/mJsp/mMovieShow_edit.jsp";
-    public static final String JURL_m_MovieShow_remove = "/WEB-INF/mJsp/mMovieShow_remove.jsp";
+    public static final String JURLm_Movies = "/WEB-INF/mJsp/mMovies.jsp";
+    public static final String JURLm_Movies_edit = "/WEB-INF/mJsp/mMovies_edit.jsp";
+    public static final String JURLm_Movies_remove = "/WEB-INF/mJsp/mMovies_remove.jsp";
+    public static final String JURLm_Movies_create = "/WEB-INF/mJsp/mMovies_create.jsp";
+    public static final String JURLm_MovieShow = "/WEB-INF/mJsp/mMovieShow.jsp";
+    public static final String JURLm_MovieShow_create = "/WEB-INF/mJsp/mMovieShow_create.jsp";
+    public static final String JURLm_MovieShow_edit = "/WEB-INF/mJsp/mMovieShow_edit.jsp";
+    public static final String JURLm_MovieShow_remove = "/WEB-INF/mJsp/mMovieShow_remove.jsp";
     //jsp - o
     public static final String JURLo_manage = "/WEB-INF/oJsp/oManage.jsp";
     public static final String JURLo_refund = "/WEB-INF/oJsp/oRefund.jsp";

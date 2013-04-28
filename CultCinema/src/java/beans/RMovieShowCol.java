@@ -24,6 +24,7 @@ public class RMovieShowCol extends UpdatableBean {
     private String search_houseID;
     private String search_movieID;
     private String search_language;  // ( Default is 'en' )
+    private String search_movieShowID;
     private ArrayList<RMovieShow> showingCol;
     private ArrayList<RMovieShow> showingWaitForDelete;
 //-----------------------------------------------------------------------------
@@ -68,12 +69,16 @@ public class RMovieShowCol extends UpdatableBean {
     public void searchInDayRange(int in) {
         search_dayRange = String.valueOf(in);
     }
+    public void searchMovieShowID(String in) {
+        search_movieShowID = in;
+    }
     public void resetSearch() {
         search_dayRange = null;
         search_timeAfter = null;
         search_houseID = null;
         search_movieID = null;
         search_language = null;
+        search_movieShowID = null;
     }
 //-----------------------------------------------------------------------------
     @Override
@@ -86,7 +91,7 @@ public class RMovieShowCol extends UpdatableBean {
             db.setXxx(3, search_houseID);
             db.setXxx(4, search_movieID);
             db.setXxx(5, search_language);
-            db.setXxx(6, null);
+            db.setXxx(6, search_movieShowID);
             db.executeQuery();
             while (db.queryHasNext()) {
                 RMovieShow r = new RMovieShow();

@@ -28,7 +28,7 @@ public class M_Movies_create extends HttpServlet {
         request.setAttribute("rMovie", rMovie);
         
         // dispatch
-        this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_m_Movies_create).forward(request, response);
+        this.getServletContext().getRequestDispatcher(common.URLConfig.JURLm_Movies_create).forward(request, response);
     }
     
     
@@ -105,12 +105,12 @@ public class M_Movies_create extends HttpServlet {
         }
         
         if (isCommitted) {
-            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURL_m_Movies));
+            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURLm_Movies));
         }
         else {
             request.setAttribute("rMovie", rMovie);
             request.setAttribute("errorMsg", errorMsg);
-            this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_m_Movies_create).forward(request, response);
+            this.getServletContext().getRequestDispatcher(common.URLConfig.JURLm_Movies_create).forward(request, response);
         }
     }
 

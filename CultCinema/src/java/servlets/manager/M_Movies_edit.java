@@ -27,7 +27,7 @@ public class M_Movies_edit extends HttpServlet {
         rMovie.setMovieID(request.getParameter("movieId"));
         rMovie.fetchDBData();
         request.setAttribute("rMovie", rMovie);
-        this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_m_Movies_edit).forward(request, response);
+        this.getServletContext().getRequestDispatcher(common.URLConfig.JURLm_Movies_edit).forward(request, response);
     }
     
     
@@ -101,7 +101,7 @@ public class M_Movies_edit extends HttpServlet {
         
         if (isSafeToCommit) {
             try {
-                rMovie.commitUpdate();
+                rMovie.commitChange();
                 isCommitted = true;
             }
             catch(Exception e){
@@ -110,12 +110,12 @@ public class M_Movies_edit extends HttpServlet {
         }
         
         if (isCommitted) {
-            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURL_m_Movies));
+            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURLm_Movies));
         }
         else {
             request.setAttribute("rMovie", rMovie);
             request.setAttribute("errorMsg", errorMsg);
-            this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_m_Movies_edit).forward(request, response);
+            this.getServletContext().getRequestDispatcher(common.URLConfig.JURLm_Movies_edit).forward(request, response);
         }
     }
     

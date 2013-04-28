@@ -14,6 +14,7 @@
         
         <%@include file="/WEB-INF/jspf/common/headSession.jspf" %>
         
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/movie.css" />
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/manager/movieShow.css" />
         
     </head>
@@ -34,7 +35,7 @@
                         <%="Movie Shows"%>
                     </h1>
                     <div class="headerControl">
-                        <a href="<%=common.URLConfig.getFullPath(common.URLConfig.SURL_m_Movies) %>" class="btn">
+                        <a href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Movies)%>" class="btn">
                             <%="Back"%>
                         </a>
                     </div>
@@ -88,7 +89,7 @@
                     
                     <div class="movieControl">
                         <div class="formInfoControl">
-                            <a class="btn" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURL_m_MovieShow_create)%>?movieID=${rCurrentMovie.movieID}">Add Show Time</a>
+                            <a class="btn" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow_create)%>?movieID=${rCurrentMovie.movieID}&duration=${rCurrentMovie.movieDuration}">Add Show Time</a>
                         </div>
                     </div>
                 </div>

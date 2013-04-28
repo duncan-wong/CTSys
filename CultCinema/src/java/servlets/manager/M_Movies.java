@@ -42,7 +42,7 @@ public class M_Movies extends HttpServlet {
             throws ServletException, IOException {
         
         processRequest(request, response);
-        this.getServletContext().getRequestDispatcher(URLConfig.JURL_m_Movies).forward(request, response);
+        this.getServletContext().getRequestDispatcher(URLConfig.JURLm_Movies).forward(request, response);
     }
     
     
@@ -52,7 +52,7 @@ public class M_Movies extends HttpServlet {
             throws ServletException, IOException {
         
         processRequest(request, response);
-        this.getServletContext().getRequestDispatcher(URLConfig.JURL_m_Movies).forward(request, response);
+        this.getServletContext().getRequestDispatcher(URLConfig.JURLm_Movies).forward(request, response);
     }
     
     

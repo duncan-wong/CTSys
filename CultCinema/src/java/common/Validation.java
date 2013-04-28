@@ -81,14 +81,40 @@ public class Validation {
         return true;
     }
     
-    public static boolean isDateSmaller(String date1, String date2) {
+    public static boolean isCorrectDateString(String date) {
         try {
             // check the date string is valid
             // if invalid -> go ParseException
             DateFormat df = new SimpleDateFormat("yyyy.MM.dd");
             df.setLenient(false);
-            df.parse(date1);
-            df.parse(date2);
+            df.parse(date);
+            return true;
+            
+        } catch (ParseException ex) {
+            return false;
+        }
+    }
+    
+    public static boolean isCorrectTimeString(String time) {
+        try {
+            // check the date string is valid
+            // if invalid -> go ParseException
+            DateFormat df = new SimpleDateFormat("HH:mm");
+            df.setLenient(false);
+            df.parse(time);
+            return true;
+            
+        } catch (ParseException ex) {
+            return false;
+        }
+    }
+    
+    public static boolean isDateSmaller(String date1, String date2) {
+        try {
+            if (!isCorrectDateString(date1)
+                && !isCorrectDateString(date2)) {
+                return false;
+            }
             
             // compare the date string
             Date d1 = new SimpleDateFormat("yyyy.MM.dd").parse(date1);
@@ -103,5 +129,4 @@ public class Validation {
             return false;
         }
     }
-    
 }
