@@ -204,6 +204,7 @@
     <servlet>
         <servlet-name>Officer_Checkout</servlet-name>
         <servlet-class>servlets.officer.Officer_Checkout</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>MovieShow_create</servlet-name>
         <servlet-class>servlets.manager.MovieShow_create</servlet-class>
@@ -340,6 +341,7 @@
         <url-pattern>/officer/checkout</url-pattern>
         <url-pattern>/officer/checkoutPay</url-pattern>
         <url-pattern>/officer/checkoutCancel</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MovieShow_create</servlet-name>
         <url-pattern>/manager/movies/movieShow/create</url-pattern>
@@ -369,8 +371,4 @@
     </resource-ref>
     <!--=======/Resource======================================================-->
 
-    -
-    
-
-    -
     </web-app>
