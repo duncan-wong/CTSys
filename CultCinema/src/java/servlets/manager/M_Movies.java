@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author A
  */
-public class Movies extends HttpServlet {
+public class M_Movies extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

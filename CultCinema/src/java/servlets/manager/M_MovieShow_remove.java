@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author A
  */
-public class MovieShow_remove extends HttpServlet {
+public class M_MovieShow_remove extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
