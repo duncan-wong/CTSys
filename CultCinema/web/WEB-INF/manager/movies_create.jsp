@@ -41,7 +41,7 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        <%="Movie"%>
+                        <%="Movies"%>
                     </h1>
                 </div>
             </div>

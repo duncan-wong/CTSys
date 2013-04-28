@@ -50,23 +50,15 @@
             </div>
         </div>
         <div class="movieControl">
-            <ul>
-                <li>
-                    <a class="btn" href="<%=request.getContextPath()%>/manager/movies/remove?movieId=${currentMovie.movieID}">
-                        <%="Remove this Movie"%>
-                    </a>
-                </li>
-                <li>
-                    <a class="btn" href="<%=request.getContextPath()%>/manager/movies/edit?movieId=${currentMovie.movieID}">
-                        <%="Edit Movie Detail"%>
-                    </a>
-                </li>
-                <li>
-                    <a class="btn" href="<%=request.getContextPath()%>/manager/movies/movieShow?movieId=${currentMovie.movieID}">
-                        <%="See All Movie Show"%>
-                    </a>
-                </li>
-            </ul>
+            <form action="<%=request.getContextPath()%>/manager/movies/remove?movieId=${currentMovie.movieID}" method="POST" class="formInfoControl">
+                <input type="submit" class="btn" value="Remove this Movie" />
+            </form>
+            <form action="<%=request.getContextPath()%>/manager/movies/edit?movieId=${currentMovie.movieID}" method="POST" class="formInfoControl">
+                <input type="submit" class="btn" value="Edit Movie Detail" />
+            </form>
+            <form action="<%=request.getContextPath()%>/manager/movies/movieShow?movieId=${currentMovie.movieID}" method="POST" class="formInfoControl">
+                <input type="submit" class="btn" value="See All Movie Show" />
+            </form>
         </div>
                 
     </div>

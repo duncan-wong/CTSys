@@ -96,7 +96,7 @@ public class RBookingCol extends UpdatableBean {
                 bookings.add(temp);
             }
             db.disconnect();
-            return fetchDBData();
+            return super.fetchDBData();
         } catch (NamingException ex) {
             Logger.getLogger(RBookingCol.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -106,6 +106,7 @@ public class RBookingCol extends UpdatableBean {
     }
     
     public boolean commitChange() {
+        super.commitChange();
         for (int i=0; i<bookings.size(); i++) {
             if (!bookings.get(i).commitChange()) {
                 return false;

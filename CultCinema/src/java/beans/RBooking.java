@@ -210,6 +210,7 @@ public class RBooking extends UpdatableBean {
     
     @Override
     public boolean commitChange() {
+        super.commitChange();
         if (this.isNew()) {
             return commitInsert();
         }
