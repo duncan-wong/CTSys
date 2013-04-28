@@ -127,29 +127,31 @@
                     </c:if>
                     
                     <%-- common purchas information --%>
-                    <div class="formInfoControl">
-                        <span class="label">Credit card no.: </span>
-                        <input id="txtCreditCardNo" name="creditCardNo" type="text" class="infoInput" />
-                        <c:if test="${errorMsg != null}">
-                            <span class="error">
-                                ${errorMsg["creditCardNo"]}
-                            </span>
-                        </c:if>
-                    </div>
-                    <div class="formInfoControl">
-                        <span class="label">Credit card safe no.: </span>
-                        <input id="txtCreditCardNo" name="creditCardSafeNo" type="text" class="infoInput" />
-                        <c:if test="${errorMsg != null}">
-                               <span class="error">
-                                   ${errorMsg["creditCardSafeNo"]}
-                               </span>
-                           </c:if>
-                    </div>
+                    <c:if test="${sStatus.isCustomer}">
+                        <div class="formInfoControl">
+                            <span class="label">Credit card no.: </span>
+                            <input id="txtCreditCardNo" name="creditCardNo" type="text" class="infoInput" />
+                            <c:if test="${errorMsg != null}">
+                                <span class="error">
+                                    ${errorMsg["creditCardNo"]}
+                                </span>
+                            </c:if>
+                        </div>
+                        <div class="formInfoControl">
+                            <span class="label">Credit card safe no.: </span>
+                            <input id="txtCreditCardNo" name="creditCardSafeNo" type="text" class="infoInput" />
+                            <c:if test="${errorMsg != null}">
+                                   <span class="error">
+                                       ${errorMsg["creditCardSafeNo"]}
+                                   </span>
+                               </c:if>
+                        </div>
+                    </c:if>
                     
                     <div class="formInfoControl">
                         <a class="btn noLanguageOption" type="submit">Purchase</a>
                         <a class="btn noLanguageOption" type="submit_backward">Back</a>
-                        <a class="btn noLanguageOption" href="<%=request.getContextPath()%>/orderTicketCancel">Cancel</a>
+                        <a class="btn noLanguageOption" href="<%=request.getContextPath()%>/orderTicket/cancel">Cancel</a>
                     </div>
                 </form>
             </div>

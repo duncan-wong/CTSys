@@ -196,6 +196,11 @@ public class RBooking extends UpdatableBean {
     public boolean getIsRefundAccepted(){
         return beans.accessInterface.BookingPaymentStatus.Refund_Accepted.equals(this.payment_status);
     }
+    
+    public boolean isBeforeHours(int hours){
+        return true;
+    }
+    
 //------------------------------------------------------------------------------
     @Override
     public boolean fetchDBData() {

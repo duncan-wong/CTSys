@@ -242,10 +242,11 @@ public class OrderTicket extends HttpServlet {
                     sBooking.setSelectedTickets(selectedSeats);
                     
                     //commit selected seats
-                    if (!servlets.orderTicketHelper.BookingHandler.makingNewBooking(session, sBooking, beans.accessInterface.BookingPaymentStatus.Payment_Incomplete)){
+                    if (!servlets.orderTicketHelper.BookingHandler.makingNewBooking(session, sBooking)){
                         this.unauthorizedAccess(response);
                         return;
                     }
+                    
                     
                 }
                 else{
@@ -330,6 +331,10 @@ public class OrderTicket extends HttpServlet {
                     }
                 }
                 
+                //if officer, make it valid
+                if (sStatus.getIsOfficer()){
+                    isValidBooking = true;
+                }
                 
                 if (isValidBooking){
                     beans.RUser rUser;
@@ -344,7 +349,10 @@ public class OrderTicket extends HttpServlet {
                     //update and commit sBooking
                     //make payment
                     boolean isPaymentSuccess;
-                    if (request.getParameter("loyaltyPoint") != null){
+                    if (sStatus.getIsOfficer()){
+                        isPaymentSuccess = servlets.orderTicketHelper.BookingHandler.makePayment(session, sBooking, beans.accessInterface.BookingPaymentStatus.Payment_Deferred);
+                    }
+                    else if (request.getParameter("loyaltyPoint") != null){
                         isPaymentSuccess = servlets.orderTicketHelper.BookingHandler.makePayment(session, sBooking, beans.accessInterface.BookingPaymentStatus.Loyalty_Paid);
                     }
                     else{

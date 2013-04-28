@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 public class BookingHandler {
     public static ConcurrentHashMap<String, String> ticketMonitor = new ConcurrentHashMap<String, String>();
     
-    static public boolean makingNewBooking(HttpSession session,beans.SBooking bookingReq, String paymentStatus){
+    static public boolean makingNewBooking(HttpSession session,beans.SBooking bookingReq){
         beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
         //remove the old booking if exist
         servlets.orderTicketHelper.BookingHandler.clearSessionCurrentBooking(session);
@@ -22,7 +22,6 @@ public class BookingHandler {
         beans.SBooking booking = new beans.SBooking();
         booking.setMovieShowID(bookingReq.getMovieShowID());
         booking.setNumOfTicket(0);
-        booking.setPaymentStatus(beans.accessInterface.BookingPaymentStatus.Payment_Incomplete);
         booking.commitInsert();
         
         bookingReq.setBookingID(booking.getBookingID());

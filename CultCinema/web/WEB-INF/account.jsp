@@ -77,6 +77,17 @@
                             ${rUser.userEmail}
                         </span>
                     </div>
+                        
+                    <c:if test="${sStatus.isLoggedIn && sStatus.isCustomer}">    
+                        <div class="formInfoControl">
+                            <span class="label">
+                                Loyalty point: 
+                            </span>
+                            <span class="infoLabel">
+                                <c:out default="0" value="${rUser.loyalty}" />
+                            </span>
+                        </div>
+                    </c:if>
 
                     <form action="<%=common.URLConfig.getFullPath(common.URLConfig.SURL_account)%>" method="POST" class="formInfoControl">
                         <a type="submit" class="btn">Edit</a>
@@ -103,15 +114,18 @@
                             movie.setMovieID(movieShow.getMovieID());
                             movie.fetchDBData();
                             request.setAttribute("movie", movie);
+                            
+                            request.setAttribute("isRefundPossible", booking.isBeforeHours(3));
                         %>
                         <div class="formInfoControl border_bottom">
+                            <span class="infoLabel">${movieShow.movieShowStartTime}</span>
                             <span class="infoLabel span3">${movie.movieName}</span>
                             <span class="infoLabel span3">House ${movieShow.houseID}: ${movieShow.movieShowStartDate}-${movieShow.movieShowStartTime}</span>
                             <span class="infoLabel span1">${booking.numOfTicket}</span>
                             <span class="infoLabel span2">${booking.paymentStatus}</span>
                             <br />
                             <span class="infoLabel span4">Booking made at: ${booking.bookingMadeDate}-${booking.bookingMadeTime}</span>
-                            <c:if test="${booking.isComplete}">
+                            <c:if test="${booking.isComplete && isRefundPossible}">
                                 <a class="btn noLanguageOption" href="orderTicket/refund?bid=${booking.bookingID}">Refund</a>
                             </c:if>
                             <c:if test="${booking.isDeferred || booking.isRefundAccepted}">

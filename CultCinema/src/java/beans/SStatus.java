@@ -60,6 +60,10 @@ public class SStatus {
         return common.RolesConfig.Member.equals(this.userRole);
     }
     
+    public boolean getIsOfficer(){
+        return common.RolesConfig.Officer.equals(this.userRole);
+    }
+    
     public void setLanguageOption(String languageOption){
         this.languageOption = languageOption;
     } 
