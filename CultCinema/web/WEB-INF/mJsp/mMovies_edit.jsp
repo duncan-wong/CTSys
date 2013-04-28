@@ -19,6 +19,7 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/jquery.datepick.css">
         <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.datepick.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.mousewheel.js"></script>
         <script type="text/javascript">
         $(function() {
             $('#popupDatepicker').datepick({dateFormat: 'yyyy.mm.dd'});
@@ -54,7 +55,7 @@
                     </span>
                 </c:if>   
                     
-                <form action="<%=request.getContextPath()+common.URLConfig.SURL_m_Movies_edit%>?movieId=${rMovie.movieID}" method="POST" class="formInfoContainer">
+                <form action="<%=request.getContextPath()+common.URLConfig.SURLm_Movies_edit%>?movieId=${rMovie.movieID}" method="POST" class="formInfoContainer">
                     <div class="formInfoControl">
                         <label class="label">
                             <%="Movie Name"%>: 
@@ -127,7 +128,7 @@
                             
                     <div class="formInfoControl">
                         <a type="submit" class="btn noLanguageOption">Save</a>
-                        <a class="btn noLanguageOption" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURL_m_Movies)%>">Cancel</a>
+                        <a class="btn noLanguageOption" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Movies)%>">Cancel</a>
                     </div>
                 </form>
             </div>

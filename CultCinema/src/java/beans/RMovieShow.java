@@ -157,7 +157,7 @@ public class RMovieShow extends UpdatableBean {
                 ticket_price = db.getXxx(MovieShowColumn.TICKET_PRICE);
             }
             db.disconnect();
-            return true;
+            return super.fetchDBData();
         } catch (NamingException ex) {
             Logger.getLogger(RMovieShowCol.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -168,14 +168,13 @@ public class RMovieShow extends UpdatableBean {
     
     @Override
     public boolean commitChange() {
-        super.commitChange();
         if (this.isNew()) {
             return commitInsert();
         }
         else if (this.isChanged()) {
             return commitUpdate();
         }
-        return true;
+        return super.commitChange();
     }
     
     

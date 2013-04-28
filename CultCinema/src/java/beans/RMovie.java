@@ -178,14 +178,13 @@ public class RMovie extends UpdatableBean {
     
     @Override
     public boolean commitChange() {
-        super.commitChange();
         if (this.isNew()) {
             return commitInsert();
         }
         else if (this.isChanged()) {
             return commitUpdate();
         }
-        return true;
+        return super.commitChange();
     }
     
     

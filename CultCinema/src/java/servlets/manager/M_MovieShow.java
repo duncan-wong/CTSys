@@ -39,7 +39,7 @@ public class M_MovieShow extends HttpServlet {
         request.setAttribute("rCurrentMovie", rCurrentMovie);
         request.setAttribute("rHouseCol", rHouseCol);
         
-        this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_m_MovieShow).forward(request, response);
+        this.getServletContext().getRequestDispatcher(common.URLConfig.JURLm_MovieShow).forward(request, response);
     }
     
     

@@ -26,7 +26,7 @@ public class M_Movies_remove extends HttpServlet {
         rMovie.setMovieID(request.getParameter("movieId"));
         rMovie.fetchDBData();
         request.setAttribute("rMovie", rMovie);
-        this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_m_Movies_remove).forward(request, response);
+        this.getServletContext().getRequestDispatcher(common.URLConfig.JURLm_Movies_remove).forward(request, response);
     }
     
     
@@ -40,7 +40,7 @@ public class M_Movies_remove extends HttpServlet {
         rMovie.setMovieID(request.getParameter("movieId"));
         rMovie.fetchDBData();
         rMovie.commitDelete();
-        response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURL_m_Movies));
+        response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURLm_Movies));
     }
     
     
