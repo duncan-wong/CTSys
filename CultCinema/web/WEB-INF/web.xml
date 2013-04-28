@@ -83,6 +83,10 @@
     </error-page>
     -->
     <!--=======/Error page==========================================================-->
+    <listener>
+        <description>HttpSessionListener</description>
+        <listener-class>eventListener.SessionListener</listener-class>
+    </listener>
     <servlet>
         <servlet-name>Index</servlet-name>
         <servlet-class>servlets.Index</servlet-class>
@@ -214,7 +218,11 @@
     </servlet>
     <servlet>
         <servlet-name>MovieShow_remove</servlet-name>
-        <servlet-class>servlets.manager.M_MovieShow_remove</servlet-class>
+        <servlet-class>servlets.manager.MovieShow_remove</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ExclusiveLogin</servlet-name>
+        <servlet-class>servlets.ExclusiveLogin</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
@@ -352,6 +360,12 @@
     <servlet-mapping>
         <servlet-name>MovieShow_remove</servlet-name>
         <url-pattern>/manager/movies/movieShow/remove</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExclusiveLogin</servlet-name>
+        <url-pattern>/exclude/logout</url-pattern>
+        <url-pattern>/exclusiveLogin</url-pattern>
+        <url-pattern>/exclude/exclusiveLogin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
