@@ -66,10 +66,11 @@
 
 .movieContainer .movieControl .formInfoControl {
     float: left;
-    padding: 0 3px 0 0;
+    padding: 0 10px 0 0;
 }
 
 .movieContainer .movieControl .formInfoControl .btn {
+    width: 724px;
     /*display: inline;*/
 }
 
@@ -101,4 +102,32 @@
 
 .formInfoContainer .formInfoControl .infoSeparator {
     padding: 0 10px;
+}
+
+/*---- Movie Show Time Info Control ----*/
+.formInfoControl .infoInput .infoItem {
+    padding: 2px;
+}
+
+.formInfoControl .infoInput .btn {
+    padding: 1px 2px;
+    position: absolute;
+    vertical-align: central;
+    width: 80px;
+}
+
+.formInfoControl .infoInput .btn1 {
+    left: 260px;
+    display: inline;
+    background-color: blue;
+    text-align: left;
+    width:155px;
+}
+
+.formInfoControl .infoInput .btn2 {
+    left: 420px;
+}
+
+.formInfoControl .infoInput .btn3 {
+    left: 505px;
 }

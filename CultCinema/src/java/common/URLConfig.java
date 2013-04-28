@@ -39,6 +39,16 @@ public abstract class URLConfig {
     public static final String SURL_orderTicketCancel = "/orderTicketCancel";
     public static final String SURL_signUp = "/signUp";
     public static final String SURL_houses = "/houses";
+    //servlet - manager
+    public static final String SURL_m_Manager = "/manager";
+    public static final String SURL_m_Movies = "/manager/movies";
+    public static final String SURL_m_Movies_edit = "/manager/movies/edit";
+    public static final String SURL_m_Movies_create = "/manager/movies/create";
+    public static final String SURL_m_Movies_remove = "/manager/movies/remove";
+    public static final String SURL_m_MovieShow = "/manager/movies/movieShow";
+    public static final String SURL_m_MovieShow_edit = "/manager/movies/movieShow/edit";
+    public static final String SURL_m_MovieShow_create = "/manager/movies/movieShow/create";
+    public static final String SURL_m_MovieShow_remove = "/manager/movies/movieShow/remove";
     
     //jsp
     public static final String JURL_index = "/WEB-INF/index.jsp";
@@ -54,8 +64,14 @@ public abstract class URLConfig {
     public static final String JURL_signUp = "/WEB-INF/account_create.jsp";
     public static final String JURL_houses = "/WEB-INF/houses.jsp";
     public static final String JURL_search = "/WEB-INF/search.jsp";
-    //jsp - m
+    //jsp - manager
     public static final String JURLm_Manage = "/WEB-INF/mJsp/mManage.jsp";
-    public static final String JURLm_Manage_MovieShow = "/WEB-INF/mJsp/mManage_movieShow.jsp";
-    public static final String JURLm_Officer = "/WEB-INF/mJsp/mOfficer.jsp";
+    public static final String JURL_m_Movies = "/WEB-INF/mJsp/movies.jsp";
+    public static final String JURL_m_Movies_edit = "/WEB-INF/mJsp/movies_edit.jsp";
+    public static final String JURL_m_Movies_remove = "/WEB-INF/mJsp/movies_remove.jsp";
+    public static final String JURL_m_Movies_create = "/WEB-INF/mJsp/movies_create.jsp";
+    public static final String JURL_m_MovieShow = "/WEB-INF/mJsp/movieShow.jsp";
+    public static final String JURL_m_MovieShow_create = "/WEB-INF/mJsp/movieShow_create.jsp";
+    public static final String JURL_m_MovieShow_edit = "/WEB-INF/mJsp/movieShow_edit.jsp";
+    public static final String JURL_m_MovieShow_remove = "/WEB-INF/mJsp/movieShow_remove.jsp";
 }

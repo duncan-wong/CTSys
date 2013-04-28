@@ -28,7 +28,7 @@ public class Movies_create extends HttpServlet {
         request.setAttribute("rMovie", rMovie);
         
         // dispatch
-        this.getServletContext().getRequestDispatcher("/WEB-INF/manager/movies_create.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_m_Movies_create).forward(request, response);
     }
     
     
@@ -105,12 +105,12 @@ public class Movies_create extends HttpServlet {
         }
         
         if (isCommitted) {
-            response.sendRedirect(request.getContextPath()+"/manager/movies");
+            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURL_m_Movies));
         }
         else {
             request.setAttribute("rMovie", rMovie);
             request.setAttribute("errorMsg", errorMsg);
-            this.getServletContext().getRequestDispatcher("/WEB-INF/manager/movies_create.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_m_Movies_create).forward(request, response);
         }
     }
 

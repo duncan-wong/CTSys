@@ -50,15 +50,15 @@
             </div>
         </div>
         <div class="movieControl">
-            <form action="<%=request.getContextPath()%>/manager/movies/remove?movieId=${currentMovie.movieID}" method="POST" class="formInfoControl">
-                <input type="submit" class="btn" value="Remove this Movie" />
-            </form>
-            <form action="<%=request.getContextPath()%>/manager/movies/edit?movieId=${currentMovie.movieID}" method="POST" class="formInfoControl">
-                <input type="submit" class="btn" value="Edit Movie Detail" />
-            </form>
-            <form action="<%=request.getContextPath()%>/manager/movies/movieShow?movieId=${currentMovie.movieID}" method="POST" class="formInfoControl">
-                <input type="submit" class="btn" value="See All Movie Show" />
-            </form>
+            <div class="formInfoControl">
+                <a class="btn" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURL_m_Movies_remove)%>?movieId=${currentMovie.movieID}">Remove this Movie</a>
+            </div>
+            <div class="formInfoControl">
+                <a class="btn" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURL_m_Movies_edit)%>?movieId=${currentMovie.movieID}">Edit Movie Detail</a>
+            </div>
+            <div class="formInfoControl">
+                <a class="btn" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURL_m_MovieShow)%>?movieId=${currentMovie.movieID}">See All Movie Show</a>
+            </div>
         </div>
                 
     </div>
