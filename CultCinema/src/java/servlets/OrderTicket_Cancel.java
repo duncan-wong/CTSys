@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author 52593578
  */
-public class OrderTicketCancel extends HttpServlet {
+public class OrderTicket_Cancel extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -31,6 +31,21 @@ public class OrderTicketCancel extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
+        
+        if (request.getParameter("bid") != null && !request.getParameter("bid").equals("")){
+            beans.RBooking booking = new beans.RBooking(request.getParameter("bid"));
+            if (booking.fetchDBData()){
+                servlets.orderTicketHelper.BookingHandler.deleteBooking(booking);
+            }
+            if (!common.Validation.isNull(request.getParameter("next"))){
+                if(request.getParameter("next").equals("account")){
+                    response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURL_account));
+                }
+                else if(request.getParameter("next").equals("officer") && sStatus.getUserRole().equals(common.RolesConfig.Officer)){
+                    response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURLo_officer));
+                }
+            }
+        }
         
         //clean up
         servlets.orderTicketHelper.BookingHandler.clearSessionCurrentBooking(session);

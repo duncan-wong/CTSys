@@ -85,8 +85,16 @@
                 </div>
 
                 <div class="formInfoContainer">
+                    <c:if test="${errorMsg != null}">
+                        <span class="error">
+                            ${errorMsg["refundError"]}
+                        </span>
+                    </c:if>
+                    
                     <c:forEach items="${rBookingCol.allBooking}" var="booking">
+                        <c:set var="booking" value="${booking}" scope="request" />
                         <%
+                            beans.RBooking booking = (beans.RBooking)request.getAttribute("booking");
                             beans.RMovieShow movieShow = new beans.RMovieShow();
                             movieShow.setMovieShowID(booking.getMovieShowID());
                             movieShow.fetchDBData();
@@ -96,20 +104,20 @@
                             movie.fetchDBData();
                             request.setAttribute("movie", movie);
                         %>
-                        <form action="account" method="POST" class="formInfoControl">
-                            <span class="infoLabel span1">${booking.bookingID}</span>
+                        <div class="formInfoControl border_bottom">
                             <span class="infoLabel span3">${movie.movieName}</span>
-                            <span class="infoLabel span3">${movieshow.movieShowStartDate}-${movieShow.movieSHowStartTime}</span>
+                            <span class="infoLabel span3">House ${movieShow.houseID}: ${movieShow.movieShowStartDate}-${movieShow.movieShowStartTime}</span>
                             <span class="infoLabel span1">${booking.numOfTicket}</span>
                             <span class="infoLabel span2">${booking.paymentStatus}</span>
                             <br />
-                            <c:if test="${!booking.isLoyaltyPaid}">
-                                <a class="btn noLanguageOption" type="submit">Refund</a>
+                            <span class="infoLabel span4">Booking made at: ${booking.bookingMadeDate}-${booking.bookingMadeTime}</span>
+                            <c:if test="${booking.isComplete}">
+                                <a class="btn noLanguageOption" href="orderTicket/refund?bid=${booking.bookingID}">Refund</a>
                             </c:if>
-                            <c:if test="${!booking.isIncomplete}">
-                                <a class="btn noLanguageOption" type="submit">Pay</a>
+                            <c:if test="${booking.isDeferred || booking.isRefundAccepted}">
+                                <a class="btn noLanguageOption" href="orderTicket/cancel?bid=${booking.bookingID}&next=account">Cancel</a>
                             </c:if>
-                        </form>        
+                        </div>        
                     </c:forEach>
                 </div>
             </div>

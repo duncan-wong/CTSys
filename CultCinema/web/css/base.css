@@ -156,6 +156,10 @@ input{
 
 .greyBg{background: #EEE;}
 
+.border_bottom{
+    border-bottom: solid 1px #AAA;
+}
+
 .overlay{
     position:fixed;
     left:0;

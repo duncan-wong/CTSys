@@ -15,7 +15,7 @@ public class LanguageBean {
     public String errorPhone(){return"Invalid phone no.";}
     public String errorCreditCard(){return"Invalid credit card no.";}
     public String errorCreditCardSafe(){return"Invalid credit card safe no.";}
-    
+    public String errorRefund(){return"Not enough loyalty point";}
     
     //menu
     public String mCompanyName(){return"Cult Cinema";}

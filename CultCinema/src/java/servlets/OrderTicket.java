@@ -345,10 +345,10 @@ public class OrderTicket extends HttpServlet {
                     //make payment
                     boolean isPaymentSuccess;
                     if (request.getParameter("loyaltyPoint") != null){
-                        isPaymentSuccess = servlets.orderTicketHelper.BookingHandler.makePayment(session, sBooking, beans.accessInterface.BookingPaymentStatus.Payment_Complete);
+                        isPaymentSuccess = servlets.orderTicketHelper.BookingHandler.makePayment(session, sBooking, beans.accessInterface.BookingPaymentStatus.Loyalty_Paid);
                     }
                     else{
-                        isPaymentSuccess = servlets.orderTicketHelper.BookingHandler.makePayment(session, sBooking, beans.accessInterface.BookingPaymentStatus.Loyalty_Paid);
+                        isPaymentSuccess = servlets.orderTicketHelper.BookingHandler.makePayment(session, sBooking, beans.accessInterface.BookingPaymentStatus.Payment_Complete);
                     }
                     if (!isPaymentSuccess){
                         beans.accessInterface.LanguageBean lb = beans.languageBeans.LanguageBeanPicker.getLanguageBean(sStatus.getLanguageOption());

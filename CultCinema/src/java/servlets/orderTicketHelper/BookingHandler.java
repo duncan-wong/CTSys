@@ -2,6 +2,7 @@
 package servlets.orderTicketHelper;
 
 import java.util.concurrent.ConcurrentHashMap;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
@@ -98,7 +99,32 @@ public class BookingHandler {
         return true;
     }
     
-    static public boolean deleteBooking(beans.SBooking bookingReq){
+    //request refund
+    static public boolean requestRefund(HttpServletRequest request, beans.RBooking booking){
+        HttpSession session = request.getSession();
+        beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
+        beans.RUser user = new beans.RUser();
+        user.setLoginID(sStatus.getLoginId());
+        user.fetchDBData();
+        
+        //calculate price
+        beans.RMovieShow movieShow = new beans.RMovieShow();
+        movieShow.setMovieShowID(booking.getMovieShowID());
+        movieShow.fetchDBData();
+        int total = Integer.parseInt(movieShow.getTicketPrice()) * booking.getNumOfTicket();
+        
+        if (user.getLoyalty_int() < total){
+            return false;
+        }
+        
+        //refund
+        booking.setPaymentStatus(beans.accessInterface.BookingPaymentStatus.Refund_Pending);
+        booking.commitUpdate();
+        
+        return true;
+    }
+    
+    static public boolean deleteBooking(beans.RBooking bookingReq){
         bookingReq.commitDelete();
         return bookingReq.commitDelete();
     }

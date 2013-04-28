@@ -47,6 +47,8 @@ public class Account extends HttpServlet {
         rBookingCol.fetchDBData();
         request.setAttribute(common.BeansConfig.rBookingCol, rBookingCol);
         
+        session.setAttribute(common.URLConfig.isFrom(common.URLConfig.SURL_account), Boolean.TRUE);
+        
         //dispatch in doGet, doPost
     }
 
@@ -67,6 +69,7 @@ public class Account extends HttpServlet {
         
         //forward to account page(show info)
         this.getServletContext().getRequestDispatcher(URLConfig.JURL_account).forward(request, response);
+        servlets.helper.Helper.clearErrorMsgInSession(request);
     }
 
     /**

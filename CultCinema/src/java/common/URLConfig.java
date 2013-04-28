@@ -36,9 +36,10 @@ public abstract class URLConfig {
     public static final String SURL_movies = "/movies";
     public static final String SURL_orderTicket = "/orderTicket";
     public static final String SURL_orderTicket_member = "/orderTicket_member";
-    public static final String SURL_orderTicketCancel = "/orderTicketCancel";
+    public static final String SURL_orderTicketCancel = "/orderTicket/cancel";
     public static final String SURL_signUp = "/signUp";
     public static final String SURL_houses = "/houses";
+    public static final String SURLo_officer = "/officer";
     
     //jsp
     public static final String JURL_index = "/WEB-INF/index.jsp";

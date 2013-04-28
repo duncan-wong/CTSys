@@ -188,6 +188,14 @@ public class RBooking extends UpdatableBean {
     public boolean getIsIncomplete(){
         return beans.accessInterface.BookingPaymentStatus.Payment_Incomplete.equals(this.payment_status);
     }
+    
+    public boolean getIsComplete(){
+        return beans.accessInterface.BookingPaymentStatus.Payment_Complete.equals(this.payment_status);
+    }
+    
+    public boolean getIsRefundAccepted(){
+        return beans.accessInterface.BookingPaymentStatus.Refund_Accepted.equals(this.payment_status);
+    }
 //------------------------------------------------------------------------------
     @Override
     public boolean fetchDBData() {
