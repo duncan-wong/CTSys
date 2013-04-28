@@ -174,7 +174,7 @@
     </servlet>
     <servlet>
         <servlet-name>Manager_MovieShow</servlet-name>
-        <servlet-class>servlets.manager.MovieShow</servlet-class>
+        <servlet-class>servlets.manager.M_MovieShow</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>OrderTicketCancel</servlet-name>
@@ -182,19 +182,19 @@
     </servlet>
     <servlet>
         <servlet-name>Manager_Movie</servlet-name>
-        <servlet-class>servlets.manager.Movies</servlet-class>
+        <servlet-class>servlets.manager.M_Movies</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Movies_Edit</servlet-name>
-        <servlet-class>servlets.manager.Movies_edit</servlet-class>
+        <servlet-class>servlets.manager.M_Movies_edit</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Movies_remove</servlet-name>
-        <servlet-class>servlets.manager.Movies_remove</servlet-class>
+        <servlet-class>servlets.manager.M_Movies_remove</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Movies_create</servlet-name>
-        <servlet-class>servlets.manager.Movies_create</servlet-class>
+        <servlet-class>servlets.manager.M_Movies_create</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RrderTicket_refund</servlet-name>
@@ -210,11 +210,11 @@
     </servlet>
     <servlet>
         <servlet-name>MovieShow_create</servlet-name>
-        <servlet-class>servlets.manager.MovieShow_create</servlet-class>
+        <servlet-class>servlets.manager.M_MovieShow_create</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>MovieShow_edit</servlet-name>
-        <servlet-class>servlets.manager.MovieShow_edit</servlet-class>
+        <servlet-class>servlets.manager.M_MovieShow_edit</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>MovieShow_remove</servlet-name>
@@ -368,9 +368,7 @@
         <url-pattern>/exclude/exclusiveLogin</url-pattern>
     </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
     <welcome-file-list>
         <welcome-file>index</welcome-file>

@@ -12,37 +12,31 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author A
  */
-public class Movies_edit extends HttpServlet {
+public class M_Movies_create extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // call from a url-pattern
+        // provide the registration form
         RMovie rMovie = new RMovie();
-        rMovie.setMovieID(request.getParameter("movieId"));
-        rMovie.fetchDBData();
         request.setAttribute("rMovie", rMovie);
-        this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_m_Movies_edit).forward(request, response);
+        
+        // dispatch
+        this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_m_Movies_create).forward(request, response);
     }
-    
     
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        HttpSession session = request.getSession(false);
-        beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
-        
+        // form submission
         RMovie rMovie = new RMovie();
-        rMovie.setMovieID(request.getParameter("movieId"));
-        rMovie.setLanguage(sStatus.getLanguageOption());
-        rMovie.fetchDBData();
         
         boolean isSafeToCommit = true;
         boolean isCommitted = false;
@@ -99,9 +93,10 @@ public class Movies_edit extends HttpServlet {
             errorMsg.put("movieDescription", "Invalid Description");
         }
         
+        
         if (isSafeToCommit) {
             try {
-                rMovie.commitUpdate();
+                rMovie.commitChange();
                 isCommitted = true;
             }
             catch(Exception e){
@@ -115,11 +110,10 @@ public class Movies_edit extends HttpServlet {
         else {
             request.setAttribute("rMovie", rMovie);
             request.setAttribute("errorMsg", errorMsg);
-            this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_m_Movies_edit).forward(request, response);
+            this.getServletContext().getRequestDispatcher(common.URLConfig.JURL_m_Movies_create).forward(request, response);
         }
     }
-    
-    
+
     
     @Override
     public String getServletInfo() {

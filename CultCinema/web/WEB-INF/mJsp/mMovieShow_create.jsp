@@ -4,7 +4,7 @@
     Author     : A
 --%>
 
-<jsp:useBean id="rMovie" type="beans.RMovie" scope="request"></jsp:useBean>
+<jsp:useBean id="rMovieShow" type="beans.RMovieShow" scope="request"></jsp:useBean>
 <%--<jsp:useBean id="sLanguageBean" type="beans.accessInterface.LanguageBean" scope="session"></jsp:usebean>--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -44,7 +44,7 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        <%="Movies"%>
+                        <%="Movie Shows"%>
                     </h1>
                 </div>
             </div>
@@ -59,24 +59,24 @@
                 <form action="<%=common.URLConfig.getFullPath(common.URLConfig.SURL_m_Movies_create)%>" method="POST" class="formInfoContainer">
                     <div class="formInfoControl">
                         <label class="label">
-                            <%="Movie Name"%>: 
+                            <%="House ID"%>: 
                         </label>
-                            <input type="text" name="movieName" class="infoInput" value="${rMovie.movieName}" />
+                            <input type="text" name="houseID" class="infoInput" value="${rMovieShow.houseID}" />
                         <c:if test="${errorMsg != null}">
                             <span class="error">
-                                ${errorMsg["movieName"]}
+                                ${errorMsg["houseID"]}
                             </span>
                         </c:if>
                     </div>
                     
                     <div class="formInfoControl">
                         <label class="label">
-                            <%="Director"%>: 
+                            <%="Showing Time"%>: 
                         </label>
-                        <input type="text" name="movieAuthor" class="infoInput" value="${rMovie.movieAuthor}" />
+                        <input type="text" name="startDate" class="infoInput" id="popupDatepicker" value="${rMovieShow.movieShowStartDate}" />
                         <c:if test="${errorMsg != null}">
                             <span class="error">
-                                ${errorMsg["movieAuthor"]}
+                                ${errorMsg["startDate"]}
                             </span>
                         </c:if>
                     </div>
@@ -85,10 +85,10 @@
                         <label class="label">
                             <%="Length (mins)"%>: 
                         </label>
-                            <input type="text" name="movieDuration" class="infoInput" value="${rMovie.movieDuration}" />
+                            <input type="text" name="movieDuration" class="infoInput" value="${rMovieShow.movieShowStartTime}" />
                         <c:if test="${errorMsg != null}">
                             <span class="error">
-                                ${errorMsg["movieDuration"]}
+                                ${errorMsg["startTime"]}
                             </span>
                         </c:if>
                     </div>
@@ -98,9 +98,9 @@
                         <label class="label">
                             <%="On Screen Date"%>: 
                         </label>
-                            <input type="text" name="movieStartDate" class="infoInput dateInput" id="popupDatepicker" value="${rMovie.movieStartDate}" />
+                            <input type="text" name="movieStartDate" class="infoInput dateInput" id="popupDatepicker" value="${rMovieShow.movieStartDate}" />
                         <span class="infoSeparator">-</span>
-                            <input type="text" name="movieEndDate" class="infoInput dateInput" id="popupDatepicker2" value="${rMovie.movieEndDate}" />
+                            <input type="text" name="movieEndDate" class="infoInput dateInput" id="popupDatepicker2" value="${rMovieShow.movieEndDate}" />
                         <c:if test="${errorMsg != null}">
                             <span class="error">
                                 ${errorMsg["movieDate"]}
@@ -112,7 +112,7 @@
                         <label class="label">
                             <%="Description"%>: 
                         </label>
-                            <textarea name="movieDescription" class="infoInputArea">${rMovie.movieDescription}</textarea>
+                            <textarea name="movieDescription" class="infoInputArea">${rMovieShow.movieDescription}</textarea>
                         <c:if test="${errorMsg != null}">
                             <span class="error">
                                 ${errorMsg["movieDescription"]}
