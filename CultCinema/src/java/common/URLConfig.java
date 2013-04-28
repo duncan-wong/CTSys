@@ -22,10 +22,18 @@ public abstract class URLConfig {
         return "isFrom_" + url;
     }
     
+    //exclude path
+    public static final String exclude = "/exclude";
+    public static final String css = "/css/";
+    public static final String js = "/js/";
+    
     //context path
     public static final String ContextPath = "/CultCinema";
     
     //servlet
+    public static final String SURL_exclusiveLogin = "/exclusiveLogin";
+    public static final String SURL_excludeExclusiveLogin = "/exclude/exclusiveLogin";
+    public static final String SURL_excludeLogin = "/exclude/logout";
     public static final String SURL_index = "/index";
     public static final String SURL_login = "/login";
     public static final String SURL_login_user = "/login_user";
@@ -59,6 +67,7 @@ public abstract class URLConfig {
     public static final String SURL_m_MovieShow_remove = "/manager/movies/movieShow/remove";
     
     //jsp
+    public static final String JURL_exclusiveLogin= "/WEB-INF/exclusiveLogin.jsp";
     public static final String JURL_index = "/WEB-INF/index.jsp";
     public static final String JURL_login = "/WEB-INF/login.jsp";
     public static final String JURL_account = "/WEB-INF/account.jsp";

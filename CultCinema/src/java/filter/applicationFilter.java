@@ -119,6 +119,7 @@ public class applicationFilter implements Filter {
             HttpServletResponse sResponse = (HttpServletResponse)response;
             HttpSession session = sRequest.getSession(true);
             
+            
             //Part A: Beans operation
             //1. session status (SStatus)
             //Step 1. create beans that put in the session
@@ -127,9 +128,6 @@ public class applicationFilter implements Filter {
                 beans.SStatus sessionStatus = new beans.SStatus();
                 session.setAttribute(common.BeansConfig.sStatus, sessionStatus);
             }
-            
-            //2. ticket order (STicketOrder)
-            //Remove the ticket order bean from the session if
             
             
             //Part B: Information inject
@@ -150,6 +148,11 @@ public class applicationFilter implements Filter {
                 sessionStatus.setUserRole(loginedUser.getRole());
                 //filled with user name
                 sessionStatus.setUserName(loginedUser.getUserName());
+                
+                //prevent concurrent login
+                beans.AUserMonitor aUserMonitor = beans.AUserMonitor.getInstance();
+                aUserMonitor.userLogin(loginedUser.getLoginID(), session);
+                
             }
             
             //2. language option
@@ -179,6 +182,19 @@ public class applicationFilter implements Filter {
             if (sRequest.getParameter("lang") != null
                 && beans.languageBeans.LanguageBeanPicker.isLanguageCodeExit(sRequest.getParameter("lang"))){
                 sResponse.addCookie(new Cookie("languageOption", sRequest.getParameter("lang")));
+            }
+            
+            
+            //force logout if the login is not exclusive
+            if (sRequest.getUserPrincipal() != null){
+                beans.AUserMonitor aUserMonitor = beans.AUserMonitor.getInstance();
+                beans.SStatus sessionStatus = (beans.SStatus)session.getAttribute(common.BeansConfig.sStatus);
+                if (!aUserMonitor.isSingleLogin(sessionStatus.getLoginId(), session)
+                        && !sRequest.getServletPath().contains(common.URLConfig.js)
+                        && !sRequest.getServletPath().contains(common.URLConfig.css)){
+                    sRequest.getRequestDispatcher(common.URLConfig.SURL_exclusiveLogin).forward(sRequest, sResponse);
+                    return;
+                }
             }
             
             chain.doFilter(request, response);

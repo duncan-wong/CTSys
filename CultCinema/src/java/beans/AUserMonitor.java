@@ -20,27 +20,34 @@ public class AUserMonitor {
         if (aUserMonitor != null){
             return aUserMonitor;
         }
-        return new AUserMonitor();
+        return aUserMonitor = new AUserMonitor();
     }
     
     private AUserMonitor(){
         this.currentUserMonitor = new ConcurrentHashMap<String, String>();
     }
     
-    public boolean userLogin(String userId, HttpSession session){
-        if (this.currentUserMonitor.get(userId) != null){
+    public boolean userLogin(String loginId, HttpSession session){
+        if (this.currentUserMonitor.get(loginId) != null){
             return false;
         }
-        this.currentUserMonitor.put(userId, session.getId());
+        this.currentUserMonitor.put(loginId, session.getId());
         return true;
     }
     
-    public void userLoginExclusivly(String userId, HttpSession session){
-        this.currentUserMonitor.put(userId, session.getId());
+    public void userLogout(String loginId, HttpSession session){
+        if (session.getId().equals(this.currentUserMonitor.get(loginId))){
+            this.currentUserMonitor.remove(loginId);
+        }
     }
     
-    public boolean isSingleLogin(String userId, HttpSession session){
-        if (session.getId().equals(this.currentUserMonitor.get(userId))){
+    public void userLoginExclusivly(String loginId, HttpSession session){
+        this.currentUserMonitor.put(loginId, session.getId());
+    }
+    
+    public boolean isSingleLogin(String loginId, HttpSession session){
+        if (this.currentUserMonitor.get(loginId) != null
+            &&!session.getId().equals(this.currentUserMonitor.get(loginId))){
             return false;
         }
         return true;
