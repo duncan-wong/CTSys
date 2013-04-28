@@ -51,13 +51,13 @@
         </div>
         <div class="movieControl">
             <div class="formInfoControl">
-                <a class="btn" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURL_m_Movies_remove)%>?movieId=${currentMovie.movieID}">Remove this Movie</a>
+                <a class="btn border_bottom" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURL_m_Movies_remove)%>?movieId=${currentMovie.movieID}">Remove this Movie</a>
             </div>
             <div class="formInfoControl">
-                <a class="btn" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURL_m_Movies_edit)%>?movieId=${currentMovie.movieID}">Edit Movie Detail</a>
+                <a class="btn border_bottom" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURL_m_Movies_edit)%>?movieId=${currentMovie.movieID}">Edit Movie Detail</a>
             </div>
             <div class="formInfoControl">
-                <a class="btn" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURL_m_MovieShow)%>?movieId=${currentMovie.movieID}">See All Movie Show</a>
+                <a class="btn border_bottom" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURL_m_MovieShow)%>?movieId=${currentMovie.movieID}">See All Movie Show</a>
             </div>
         </div>
                 

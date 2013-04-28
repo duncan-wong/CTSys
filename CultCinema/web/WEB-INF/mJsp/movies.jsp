@@ -11,6 +11,7 @@
         
         <%@include file="/WEB-INF/jspf/common/headSession.jspf" %>
         
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/movies.css" />
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/manager/movies.css" />
         
     </head>
