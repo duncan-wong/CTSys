@@ -176,6 +176,18 @@ public class RBooking extends UpdatableBean {
     public RSeat[] getSelectedTickets(){
         return this.selectedTickets;
     }
+    
+    public boolean getIsLoyaltyPaid(){
+        return beans.accessInterface.BookingPaymentStatus.Loyalty_Paid.equals(this.payment_status);
+    }
+    
+    public boolean getIsDeferred(){
+        return beans.accessInterface.BookingPaymentStatus.Payment_Deferred.equals(this.payment_status);
+    }
+    
+    public boolean getIsIncomplete(){
+        return beans.accessInterface.BookingPaymentStatus.Payment_Incomplete.equals(this.payment_status);
+    }
 //------------------------------------------------------------------------------
     @Override
     public boolean fetchDBData() {

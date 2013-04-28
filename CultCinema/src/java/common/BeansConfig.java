@@ -23,6 +23,7 @@ public abstract class BeansConfig {
     public static final String rMovieCol_title = "rMC_title";
     public static final String rMovieCol_director = "rMC_director";
     public static final String rBooking = "rBooking";
+    public static final String rBookingCol = "rBookingCol";
     
     //session beans
     public static final String sStatus = "sStatus";

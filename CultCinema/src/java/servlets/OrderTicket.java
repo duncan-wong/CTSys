@@ -348,7 +348,7 @@ public class OrderTicket extends HttpServlet {
                         isPaymentSuccess = servlets.orderTicketHelper.BookingHandler.makePayment(session, sBooking, beans.accessInterface.BookingPaymentStatus.Payment_Complete);
                     }
                     else{
-                        isPaymentSuccess = servlets.orderTicketHelper.BookingHandler.makePayment(session, sBooking, beans.accessInterface.BookingPaymentStatus.Payment_Deferred);
+                        isPaymentSuccess = servlets.orderTicketHelper.BookingHandler.makePayment(session, sBooking, beans.accessInterface.BookingPaymentStatus.Loyalty_Paid);
                     }
                     if (!isPaymentSuccess){
                         beans.accessInterface.LanguageBean lb = beans.languageBeans.LanguageBeanPicker.getLanguageBean(sStatus.getLanguageOption());

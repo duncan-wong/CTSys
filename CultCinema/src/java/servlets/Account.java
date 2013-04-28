@@ -41,6 +41,13 @@ public class Account extends HttpServlet {
         rUser.fetchDBData();
         request.setAttribute(BeansConfig.rUser, rUser);
         
+        //rBookingCol
+        beans.RBookingCol rBookingCol = new beans.RBookingCol();
+        rBookingCol.searchAccountID(rUser.getAccountID());
+        rBookingCol.fetchDBData();
+        request.setAttribute(common.BeansConfig.rBookingCol, rBookingCol);
+        
+        //dispatch in doGet, doPost
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

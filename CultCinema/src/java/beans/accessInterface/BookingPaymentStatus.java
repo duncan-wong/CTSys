@@ -9,6 +9,7 @@ package beans.accessInterface;
  * @author A
  */
 public abstract class BookingPaymentStatus {
+    public static final String Loyalty_Paid = "Loyalty Paid";
     public static final String Payment_Complete = "Payment Complete";
     public static final String Payment_Incomplete = "Payment Incomplete";
     public static final String Payment_Cancel = "Payment Cancel";
