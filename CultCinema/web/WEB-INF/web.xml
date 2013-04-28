@@ -160,7 +160,7 @@
     </servlet>
     <servlet>
         <servlet-name>Manager_MovieShow</servlet-name>
-        <servlet-class>servlets.manager.Manager_MovieShow</servlet-class>
+        <servlet-class>servlets.manager.MovieShow</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>OrderTicketCancel</servlet-name>
@@ -168,7 +168,7 @@
     </servlet>
     <servlet>
         <servlet-name>Manager_Movie</servlet-name>
-        <servlet-class>servlets.manager.Manager_Movie</servlet-class>
+        <servlet-class>servlets.manager.Movies</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Movies_Edit</servlet-name>

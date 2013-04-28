@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author A
  */
-public class Manager_MovieShow extends HttpServlet {
+public class MovieShow extends HttpServlet {
 
     /**
      * Processes requests for both HTTP

@@ -64,17 +64,19 @@
     position: absolute;
 }
 
-.movieContainer .movieControl ul {
-    list-style: none;
+.movieContainer .movieControl .formInfoControl {
+    float: left;
+    padding: 0 10px 0 0;
 }
 
-.movieContainer .movieControl ul li {
+.movieContainer .movieControl .formInfoControl .btn {
     display: inline;
 }
 
 .movieContainer .movieDescription .movieDescriptionItem .dateContent {
     width: 300px;
 }
+
 
 /*---- Movie Input Control ----*/
 .formInfoContainer .formInfoControl .infoInputArea {
