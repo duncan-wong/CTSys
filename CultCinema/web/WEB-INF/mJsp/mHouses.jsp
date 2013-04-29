@@ -32,7 +32,7 @@
                     </h1>
                     <div class="headerControl">
                         <a href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Houses_create)%>" class="btn">
-                            <%="Add New House"%>
+                            <%=sLanguageBean.cHousesBtnAddHouse()%>
                         </a>
                     </div>
                 </div>

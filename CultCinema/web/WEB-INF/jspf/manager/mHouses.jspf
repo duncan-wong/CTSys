@@ -34,16 +34,16 @@
         </div>
         <div class="houseControl">
             <div class="formInfoControl">
-                <a class="btn border_bottom" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_HouseStat)%>?houseID=${house.houseID}">House Statistic</a>
+                <a class="btn border_bottom" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_HouseStat)%>?houseID=${house.houseID}"><%=sLanguageBean.cHousesBtnStatistic()%></a>
             </div>
             <div class="formInfoControl">
-                <a class="btn border_bottom" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Houses_remove)%>?houseID=${house.houseID}">Remove This House</a>
+                <a class="btn border_bottom" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Houses_remove)%>?houseID=${house.houseID}"><%=sLanguageBean.cHousesBtnRemove()%></a>
             </div>
             <div class="formInfoControl">
-                <a class="btn border_bottom" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Houses_edit)%>?houseID=${house.houseID}">Edit House Name</a>
+                <a class="btn border_bottom" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Houses_edit)%>?houseID=${house.houseID}"><%=sLanguageBean.cHousesBtnRename()%></a>
             </div>
             <div class="formInfoControl">
-                <a class="btn border_bottom" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_HouseSeat_edit)%>?houseID=${house.houseID}">Update Seat Status</a>
+                <a class="btn border_bottom" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_HouseSeat_edit)%>?houseID=${house.houseID}"><%=sLanguageBean.cHousesBtnUpdateSeat()%></a>
             </div>
         </div>
     </div>

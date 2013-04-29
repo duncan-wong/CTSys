@@ -34,7 +34,7 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        <%="Houses"%>
+                        <%=sLanguageBean.hHousesMainTitle()%>
                     </h1>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                 <form action="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Houses_remove)%>" method="POST" class="formInfoContainer">
                     <div class="formInfoControl">
                         <label class="label">
-                            <%="House Name"%>: 
+                            <%=sLanguageBean.cHousesLbName()%>: 
                         </label>
                         <span class="content">
                             ${rHouse.houseName}
@@ -58,7 +58,7 @@
                     
                     <div class="formInfoControl">
                         <label class="label">
-                            <%="Number of Row"%>: 
+                            <%=sLanguageBean.cHousesLbTotalRow()%>: 
                         </label>
                         <span class="content">
                             ${rHouse.totalRow}
@@ -67,7 +67,7 @@
                             
                     <div class="formInfoControl">
                         <label class="label">
-                            <%="House Capacity"%>: 
+                            <%=sLanguageBean.cHousesLbCapacity()%>: 
                         </label>
                         <span class="content">
                             ${rHouse.houseCapacity}
@@ -75,8 +75,8 @@
                     </div>
                         
                     <div class="formInfoControl">
-                        <a type="submit" class="btn noLanguageOption">Confirm Delete</a>
-                        <a class="btn noLanguageOption" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Houses)%>">Cancel</a>
+                        <a type="submit" class="btn noLanguageOption"><%=sLanguageBean.comDel()%></a>
+                        <a class="btn noLanguageOption" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Houses)%>"><%=sLanguageBean.comCancel()%></a>
                     </div>
                 </form>
             </div>

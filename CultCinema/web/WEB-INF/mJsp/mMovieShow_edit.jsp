@@ -46,7 +46,7 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        <%="Movie Shows"%>
+                        <%=sLanguageBean.hMoviesShowMainTitle()%>
                     </h1>
                 </div>
             </div>
@@ -61,7 +61,7 @@
                 <form action="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow_edit)%>" method="POST" class="formInfoContainer">
                     <div class="formInfoControl">
                         <label class="label">
-                            <%="House"%>: 
+                            <%=sLanguageBean.cHousesLb()%>: 
                         </label>
                         <%
                             beans.RHouseCol rHouseCol = new beans.RHouseCol();
@@ -70,7 +70,7 @@
                         %>
                         <select class="infoInput" name="houseID">
                             <c:forEach items="${rHouseCol.allHouse}" var="house">
-                                <option value="${house.houseID}" ${rMovieShow.houseID==house.houseID ? 'selected' : ''}>${house.houseName}| Capacity: ${house.houseCapacity}</option>
+                                <option value="${house.houseID}" ${rMovieShow.houseID==house.houseID ? 'selected' : ''}>${house.houseName}| <%=sLanguageBean.cHousesLbCapacity()%>: ${house.houseCapacity}</option>
                             </c:forEach>
                         </select>
                         <c:if test="${errorMsg != null}">
@@ -82,7 +82,7 @@
 
                     <div class="formInfoControl">
                         <label class="label">
-                            <%="Showing Time"%>: 
+                            <%=sLanguageBean.cMoviesShowLbShowTime()%>: 
                         </label>
                         <input type="text" name="startDate" class="infoInput dateInput" id="popupDatepicker" value="${rMovieShow.movieShowStartDate}" />
                         <input type="text" name="startTime" class="infoInput span1" id="timepicker" value="${rMovieShow.movieShowStartTime}" />
@@ -95,10 +95,10 @@
 
                     <div class="formInfoControl">
                         <label class="label">
-                            <%="Ticket Price"%>:
+                            <%=sLanguageBean.cMoviesShowLbTicketPrice()%>: 
                         </label>
                         <label class="infoInput">
-                            HKD
+                            <%=sLanguageBean.comHKD()%>
                         </label>
                         <input type="text" name="ticketPrice" class="infoInput span1" value="${rMovieShow.ticketPrice}" />
                         <c:if test="${errorMsg != null}">
@@ -109,8 +109,8 @@
                     </div>
 
                     <div class="formInfoControl">
-                        <a type="submit" class="btn noLanguageOption">Update</a>
-                        <a class="btn noLanguageOption" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow)%>?movieId=${movieId}">Cancel</a>
+                        <a type="submit" class="btn noLanguageOption"><%=sLanguageBean.comSave()%></a>
+                        <a class="btn noLanguageOption" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow)%>?movieId=${movieId}"><%=sLanguageBean.comCancel()%></a>
                     </div>
                 </form>
             </div>

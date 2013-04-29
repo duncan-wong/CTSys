@@ -29,12 +29,12 @@
                     <%=sLanguageBean.cMoviesLbLength()%>: 
                 </span>
                 <span class="content">
-                    ${currentMovie.movieDuration} mins
+                    ${currentMovie.movieDuration} <%=sLanguageBean.comMins()%>
                 </span>
             </div>
             <div class="movieDescriptionItem">
                 <span class="label">
-                    <%="Movie Time"%>: 
+                    <%=sLanguageBean.cMoviesLbOnScreenTime()%>: 
                 </span>
                 <p class="content dateContent">
                     ${currentMovie.movieStartDate} - ${currentMovie.movieEndDate}
@@ -51,13 +51,13 @@
         </div>
         <div class="movieControl">
             <div class="formInfoControl">
-                <a class="btn border_bottom" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Movies_remove)%>?movieId=${currentMovie.movieID}">Remove this Movie</a>
+                <a class="btn border_bottom" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Movies_remove)%>?movieId=${currentMovie.movieID}"><%=sLanguageBean.cMoviesBtnRemove()%></a>
             </div>
             <div class="formInfoControl">
-                <a class="btn border_bottom" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Movies_edit)%>?movieId=${currentMovie.movieID}">Edit Movie Detail</a>
+                <a class="btn border_bottom" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Movies_edit)%>?movieId=${currentMovie.movieID}"><%=sLanguageBean.cMoviesBtnEdit()%></a>
             </div>
             <div class="formInfoControl">
-                <a class="btn border_bottom" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow)%>?movieId=${currentMovie.movieID}">See All Movie Show</a>
+                <a class="btn border_bottom" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow)%>?movieId=${currentMovie.movieID}"><%=sLanguageBean.cMoviesBtnSeeMovieShow()%></a>
             </div>
         </div>
                 

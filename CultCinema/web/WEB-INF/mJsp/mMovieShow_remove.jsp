@@ -30,7 +30,7 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        <%="Movie Shows"%>
+                        <%=sLanguageBean.hMoviesShowMainTitle()%>
                     </h1>
                 </div>
             </div>
@@ -40,16 +40,16 @@
                 <form action="<%=request.getContextPath() + common.URLConfig.SURLm_MovieShow_remove%>" method="POST" class="formInfoContainer">
                     <div class="formInfoControl">
                         <span class="label">
-                            Movie Show:
+                            <%=sLanguageBean.cMoviesShowLbShowTime()%>: 
                         </span>
                         <span class="infoInput">
-                            ${rMovieShow.movieShowStartDate} | ${rMovieShow.movieShowStartTime} | HKD ${rMovieShow.ticketPrice}
+                            ${rMovieShow.movieShowStartDate} | ${rMovieShow.movieShowStartTime} | <%=sLanguageBean.comHKD()%> ${rMovieShow.ticketPrice}
                         </span>
                     </div>
 
                     <div class="formInfoControl">
-                        <a type="submit" class="btn noLanguageOption">Confirm Delete</a>
-                        <a class="btn noLanguageOption" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow)%>?movieId=${movieId}">Cancel</a>
+                        <a type="submit" class="btn noLanguageOption"><%=sLanguageBean.comDel()%></a>
+                        <a class="btn noLanguageOption" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow)%>?movieId=${movieId}"><%=sLanguageBean.comCancel()%></a>
                     </div>
 
                 </form>

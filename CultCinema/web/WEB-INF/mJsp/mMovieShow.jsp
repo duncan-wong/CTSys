@@ -32,11 +32,11 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        <%="Movie Shows"%>
+                        <%=sLanguageBean.hMoviesShowMainTitle()%>
                     </h1>
                     <div class="headerControl">
                         <a href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Movies)%>" class="btn">
-                            <%="Back"%>
+                            <%=sLanguageBean.comBack()%>
                         </a>
                     </div>
                 </div>
@@ -65,12 +65,12 @@
                                 <%=sLanguageBean.cMoviesLbLength()%>: 
                             </span>
                             <span class="content">
-                                ${rCurrentMovie.movieDuration} mins
+                                ${rCurrentMovie.movieDuration} <%=sLanguageBean.comMins()%>
                             </span>
                         </div>
                         <div class="movieDescriptionItem">
                             <span class="label">
-                                <%="Movie Time"%>: 
+                                <%=sLanguageBean.cMoviesLbOnScreenTime()%>: 
                             </span>
                             <p class="content dateContent">
                                 ${rCurrentMovie.movieStartDate} - ${rCurrentMovie.movieEndDate}
@@ -89,7 +89,7 @@
                     
                     <div class="movieControl">
                         <div class="formInfoControl">
-                            <a class="btn" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow_create)%>?movieId=${rCurrentMovie.movieID}&duration=${rCurrentMovie.movieDuration}">Add Show Time</a>
+                            <a class="btn" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow_create)%>?movieId=${rCurrentMovie.movieID}&duration=${rCurrentMovie.movieDuration}"><%=sLanguageBean.cMoviesShowBtnAddShow()%></a>
                         </div>
                     </div>
                 </div>

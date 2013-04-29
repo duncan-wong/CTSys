@@ -32,11 +32,11 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        <%="Houses Statistic"%>
+                        <%=sLanguageBean.hHousesStatMainTitle()%>
                     </h1>
                     <div class="headerControl">
                         <a href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Houses)%>" class="btn">
-                            <%="Back"%>
+                            <%=sLanguageBean.comBack()%>
                         </a>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                         </div>
                         <div class="movieDescriptionItem">
                             <span class="label">
-                                <%="Capacity"%>: 
+                                <%=sLanguageBean.cHousesLbCapacity()%>: 
                             </span>
                             <span class="content">
                                 ${rHouse.houseCapacity}
@@ -61,7 +61,7 @@
                         </div>
                         <div class="movieDescriptionItem">
                             <span class="label">
-                                <%="Disabled Seat"%>: 
+                                <%=sLanguageBean.cHousesLbDisabledSeat()%>: 
                             </span>
                             <span class="content">
                                 ${disabledCount}
@@ -69,7 +69,7 @@
                         </div>
                         <div class="movieDescriptionItem">
                             <span class="label">
-                                <%="House Sales"%>: 
+                                <%=sLanguageBean.comSale()%>: 
                             </span>
                             <p class="content">
                                 <%=sLanguageBean.comHKD()%> ${rHouse.sales}
@@ -77,7 +77,7 @@
                         </div>
                         <div class="movieDescriptionItem">
                             <span class="label">
-                                <%="Total Show"%>: 
+                                <%=sLanguageBean.cHousesLbTotalRow()%>: 
                             </span>
                             <p class="content">
                                 <%=rShowCol.count()%>
@@ -85,7 +85,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="formInfoContainer">
                     <div class="formInfoControl">
                         <c:forEach items="${rShowCol.all}" var="movieShow">

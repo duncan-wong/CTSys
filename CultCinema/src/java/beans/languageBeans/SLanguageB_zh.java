@@ -31,7 +31,7 @@ public class SLanguageB_zh extends beans.accessInterface.LanguageBean{
     public String comBack(){return"返回";}
     public String comPurchase(){return"購買";}
     public String comEdit(){return"編輯";}
-    public String comSave(){return"儲侟";}
+    public String comSave(){return"儲存";}
     public String comHKD(){return"HKD";}
     public String comHouse(){return"影院";}
     public String comSeats(){return"座位";}
@@ -40,7 +40,11 @@ public class SLanguageB_zh extends beans.accessInterface.LanguageBean{
     public String comScreen(){return"銀幕";}
     public String comOrder(){return"訂購";}
     public String comTotal(){return"合計";}
-    
+    public String comSale(){return"營銷";}
+    public String comDel(){return"移除";}
+    public String comConfirm(){return"確定";}
+    public String comMins(){return"分鐘";}
+    public String comUpdate(){return"更新";}
     
     //menu
     public String mCompanyName(){return"Cult Cinema";}
@@ -69,6 +73,7 @@ public class SLanguageB_zh extends beans.accessInterface.LanguageBean{
     public String hLoginControlBtnSignUp(){return"注冊!";}
     //header - movies
     public String hMoviesMainTitle(){return"電影";}
+    public String hMoviesShowMainTitle(){return"電影放映";}
     public String hMoviesControlBtnOnScreen(){return"正在上映";}
     public String hMoviesControlBtnTomorrow(){return"將會上映";}
     //header - Account
@@ -78,6 +83,8 @@ public class SLanguageB_zh extends beans.accessInterface.LanguageBean{
     public String hAcRegMainTitle(){return"注冊！";}
     //header - houses
     public String hHousesMainTitle(){return"影院";}
+    public String hHousesStatMainTitle(){return"影院統計";}
+    public String hHousesSeatMainTitle(){return"影院座位";}
     //header - OrderTicket
     public String hOTMainTitle(){return"訂票";}
     public String hOTMainTitleThankYou(){return"謝謝";}
@@ -94,9 +101,18 @@ public class SLanguageB_zh extends beans.accessInterface.LanguageBean{
     public String cMoviesLbDirector(){return"導演";}
     public String cMoviesLbLength(){return"片長";}
     public String cMoviesLbDescription(){return"簡介";}
+    public String cMoviesLbOnScreenTime(){return"上映時間";}
+    public String cMoviesLbPoster(){return"海報";}
+    public String cMoviesShowLbShowTime(){return"放映時間";}
+    public String cMoviesShowLbTicketPrice(){return"門票價格";}
+    public String cMoviesBtnAddMovie(){return"新增電影";}
     public String cMoviesBtnOrderTicket(){return"訂票";}
+    public String cMoviesBtnRemove(){return"移除電影";}
+    public String cMoviesBtnEdit(){return"修改電影";}
+    public String cMoviesBtnSeeMovieShow(){return"查看所有放映";}
+    public String cMoviesShowBtnAddShow(){return"新增放映時間";}
     //content - account
-    public String cAccountLbUsername(){return"登入外稱";}
+    public String cAccountLbUsername(){return"登入名稱";}
     public String cAccountLbName(){return"姓名";}
     public String cAccountLbTel(){return"電話";}
     public String cAccountLbEmail(){return"電郵地址";}
@@ -111,6 +127,15 @@ public class SLanguageB_zh extends beans.accessInterface.LanguageBean{
     //content - registration , use most label of account page
     //content - houses
     public String cHousesLbCapacity(){return"容量";}
+    public String cHousesLbDisabledSeat(){return"停用座位";}
+    public String cHousesLbTotalRow(){return"座位行數";}
+    public String cHousesLbName(){return"影院名稱";}
+    public String cHousesLb(){return"影院";}
+    public String cHousesBtnStatistic(){return"查看影院統計";}
+    public String cHousesBtnRemove(){return"移除影院";}
+    public String cHousesBtnRename(){return"修改影院名稱";}
+    public String cHousesBtnUpdateSeat(){return"更改座位狀態";}
+    public String cHousesBtnAddHouse(){return"新增影院";}
     //content - OrderTicket
     public String cOTErrorPaymentTimeout(){return"交易已過時，請再嘗試";}
     public String cOTAreYouMember(){return"你是會員嗎?";}

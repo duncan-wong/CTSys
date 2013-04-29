@@ -5,6 +5,7 @@
 
 <%
     beans.RMovie rMovie = new beans.RMovie();
+    rMovie.setLanguage(request.getParameter("lang"));
     rMovie.setMovieID(movieShow.getMovieID());
     rMovie.fetchDBData();
     request.setAttribute("rMovie", rMovie);
@@ -14,6 +15,6 @@
         ${rMovie.movieName}
     </span>
     <span class="content span10">
-        | ${movieShow.movieShowStartDate} ${movieShow.movieShowStartTime} - ${movieShow.movieShowEndDate} ${movieShow.movieShowEndTime} | HKD ${movieShow.ticketPrice} | Sales: HKD ${movieShow.sales}
+        | ${movieShow.movieShowStartDate} ${movieShow.movieShowStartTime} - ${movieShow.movieShowEndDate} ${movieShow.movieShowEndTime} | <%=sLanguageBean.comHKD()%> ${movieShow.ticketPrice} | <%=sLanguageBean.comSale()%>: <%=sLanguageBean.comHKD()%> ${movieShow.sales}
     </span>
 </div>

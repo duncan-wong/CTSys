@@ -43,7 +43,7 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        <%="Movies"%>
+                        <%=sLanguageBean.hMoviesMainTitle()%>
                     </h1>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                 <form action="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Movies_create)%>" method="POST" class="formInfoContainer">
                     <div class="formInfoControl">
                         <label class="label">
-                            <%="Movie Name"%>: 
+                            <%=sLanguageBean.cMoviesLbMovieTitle()%>: 
                         </label>
                             <input type="text" name="movieName" class="infoInput span5" value="${rMovie.movieName}" />
                         <c:if test="${errorMsg != null}">
@@ -70,7 +70,7 @@
                     
                     <div class="formInfoControl">
                         <label class="label">
-                            <%="Director"%>: 
+                            <%=sLanguageBean.cMoviesLbDirector()%>: 
                         </label>
                         <input type="text" name="movieAuthor" class="infoInput span5" value="${rMovie.movieAuthor}" />
                         <c:if test="${errorMsg != null}">
@@ -82,7 +82,7 @@
                             
                     <div class="formInfoControl">
                         <label class="label">
-                            <%="Length (mins)"%>: 
+                            <%=sLanguageBean.cMoviesLbLength()%>: 
                         </label>
                             <input type="text" name="movieDuration" class="infoInput span5" value="${rMovie.movieDuration}" />
                         <c:if test="${errorMsg != null}">
@@ -95,7 +95,7 @@
                     
                     <div class="formInfoControl">
                         <label class="label">
-                            <%="On Screen Date"%>: 
+                            <%=sLanguageBean.cMoviesLbOnScreenTime()%>: 
                         </label>
                             <input type="text" name="movieStartDate" class="infoInput dateInput span2" id="popupDatepicker" value="${rMovie.movieStartDate}" />
                         <span class="infoSeparator">-</span>
@@ -109,7 +109,7 @@
                     
                     <div class="formInfoControl">
                         <label class="label">
-                            <%="Description"%>: 
+                            <%=sLanguageBean.cMoviesLbDescription()%>: 
                         </label>
                             <textarea name="movieDescription" class="infoInputArea span5">${rMovie.movieDescription}</textarea>
                         <c:if test="${errorMsg != null}">
@@ -121,14 +121,14 @@
                             
                     <div class="formInfoControl">
                         <label class="label">
-                            <%="Poster"%>: 
+                            <%=sLanguageBean.cMoviesLbPoster()%>: 
                         </label>
                             <input type="file" name="moviePoster" accept=".jpg" class="infoInput" />
                     </div>
                             
                     <div class="formInfoControl">
-                        <a type="submit" class="btn noLanguageOption">Create</a>
-                        <a class="btn noLanguageOption" href="<%=request.getContextPath()%>/manager/movies">Cancel</a>
+                        <a type="submit" class="btn noLanguageOption"><%=sLanguageBean.comConfirm()%></a>
+                        <a class="btn noLanguageOption" href="<%=request.getContextPath()%>/manager/movies"><%=sLanguageBean.comCancel()%></a>
                     </div>
                 </form>
             </div>

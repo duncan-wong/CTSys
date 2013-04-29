@@ -33,7 +33,7 @@
                     </h1>
                     <div class="headerControl">
                         <a href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Movies_create)%>" class="btn">
-                            <%="Add New Movie"%>
+                            <%=sLanguageBean.cMoviesBtnAddMovie()%>
                         </a>
                     </div>
                 </div>

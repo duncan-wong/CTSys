@@ -30,7 +30,7 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        House Seat
+                        <%=sLanguageBean.hHousesSeatMainTitle()%>
                     </h1>
                     
                 </div>
@@ -79,7 +79,7 @@
                     </div>
                     <!---->
                     <div class="formInfoControl">
-                        <a class="btn noLanguageOption" type="submit_orderTicket"><%="Save Change"%></a>
+                        <a class="btn noLanguageOption" type="submit_orderTicket"><%=sLanguageBean.comSave()%></a>
                         <a class="btn noLanguageOption" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Houses)%>"><%=sLanguageBean.comBack()%></a>
                     </div>
                     <!---->

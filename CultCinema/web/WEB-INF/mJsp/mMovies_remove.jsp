@@ -30,7 +30,7 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        <%="Movies"%>
+                        <%=sLanguageBean.hMoviesMainTitle()%>
                     </h1>
                 </div>
             </div>
@@ -57,12 +57,12 @@
                                     <%=sLanguageBean.cMoviesLbLength()%>: 
                                 </span>
                                 <span class="content">
-                                    ${rMovie.movieDuration} mins
+                                    ${rMovie.movieDuration} <%=sLanguageBean.comMins()%>
                                 </span>
                             </div>
                             <div class="formInfoControl">
                                 <span class="label">
-                                    <%="Movie Time"%>: 
+                                    <%=sLanguageBean.cMoviesLbOnScreenTime()%>: 
                                 </span>
                                 <span class="content dateContent">
                                     ${rMovie.movieStartDate} - ${rMovie.movieEndDate}
@@ -78,8 +78,8 @@
                             </div>
                                 
                         <div class="formInfoControl">
-                                <a type="submit" class="btn noLanguageOption">Confirm Delete</a>
-                                <a class="btn noLanguageOption" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Movies)%>">Cancel</a>
+                                <a type="submit" class="btn noLanguageOption"><%=sLanguageBean.comDel()%></a>
+                                <a class="btn noLanguageOption" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Movies)%>"><%=sLanguageBean.comCancel()%></a>
                         </div>
 
                     </form>

@@ -40,6 +40,11 @@ public class LanguageBean {
     public String comScreen(){return"Screen";}
     public String comOrder(){return"Order";}
     public String comTotal(){return"Total";}
+    public String comSale(){return"Sale";}
+    public String comDel(){return"Delete";}
+    public String comConfirm(){return"Confirm";}
+    public String comMins(){return"mins";}
+    public String comUpdate(){return"Update";}
     
     //menu
     public String mCompanyName(){return"Cult Cinema";}
@@ -68,6 +73,7 @@ public class LanguageBean {
     public String hLoginControlBtnSignUp(){return"Sign Up!";}
     //header - movies
     public String hMoviesMainTitle(){return"Movies";}
+    public String hMoviesShowMainTitle(){return"Movie Shows";}
     public String hMoviesControlBtnOnScreen(){return"Movie On Screen";}
     public String hMoviesControlBtnTomorrow(){return"Movie Tomorrow";}
     //header - Account
@@ -77,6 +83,8 @@ public class LanguageBean {
     public String hAcRegMainTitle(){return"Sign Up";}
     //header - houses
     public String hHousesMainTitle(){return"Houses";}
+    public String hHousesStatMainTitle(){return"Houses Statistic";}
+    public String hHousesSeatMainTitle(){return"House Seats";}
     //header - OrderTicket
     public String hOTMainTitle(){return"Order ticket";}
     public String hOTMainTitleThankYou(){return"Thank you";}
@@ -89,11 +97,20 @@ public class LanguageBean {
     public String cLoginLbPassword(){return"Password";}
     public String cLoginBtnSubmit(){return"Log In";}
     //content - movies
-    public String cMoviesLbMovieTitle(){return"MovieTitle";}
+    public String cMoviesLbMovieTitle(){return"Movie Title";}
     public String cMoviesLbDirector(){return"Director";}
     public String cMoviesLbLength(){return"Length";}
     public String cMoviesLbDescription(){return"Description";}
+    public String cMoviesLbOnScreenTime(){return"On Screen Date";}
+    public String cMoviesLbPoster(){return"Poster";}
+    public String cMoviesShowLbShowTime(){return"Showing Date";}
+    public String cMoviesShowLbTicketPrice(){return"Ticket Price";}
+    public String cMoviesBtnAddMovie(){return"Add New Movie";}
     public String cMoviesBtnOrderTicket(){return"Order Ticket";}
+    public String cMoviesBtnRemove(){return"Remove Movie";}
+    public String cMoviesBtnEdit(){return"Edit Movie";}
+    public String cMoviesBtnSeeMovieShow(){return"See Movie Show";}
+    public String cMoviesShowBtnAddShow(){return"Add Movie Show";}
     //content - account
     public String cAccountLbUsername(){return"Login ID";}
     public String cAccountLbName(){return"Name";}
@@ -110,6 +127,15 @@ public class LanguageBean {
     //content - registration , use most label of account page
     //content - houses
     public String cHousesLbCapacity(){return"Capacity";}
+    public String cHousesLbDisabledSeat(){return"Disabled Seat";}
+    public String cHousesLbTotalRow(){return"Total Row";}
+    public String cHousesLbName(){return"House Name";}
+    public String cHousesLb(){return"House";}
+    public String cHousesBtnStatistic(){return"Show House Statistic";}
+    public String cHousesBtnRemove(){return"Remove House";}
+    public String cHousesBtnRename(){return"Edit House Name";}
+    public String cHousesBtnUpdateSeat(){return"Update Seat Status";}
+    public String cHousesBtnAddHouse(){return"Add New House";}
     //content - OrderTicket
     public String cOTErrorPaymentTimeout(){return"Your purchase is timed out. Please select again.";}
     public String cOTAreYouMember(){return"Are you a member?";}

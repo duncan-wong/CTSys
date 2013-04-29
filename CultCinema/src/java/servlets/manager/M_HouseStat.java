@@ -39,9 +39,6 @@ public class M_HouseStat extends HttpServlet {
             throws ServletException, IOException {
         houseID = request.getParameter("houseID");
         
-        HttpSession session = request.getSession(false);
-        beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
-        
         beans.RHouse rHouse = new beans.RHouse();
         rHouse.setHouseID(houseID);
         rHouse.fetchDBData();
@@ -55,7 +52,6 @@ public class M_HouseStat extends HttpServlet {
         // put the bean into request
         request.setAttribute("rHouse", rHouse);
         request.setAttribute("rShowCol", rShowCol);
-        request.setAttribute("languageBean", sStatus.getLanguageOption());
         int disabledCount = rHouse.getHouseCapacity() - Integer.parseInt(numOfActiveSeat);
         request.setAttribute("disabledCount", disabledCount);
         

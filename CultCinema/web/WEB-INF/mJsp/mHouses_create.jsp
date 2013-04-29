@@ -34,7 +34,7 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        <%="Houses"%>
+                        <%=sLanguageBean.hHousesMainTitle()%>
                     </h1>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                 <form action="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Houses_create)%>" method="POST" class="formInfoContainer">
                     <div class="formInfoControl">
                         <label class="label">
-                            <%="House Name"%>: 
+                            <%=sLanguageBean.cHousesLbName()%>: 
                         </label>
                             <input type="text" name="houseName" class="infoInput span4" value="${rHouse.houseName}" />
                         <c:if test="${errorMsg != null}">
@@ -61,7 +61,7 @@
                     
                     <div class="formInfoControl">
                         <label class="label">
-                            <%="Number of Row"%>: 
+                            <%=sLanguageBean.cHousesLbTotalRow()%>: 
                         </label>
                         <input type="text" name="totalRow" class="infoInput span1" value="${totalRow}" />
                         <c:if test="${errorMsg != null}">
@@ -73,7 +73,7 @@
                             
                     <div class="formInfoControl">
                         <label class="label">
-                            <%="House Capacity"%>: 
+                            <%=sLanguageBean.cHousesLbCapacity()%>: 
                         </label>
                             <input type="text" name="capacity" class="infoInput span1" value="${capacity}" />
                         <c:if test="${errorMsg != null}">
@@ -84,8 +84,8 @@
                     </div>
                         
                     <div class="formInfoControl">
-                        <a type="submit" class="btn noLanguageOption">Create</a>
-                        <a class="btn noLanguageOption" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Houses)%>">Cancel</a>
+                        <a type="submit" class="btn noLanguageOption"><%=sLanguageBean.comConfirm()%></a>
+                        <a class="btn noLanguageOption" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Houses)%>"><%=sLanguageBean.comCancel()%></a>
                     </div>
                 </form>
             </div>
