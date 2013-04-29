@@ -244,6 +244,10 @@
         <servlet-name>M_HouseSeat_edit</servlet-name>
         <servlet-class>servlets.manager.M_HouseSeat_edit</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>M_HouseStat</servlet-name>
+        <servlet-class>servlets.manager.M_HouseStat</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -406,6 +410,10 @@
     <servlet-mapping>
         <servlet-name>M_HouseSeat_edit</servlet-name>
         <url-pattern>/manager/houses/seat/edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>M_HouseStat</servlet-name>
+        <url-pattern>/manager/houses/stat</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

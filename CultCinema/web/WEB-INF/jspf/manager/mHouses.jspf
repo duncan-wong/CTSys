@@ -30,17 +30,12 @@
                     ${house.houseCapacity}
                 </span>
             </div>
-            <div class="houseDescriptionItem">
-                <span class="label">
-                    <%="House Sales"%>: 
-                </span>
-                <span class="content">
-                    HKD ${house.sales}
-                </span>
-            </div>
             
         </div>
         <div class="houseControl">
+            <div class="formInfoControl">
+                <a class="btn border_bottom" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_HouseStat)%>?houseID=${house.houseID}">House Statistic</a>
+            </div>
             <div class="formInfoControl">
                 <a class="btn border_bottom" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Houses_remove)%>?houseID=${house.houseID}">Remove This House</a>
             </div>

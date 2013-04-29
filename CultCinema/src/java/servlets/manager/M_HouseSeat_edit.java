@@ -4,8 +4,11 @@
  */
 package servlets.manager;
 
+import beans.RSeat;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Hashtable;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,73 +19,104 @@ import javax.servlet.http.HttpServletResponse;
  * @author A
  */
 public class M_HouseSeat_edit extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
-     *
-     * @param request  servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet M_HouseSeat_edit</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet M_HouseSeat_edit at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {            
-            out.close();
+    private String houseID;
+    
+    private RSeat[] seatStringDigest(String str, int status) {
+        ArrayList<RSeat> seats = new ArrayList<RSeat>();
+        
+        if (str != null && !str.equals("")) {
+            String seatStr[] = str.split(",");
+            if (seatStr.length > 0) {
+                for (int i=0; i<seatStr.length; i++) {
+                    RSeat rSeat = new beans.RSeat(houseID);
+                    String num;
+                    rSeat.setActiveStatus(status);
+                    if (seatStr[i].contains("-")) {
+                        num = seatStr[i].split("-")[0];
+                        rSeat.setRowNum(Integer.parseInt(num));
+                        num = seatStr[i].split("-")[1];
+                        rSeat.setSeatNum(Integer.parseInt(num));
+                    }
+                    else return null;
+                    
+                    seats.add(rSeat);
+                }
+            }
+            else return null;
         }
+        else return null;
+        return seats.toArray(new RSeat[seats.size()]);
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP
-     * <code>GET</code> method.
-     *
-     * @param request  servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
-     */
+    
+    
+    
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        houseID = request.getParameter("houseID");
+        beans.RHouse rHouse = new beans.RHouse();
+        rHouse.setHouseID(houseID);
+        rHouse.fetchDBData();
+        request.setAttribute("rHouse", rHouse);
+        
+        this.getServletContext().getRequestDispatcher(common.URLConfig.JURLm_HouseSeat_edit).forward(request, response);
     }
-
-    /**
-     * Handles the HTTP
-     * <code>POST</code> method.
-     *
-     * @param request  servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
-     */
+    
+    
+    
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        beans.RHouse rHouse = new beans.RHouse();
+        rHouse.setHouseID(houseID);
+        rHouse.fetchDBData();
+        
+        boolean isCommitted = false;
+        Hashtable<String, String> errorMsg = new Hashtable<String, String>();
+        
+        // get data
+        String selectedSeats = request.getParameter("selectedSeats");
+        String selectedSeats_d = request.getParameter("selectedSeats_d");
+        
+        // digest string
+        RSeat deactivateSeat[], activateSeat[];
+        deactivateSeat = seatStringDigest(selectedSeats, 0);
+        activateSeat = seatStringDigest(selectedSeats_d, 1);
+        
+        // commit
+        try {
+            if (!common.Validation.isNull(selectedSeats)) {
+                for (int i=0; i<deactivateSeat.length; i++) {
+                    deactivateSeat[i].commitChange();
+                }
+            }
+            if (!common.Validation.isNull(selectedSeats_d)) {
+                for (int i=0; i<activateSeat.length; i++) {
+                    activateSeat[i].commitChange();
+                }
+            }
+            isCommitted = true;
+        } catch (Exception e) {
+            errorMsg.put("pageError", "Sorry, the server has encounted an internal error. Please try again later.");
+        }
+        
+        // redirect OR dispatch
+        if (isCommitted) {
+            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURLm_HouseSeat_edit+"?houseID="+houseID));
+        }
+        else {
+            request.setAttribute("rHouse", rHouse);
+            request.setAttribute("errorMsg", errorMsg);
+            this.getServletContext().getRequestDispatcher(common.URLConfig.JURLm_HouseSeat_edit).forward(request, response);
+        }
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    
+    
+    
+    
     @Override
     public String getServletInfo() {
         return "Short description";

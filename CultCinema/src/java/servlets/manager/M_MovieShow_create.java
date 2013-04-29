@@ -78,8 +78,11 @@ public class M_MovieShow_create extends HttpServlet {
             boolean houseIsFree = true;
             
             int mins = 15;
-            for (int i=0; i<movieLength; i+=mins) {
-                String checkTime = servlets.helper.Helper.addMinutesToStringDate(start, format, Integer.toString(i));
+            String checkTime = start;
+            int i = 0;
+            // check House is free between
+            // [ start <= i < end ]
+            while (i<movieLength) {
                 RMovieShowCol checker = new RMovieShowCol();
                 checker.searchHouseID(houseID);
                 checker.searchInDayRange(0);
@@ -88,6 +91,8 @@ public class M_MovieShow_create extends HttpServlet {
                 if (checker.count() != 0) {
                     houseIsFree = false;
                 }
+                i += mins;
+                checkTime = servlets.helper.Helper.addMinutesToStringDate(checkTime, format, Integer.toString(mins));
             }
             
             // check House is free before the movie End
