@@ -105,7 +105,7 @@ public class M_HouseSeat_edit extends HttpServlet {
         
         // redirect OR dispatch
         if (isCommitted) {
-            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURLm_HouseSeat_edit+"?houseID="+houseID));
+            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURLm_Houses));
         }
         else {
             request.setAttribute("rHouse", rHouse);

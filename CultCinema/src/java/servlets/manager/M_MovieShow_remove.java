@@ -31,7 +31,7 @@ public class M_MovieShow_remove extends HttpServlet {
         rMovieShow.setMovieShowID(movieShowID);
         rMovieShow.fetchDBData();
         request.setAttribute("rMovieShow", rMovieShow);
-        request.setAttribute("movieId", movieId);
+        request.setAttribute("id", movieId);
         
         // dispatch
         this.getServletContext().getRequestDispatcher(common.URLConfig.JURLm_MovieShow_remove).forward(request, response);
@@ -61,11 +61,12 @@ public class M_MovieShow_remove extends HttpServlet {
         }
         
         if (isCommitted) {
-            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow+"?movieId="+movieId));
+            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow));
         }
         else {
             request.setAttribute("rMovieShow", rMovieShow);
             request.setAttribute("errorMsg", errorMsg);
+            request.setAttribute("id", movieId);
             this.getServletContext().getRequestDispatcher(common.URLConfig.JURLm_MovieShow_remove).forward(request, response);
         }
     }

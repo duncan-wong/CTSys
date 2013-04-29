@@ -49,7 +49,7 @@
 
                     <div class="formInfoControl">
                         <a type="submit" class="btn noLanguageOption"><%=sLanguageBean.comDel()%></a>
-                        <a class="btn noLanguageOption" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow)%>?movieId=${movieId}"><%=sLanguageBean.comCancel()%></a>
+                        <a class="btn noLanguageOption" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow)%>?movieId=${id}"><%=sLanguageBean.comCancel()%></a>
                     </div>
 
                 </form>
