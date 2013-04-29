@@ -89,7 +89,7 @@
                     
                     <div class="movieControl">
                         <div class="formInfoControl">
-                            <a class="btn" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow_create)%>?movieID=${rCurrentMovie.movieID}&duration=${rCurrentMovie.movieDuration}">Add Show Time</a>
+                            <a class="btn" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow_create)%>?movieId=${rCurrentMovie.movieID}&duration=${rCurrentMovie.movieDuration}">Add Show Time</a>
                         </div>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                 <div id="movieShows">
                     <c:set var="movie" value="${rCurrentMovie}" scope="page" />
                     <c:forEach items="${rHouseCol.allHouse}" var="house">
-                        <%@include file="/WEB-INF/jspf/manager/movieShow.jspf" %>
+                        <%@include file="/WEB-INF/jspf/manager/mMovieShow.jspf" %>
                     </c:forEach>
                 </div>
                     

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : mManage_movie
-    Created on : Apr 27, 2013, 4:36:44 PM
+    Document   : mHouses
+    Created on : Apr 29, 2013, 8:08:45 AM
     Author     : A
 --%>
 
@@ -11,8 +11,7 @@
         
         <%@include file="/WEB-INF/jspf/common/headSession.jspf" %>
         
-        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/movies.css" />
-        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/manager/movies.css" />
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/houses.css" />
         
     </head>
     <body>
@@ -29,22 +28,22 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        <%=sLanguageBean.hMoviesMainTitle()%>
+                        <%=sLanguageBean.hHousesMainTitle()%>
                     </h1>
                     <div class="headerControl">
-                        <a href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Movies_create)%>" class="btn">
-                            <%="Add New Movie"%>
+                        <a href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Houses_create)%>" class="btn">
+                            <%="Add New House"%>
                         </a>
                     </div>
                 </div>
             </div>
             
             <div id="content" class="defaultWidth">
-                <div class="movieContentGroup">
+                <div class="houseContentGroup">
                     <%
-                        request.setAttribute("managerMovieCol", request.getAttribute("managerMovieCol"));
+                        request.setAttribute("houseCol", request.getAttribute(common.BeansConfig.rHouseCol));
                     %>
-                    <%@include file="/WEB-INF/jspf/manager/mMovies.jspf" %>
+                    <%@include file="/WEB-INF/jspf/manager/mHouses.jspf" %>
                 </div>
             </div>
         </div>

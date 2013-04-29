@@ -32,7 +32,7 @@
                 <a href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Movies)%>" class="btn_large bottom_border">
                     <h1 class="contentTitle">MOVIES</h1>
                 </a>
-                <a class="btn_large bottom_border">
+                <a href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Houses)%>" class="btn_large bottom_border">
                     <h1 class="contentTitle">HOUSE</h1>
                 </a>
             </div>

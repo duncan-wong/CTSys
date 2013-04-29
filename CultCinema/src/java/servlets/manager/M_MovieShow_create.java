@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class M_MovieShow_create extends HttpServlet {
     private String duration;
-    private String movieID;
+    private String movieId;
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -34,10 +34,11 @@ public class M_MovieShow_create extends HttpServlet {
         // call from a url-pattern
         // provide the registration form
         duration = request.getParameter("duration");
-        movieID = request.getParameter("movieID");
+        movieId = request.getParameter("movieId");
         RMovieShow rMovieShow = new RMovieShow();
         rMovieShow.setMovieID(request.getParameter("movieId"));
         request.setAttribute("rMovieShow", rMovieShow);
+        request.setAttribute("movieId", movieId);
         
         // dispatch
         this.getServletContext().getRequestDispatcher(common.URLConfig.JURLm_MovieShow_create).forward(request, response);
@@ -48,7 +49,7 @@ public class M_MovieShow_create extends HttpServlet {
             throws ServletException, IOException {
 
         RMovieShow rMovieShow = new RMovieShow();
-        rMovieShow.setMovieID(movieID);
+        rMovieShow.setMovieID(movieId);
         
         boolean isSafeToCommit = true;
         boolean isCommitted = false;
@@ -69,23 +70,37 @@ public class M_MovieShow_create extends HttpServlet {
         }
         
         if (common.Validation.isCorrectDateString(startDate)) {
-            // check house is free after the movie start
+            // check House is free after the movie Start
+            String format = "yyyy.MM.dd HH:mm";
+            int movieLength = Integer.parseInt(duration);
             String start = startDate+" "+startTime;
+            String end = servlets.helper.Helper.addMinutesToStringDate(start, format, duration);
+            boolean houseIsFree = true;
+            
+            int mins = 15;
+            for (int i=0; i<movieLength; i+=mins) {
+                String checkTime = servlets.helper.Helper.addMinutesToStringDate(start, format, Integer.toString(i));
+                RMovieShowCol checker = new RMovieShowCol();
+                checker.searchHouseID(houseID);
+                checker.searchInDayRange(0);
+                checker.searchTimeAfter(checkTime);
+                checker.fetchDBData();
+                if (checker.count() != 0) {
+                    houseIsFree = false;
+                }
+            }
+            
+            // check House is free before the movie End
             RMovieShowCol checker = new RMovieShowCol();
             checker.searchHouseID(houseID);
             checker.searchInDayRange(0);
-            checker.searchTimeAfter(start);
+            checker.searchTimeAfter(end);
             checker.fetchDBData();
+            if (checker.count() != 0) {
+                    houseIsFree = false;
+            }
             
-            // check house is free before the movie end
-            String end = servlets.helper.Helper.addMinutesToStringDate(start, "yyyy.MM.dd HH:mm", duration);
-            RMovieShowCol checker2 = new RMovieShowCol();
-            checker2.searchHouseID(houseID);
-            checker2.searchInDayRange(0);
-            checker2.searchTimeAfter(end);
-            checker2.fetchDBData();
-            
-            if (checker.count() == 0 && checker2.count() == 0) {
+            if (houseIsFree) {
                 rMovieShow.setMovieShowStartDate(startDate);
                 rMovieShow.setMovieShowStartTime(startTime);
             }
@@ -120,11 +135,12 @@ public class M_MovieShow_create extends HttpServlet {
         }
         
         if (isCommitted) {
-            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow));
+            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow+"?movieId="+movieId));
         }
         else {
             request.setAttribute("rMovieShow", rMovieShow);
             request.setAttribute("errorMsg", errorMsg);
+            request.setAttribute("movieId", movieId);
             this.getServletContext().getRequestDispatcher(common.URLConfig.JURLm_MovieShow_create).forward(request, response);
         }
     }

@@ -65,6 +65,11 @@ public abstract class URLConfig {
     public static final String SURLm_MovieShow_edit = "/manager/movies/movieShow/edit";
     public static final String SURLm_MovieShow_create = "/manager/movies/movieShow/create";
     public static final String SURLm_MovieShow_remove = "/manager/movies/movieShow/remove";
+    public static final String SURLm_Houses = "/manager/houses";
+    public static final String SURLm_Houses_create = "/manager/houses/create";
+    public static final String SURLm_Houses_edit = "/manager/houses/edit";
+    public static final String SURLm_Houses_remove = "/manager/houses/remove";
+    public static final String SURLm_HouseSeat_edit = "/manager/houses/seat/edit";
     
     //jsp
     public static final String JURL_exclusiveLogin= "/WEB-INF/exclusiveLogin.jsp";
@@ -91,6 +96,11 @@ public abstract class URLConfig {
     public static final String JURLm_MovieShow_create = "/WEB-INF/mJsp/mMovieShow_create.jsp";
     public static final String JURLm_MovieShow_edit = "/WEB-INF/mJsp/mMovieShow_edit.jsp";
     public static final String JURLm_MovieShow_remove = "/WEB-INF/mJsp/mMovieShow_remove.jsp";
+    public static final String JURLm_Houses = "/WEB-INF/mJsp/mHouses.jsp";
+    public static final String JURLm_Houses_create = "/WEB-INF/mJsp/mHouses_create.jsp";
+    public static final String JURLm_Houses_edit = "/WEB-INF/mJsp/mHouses_edit.jsp";
+    public static final String JURLm_Houses_remove = "/WEB-INF/mJsp/mHouses_remove.jsp";
+    public static final String JURLm_HouseSeat_edit = "/WEB-INF/mJsp/mHouseSeat_edit.jsp";
     //jsp - o
     public static final String JURLo_manage = "/WEB-INF/oJsp/oManage.jsp";
     public static final String JURLo_refund = "/WEB-INF/oJsp/oRefund.jsp";

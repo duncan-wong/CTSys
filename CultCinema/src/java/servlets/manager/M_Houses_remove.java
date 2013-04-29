@@ -4,7 +4,6 @@
  */
 package servlets.manager;
 
-import beans.RMovieShow;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Hashtable;
@@ -17,24 +16,20 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author A
  */
-public class M_MovieShow_remove extends HttpServlet {
-    private String movieShowID;
-    private String movieId;
+public class M_Houses_remove extends HttpServlet {
+    private String houseID;
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        movieShowID = request.getParameter("movieShowID");
-        movieId = request.getParameter("movieId");
-        RMovieShow rMovieShow = new RMovieShow();
-        rMovieShow.setMovieShowID(movieShowID);
-        rMovieShow.fetchDBData();
-        request.setAttribute("rMovieShow", rMovieShow);
-        request.setAttribute("movieId", movieId);
+        houseID = request.getParameter("houseID");
+        beans.RHouse rHouse = new beans.RHouse();
+        rHouse.setHouseID(houseID);
+        rHouse.fetchDBData();
+        request.setAttribute("rHouse", rHouse);
         
-        // dispatch
-        this.getServletContext().getRequestDispatcher(common.URLConfig.JURLm_MovieShow_remove).forward(request, response);
+        this.getServletContext().getRequestDispatcher(common.URLConfig.JURLm_Houses_remove).forward(request, response);
     }
     
     
@@ -44,16 +39,16 @@ public class M_MovieShow_remove extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        RMovieShow rMovieShow = new RMovieShow();
-        rMovieShow.setMovieShowID(movieShowID);
-        rMovieShow.fetchDBData();
+        beans.RHouse rHouse = new beans.RHouse();
+        rHouse.setHouseID(houseID);
+        rHouse.fetchDBData();
         
         boolean isCommitted = false;
         Hashtable<String, String> errorMsg = new Hashtable<String, String>();
         
         
         try {
-            rMovieShow.commitDelete();
+            rHouse.commitDelete();
             isCommitted = true;
         }
         catch(Exception e){
@@ -61,12 +56,12 @@ public class M_MovieShow_remove extends HttpServlet {
         }
         
         if (isCommitted) {
-            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow+"?movieId="+movieId));
+            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURLm_Houses));
         }
         else {
-            request.setAttribute("rMovieShow", rMovieShow);
+            request.setAttribute("rHouse", rHouse);
             request.setAttribute("errorMsg", errorMsg);
-            this.getServletContext().getRequestDispatcher(common.URLConfig.JURLm_MovieShow_remove).forward(request, response);
+            this.getServletContext().getRequestDispatcher(common.URLConfig.JURLm_Houses_remove).forward(request, response);
         }
     }
     

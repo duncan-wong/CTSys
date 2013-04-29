@@ -49,7 +49,7 @@
 
                     <div class="formInfoControl">
                         <a type="submit" class="btn noLanguageOption">Confirm Delete</a>
-                        <a class="btn noLanguageOption" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow)%>">Cancel</a>
+                        <a class="btn noLanguageOption" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow)%>?movieId=${movieId}">Cancel</a>
                     </div>
 
                 </form>

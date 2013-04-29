@@ -23,9 +23,15 @@ public class M_Movies_edit extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        HttpSession session = request.getSession(false);
+        beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
+        
         RMovie rMovie = new RMovie();
         rMovie.setMovieID(request.getParameter("movieId"));
+        rMovie.setLanguage(sStatus.getLanguageOption());
         rMovie.fetchDBData();
+        
         request.setAttribute("rMovie", rMovie);
         this.getServletContext().getRequestDispatcher(common.URLConfig.JURLm_Movies_edit).forward(request, response);
     }
@@ -82,7 +88,7 @@ public class M_Movies_edit extends HttpServlet {
         
         if (!common.Validation.isNull(startDate)
             && !common.Validation.isNull(endDate)
-            && common.Validation.isDateSmaller(startDate, endDate)) {
+            && common.Validation.isDateSmaller(startDate, endDate, "yyyy.MM.dd")) {
             rMovie.setMovieStartDate(new String(startDate.getBytes("ISO-8859-1"), "UTF-8"));
             rMovie.setMovieEndDate(new String(endDate.getBytes("ISO-8859-1"), "UTF-8"));
         }

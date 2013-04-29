@@ -218,11 +218,31 @@
     </servlet>
     <servlet>
         <servlet-name>MovieShow_remove</servlet-name>
-        <servlet-class>servlets.manager.MovieShow_remove</servlet-class>
+        <servlet-class>servlets.manager.M_MovieShow_remove</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ExclusiveLogin</servlet-name>
         <servlet-class>servlets.ExclusiveLogin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>M_Houses</servlet-name>
+        <servlet-class>servlets.manager.M_Houses</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>M_Houses_create</servlet-name>
+        <servlet-class>servlets.manager.M_Houses_create</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>M_Houses_edit</servlet-name>
+        <servlet-class>servlets.manager.M_Houses_edit</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>M_Houses_remove</servlet-name>
+        <servlet-class>servlets.manager.M_Houses_remove</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>M_HouseSeat_edit</servlet-name>
+        <servlet-class>servlets.manager.M_HouseSeat_edit</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
@@ -366,6 +386,26 @@
         <url-pattern>/exclude/logout</url-pattern>
         <url-pattern>/exclusiveLogin</url-pattern>
         <url-pattern>/exclude/exclusiveLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>M_Houses</servlet-name>
+        <url-pattern>/manager/houses</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>M_Houses_create</servlet-name>
+        <url-pattern>/manager/houses/create</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>M_Houses_edit</servlet-name>
+        <url-pattern>/manager/houses/edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>M_Houses_remove</servlet-name>
+        <url-pattern>/manager/houses/remove</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>M_HouseSeat_edit</servlet-name>
+        <url-pattern>/manager/houses/seat/edit</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

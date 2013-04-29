@@ -49,7 +49,7 @@ public class RHouse extends UpdatableBean {
         house_name = null;
         house_capacity = null;
         total_row = null;
-        seats = null;
+        seats = new RSeat[0][0];
     }
     public RHouse(String house_id) {
         this.house_id = house_id;
@@ -124,7 +124,9 @@ public class RHouse extends UpdatableBean {
             DBconnect db = new DBconnect(HouseSQL.s1_Sales);
             db.setXxx(1, house_id);
             db.executeQuery();
-            sales = db.getXxx(HouseColumn.SALES);
+            if (db.queryHasNext()) {
+                sales = db.getXxx(HouseColumn.SALES);
+            }
             db.disconnect();
         } catch (NamingException ex) {
             Logger.getLogger(RMovieShow.class.getName()).log(Level.SEVERE, null, ex);
@@ -238,8 +240,6 @@ public class RHouse extends UpdatableBean {
 //------------------------------------------------------------------------------
     @Override
     public boolean commitChange() {
-        super.commitChange();
-        
         // commit the seats
         for (int i=0; i<seats.length; i++) {
             for (int j=0; j<seats[i].length; j++) {
@@ -255,7 +255,7 @@ public class RHouse extends UpdatableBean {
         else if (this.isChanged()) {
             return commitUpdate();
         }
-        return true;
+        return super.commitChange();
     }
     
     // clear the seating plan of the house

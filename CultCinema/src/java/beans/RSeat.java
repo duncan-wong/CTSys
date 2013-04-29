@@ -219,8 +219,7 @@ public class RSeat extends UpdatableBean {
             }
         }
         
-        super.commitChange();
-        return true;
+        return super.commitChange();
     }
     
     // for movie show ticket use

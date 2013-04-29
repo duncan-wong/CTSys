@@ -31,10 +31,11 @@
         <div class="formInfoControl">
             <ul class="infoInput" name="movieShowId">
                 <c:forEach items="${movieShowCol.all}" var="movieShow">
-                    <li class="infoItem">${movieShow.movieShowStartDate} | ${movieShow.movieShowStartTime} | HKD ${movieShow.ticketPrice}
+                    <li class="infoItem">
+                        <span>${movieShow.movieShowStartDate} | ${movieShow.movieShowStartTime} | HKD ${movieShow.ticketPrice}</span>
                         <a class="btn1 btn noLanguageOption">Sales: HKD ${movieShow.sales}</a>
-                        <a href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow_edit)%>?movieShowID=${movieShow.movieShowID}&duration=${rCurrentMovie.movieDuration}" class="btn2 btn noLanguageOption">Update</a>
-                        <a href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow_remove)%>?movieShowID=${movieShow.movieShowID}" class="btn3 btn noLanguageOption">Remove</a>
+                        <a href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow_edit)%>?movieId=${rCurrentMovie.movieID}&movieShowID=${movieShow.movieShowID}&duration=${rCurrentMovie.movieDuration}" class="btn2 btn noLanguageOption">Update</a>
+                        <a href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow_remove)%>?movieId=${rCurrentMovie.movieID}&movieShowID=${movieShow.movieShowID}" class="btn3 btn noLanguageOption">Remove</a>
                     </li>
                 </c:forEach>
             </ul>
@@ -56,7 +57,7 @@
                 </c:forEach>
             </div>
         </div>
-        -->
+        <!---->
 
     </div>
 

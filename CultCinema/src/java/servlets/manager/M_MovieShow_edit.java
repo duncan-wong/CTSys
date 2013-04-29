@@ -6,6 +6,7 @@ package servlets.manager;
 
 import beans.RMovieShow;
 import beans.RMovieShowCol;
+import common.Validation;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Hashtable;
@@ -13,12 +14,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import servlets.helper.Helper;
 
 /**
  *
  * @author A
  */
 public class M_MovieShow_edit extends HttpServlet {
+    private String movieId;
     private String movieShowID;
     private String duration;
     
@@ -27,12 +30,14 @@ public class M_MovieShow_edit extends HttpServlet {
             throws ServletException, IOException {
         // call from a url-pattern
         // provide the registration form
+        movieId = request.getParameter("movieId");
         movieShowID = request.getParameter("movieShowID");
         duration = request.getParameter("duration");
         RMovieShow rMovieShow = new RMovieShow();
         rMovieShow.setMovieShowID(movieShowID);
         rMovieShow.fetchDBData();
         request.setAttribute("rMovieShow", rMovieShow);
+        request.setAttribute("movieId", movieId);
         
         // dispatch
         this.getServletContext().getRequestDispatcher(common.URLConfig.JURLm_MovieShow_edit).forward(request, response);
@@ -68,40 +73,45 @@ public class M_MovieShow_edit extends HttpServlet {
         }
         
         if (common.Validation.isCorrectDateString(startDate)) {
-            String start = startDate+" "+startTime;
-            String end = servlets.helper.Helper.addMinutesToStringDate(start, "yyyy.MM.dd HH:mm", duration);
             
-            // check house is free after the movie start
-            RMovieShowCol checker1 = new RMovieShowCol();
-            checker1.searchHouseID(houseID);
-            checker1.searchInDayRange(0);
-            checker1.searchTimeAfter(start);
-            checker1.fetchDBData();
+            String format = "yyyy.MM.dd HH:mm";
+            String start = startDate +" "+ startTime;
+            String end = servlets.helper.Helper.addMinutesToStringDate(start, format, duration);
+            String oStart = rMovieShow.getMovieShowStartDate() +" "+ rMovieShow.getMovieShowStartTime();
+            String oEnd = rMovieShow.getMovieShowEndDate() +" "+ rMovieShow.getMovieShowEndTime();
+            boolean houseIsFree = true;
             
-            // check house is free before the movie end
-            RMovieShowCol checker2 = new RMovieShowCol();
-            checker2.searchHouseID(houseID);
-            checker2.searchInDayRange(0);
-            checker2.searchTimeAfter(end);
-            checker2.fetchDBData();
+            // check the house is free between
+            // [start <= i < oStart]
+            int mins = 15;
+            String checkTime = start;
+            while (Validation.isDateSmaller(Helper.addMinutesToStringDate(checkTime, format, "1"), oStart, format)) {
+                RMovieShowCol checker = new RMovieShowCol();
+                checker.searchHouseID(houseID);
+                checker.searchInDayRange(0);
+                checker.searchTimeAfter(checkTime);
+                checker.fetchDBData();
+                if (checker.count() != 0) {
+                    houseIsFree = false;
+                }
+                checkTime = Helper.addMinutesToStringDate(checkTime, format, Integer.toString(mins));
+            }
+            // check the house is free between
+            // [oEnd < i <= end]
+            checkTime = oEnd;
+            while (Validation.isDateSmaller(Helper.addMinutesToStringDate(checkTime, format, "1"), end, format)) {
+                RMovieShowCol checker = new RMovieShowCol();
+                checker.searchHouseID(houseID);
+                checker.searchInDayRange(0);
+                checker.searchTimeAfter(checkTime);
+                checker.fetchDBData();
+                if (checker.count() != 0) {
+                    houseIsFree = false;
+                }
+                checkTime = Helper.addMinutesToStringDate(checkTime, format, Integer.toString(mins));
+            }
             
-            // check house is showing this movie at the start time
-            RMovieShowCol checker3 = new RMovieShowCol();
-            checker3.searchHouseID(houseID);
-            checker3.searchInDayRange(0);
-            checker3.searchTimeAfter(start);
-            checker3.searchMovieShowID(movieShowID);
-            checker3.fetchDBData();
-            
-            // check house is showing this movie at the end time
-            RMovieShowCol checker4 = new RMovieShowCol();
-            checker4.searchHouseID(houseID);
-            checker4.searchInDayRange(0);
-            checker4.searchTimeAfter(end);
-            checker4.searchMovieShowID(movieShowID);
-            checker4.fetchDBData();
-            
-            if (checker1.count() == checker3.count() && checker2.count() == checker4.count()) {
+            if (houseIsFree) {
                 rMovieShow.setMovieShowStartDate(startDate);
                 rMovieShow.setMovieShowStartTime(startTime);
             }
@@ -137,11 +147,12 @@ public class M_MovieShow_edit extends HttpServlet {
         }
         
         if (isCommitted) {
-            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow));
+            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow+"?movieId="+movieId));
         }
         else {
             request.setAttribute("rMovieShow", rMovieShow);
             request.setAttribute("errorMsg", errorMsg);
+            request.setAttribute("movieId", movieId);
             this.getServletContext().getRequestDispatcher(common.URLConfig.JURLm_MovieShow_edit).forward(request, response);
         }
     }

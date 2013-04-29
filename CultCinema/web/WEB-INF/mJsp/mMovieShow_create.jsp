@@ -82,10 +82,10 @@
 
                     <div class="formInfoControl">
                         <label class="label">
-                            <%="Showing Time"%>: 
+                            <%="Showing Time"%>:
                         </label>
                         <input type="text" name="startDate" class="infoInput dateInput" id="popupDatepicker" value="${rMovieShow.movieShowStartDate}" />
-                        <input type="text" name="startTime" class="infoInput span1" id="timepicker" value="${rMovieShow.movieShowStartTime}" />
+                        <input type="text" name="startTime" class="infoInput span1" id="timepicker" value="${rMovieShow.movieShowStartTime==null ? '00:00' : rMovieShow.movieShowStartTime}" />
                         <c:if test="${errorMsg != null}">
                             <span class="error">
                                 ${errorMsg["startDate"]}
@@ -110,7 +110,7 @@
 
                     <div class="formInfoControl">
                         <a type="submit" class="btn noLanguageOption">Add</a>
-                        <a class="btn noLanguageOption" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow)%>">Cancel</a>
+                        <a class="btn noLanguageOption" href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow)%>?movieId=${movieId}">Cancel</a>
                     </div>
                 </form>
             </div>

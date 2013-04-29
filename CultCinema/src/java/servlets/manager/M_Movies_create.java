@@ -76,7 +76,7 @@ public class M_Movies_create extends HttpServlet {
         
         if (!common.Validation.isNull(startDate)
             && !common.Validation.isNull(endDate)
-            && common.Validation.isDateSmaller(startDate, endDate)) {
+            && common.Validation.isDateSmaller(startDate, endDate, "yyyy.MM.dd")) {
             rMovie.setMovieStartDate(new String(startDate.getBytes("ISO-8859-1"), "UTF-8"));
             rMovie.setMovieEndDate(new String(endDate.getBytes("ISO-8859-1"), "UTF-8"));
         }

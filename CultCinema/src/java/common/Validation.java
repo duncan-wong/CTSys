@@ -30,6 +30,17 @@ public class Validation {
         return true;
     }
     
+    public static boolean isCharPlusDigit(String str) {
+        for (int i=0; i<str.length(); i++) {
+            if (!Character.isDigit(str.charAt(i)) 
+                && !Character.isLetter(str.charAt(i))
+                && str.charAt(i) != ' ') {
+                return false;
+            }
+        }
+        return true;
+    }
+    
     public static boolean isConsistSpace(String str){
         for (int i = 0; i < str.length(); i ++){
             if (str.charAt(i) == ' '){
@@ -109,7 +120,7 @@ public class Validation {
         }
     }
     
-    public static boolean isDateSmaller(String date1, String date2) {
+    public static boolean isDateSmaller(String date1, String date2, String format) {
         try {
             if (!isCorrectDateString(date1)
                 && !isCorrectDateString(date2)) {
@@ -117,8 +128,8 @@ public class Validation {
             }
             
             // compare the date string
-            Date d1 = new SimpleDateFormat("yyyy.MM.dd").parse(date1);
-            Date d2 = new SimpleDateFormat("yyyy.MM.dd").parse(date2);
+            Date d1 = new SimpleDateFormat(format).parse(date1);
+            Date d2 = new SimpleDateFormat(format).parse(date2);
             
             if (d1.before(d2))
                 return true;
