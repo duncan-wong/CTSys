@@ -4,14 +4,104 @@
     Author     : A
 --%>
 
+<jsp:useBean id="rHouse" type="beans.RHouse" scope="request"></jsp:useBean>
+<jsp:useBean id="rShowCol" type="beans.RMovieShowCol" scope="request"></jsp:useBean>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        
+        <%@include file="/WEB-INF/jspf/common/headSession.jspf" %>
+        
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/movie.css" />
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/manager/movieShow.css" />
+        
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div class="asgClaim_stayTop scrollLeft">
+            <%@include file="/WEB-INF/jspf/common/asgClaim.jspf" %>
+        </div>
+        
+        
+        <div id="mainContainer">
+            <div id="menu" class="scrollLeft">
+                <%@include file="/WEB-INF/jspf/common/menu.jspf" %>
+            </div>
+            
+            <div id="header" class="smallHeader">
+                <div class="headerWrapper defaultWidth">
+                    <h1 class="headerMainTitle">
+                        <%="Houses Statistic"%>
+                    </h1>
+                    <div class="headerControl">
+                        <a href="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Houses)%>" class="btn">
+                            <%="Back"%>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="content" class="defaultWidth">
+                <div id="movie${rHouse.houseName}" class="movieContainer">
+
+                    <div class="movieDescription">
+                        <div class="movieDescriptionItem">
+                            <span class="movieTitle">
+                                ${rHouse.houseName}
+                            </span>
+                        </div>
+                        <div class="movieDescriptionItem">
+                            <span class="label">
+                                <%="Capacity"%>: 
+                            </span>
+                            <span class="content">
+                                ${rHouse.houseCapacity}
+                            </span>
+                        </div>
+                        <div class="movieDescriptionItem">
+                            <span class="label">
+                                <%="Disabled Seat"%>: 
+                            </span>
+                            <span class="content">
+                                ${disabledCount}
+                            </span>
+                        </div>
+                        <div class="movieDescriptionItem">
+                            <span class="label">
+                                <%="House Sales"%>: 
+                            </span>
+                            <p class="content">
+                                <%=sLanguageBean.comHKD()%> ${rHouse.sales}
+                            </p>
+                        </div>
+                        <div class="movieDescriptionItem">
+                            <span class="label">
+                                <%="Total Show"%>: 
+                            </span>
+                            <p class="content">
+                                <%=rShowCol.count()%>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="formInfoContainer">
+                    <div class="formInfoControl">
+                        <c:forEach items="${rShowCol.all}" var="movieShow">
+                            <%@include file="/WEB-INF/jspf/manager/mHouseMovieShow.jspf" %>
+                        </c:forEach>
+                    </div>
+                </div>
+                    
+            </div>
+                    
+                    
+                    
+        </div>
+        
+        <div class="asgClaim_stayButtom scrollLeft">
+            <%@include file="/WEB-INF/jspf/common/asgClaim.jspf" %>
+        </div>
     </body>
 </html>

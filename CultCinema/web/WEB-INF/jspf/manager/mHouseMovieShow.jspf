@@ -1,0 +1,19 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page pageEncoding="UTF-8" %>
+<jsp:useBean id="movieShow" class="beans.RMovieShow" scope="page"></jsp:useBean>
+
+<%
+    beans.RMovie rMovie = new beans.RMovie();
+    rMovie.setMovieID(movieShow.getMovieID());
+    rMovie.fetchDBData();
+    request.setAttribute("rMovie", rMovie);
+%>
+<div class="infoItem">
+    <span class="label span3">
+        ${rMovie.movieName}
+    </span>
+    <span class="content span10">
+        | ${movieShow.movieShowStartDate} ${movieShow.movieShowStartTime} - ${movieShow.movieShowEndDate} ${movieShow.movieShowEndTime} | HKD ${movieShow.ticketPrice} | Sales: HKD ${movieShow.sales}
+    </span>
+</div>
