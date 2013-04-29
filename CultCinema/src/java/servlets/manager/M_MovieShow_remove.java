@@ -61,7 +61,7 @@ public class M_MovieShow_remove extends HttpServlet {
         }
         
         if (isCommitted) {
-            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow));
+            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow+"?movieId="+movieId));
         }
         else {
             request.setAttribute("rMovieShow", rMovieShow);

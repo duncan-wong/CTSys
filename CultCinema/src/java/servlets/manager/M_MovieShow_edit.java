@@ -83,14 +83,14 @@ public class M_MovieShow_edit extends HttpServlet {
             boolean houseIsFree = true;
             
             // stepper
-            int mins = 15;
+            int mins = 1;
             
             int i = 0;
             String checkTime = start;
             // check the house is free between
             // [ start <= i < oStart ]
             while (i < movieLength
-                && Validation.isDateSmaller(Helper.addMinutesToStringDate(checkTime, format, "1"), oStart, format)) {
+                && Validation.isDateSmaller(checkTime, oStart, format)) {
                 
                 RMovieShowCol checker = new RMovieShowCol();
                 checker.searchHouseID(houseID);
@@ -106,9 +106,14 @@ public class M_MovieShow_edit extends HttpServlet {
             // check the house is free between
             // [ oEnd <= i < end ]
             i = 0;
-            checkTime = oEnd;
+            if (Validation.isDateSmaller(start, oEnd, format)) {
+                checkTime = Helper.addMinutesToStringDate(oEnd, format, "1");
+            }
+            else {
+                checkTime = Helper.addMinutesToStringDate(start, format, "1");
+            }
             while (i < movieLength
-                && Validation.isDateSmaller(Helper.addMinutesToStringDate(checkTime, format, "1"), end, format)) {
+                && Validation.isDateSmaller(checkTime, Helper.addMinutesToStringDate(end, format, "1"), format)) {
                 
                 RMovieShowCol checker = new RMovieShowCol();
                 checker.searchHouseID(houseID);
@@ -120,16 +125,6 @@ public class M_MovieShow_edit extends HttpServlet {
                 }
                 i += mins;
                 checkTime = Helper.addMinutesToStringDate(checkTime, format, Integer.toString(mins));
-            }
-            // check house if free at
-            // [ i == end ]
-            RMovieShowCol checker = new RMovieShowCol();
-            checker.searchHouseID(houseID);
-            checker.searchInDayRange(0);
-            checker.searchTimeAfter(end);
-            checker.fetchDBData();
-            if (checker.count() != 0) {
-                houseIsFree = false;
             }
             
             
@@ -169,7 +164,7 @@ public class M_MovieShow_edit extends HttpServlet {
         }
         
         if (isCommitted) {
-            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow));
+            response.sendRedirect(common.URLConfig.getFullPath(common.URLConfig.SURLm_MovieShow+"?movieId="+movieId));
         }
         else {
             request.setAttribute("rMovieShow", rMovieShow);
