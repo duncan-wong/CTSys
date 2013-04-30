@@ -39,6 +39,7 @@ public class Index extends HttpServlet {
         beans.RMovieCol rMC_onScreen = new beans.RMovieCol();
         rMC_onScreen.changeLang(sStatus.getLanguageOption());
         rMC_onScreen.fetchDBData();
+        rMC_onScreen.setMovieOnScreen();
         request.setAttribute(common.BeansConfig.rMovieCol_onScreen, rMC_onScreen);
         
         //dispatch

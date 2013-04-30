@@ -96,6 +96,10 @@ public class RUser extends UpdatableBean{
         }
         return "";
     }
+    public boolean getIsManager(){
+        return this.role.equals(common.RolesConfig.Manager);
+    }
+    
     public String getLoyalty() {
         String loyalty = "";
         try {

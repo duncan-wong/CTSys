@@ -35,7 +35,12 @@ public class OrderTicket_Cancel extends HttpServlet {
         if (request.getParameter("bid") != null && !request.getParameter("bid").equals("")){
             beans.RBooking booking = new beans.RBooking(request.getParameter("bid"));
             if (booking.fetchDBData()){
-                servlets.orderTicketHelper.BookingHandler.deleteBooking(booking);
+                if (request.getRequestURI().contains(common.URLConfig.SURL_orderTicketHide)){
+                     servlets.orderTicketHelper.BookingHandler.hideBooking(booking);
+                }
+                else{
+                    servlets.orderTicketHelper.BookingHandler.deleteBooking(booking);
+                }
             }
             if (!common.Validation.isNull(request.getParameter("next"))){
                 if(request.getParameter("next").equals("account")){

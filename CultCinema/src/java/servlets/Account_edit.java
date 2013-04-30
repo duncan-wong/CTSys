@@ -75,6 +75,7 @@ public class Account_edit extends HttpServlet {
         }
         
         if (!common.Validation.isNull(name)){
+            name = new String(name.getBytes("ISO-8859-1"), "UTF-8");
             rUser.setUserName(name);
         }
         else{
@@ -93,7 +94,7 @@ public class Account_edit extends HttpServlet {
             errorMsg.put("password", "Incorrect password");
         }
         else if (isSafeToCommit 
-                    && common.Validation.isNull(newPassword)
+                    && !common.Validation.isNull(newPassword)
                     && newPassword.equals(newPasswordRe)){
             rUser.setLoginPW(newPassword);
         }

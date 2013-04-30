@@ -15,7 +15,7 @@
     <!--template--->
     <div id="house${house.houseID}" class="houseContainer">
     
-        <img src="<%=request.getContextPath()%>/housePoster/${house.houseID}.jpg" class="housePoster" alt="Image not found">
+        <img src="https://dl.dropboxusercontent.com/u/57109653/house/${house.houseID}.jpg" class="housePoster" alt="Image (${house.houseID}.jpg) not found">
         <div class="houseDescription">
             <div class="houseDescriptionItem">
                 <span class="houseTitle">

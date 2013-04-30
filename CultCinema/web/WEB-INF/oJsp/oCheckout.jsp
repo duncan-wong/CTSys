@@ -72,7 +72,6 @@
                             request.setAttribute("movie", movie);
                         %>
                         <div class="formInfoControl border_bottom">
-                            <span class="infoLabel">${movieShow.movieShowStartTime}</span>
                             <span class="infoLabel span3">${movie.movieName}</span>
                             <span class="infoLabel span3">House ${movieShow.houseID}: ${movieShow.movieShowStartDate}-${movieShow.movieShowStartTime}</span>
                             <span class="infoLabel span1">${booking.numOfTicket}</span>

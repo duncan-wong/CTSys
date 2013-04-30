@@ -81,6 +81,32 @@ public class RMovieCol extends UpdatableBean{
         search_Author = null;
         order = null;
     }
+    public void setMovieOnScreen(){
+        int count = this.count();
+        int index = 0;
+        for (int i = 0; i < count; i ++){
+            if (!this.getAt(index).isOnScreen()){
+                this.deleteMovie(this.getAt(index));
+            }
+            else{
+                index ++;
+            }
+        }
+    }
+    
+    public void setMovieOnScreenOnOrAfterDay(int day){
+        int count = this.count();
+        int index = 0;
+        for (int i = 0; i < count; i ++){
+            if (!this.getAt(index).isOnScreenOnOrAfterDays(day)){
+                this.deleteMovie(this.getAt(index));
+            }
+            else{
+                index ++;
+            }
+        }
+    }
+    
 //-----------------------------------------------------------------------------
     @Override
     public boolean fetchDBData() {

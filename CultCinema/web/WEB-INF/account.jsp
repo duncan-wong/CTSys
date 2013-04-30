@@ -77,7 +77,7 @@
                             ${rUser.userEmail}
                         </span>
                     </div>
-                        
+
                     <c:if test="${sStatus.isLoggedIn && sStatus.isCustomer}">    
                         <div class="formInfoControl">
                             <span class="label">
@@ -90,22 +90,25 @@
                     </c:if>
 
                     <form action="<%=common.URLConfig.getFullPath(common.URLConfig.SURL_account)%>" method="POST" class="formInfoControl">
-                        <a type="submit" class="btn noLanguageOption">Edit</a>
+                        <a type="submit" class="btn noLanguageOption"><%=sLanguageBean.comEdit()%></a>
                     </form>
 
+                    <c:if test="${rUser.isManager}" >
+                        <a href="<%=common.URLConfig.getFullPath("/manager/account/create")%>" class="btn">Create Officer Account</a>
+                    </c:if>
                 </div>
-                
+
                 <div class="formInfoContainer">
                     <c:if test="${errorMsg != null}">
                         <span class="error">
                             ${errorMsg["refundError"]}
                         </span>
                     </c:if>
-                    
+
                     <c:forEach items="${rBookingCol.allBooking}" var="booking">
                         <c:set var="booking" value="${booking}" scope="request" />
                         <%
-                            beans.RBooking booking = (beans.RBooking)request.getAttribute("booking");
+                            beans.RBooking booking = (beans.RBooking) request.getAttribute("booking");
                             beans.RMovieShow movieShow = new beans.RMovieShow();
                             movieShow.setMovieShowID(booking.getMovieShowID());
                             movieShow.fetchDBData();
@@ -114,7 +117,7 @@
                             movie.setMovieID(movieShow.getMovieID());
                             movie.fetchDBData();
                             request.setAttribute("movie", movie);
-                            
+
                             request.setAttribute("isRefundPossible", booking.isBeforeHours(3));
                         %>
                         <div class="formInfoControl border_bottom">
@@ -124,9 +127,16 @@
                             <span class="infoLabel span2">${booking.paymentStatus}</span>
                             <br />
                             <span class="infoLabel span4">Booking made at: ${booking.bookingMadeDate}-${booking.bookingMadeTime}</span>
-                            <c:if test="${booking.isComplete && isRefundPossible}">
-                                <a class="btn noLanguageOption" href="orderTicket/refund?bid=${booking.bookingID}">Refund</a>
-                            </c:if>
+                            <c:choose>
+                                <c:when test="${booking.isComplete && isRefundPossible}">
+                                    <a class="btn noLanguageOption" href="orderTicket/refund?bid=${booking.bookingID}">Refund</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:if test="${booking.isComplete || booking.isLoyaltyPaid}">
+                                        <a class="btn noLanguageOption" href="orderTicket/hide?bid=${booking.bookingID}&next=account">Cancel</a>
+                                    </c:if>
+                                </c:otherwise>
+                            </c:choose>
                             <c:if test="${booking.isDeferred || booking.isRefundAccepted}">
                                 <a class="btn noLanguageOption" href="orderTicket/cancel?bid=${booking.bookingID}&next=account">Cancel</a>
                             </c:if>

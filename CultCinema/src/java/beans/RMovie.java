@@ -9,6 +9,9 @@ import beans.sql.MovieSQL;
 import beans.sqlColumnName.MovieColumn;
 import common.jdbc.DBconnect;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
@@ -141,6 +144,32 @@ public class RMovie extends UpdatableBean {
             return movie_endDate;
         }
         return "";
+    }
+    
+    
+    public boolean isOnScreen(){
+        String format = "yyyy.MM.dd";
+        Date now = Calendar.getInstance().getTime();
+        String checkTime = new SimpleDateFormat(format).format(now);
+        
+        String start = this.movie_startDate;
+        String end = this.movie_endDate;
+        
+        return (common.Validation.isDateSmaller(checkTime, end, format) && common.Validation.isDateSmaller(start, checkTime, format))
+                || start.equals(checkTime) || end.equals(checkTime); 
+    }
+    
+    public boolean isOnScreenOnOrAfterDays(int day){
+        String format = "yyyy.MM.dd";
+        Date now = Calendar.getInstance().getTime();
+        String checkTime = new SimpleDateFormat(format).format(now);
+        
+        String minutes = Integer.toString(day* 24 * 60);
+        checkTime = servlets.helper.Helper.addMinutesToStringDate(checkTime, format, minutes);
+        
+        String start = this.movie_startDate;
+        
+        return common.Validation.isDateSmaller(checkTime, start, format);
     }
 //----------------------------------------------------------------------------
     @Override

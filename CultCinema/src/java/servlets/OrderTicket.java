@@ -336,6 +336,10 @@ public class OrderTicket extends HttpServlet {
                     isValidBooking = true;
                 }
                 
+                if (request.getParameter("loyaltyPoint") != null){
+                    isValidBooking = true;
+                }
+                
                 if (isValidBooking){
                     beans.RUser rUser;
                     
@@ -411,6 +415,8 @@ public class OrderTicket extends HttpServlet {
                 this.unauthorizedAccess(response);
                 return;
             }
+            
+            this.prepareRequest_user(request);
             
             beans.RBooking rBooking = new beans.RBooking(sBooking.getBookingID());
             rBooking.fetchDBData();

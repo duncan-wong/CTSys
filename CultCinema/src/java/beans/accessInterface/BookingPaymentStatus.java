@@ -18,4 +18,5 @@ public abstract class BookingPaymentStatus {
     public static final String Refund_Pending = "Refund Pending";
     public static final String Refund_Accepted = "Refund Accepted";
     public static final String Refund_Declined = "Refund Declined";
+    public static final String HIDE = "HIDE";
 }

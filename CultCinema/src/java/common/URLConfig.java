@@ -45,6 +45,7 @@ public abstract class URLConfig {
     public static final String SURL_orderTicket = "/orderTicket";
     public static final String SURL_orderTicket_member = "/orderTicket_member";
     public static final String SURL_orderTicketCancel = "/orderTicket/cancel";
+    public static final String SURL_orderTicketHide = "/orderTicket/hide";
     public static final String SURL_signUp = "/signUp";
     public static final String SURL_houses = "/houses";
     //officer
@@ -56,6 +57,7 @@ public abstract class URLConfig {
     public static final String SURLo_checkoutCancel = "/officer/checkoutCancel";
     public static final String SURLo_checkoutPay = "/officer/checkoutPay";
     //servlet - manager
+    public static final String SURLm_signUp = "/manager/account/create";
     public static final String SURLm_Manager = "/manager";
     public static final String SURLm_Movies = "/manager/movies";
     public static final String SURLm_Movies_edit = "/manager/movies/edit";
@@ -103,6 +105,7 @@ public abstract class URLConfig {
     public static final String JURLm_Houses_remove = "/WEB-INF/mJsp/mHouses_remove.jsp";
     public static final String JURLm_HouseSeat_edit = "/WEB-INF/mJsp/mHouseSeat_edit.jsp";
     public static final String JURLm_HouseStat = "/WEB-INF/mJsp/mHouseStat.jsp";
+    public static final String JURLm_signUp = "/WEB-INF/mJsp/account_create.jsp";
     //jsp - o
     public static final String JURLo_manage = "/WEB-INF/oJsp/oManage.jsp";
     public static final String JURLo_refund = "/WEB-INF/oJsp/oRefund.jsp";

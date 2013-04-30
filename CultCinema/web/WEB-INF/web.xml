@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <!--=======Security==========================================================-->
-    <!--
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>HTTPS config</web-resource-name>
-            <url-pattern>/*</url-pattern>
-        </web-resource-collection>
-        <user-data-constraint>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
-    </security-constraint>
-    -->
+    
     <security-constraint>
         <display-name>Security Constraint</display-name>
         <web-resource-collection>
@@ -77,11 +67,10 @@
         <error-code>404</error-code>
         <location>/error?errorCode=404</location>
     </error-page>
-    <!--
     <error-page>
+        <error-code>500</error-code>
         <location>/error?errorCode=0</location>
     </error-page>
-    -->
     <!--=======/Error page==========================================================-->
     <listener>
         <description>HttpSessionListener</description>
@@ -248,6 +237,10 @@
         <servlet-name>M_HouseStat</servlet-name>
         <servlet-class>servlets.manager.M_HouseStat</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MAccountCreate</servlet-name>
+        <servlet-class>servlets.manager.M_Account_create</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -338,10 +331,6 @@
         <url-pattern>/manager/movies/movieShow</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>OrderTicketCancel</servlet-name>
-        <url-pattern>/orderTicket/cancel</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>Manager_Movie</servlet-name>
         <url-pattern>/manager/movies</url-pattern>
     </servlet-mapping>
@@ -415,6 +404,15 @@
         <servlet-name>M_HouseStat</servlet-name>
         <url-pattern>/manager/houses/stat</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderTicketCancel</servlet-name>
+        <url-pattern>/orderTicket/cancel</url-pattern>
+        <url-pattern>/orderTicket/hide</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MAccountCreate</servlet-name>
+        <url-pattern>/manager/account/create</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
@@ -429,4 +427,6 @@
         <res-sharing-scope>Shareable</res-sharing-scope>
     </resource-ref>
     <!--=======/Resource======================================================-->
-</web-app>
+
+    --&gt;
+    </web-app>

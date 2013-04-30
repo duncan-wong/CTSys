@@ -45,7 +45,7 @@
             <div id="content" class="defaultWidth">
                 <div id="movie${rCurrentMovie.movieID}" class="movieContainer">
 
-                    <img src="<%=request.getContextPath()%>/moviePoster/${rCurrentMovie.movieID}.jpg" class="moviePoster" alt="Image not found">
+                    <img src="https://dl.dropboxusercontent.com/u/57109653/movie/${rCurrentMovie.movieID}.jpg" class="moviePoster" alt="Image (${rCurrentMovie.movieID}.jpg) not found">
                     <div class="movieDescription">
                         <div class="movieDescriptionItem">
                             <span class="movieTitle">

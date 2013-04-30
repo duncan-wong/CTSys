@@ -62,7 +62,7 @@
                             <%=sLanguageBean.cAccountLbName()%>: 
                         </label>
                         <input type="text" name="name" class="infoInput" value="${rUser.userName}" />
-                        <c:if test="${errorMsg == null}">
+                        <c:if test="${errorMsg != null}">
                             <span class="error">
                                 ${errorMsg["name"]}
                             </span>
@@ -74,7 +74,7 @@
                             <%=sLanguageBean.cAccountLbTel()%>: 
                         </label>
                         <input type="text" name="phone" class="infoInput" value="${rUser.userPhone}" />
-                        <c:if test="${errorMsg == null}">
+                        <c:if test="${errorMsg != null}">
                             <span class="error">
                                 ${errorMsg["phone"]}
                             </span>

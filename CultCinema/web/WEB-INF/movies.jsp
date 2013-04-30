@@ -47,9 +47,7 @@
                     <h2 class="contentTitle">
                         <%=sLanguageBean.hMoviesControlBtnOnScreen()%>
                     </h2>
-                    <%
-                        request.setAttribute("movieCol", request.getAttribute(common.BeansConfig.rMovieCol_onScreen));
-                    %>
+                    <c:set value="${rMC_onScreen}" var="movieCol" />
                     <%@include file="/WEB-INF/jspf/movies/movies.jspf" %>
                 </div>
                 <div class="movieContentGroup movieTomorrow inactiveContent">
@@ -57,9 +55,8 @@
                     <h2 class="contentTitle">
                         <%=sLanguageBean.hMoviesControlBtnTomorrow()%>
                     </h2>
-                    <%
-                        request.setAttribute("movieCol", request.getAttribute(common.BeansConfig.rMovieCol_tomorrow));
-                    %>
+                    <c:set value="${rMC_tomorrow}" var="movieCol" />
+                    <%@include file="/WEB-INF/jspf/movies/movies_noOrder.jspf" %>
                 </div>
             </div>
         </div>

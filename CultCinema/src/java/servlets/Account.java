@@ -41,13 +41,12 @@ public class Account extends HttpServlet {
         rUser.fetchDBData();
         request.setAttribute(BeansConfig.rUser, rUser);
         
-        if (sStatus.getIsCustomer()){
-            //rBookingCol
-            beans.RBookingCol rBookingCol = new beans.RBookingCol();
-            rBookingCol.searchAccountID(rUser.getAccountID());
-            rBookingCol.fetchDBData();
-            request.setAttribute(common.BeansConfig.rBookingCol, rBookingCol);
-        }
+        //rBookingCol
+        beans.RBookingCol rBookingCol = new beans.RBookingCol();
+        rBookingCol.searchAccountID(rUser.getAccountID());
+        rBookingCol.fetchDBData();
+        request.setAttribute(common.BeansConfig.rBookingCol, rBookingCol);
+
         session.setAttribute(common.URLConfig.isFrom(common.URLConfig.SURL_account), Boolean.TRUE);
         
         //dispatch in doGet, doPost

@@ -1,10 +1,10 @@
 <%-- 
-    Document   : movies_create
-    Created on : Apr 27, 2013, 7:26:26 PM
-    Author     : A
+    Document   : account
+    Created on : Apr 11, 2013, 5:25:58 PM
+    Author     : 52593578
 --%>
 
-<jsp:useBean id="rMovie" type="beans.RMovie" scope="request"></jsp:useBean>
+<jsp:useBean id="rUser" type="beans.RUser" scope="request"></jsp:useBean>
 <%--<jsp:useBean id="sLanguageBean" type="beans.accessInterface.LanguageBean" scope="session"></jsp:usebean>--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,20 +13,7 @@
         
         <%@include file="/WEB-INF/jspf/common/headSession.jspf" %>
         
-        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/movies.css" />
-        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/manager/movies.css" />
-    <!-- jQuery datepicker -->
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/jquery.datepick.css">
-        <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.datepick.js"></script>
-        <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.mousewheel.js"></script>
-        <script type="text/javascript">
-        $(function() {
-            $('#popupDatepicker').datepick({dateFormat: 'yyyy.mm.dd'});
-            $('#popupDatepicker2').datepick({dateFormat: 'yyyy.mm.dd'});
-        });
-        </script>
-    <!---->
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/account.css" />
         
     </head>
     <body>
@@ -43,7 +30,7 @@
             <div id="header" class="smallHeader">
                 <div class="headerWrapper defaultWidth">
                     <h1 class="headerMainTitle">
-                        <%=sLanguageBean.hMoviesMainTitle()%>
+                        <%=sLanguageBean.hAccountMainTitle()%>
                     </h1>
                 </div>
             </div>
@@ -55,75 +42,84 @@
                     </span>
                 </c:if>   
                     
-                <form action="<%=common.URLConfig.getFullPath(common.URLConfig.SURLm_Movies_create)%>" method="POST" class="formInfoContainer">
+                <form action="<%=request.getContextPath()%>/manager/account/create" method="POST" class="formInfoContainer">
                     <div class="formInfoControl">
                         <label class="label">
-                            <%=sLanguageBean.cMoviesLbMovieTitle()%>: 
+                            <%=sLanguageBean.cAccountLbUsername()%>: 
                         </label>
-                            <input type="text" name="movieName" class="infoInput span5" value="${rMovie.movieName}" />
+                            <input type="text" name="loginId" class="infoInput" value="${rUser.loginID}" />
                         <c:if test="${errorMsg != null}">
                             <span class="error">
-                                ${errorMsg["movieName"]}
+                                ${errorMsg["loginId"]}
                             </span>
                         </c:if>
                     </div>
                     
                     <div class="formInfoControl">
                         <label class="label">
-                            <%=sLanguageBean.cMoviesLbDirector()%>: 
+                            <%=sLanguageBean.cAccountLbPassword()%>: 
                         </label>
-                        <input type="text" name="movieAuthor" class="infoInput span5" value="${rMovie.movieAuthor}" />
+                        <input type="password" name="password" class="infoInput" value="" />
                         <c:if test="${errorMsg != null}">
                             <span class="error">
-                                ${errorMsg["movieAuthor"]}
+                                ${errorMsg["password"]}
+                            </span>
+                        </c:if>
+                    </div>
+                            
+                    <div class="formInfoControl">
+                        <label class="label">
+                            <%=sLanguageBean.cAccountLbPasswordRe()%>: 
+                        </label>
+                        <input type="password" name="passwordr" class="infoInput" value="" />
+                        <c:if test="${errorMsg != null}">
+                            <span class="error">
+                                ${errorMsg["passwordr"]}
+                            </span>
+                        </c:if>
+                    </div>
+                    
+                    
+                    <div class="formInfoControl">
+                        <label class="label">
+                            <%=sLanguageBean.cAccountLbName()%>: 
+                        </label>
+                        <input type="text" name="name" class="infoInput" value="${rUser.userName}" />
+                        <c:if test="${errorMsg != null}">
+                            <span class="error">
+                                ${errorMsg["name"]}
+                            </span>
+                        </c:if> 
+                    </div>
+                        
+                            
+                    <div class="formInfoControl">
+                        <label class="label">
+                            <%=sLanguageBean.cAccountLbTel()%>: 
+                        </label>
+                        <input type="text" name="phone" class="infoInput" value="${rUser.userPhone}" />
+                        <c:if test="${errorMsg != null}">
+                            <span class="error">
+                                ${errorMsg["phone"]}
+                            </span>
+                        </c:if>    
+                    </div>
+                    
+                    <div class="formInfoControl">
+                        <label class="label">
+                            <%=sLanguageBean.cAccountLbEmail()%>: 
+                        </label>
+                        <input type="text" name="email" class="infoInput" value="${rUser.userEmail}" />
+                        <c:if test="${errorMsg != null}">
+                            <span class="error">
+                                ${errorMsg["email"]}
                             </span>
                         </c:if>
                     </div>
                             
                     <div class="formInfoControl">
-                        <label class="label">
-                            <%=sLanguageBean.cMoviesLbLength()%>: 
-                        </label>
-                            <input type="text" name="movieDuration" class="infoInput span5" value="${rMovie.movieDuration}" />
-                        <c:if test="${errorMsg != null}">
-                            <span class="error">
-                                ${errorMsg["movieDuration"]}
-                            </span>
-                        </c:if>
-                    </div>
-                    
-                    
-                    <div class="formInfoControl">
-                        <label class="label">
-                            <%=sLanguageBean.cMoviesLbOnScreenTime()%>: 
-                        </label>
-                            <input type="text" name="movieStartDate" class="infoInput dateInput span2" id="popupDatepicker" value="${rMovie.movieStartDate}" />
-                        <span class="infoSeparator">-</span>
-                            <input type="text" name="movieEndDate" class="infoInput dateInput span2" id="popupDatepicker2" value="${rMovie.movieEndDate}" />
-                        <c:if test="${errorMsg != null}">
-                            <span class="error">
-                                ${errorMsg["movieDate"]}
-                            </span>
-                        </c:if>
-                    </div>
-                    
-                    <div class="formInfoControl">
-                        <label class="label">
-                            <%=sLanguageBean.cMoviesLbDescription()%>: 
-                        </label>
-                            <textarea name="movieDescription" class="infoInputArea span5">${rMovie.movieDescription}</textarea>
-                        <c:if test="${errorMsg != null}">
-                            <span class="error">
-                                ${errorMsg["movieDescription"]}
-                            </span>
-                        </c:if>
-                    </div>
-                            
-                    
-                            
-                    <div class="formInfoControl">
-                        <a type="submit" class="btn noLanguageOption"><%=sLanguageBean.comConfirm()%></a>
-                        <a class="btn noLanguageOption" href="<%=request.getContextPath()%>/manager/movies"><%=sLanguageBean.comCancel()%></a>
+                        <a type="submit" class="btn noLanguageOption"><%=sLanguageBean.comSignUp() %></a>
+                        <a class="btn noLanguageOption" href="<%=request.getContextPath()%>"><%=sLanguageBean.comCancel() %></a>
                     </div>
                 </form>
             </div>

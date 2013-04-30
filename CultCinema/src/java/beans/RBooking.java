@@ -10,7 +10,10 @@ import beans.sqlColumnName.BookingColumn;
 import beans.sqlColumnName.SeatColumn;
 import common.jdbc.DBconnect;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
@@ -202,7 +205,18 @@ public class RBooking extends UpdatableBean {
     }
     
     public boolean isBeforeHours(int hours){
-        return true;
+        String format = "yyyy.MM.dd HH:mm";
+        Date now = Calendar.getInstance().getTime();
+        String checkTime = new SimpleDateFormat(format).format(now);
+        
+        beans.RMovieShow rMovieShow = new beans.RMovieShow();
+        rMovieShow.setMovieShowID(showing_id);
+        rMovieShow.fetchDBData();
+        String minutes = Integer.toString(hours*60);
+        checkTime = servlets.helper.Helper.addMinutesToStringDate(checkTime, format, minutes);
+        
+        String showTime = rMovieShow.getMovieShowStartDate()+" "+rMovieShow.getMovieShowEndTime();
+        return common.Validation.isDateSmaller(checkTime, showTime, format); 
     }
     
 //------------------------------------------------------------------------------

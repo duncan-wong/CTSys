@@ -9,7 +9,7 @@
     <!--template--->
     <div id="movie${currentMovie.movieID}" class="movieContainer">
     
-        <img src="<%=request.getContextPath()%>/moviePoster/${currentMovie.movieID}.jpg" class="moviePoster" alt="Image not found">
+        <img src="https://dl.dropboxusercontent.com/u/57109653/movie/${currentMovie.movieID}.jpg" class="moviePoster" alt="Image (${currentMovie.movieID}.jpg) not found">
         <div class="movieDescription">
             <div class="movieDescriptionItem">
                 <span class="movieTitle">

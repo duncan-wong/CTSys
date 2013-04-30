@@ -119,12 +119,7 @@
                         </c:if>
                     </div>
                             
-                    <div class="formInfoControl">
-                        <label class="label">
-                            <%=sLanguageBean.cMoviesLbPoster()%>: 
-                        </label>
-                            <input type="file" name="moviePoster" accept=".jpg" class="infoInput" />
-                    </div>
+                    
                             
                     <div class="formInfoControl">
                         <a type="submit" class="btn noLanguageOption"><%=sLanguageBean.comSave()%></a>

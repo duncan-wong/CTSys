@@ -38,7 +38,6 @@ public class BookingHandler {
         //return false if the ticket cannot be inserted correctly
         for (int i = 0; i < bookingReq.getNumOfTicket(); i ++){
             bookingReq.getSelectedTickets()[i].setBookingID(booking.getBookingID());
-            bookingReq.getSelectedTickets()[i].setBookingID(booking.getBookingID());
             if (!BookingHandler.makeNewTicket(bookingReq.getSelectedTickets()[i])){
                 booking.commitDelete();
                 return false;
@@ -89,6 +88,24 @@ public class BookingHandler {
         
         bookingReq.setPaymentStatus(paymentType);
         bookingReq.commitUpdate();
+        
+        //clear refund pending queue
+        if (bookingReq.getSelectedTickets() != null){
+            for (int i =0; i < bookingReq.getSelectedTickets().length; i ++){
+                beans.RSeatQueue rSeatQ = new beans.RSeatQueue();
+                rSeatQ.searchMovieShowID(bookingReq.getMovieShowID());
+                rSeatQ.searchRowNumber(bookingReq.getSelectedTickets()[i].getRowNum());
+                rSeatQ.searchSeatNumber(bookingReq.getSelectedTickets()[i].getSeatNum());
+                rSeatQ.fetchDBData();
+                for (int j = 0; j < rSeatQ.getQueue().length; j ++){
+                    beans.RBooking oldBooking = new beans.RBooking(rSeatQ.getQueue()[i].getBookingID());
+                    oldBooking.fetchDBData();
+                    oldBooking.setPaymentStatus(beans.accessInterface.BookingPaymentStatus.Refund_Accepted);
+                    oldBooking.commitUpdate();
+                }
+            }
+        }
+        
         beans.SStatus sStatus = (beans.SStatus) session.getAttribute(common.BeansConfig.sStatus);
         if (sStatus != null){
             sStatus.setCurrentBooking(null);
@@ -146,6 +163,11 @@ public class BookingHandler {
     static public boolean deleteBooking(beans.RBooking bookingReq){
         bookingReq.commitDelete();
         return bookingReq.commitDelete();
+    }
+    
+    static public boolean hideBooking(beans.RBooking bookingReq){
+        bookingReq.setPaymentStatus(beans.accessInterface.BookingPaymentStatus.HIDE);
+        return bookingReq.commitUpdate();
     }
     
     //get ticket lock, write lock
