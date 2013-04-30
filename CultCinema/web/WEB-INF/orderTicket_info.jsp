@@ -126,8 +126,8 @@
                         </div>
                     </c:if>
                     
-                    <%-- common purchas information --%>
-                    <c:if test="${sStatus.isCustomer}">
+                    <%-- common purchase information --%>
+                    <c:if test="${!sStatus.isOfficer}">
                         <div class="formInfoControl">
                             <span class="label"><%=sLanguageBean.cOTCreditCardNo() %>: </span>
                             <input id="txtCreditCardNo" name="creditCardNo" type="text" class="infoInput" />
